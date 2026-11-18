@@ -88,7 +88,7 @@ Twelve hours down to under one. And notice: Sarah still approves every order. Th
 **SHOW:** The Odoo node lights up green, then the AI Agent node. The reply appears: 4 products below reorder point (Corrugated Shipping Boxes, Industrial Safety Gloves, Pallet Jack Wheels, Hydraulic Oil), each with its supplier and a suggested quantity.
 **SAY:** Watch. It went into Odoo, read the live stock, compared it with the reorder points, and came back in plain English. Four products are low. Safety gloves from SafeHands Co. in Monterrey, Mexico, pallet jack wheels from Global Lift Parts in Shenzhen, and so on. It even suggests how many to order.
 
-**SHOW:** Type: "Draft the PO for the gloves." Then switch to Gmail: an email "Stocky: approve PO for 1,000 pairs of Industrial Safety Gloves from SafeHands Co.?" with Approve / Reject buttons.
+**SHOW:** Type: "Draft the PO for the gloves." Then switch to Gmail: an email "Stocky: approve PO for 780 pairs of Industrial Safety Gloves from SafeHands Co.?" with Approve / Reject buttons.
 **SAY:** Now the important bit. It doesn't just go and buy things. It drafts the purchase order and sends Sarah an email asking for approval. Nothing happens until she clicks Approve.
 
 **SHOW:** Click Approve. Switch to Odoo, Purchase > Requests for Quotation: a new draft for SafeHands Co. Then the Google Sheet with a new row added.

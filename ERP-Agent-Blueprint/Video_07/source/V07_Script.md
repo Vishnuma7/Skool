@@ -57,7 +57,7 @@ So our rule for today is simple. Stocky can read anything. Stocky can draft, but
 
 ## [SCREEN RECORDING] Tour of the Finished Workflow (03:45–05:00)
 
-**SHOW:** n8n, the finished workflow "Stocky – Morning Reorder", zoomed out so all 12 nodes are visible.
+**SHOW:** n8n, the finished workflow "Stocky – Morning Reorder", zoomed out so all the nodes are visible.
 
 **SAY:** Before we build, let me show you where we're going. This is the finished recipe card. Don't worry about the details yet, just follow the story from left to right.
 
@@ -79,7 +79,7 @@ So our rule for today is simple. Stocky can read anything. Stocky can draft, but
 
 **SHOW:** Hover over "Approved?", "Create Draft RFQ", "Add Product Line" and "Confirm to Sarah".
 
-**SAY:** Only if someone clicks Approve do we create a draft RFQ in Odoo. That's amber. And then Stocky confirms back by email. Twelve blocks. No code. Let's build it from scratch.
+**SAY:** Only if someone clicks Approve do we create a draft RFQ in Odoo. That's amber. And then Stocky confirms back by email. About a dozen blocks. No code. Let's build it from scratch.
 
 **ON-SCREEN TEXT:** Read (green) → Decide → Ask a human → Draft (amber) → Confirm
 

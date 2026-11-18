@@ -147,10 +147,19 @@ def convert(src, dst):
             i += 1
             buf = []
             while i < len(lines) and not lines[i].strip().startswith("```"):
-                buf.append(fix_glyphs(escape(EMOJI.sub("", lines[i]))).replace(" ", "&nbsp;"))
+                raw = EMOJI.sub("", lines[i])
+                lead = len(raw) - len(raw.lstrip(" "))
+                buf.append("&nbsp;" * lead + fix_glyphs(escape(raw.lstrip(" "))) or "&nbsp;")
                 i += 1
-            story += [box(Paragraph("<br/>".join(buf), CODE), CALLOUT_FILL, width=W),
-                      Spacer(1, 6)]
+            # one row per line so long code blocks split cleanly across pages
+            t = Table([[Paragraph(b, CODE)] for b in buf] or [[""]], colWidths=[W])
+            t.setStyle(TableStyle([
+                ("BACKGROUND", (0, 0), (-1, -1), CALLOUT_FILL),
+                ("LEFTPADDING", (0, 0), (-1, -1), 8), ("RIGHTPADDING", (0, 0), (-1, -1), 8),
+                ("TOPPADDING", (0, 0), (-1, -1), 0.5), ("BOTTOMPADDING", (0, 0), (-1, -1), 0.5),
+                ("TOPPADDING", (0, 0), (-1, 0), 6), ("BOTTOMPADDING", (0, -1), (-1, -1), 6),
+            ]))
+            story += [t, Spacer(1, 6)]
             i += 1
             continue
         if s.startswith("|"):
