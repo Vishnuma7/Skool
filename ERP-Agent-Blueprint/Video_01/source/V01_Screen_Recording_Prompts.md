@@ -1,6 +1,10 @@
 # Video 1: Welcome: Why Your ERP Needs an AI Agent: Screen-Recording Prompts
 **How to use:** 1. Open claude.ai, start a new chat, and paste ONE prompt. 2. Claude builds an animated demo you can preview. If anything looks wrong, reply in the same chat ("make the cursor slower", "the table is cut off"). 3. Open the demo full-screen in Chrome (press F11 / Ctrl+Cmd+F), start your screen recorder (QuickTime: File → New Screen Recording), then click **Start**. 4. Stop recording when the "END" card appears, trim the start and end, and add your voice-over from the script. Each demo runs for the same length as its script section, so the voice-over lines up.
 
+<!-- VO NOTE START -->
+**Voice-over (Fish Audio):** Under every prompt you'll find a grey **"Voice-over text for Fish Audio"** box. Copy that text into Fish Audio and download the audio. Best order: make the audio FIRST, check its length, and if it's longer or shorter than the section length, add one line to the prompt before sending it to Claude: *"Make the total duration exactly M:SS"* (your audio length). Claude's demo has no sound, so you join the audio and video in a video editor (CapCut, iMovie, Descript): put both on the timeline starting at 0:00.
+<!-- VO NOTE END -->
+
 **Sections in this video:**
 
 | # | Section | Time | Length | Prompt |
@@ -114,6 +118,34 @@ CHECKLIST
 - Start button, hover-only Pause/Restart controls, progress bar, Space and R keys all work; nothing overflows the 1920x1080 stage; no real logos.
 ```
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*428 words, about 2 min 51 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+It's Monday, seven in the morning. Sarah hasn't even had her coffee yet, and there's already an email waiting for her. It's from Stocky. Let's open it.
+
+This is the whole course in one email.
+
+Stocky looked inside BrightLeaf's ERP and checked all ten products. It found four that have dropped below their reorder point. For each one, it tells Sarah how many are on hand, what the reorder point is, who the supplier is, how much to order and roughly what it costs.
+
+But look at number three, the pallet jack wheels. Stocky didn't just say "you're low". It noticed that the supplier is in Shenzhen, it checked the weather there and saw heavy rain coming, it checked the calendar and saw a public holiday in China next week, and it knows the lead time is already twenty-one days. So it says: order this one today. That's not a report. That's a colleague giving you advice.
+
+And at the bottom, two buttons. Approve. Decline. Stocky has prepared the purchase requests, but it will not send anything until Sarah says yes. Hold on to that idea. It's important, and we'll come back to it.
+
+So how did that happen? This is what's behind the curtain. It's a tool called n8n, and every box you see is one step. There's no code here. You build this by dragging boxes onto the screen and filling in forms.
+
+Left to right: a timer that says "every Monday at six fifty-five AM, start". Then a box that pulls stock levels from the ERP, which for BrightLeaf is a system called Odoo. The big box in the middle is the agent, the part that thinks. These three check the weather, exchange rates and public holidays. This one writes every decision into a Google Sheet. And the last one emails Sarah and waits for her click.
+
+Here's that record. Every Monday, every product Stocky flagged, what it suggested and who approved it. When Mr. Harrison, BrightLeaf's operations director, asks "why did we order those wheels early?", Sarah doesn't have to remember. It's written down.
+
+Now watch. Sarah clicks Approve. And over in Odoo, under Purchase, Requests for Quotation, there they are. Four draft requests, one for each supplier, already filled in with the right products and quantities.
+
+What used to take Sarah most of her Monday morning took ninety seconds. And here's the part I want you to hear: you are going to build this. Not watch me build it. You. One piece per video. By video nine, your Stocky sends this exact email.
+```
+<!-- VOICEOVER END -->
+
 - This is the longest demo: preview it once all the way through before recording, and if one scene is off, ask Claude to change only that scene ("in scene 6, make each callout appear 2 seconds later").
 - The email text is small on a laptop screen; if it is hard to read, reply "make the email body 26 px and the email view wider".
 - Start talking "Now watch. Sarah clicks Approve." right as the cursor starts moving to the button at 03:28.
@@ -213,6 +245,42 @@ CHECKLIST
 - Start button, hover-only Pause/Restart controls, progress bar, Space and R keys all work; nothing overflows the 1920x1080 stage; no real logos (Claude and n8n look-alikes only).
 ```
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*543 words, about 3 min 37 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Okay. Three words get thrown around like they mean the same thing: chatbot, automation and agent. They don't. Let me show you the difference with a real test.
+
+First, a chatbot. This is Claude, one of the AI assistants we'll use in this course. ChatGPT works the same way. I'll ask it: how many steel hex bolts do we have in stock at BrightLeaf right now, and should I reorder?
+
+And look at the answer. It's polite, it's smart, and it says: I don't have access to your inventory system, please share your stock level and reorder point.
+
+That's a chatbot. A brilliant brain, sitting in a room with no windows and no doors. It can only think about what you type into it. It can't open Odoo. It can't send an email. It talks. That's all.
+
+Second, automation. A workflow, or automation, is like a recipe card. Step one, step two, step three, always in the same order.
+
+This little one says: every morning, read the stock from Odoo. Then this box, called an IF, checks one rule. Is the quantity on hand smaller than the reorder point? If yes, send an email. If no, do nothing.
+
+Useful, and lots of companies have one. But it follows the rule exactly, even when the rule is wrong. If the pallet jack wheels are at twenty-six, one above the reorder point of twenty-five, it stays quiet, even though the supplier is in Shenzhen, it's raining and there's a holiday coming. It can't think "hmm, this one is risky". It doesn't know what "risky" means. It only knows the recipe.
+
+And third, the agent. Let's open Stocky's brain.
+
+The best way to think about an AI agent is a smart new intern. A good intern can read, think, use the tools you give them and take action. But they need clear instructions, and they need supervision, especially in their first few weeks.
+
+Here are Stocky's instructions. In plain English. "You are Stocky, BrightLeaf Supplies' inventory and procurement assistant. Check every product against its reorder point. For suppliers outside the US, consider weather, currency and holidays. Never send a purchase order without Sarah's approval. Explain your reasoning in plain English."
+
+And underneath, the tools it's allowed to use. It can look things up in Odoo. It can check the weather. It can check exchange rates and holidays. It can write to the log.
+
+So the difference is this. The automation follows a fixed recipe. The agent gets a goal, a set of tools and some rules, and it decides which tools to use and in what order to reach the goal. That's why it could spot the risk on the pallet jack wheels. Nobody wrote a rule saying "if Shenzhen plus rain plus holiday, then warn". It worked that out.
+
+Here's the summary. A chatbot talks. An automation follows. An agent reasons and acts.
+
+And one honest note. Agents are not always the right answer. If a task is the same every single time, with a clear rule, a plain automation is cheaper, faster and more predictable. Use an agent when the task needs a bit of judgement: reading messy information, weighing up several factors, explaining a decision. We'll practise telling them apart in your activity.
+```
+<!-- VOICEOVER END -->
+
 - The System Message highlight (02:23–02:44) is paced for reading it aloud; if you read slower, ask Claude to "slow the five sentence highlights to 5 seconds each and shorten scene 17 to match".
 - Preview the IF example once: the red "false" stamp should be clearly visible before you say "it stays quiet".
 - Trim the first second before Start and the frames after END.
@@ -290,6 +358,26 @@ CHECKLIST
 - Start button, hover-only Pause/Restart controls, progress bar, Space and R keys all work; nothing overflows the 1920x1080 stage; no real logos.
 ```
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*281 words, about 1 min 52 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Every agent you'll ever build, including Stocky, has the same five parts. Let's go through them using our intern.
+
+Part one: the brain. That's the AI model, things like Claude or ChatGPT. You'll hear people call this an "LLM". It just means the type of AI that reads and writes language. Think of it as the intern's brain. It reads, it reasons, it writes. On its own, as we saw, it's stuck in a room with no doors.
+
+Part two: the instructions. This is the briefing you give the intern on day one. Who you are, what your job is, what you must never do. The clearer this is, the better the agent behaves. Vague instructions give you a vague intern.
+
+Part three: the tools. These are the doors we open for the intern. Odoo, so it can read stock. A weather service. An exchange rate service. A holiday calendar. Email. The agent can only use the tools you give it. If you don't give it access to purchase orders, it simply can't create one. That's how you keep it safe.
+
+Part four: memory. Out of the box, an AI brain forgets everything the moment a conversation ends. So we give Stocky a notebook, which for us is this Google Sheet. It writes down what it decided and why. Next week, it can look back and say, "I flagged the pallet jack wheels last week too. This is becoming a pattern."
+
+And part five, the one people forget: the human supervisor. That's you. In this course, Stocky never spends BrightLeaf's money without a human click. It's like the manager's signature before the check goes out. The agent prepares, the human approves.
+```
+<!-- VOICEOVER END -->
+
 - If the intern figure looks too cartoonish or too plain, reply "make the intern a simple flat avatar like a modern SaaS illustration".
 - Begin "Part one: the brain" when the Brain card turns yellow at 00:09.
 - Trim the first second before Start and the frames after END.
@@ -383,6 +471,24 @@ CHECKLIST
 - Start button, hover-only Pause/Restart controls, progress bar, Space and R keys all work; nothing overflows the 1920x1080 stage.
 ```
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*246 words, about 1 min 38 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Here's the road we'll travel together, one piece of Stocky at a time.
+
+In video two, we'll tour an ERP and set up your own free copy of Odoo, loaded with BrightLeaf's ten products. Video three explains APIs, the way software talks to software, using a restaurant. Video four makes databases friendly, using something you already know: Excel. In video five, we set up your no-code toolkit.
+
+Then the building starts. Video six: Stocky reads the ERP and answers "what's running low?". Video seven: Stocky drafts purchase orders, but only with your approval. Video eight: Stocky looks beyond the ERP at weather, currency and holidays. Video nine: memory and Mr. Harrison's Monday report. And video ten: going live safely, plus your capstone, where you build a Stocky for your own company.
+
+And here's your toolkit. Odoo is our ERP. It's free to try and runs in your browser. n8n is where we build the recipe. Claude or ChatGPT is the brain. Google Sheets is the memory. Gmail sends the alerts. Every tool here has a free tier or a free trial. You won't need to install anything on your computer.
+
+Does your company use SAP, Oracle, Microsoft Dynamics or NetSuite instead of Odoo? No problem. The ideas are identical. We use Odoo because it's free and you can't break anything in a test system. Once you understand how Stocky talks to Odoo, you'll know exactly what questions to ask your IT team about your own ERP.
+```
+<!-- VOICEOVER END -->
+
 - If the milestone labels overlap on the curvy road, reply "alternate the labels above and below the road".
 - The video 2 to 5 milestones move quickly; keep a steady pace when you read that paragraph.
 - Trim the first second before Start and the frames after END.

@@ -2,6 +2,10 @@
 
 **How to use:** 1. Open claude.ai, start a new chat, and paste ONE prompt. 2. Claude builds an animated demo you can preview. If anything looks wrong, reply in the same chat ("make the cursor slower", "the table is cut off"). 3. Open the demo full-screen in Chrome (press F11 / Ctrl+Cmd+F), start your screen recorder (QuickTime: File → New Screen Recording), then click **Start**. 4. Stop recording when the "END" card appears, trim the start and end, and add your voice-over from the script. Each demo runs for the same length as its script section, so the voice-over lines up.
 
+<!-- VO NOTE START -->
+**Voice-over (Fish Audio):** Under every prompt you'll find a grey **"Voice-over text for Fish Audio"** box. Copy that text into Fish Audio and download the audio. Best order: make the audio FIRST, check its length, and if it's longer or shorter than the section length, add one line to the prompt before sending it to Claude: *"Make the total duration exactly M:SS"* (your audio length). Claude's demo has no sound, so you join the audio and video in a video editor (CapCut, iMovie, Descript): put both on the timeline starting at 0:00.
+<!-- VO NOTE END -->
+
 **Sections in this video:**
 
 | # | Section | Time | Length | Prompt |
@@ -89,6 +93,25 @@ CHECKLIST
 ```
 
 **After Claude builds it:** This demo is short and fast, so check that each hover holds long enough to read the callout; if not, ask Claude to shorten the callout text rather than change the timing. Trim the Start click.
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*166 words, about 1 min 06 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Before we build, let me show you where we're going. This is the finished recipe card. Don't worry about the details yet, just follow the story from left to right.
+
+Step one is the doorbell. Instead of Sarah typing a question, a clock rings the doorbell at 8am every day.
+
+Then we read every product from Odoo. That's green. We keep only the ones below their reorder point, and we calculate how much to order and what it would cost.
+
+We look up the right supplier, and Stocky, our AI agent, writes a short, friendly approval request in plain English.
+
+This diamond is Mr. Harrison's rule. Anything over two thousand dollars goes to him. Everything else goes to Sarah. Then the workflow literally pauses and waits for a human to click a button.
+
+Only if someone clicks Approve do we create a draft RFQ in Odoo. That's amber. And then Stocky confirms back by email. About a dozen blocks. No code. Let's build it from scratch.
+```
+<!-- VOICEOVER END -->
 
 ---
 
@@ -196,6 +219,31 @@ CHECKLIST
 
 **After Claude builds it:** Check that the 10-row table fits inside the OUTPUT panel without a scrollbar hiding rows; if it doesn't, ask Claude to widen the panel or reduce row height. The timezone illustration (00:57) should be large enough to read in one glance. Trim the Start click.
 
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*381 words, about 2 min 32 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Create a new workflow and call it "Stocky – Morning Reorder". Naming things clearly now saves you a headache in three months when you have fifteen workflows.
+
+Our doorbell this time is the Schedule Trigger. Think of it as an alarm clock for your recipe card.
+
+Trigger interval: Days. Days between triggers: one. Trigger at hour: 8am. Minute: zero. I'll rename it "Every Morning 8am" so anyone can read the canvas like a sentence.
+
+Here's a mistake I see all the time. The alarm clock needs to know which time zone it lives in. Click the three dots, Settings, and set Timezone to America/New_York, because Columbus runs on Eastern Time, or whatever your warehouse uses. Otherwise 8am might be 8am in London.
+
+Next, we read from Odoo. Click plus, search Odoo, and pick the Odoo node. You'll see your credential from Video 5 is already selected. That's our hotel key card. It opens only the doors we gave it.
+
+For Resource, choose Custom Resource. Then in the name box, search for "product dot product". Depending on your Odoo version it may be labelled "Product" or "Product Variant". It's the list of every item you stock. Operation: Get Many. And switch on Return All, so we don't accidentally stop at the first 50 products.
+
+Now, a product in Odoo has more than a hundred fields. We only want five, so click Add option, Fields to Include, and tick these: Internal Reference, which is our SKU. Name. Quantity On Hand. Min, which is the reorder point from the reordering rule we set up in Video 2. And Cost, which is the unit cost. Asking only for what you need keeps things fast and keeps the agent from getting confused.
+
+Let's test it. Execute step. And there they are, ten products, in a nice table. Look at BL-1002, Corrugated Shipping Boxes: on hand 1,180, Min 1,500. BL-1004, Safety Gloves: 420 on hand, Min 600. BL-1005, Pallet Jack Wheels: 18 on hand, Min 25. And BL-1007, Hydraulic Oil: 31 on hand, Min 40. Everything else is healthy.
+
+Each row is one labelled shopping list. Product name, quantity, reorder point. Exactly like the JSON we saw in Video 3. Rename this node "Get Stock from Odoo". Notice that everything so far is green. We're only looking.
+```
+<!-- VOICEOVER END -->
+
 ---
 
 ## Prompt 3 of 6: Step 2: Who's Low, and How Much Should We Order? (08:30–12:30, 4 min 0 s)
@@ -299,6 +347,31 @@ CHECKLIST
 ```
 
 **After Claude builds it:** Preview the explainer slide (01:46–02:32) and the final four-line panel (03:15–03:59), as they carry the maths; ask Claude to enlarge the numbers if needed. If one scene feels slow, ask Claude to change only that scene's function and keep the total at 4:00. Trim the Start click.
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*465 words, about 3 min 06 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Now we need to throw away the healthy products and keep only the low ones. For that we use a Filter node. Think of it as a sieve: only the rows that match your rule fall through.
+
+I drag "quantity on hand" from the left into the first box. Operator: Number, is less than. And I drag the reorder point into the second box. In plain English: keep this product if what we have is less than the reorder point. That's the same as an Excel formula, equals on-hand less-than reorder-point.
+
+And one more condition: the reorder point must be greater than zero. That stops Stocky from ordering products that have no rule yet. Small safety habits like this add up.
+
+Execute. Four items kept, six discarded. Exactly the four we expected. Now, you could also use an IF node here, which has a true and a false exit. But we don't need to do anything with the healthy products, so a Filter is simpler.
+
+Next, the maths. We use an Edit Fields node and call it "Calculate Order". It's like adding new columns to a spreadsheet. And switch on "Include Other Input Fields" so we keep the product name and SKU alongside our new columns.
+
+Let me explain our ordering rule, because it's deliberately simple. Suggested order equals reorder point times two, minus what's on hand. Think of it as "fill the shelf back up to twice the reorder point." For Pallet Jack Wheels, the reorder point is 25. Twice that is 50. We have 18. So we order 32. That's it. Is it perfect? No. It ignores pack sizes, minimum order quantities and seasonal demand. But it's predictable, and in week one, predictable beats clever. You can swap in your own company's formula later.
+
+Add a field. Name it suggested underscore qty, type Number. In the value box I'm typing a formula. It looks technical, but read it out loud: reorder point, times two, minus quantity on hand. The curly brackets just tell n8n "this is a formula, not plain text", like the equals sign in Excel. You can copy it from the activity file.
+
+Second field: order underscore value. That's the suggested quantity times the unit cost. The money.
+
+Execute. Shipping boxes: 1,500 times two is 3,000, minus 1,180, so 1,820 boxes at 85 cents, one thousand five hundred and forty-seven dollars. Safety gloves: 1,200 minus 420 is 780 pairs, one thousand eight hundred and seventy-two dollars. Pallet Jack Wheels: 32 sets, one thousand two hundred and sixteen dollars. And Hydraulic Oil: 40 times two is 80, minus 31, so 49 drums at 54 dollars, that's two thousand six hundred and forty-six dollars. Check my maths with a calculator. You should always be able to check an agent's maths with a calculator.
+```
+<!-- VOICEOVER END -->
 
 ---
 
@@ -418,6 +491,29 @@ CHECKLIST
 
 **After Claude builds it:** Scene 14 (dragging eight values into the prompt) is busy; if it looks rushed, ask Claude to drag only the first four and have the rest appear in one smooth fill, keeping the same timing. Make sure the "14" in the URL is big enough to read when zoomed. Trim the Start click.
 
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*364 words, about 2 min 26 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+To create an RFQ, Odoo needs to know which supplier, and it identifies suppliers by a number, like an employee badge number. Here's how to find it, no tech needed. Open Contacts, click Global Lift Parts, and look at the address bar. The number at the end, 14 in my case, is the vendor ID. Yours will be different, and that's fine.
+
+I've added a small tab to our Google Sheet database from Video 4. It's called Supplier Map. Three columns: SKU, Supplier, and the Odoo Vendor ID. Ten rows, typed once. It took me five minutes. This is our "who do we buy this from" lookup table.
+
+In n8n, add a Google Sheets node, and choose "Get rows in sheet". Pick our BrightLeaf document and the Supplier Map tab. Under Filters, choose the column SKU, and for the value, drag in the SKU from the left. So for each low product, n8n looks up its row, exactly like a VLOOKUP.
+
+Execute. Four suppliers found. Lovely.
+
+Now Stocky joins the party. Add an AI Agent node, call it "Stocky Writes Request", and plug in the Claude chat model, the intern's brain, just like in Video 6. This time there's no chat box, so set "Source for Prompt" to "Define below".
+
+In the prompt, I write a short brief and drag in the facts: product, SKU, on hand, reorder point, suggested quantity, unit cost, order value and supplier. To grab values from earlier steps, scroll up in the left panel to "Calculate Order" or "Find Supplier" and just drag them in.
+
+And in the system message, the rulebook. You are Stocky. Keep it to five sentences. Start with "Approval needed". Explain why. And here's guardrail three, the sanity check. If the quantity is more than three times the reorder point, or the value is over five thousand dollars, start with "CHECK THIS FIRST" and say what looks odd. That alone would have caught the glove disaster. Last line: never say the order is placed.
+
+Look at that. Clear, polite, and it even mentioned the 14-day lead time on its own. That's the agent part: the formula did the maths, and the brain did the explaining.
+```
+<!-- VOICEOVER END -->
+
 ---
 
 ## Prompt 5 of 6: Step 4: Mr. Harrison's Rule and the Approval Email (17:30–20:15, 2 min 45 s)
@@ -509,6 +605,29 @@ CHECKLIST
 ```
 
 **After Claude builds it:** Check that the "Waiting" state (01:45–02:00) is obvious; ask for a stronger amber pulse if needed. The reject moment on the gloves is the emotional beat of this section, so make sure the sticky note is readable before the click. Trim the Start click.
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*325 words, about 2 min 10 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Now, guardrail two. Add an IF node and call it "Over two thousand dollars?". Drag in order value from the Calculate Order step, "is greater than", two thousand. This diamond has two exits. True means "big order, go to Mr. Harrison". False means "Sarah can approve this herself". This is BrightLeaf's real approval policy, just written as a block.
+
+From the true exit, add a Gmail node and choose this special action: "Send message and wait for response". This is human-in-the-loop in one block. The email goes out, and the whole workflow pauses, like a check sitting on the manager's desk, until somebody clicks a button.
+
+To: Mr. Harrison. Subject: "Approval needed", plus the product and value. Message: drag in the text Stocky just wrote. Response type: Approval. Type of approval: Approve and Disapprove. I'll label the buttons "Approve draft RFQ" and "Reject". Notice the word "draft" on the button. Words matter. Nobody should think they're spending money with this click.
+
+Then one more option: Limit Wait Time, one day. If nobody answers in 24 hours, the request expires. In procurement, silence should never mean yes.
+
+Duplicate that node, connect the copy to the false exit, call it "Ask Sarah", and change the email address. Same email, different approver.
+
+Let's run the whole thing. Execute workflow. Watch the canvas. Green ticks march along, and then the email nodes say "waiting". The recipe is paused, waiting for people.
+
+Here's Mr. Harrison's inbox. The Hydraulic Oil request, two thousand six hundred and forty-six dollars, with Stocky's explanation and two big buttons. He reads it in ten seconds and clicks "Approve draft RFQ".
+
+Sarah got three emails. Shipping boxes and Pallet Jack Wheels: she approves both. Safety gloves: she rejects. Why? Because she knows there are 500 pairs arriving from SafeHands on Thursday on an open order. Stocky didn't know that. This, right here, is why the human stays in the loop. Sarah knows things the system doesn't.
+```
+<!-- VOICEOVER END -->
 
 ---
 
@@ -607,3 +726,25 @@ CHECKLIST
 ```
 
 **After Claude builds it:** The fast-forward montage (02:05–02:09) is short on purpose, because the voice-over jumps straight to "Let's check Odoo"; don't let Claude stretch it. Check that the cursor clearly hovers but never clicks "Confirm Order". Trim the Start click.
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*368 words, about 2 min 27 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Back in n8n. Both email nodes now connect into one IF node called "Approved?". When someone clicks a button, n8n receives a little labelled shopping list that says approved: true or approved: false. Our condition: approved is true. Rejected or expired requests go out the false exit and simply stop. Next video, we'll log those too.
+
+Now, finally, the amber step. Add an Odoo node, action "Create a custom resource", and pick Purchase Order. In Odoo, a purchase order and an RFQ are the same form. It's called an RFQ while it's a draft, and becomes a purchase order only when a human clicks Confirm. Two fields. Vendor, which Odoo calls partner underscore id: drag in the Odoo Vendor ID from "Find Supplier". And Source Document, called origin, where I type "Stocky, approved by email". That's our paper trail. Anyone opening this RFQ will know where it came from.
+
+A purchase order is like a paper form with a header, who we're buying from, and lines, what we're buying. The first node made the header. This second Odoo node adds the line. Pick Purchase Order Line. Order ID is the number Odoo just gave us back. Product ID comes from "Get Stock from Odoo". And product quantity is our suggested quantity. Odoo fills in the description and the vendor price by itself.
+
+Last block: a confirmation email back to Sarah. "Done. Draft RFQ created for this quantity, from this supplier. It's a draft. Review it in Odoo and send it yourself." Stocky always closes the loop.
+
+Let's check Odoo. Purchase, Requests for Quotation. There they are. PackRight, 1,820 boxes. Global Lift Parts, 32 Pallet Jack Wheels. Gulf Lubricants, 49 drums of hydraulic oil, the one Mr. Harrison approved. Status: RFQ. Not confirmed. Not sent. Source document: "Stocky, approved by email". And no safety gloves, because Sarah said no.
+
+And see this "Confirm Order" button? That's red. That stays Sarah's job. Stocky prepares, Sarah signs. What used to take her twenty-five minutes every morning now takes about forty seconds of reading and clicking.
+
+Last thing: switch the workflow on with the Active toggle, or the Publish button in newer versions of n8n. From tomorrow, 8am, it runs by itself.
+```
+<!-- VOICEOVER END -->
+

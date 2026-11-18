@@ -2,6 +2,10 @@
 
 **How to use:** 1. Open claude.ai, start a new chat, and paste ONE prompt. 2. Claude builds an animated demo you can preview. If anything looks wrong, reply in the same chat ("make the cursor slower", "the table is cut off"). 3. Open the demo full-screen in Chrome (press F11 / Ctrl+Cmd+F), start your screen recorder (QuickTime: File → New Screen Recording), then click **Start**. 4. Stop recording when the "END" card appears, trim the start and end, and add your voice-over from the script. Each demo runs for the same length as its script section, so the voice-over lines up.
 
+<!-- VO NOTE START -->
+**Voice-over (Fish Audio):** Under every prompt you'll find a grey **"Voice-over text for Fish Audio"** box. Copy that text into Fish Audio and download the audio. Best order: make the audio FIRST, check its length, and if it's longer or shorter than the section length, add one line to the prompt before sending it to Claude: *"Make the total duration exactly M:SS"* (your audio length). Claude's demo has no sound, so you join the audio and video in a video editor (CapCut, iMovie, Descript): put both on the timeline starting at 0:00.
+<!-- VO NOTE END -->
+
 **Sections in this video:**
 
 | # | Section | Time | Length | Prompt |
@@ -105,6 +109,39 @@ CHECKLIST
 
 **After Claude builds it:** Check that the list view shows all 10 rows without scrolling; if not, ask Claude to reduce the row height. Record full-screen and trim the first second.
 
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*372 words, about 2 min 29 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Let's start somewhere familiar, your BrightLeaf Odoo from Video 2. I'm in Inventory, Products, and I'm switching from the picture cards to the list view, the icon with the little lines on the top right.
+
+Look at this. Rows and columns. Each row is one product. Each column is one piece of information about that product: the reference, the name, the sales price, the cost, the quantity on hand.
+
+Guess what? Underneath, Odoo stores this in a database. And a database, at the level we need, is simply a super-organised Excel workbook.
+
+Four words, and you know all of them already.
+
+A table is like one sheet in a workbook. Odoo has a table for products, a table for suppliers, a table for purchase orders.
+
+A row is one record, one thing. One product. One supplier. One stock count.
+
+A column is one field, one type of information that every record has. Product name. Cost. Lead time.
+
+And the database is the whole workbook holding all of those tables together.
+
+Now here's something most people never notice. I'll open the pallet jack wheels. Look at the very end of the web address. There's a number. That number is Odoo's own internal ID for this product. It never changes. You can rename the product, change the price, change the supplier, and that number stays the same. Hold on to that idea, because unique IDs are going to save us in a few minutes.
+
+So why are we using Google Sheets as Stocky's database instead of something fancy? Three reasons.
+
+One, it's free and you already know how to use it. Two, it lives online, so our automation tool, n8n, can reach it from anywhere, whereas an Excel file sitting on your laptop is locked inside your laptop. And three, you can open it and see exactly what Stocky wrote. Nothing is hidden in a black box.
+
+There's an app called Airtable that does the same job with a few more features, and it's a fine alternative. But for learning, Google Sheets is perfect.
+
+My shortcut: I just typed "sheets dot new" in the address bar, and a blank sheet opened instantly. I'll click the title "Untitled spreadsheet" and rename it "BrightLeaf Stocky Database".
+```
+<!-- VOICEOVER END -->
+
 ---
 
 ## Prompt 2 of 4: Building the Suppliers Table (06:30–10:30, 4 min 0 s)
@@ -199,6 +236,37 @@ CHECKLIST
 
 **After Claude builds it:** This is a dense table; make sure all 9 columns fit at full screen (ask Claude to narrow columns or reduce cell font to 22px if needed). Record full-screen and trim the first second.
 
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*457 words, about 3 min 03 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Let's build Stocky's first table. One table for one kind of thing. This table is about suppliers, and only suppliers. I double-click the tab at the bottom and rename it "Suppliers".
+
+Now the headers, the column names, in row 1. Supplier ID, supplier name, city, country code, currency, latitude, longitude, contact email, and active.
+
+Notice two things about how I'm writing them. First, there's exactly one header row. No title above it, no "BrightLeaf supplier list, updated by Sarah" in a merged banner. Row 1 is headers, and data starts in row 2. Agents and automation tools expect that.
+
+Second, I'm using underscores instead of spaces, like "Supplier underscore ID". Spaces in headers work in Sheets, but they cause small annoyances in automation tools later. Underscores never do. It's a two-second habit that saves real headaches.
+
+I'll make the headers bold, then View, Freeze, one row. Now when the list gets long, the headers stay on screen.
+
+Now the data. Supplier ID first, SUP dash 001. Apex Fasteners, Columbus. SUP-002, PackRight Industries, Chicago. All the way to SUP-006, Shenzhen BrightTech.
+
+See the ID pattern? Three letters that tell you what kind of thing it is, a dash, and a number with leading zeros. SUP for suppliers, and in a minute LOG for stock log entries. When you see "SUP-004" in an email, you instantly know it's a supplier, not a product.
+
+Now look at the latitude and longitude columns. Recognise those numbers? 22.54 and 114.06. That's Shenzhen, the exact numbers we sent to the weather API in the last video. This is where it all connects. Later, Stocky will read this table, take each supplier's latitude and longitude, and build its own weather request. Same with the currency column: it feeds the currency API. Your database becomes the agent's to-do list.
+
+Because they're different companies. Same city, same weather, but different contracts, different products, different people to call. The ID identifies the supplier, not the city.
+
+Here's a trick that prevents mess before it happens. I select the country code column, then Data, Data validation, Add rule. For criteria, I choose "Dropdown", and I type the allowed values: US, MX, CN, AE. Done.
+
+Now nobody can type "Mexico" in one row, "MEX" in another and "mx" in a third. They pick from the list. A dropdown is a tiny guard dog for your data. I'll do the same for the currency column: USD, MXN, CNY, AED.
+
+Last one. The "Active" column. I select it and click Insert, Checkbox. TRUE becomes a ticked box. If BrightLeaf stops buying from a supplier, Sarah unticks it. We don't delete the row, because old purchase orders still point to that ID. We just mark it inactive, and Stocky will skip it.
+```
+<!-- VOICEOVER END -->
+
 ---
 
 ## Prompt 3 of 4: Building the Stock Log (10:30–14:00, 3 min 30 s)
@@ -287,6 +355,37 @@ CHECKLIST
 ```
 
 **After Claude builds it:** Check that the formula text is readable in the formula bar while it types; ask for a short zoom on the formula bar if needed. Record full-screen and trim the first second.
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*516 words, about 3 min 26 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Second table: the Stock Log. This is where Stocky will write down every stock check it does. I click the plus sign at the bottom, rename the tab "Stock underscore Log", and add the headers: log ID, log date, SKU, quantity on hand, unit, reorder point, status, supplier ID, logged by, and note. Bold and freeze.
+
+A log is like a ship's logbook or a diary. You never rub out yesterday's entry. Every check gets a brand-new row. That way, three months from now, Sarah can ask, "How fast were we burning through safety gloves in October?" and the answer is sitting right there.
+
+Let me add three entries. LOG-0001, today's date, BL-1005, the pallet jack wheels. Quantity: 18. Unit: set. Reorder point: 25. Supplier: SUP-004. Logged by Sarah. And in the note column: "3 pallet jacks waiting for wheels."
+
+Now pay close attention to the quantity cell. I typed "18". Just the number. Not "18 sets". Not "18 - urgent!". The unit has its own column. The comment has its own column. This is the most important rule in this whole video: one fact per cell.
+
+Why? Because "18" is a number. You can add it, compare it, and ask "is it below 25?". But "18 sets - urgent!" is just text. A formula can't do maths with it, and an agent has to guess what you meant.
+
+That brings us to data types. Every column holds one type of thing. Quantity holds numbers. Names hold text. Active holds true or false. And dates hold real dates, not text that looks like a date.
+
+I select the date column, then Format, Number, Custom date and time, and pick year-month-day. Why? Because "03/04" means the 3rd of April in Mexico, where SafeHands is, and March the 4th here in the US. 2026-11-16 can't be misread by anyone, human or machine, and it sorts correctly.
+
+Now let's make the table do some work. In the status column I type: equals IF, open bracket, D2 less than or equal to F2, comma, "REORDER" in quotes, comma, "OK" in quotes, close bracket. In English: if quantity on hand is at or below the reorder point, say REORDER, otherwise say OK.
+
+I drag it down. Pallet jack wheels, 18 against 25: REORDER. Corrugated boxes, 1,180 against 1,500: REORDER. Hex bolts, 145 against 80: OK.
+
+That formula only works because quantity and reorder point are clean numbers. If D2 said "18 sets", this would break. Clean data is what makes the smart stuff possible.
+
+One last bit of magic, for my fellow Excel lovers. The stock log only stores the supplier ID, not the name. But I can look up the name from the Suppliers table. In K2: equals XLOOKUP, H2, then the Suppliers ID column, then the Suppliers name column. Drag down. There they are.
+
+This is what makes it a real database. The name lives in one place only. If PackRight renames itself tomorrow, Sarah changes it once, and every stock log row updates instantly. In database language, this ID connection is called a relationship. You've just built one.
+```
+<!-- VOICEOVER END -->
 
 ---
 
@@ -420,5 +519,32 @@ CHECKLIST
 ```
 
 **After Claude builds it:** This is the longest demo; preview it once from start to finish before recording, and if a scene feels rushed, ask Claude to adjust only that scene's internal pacing (keep the scene start/end times). Record full-screen and trim the first second.
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*505 words, about 3 min 22 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Now the fun part. This is BrightLeaf's real-world stock sheet. It started as an Odoo export three years ago and has been passed between five people since. You might recognise some of these crimes.
+
+Merged title rows. Supplier names merged across several rows. Quantities like "145 boxes", "approx 1,850" and "18 - urgent!!". "BL 1002" with a space next to "BL-1002" with a dash. A blank SKU. Dates in five different formats. Red cells only Tom understands. And a TOTAL row that just says "lots". A human can muddle through. An agent will stumble on every one. Let's fix them.
+
+Fix one: I delete the top three rows: the merged title, the "prepared by" line and the blank row. Now row 1 is the headers.
+
+Fix two: merged cells. The supplier column looks tidy, but only the top cell of a merge actually holds the name. The rows underneath are empty, so if you sort or filter, products lose their supplier. Format, Merge cells, Unmerge. See the blanks? I copy each name down. Every row now knows its own supplier.
+
+Fix three: inconsistent IDs. To a computer, "BL 1002" and "BL-1002" are as different as "apple" and "banana". Edit, Find and replace, "BL space" with "BL dash", Replace all. Then Data, Data cleanup, Trim whitespace, to remove invisible spaces, the number one reason a VLOOKUP says "not found" when you can see the value right there.
+
+Fix four: duplicates. Data, Data cleanup, Remove duplicates, data has a header row. The duplicate hex bolts disappear. The two corrugated box rows had different date formats, so I delete one by hand. Before this, a stock total would have counted 2,360 boxes instead of 1,180, which is above the reorder point of 1,500, so the reorder alert would never have fired.
+
+Fix five: one fact per cell. I insert a Unit column and split every quantity. "145 boxes" becomes 145 and "box". "approx 1,850" becomes 1,850, with "estimate, recount" in the remarks. And our stretch wrap: "21 cartons, 12 rolls each, plus 8 loose" becomes 260 rolls, because the reorder point is in rolls. Not a stock-out. The eighteen-hundred-dollar cell, fixed in five seconds.
+
+Fix six: the blank ID. The safety gloves have no SKU. The product list says BL-1004. A row without an ID is a parcel without a label.
+
+Fix seven: the red cells meant "urgent", so I write that in the remarks and reset the colour. And the TOTAL row goes. Totals belong in reports, not data tables, or the agent counts them as a product.
+
+Before and after. Messy: seventeen rows and two red "urgent" cells. Clean: ten rows, one per product, and four need reordering: boxes, gloves, wheels and hydraulic oil. Two surprises. The packing tape coloured red for "urgent"? 1,850 rolls against a reorder point of 1,000. Fine. And the hydraulic oil nobody flagged is at 31 drums against 40, with a 14-day lead time from Dubai. That's a real emergency, and the messy sheet was hiding it under "check with Tom".
+```
+<!-- VOICEOVER END -->
 
 ---

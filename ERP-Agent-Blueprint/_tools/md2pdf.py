@@ -169,7 +169,7 @@ def convert(src, dst):
                 i += 1
             story += [table(rows, W), Spacer(1, 8)]
             continue
-        if not s:
+        if not s or (s.startswith("<!--") and s.endswith("-->")):
             i += 1
             continue
 

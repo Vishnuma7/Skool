@@ -2,6 +2,10 @@
 
 **How to use:** 1. Open claude.ai, start a new chat, and paste ONE prompt. 2. Claude builds an animated demo you can preview. If anything looks wrong, reply in the same chat ("make the cursor slower", "the table is cut off"). 3. Open the demo full-screen in Chrome (press F11 / Ctrl+Cmd+F), start your screen recorder (QuickTime: File → New Screen Recording), then click **Start**. 4. Stop recording when the "END" card appears, trim the start and end, and add your voice-over from the script. Each demo runs for the same length as its script section, so the voice-over lines up.
 
+<!-- VO NOTE START -->
+**Voice-over (Fish Audio):** Under every prompt you'll find a grey **"Voice-over text for Fish Audio"** box. Copy that text into Fish Audio and download the audio. Best order: make the audio FIRST, check its length, and if it's longer or shorter than the section length, add one line to the prompt before sending it to Claude: *"Make the total duration exactly M:SS"* (your audio length). Claude's demo has no sound, so you join the audio and video in a video editor (CapCut, iMovie, Descript): put both on the timeline starting at 0:00.
+<!-- VO NOTE END -->
+
 **Sections in this video:**
 
 | # | Section | Time | Length | Prompt |
@@ -104,6 +108,25 @@ CHECKLIST
 ```
 
 **After Claude builds it:** Press Start and let it run once without recording to check that the chat drawer does not hide the AI Agent node in the final scene. If the typing feels rushed, ask Claude to slow it to 12 characters per second but keep the total at 3:00. Trim the first second (the Start click) in your editor.
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*299 words, about 1 min 60 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Open n8n and click "Create Workflow". Name it straight away: "Stocky v1, Reads the ERP". This is the workflow you'll keep improving for the rest of the course.
+
+Click "Add first step" and choose "On chat message". Last video our doorbell was a button. Today, the doorbell is a chat message. Every time someone types a question, the recipe starts. See the new "Chat" button at the bottom? That's where we'll talk to Stocky.
+
+Now click the plus, search "AI Agent", and add it. Look at "Source for Prompt". It already says "Connected Chat Trigger Node". Exactly right. Whatever we type in the chat becomes Stocky's task. Close the panel.
+
+Underneath the AI Agent, remember the three plugs. First, the brain. Click the plus under "Chat Model", choose "Anthropic Chat Model", pick the credential "Anthropic, BrightLeaf" we saved last time, and choose the newest Claude Sonnet model. Sonnet is a great choice for agents because it's good at deciding which tool to use.
+
+Second plug: memory. Click the plus under "Memory" and choose "Simple Memory". Why do we need this? Without memory, Stocky forgets everything after each message. You ask about BL-1005, then ask "and who supplies it?", and Stocky says, "Supplies what?" Like an intern with a goldfish brain. The "Context Window Length" is how many back-and-forth messages Stocky remembers. I'll set it to ten. That's plenty for a normal conversation.
+
+Before we go further, let's test the skeleton. Click "Chat" and ask: "Hi Stocky, how many Pallet Jack Wheels do we have?" Look at the answer. Stocky politely says it doesn't have access to inventory data. And that's good! It has a brain and a memory, but no hands. It can't reach into Odoo yet. A brain without tools is just a chatbot. Let's give it hands.
+```
+<!-- VOICEOVER END -->
 
 ---
 
@@ -217,6 +240,27 @@ CHECKLIST
 
 **After Claude builds it:** This is the longest demo in the video, so preview scenes 17 to 25 carefully: the field chips must be readable at full screen. If you need to adjust one step, ask Claude to change only that scene's function. Record in one take and trim the Start click.
 
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*512 words, about 3 min 25 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Quick check in Odoo first, because an agent is only as good as the data it reads. Here's BL-1005, Pallet Jack Wheels. On hand: eighteen. The reorder rule, here in the "Min Max" button: minimum twenty-five. And on the Purchase tab, the vendor: Global Lift Parts, thirty-eight dollars a set, delivery lead time twenty-one days. Three kinds of information, in three different drawers of the filing cabinet. So we'll give Stocky three tools, one for each drawer. If one of your products is missing a reorder rule or a vendor line, add it now. Garbage in, garbage out.
+
+Back in n8n, click the plus under "Tool". Search "Odoo" and choose "Odoo Tool". This is the same Odoo waiter we met in Video 3, but now it works for the agent. Stocky can call it whenever it decides it needs data.
+
+Let's set it up line by line. First, rename the node to "get products and stock", with underscores. The name matters, because Stocky reads it to decide when to use this tool. Credential: "Odoo, BrightLeaf". Next, "Tool Description". Set it manually and describe in plain English what this tool returns: every product, with its SKU, name, quantity on hand and unit cost. This sentence is like the label on the drawer. A clear label means Stocky opens the right drawer.
+
+Resource: choose "Custom Resource". That lets us pick any drawer in Odoo. For the name, choose "product dot product". Odoo might call it "Product Variant". That's the list of products with their stock. Operation: "Get Many", because we want the whole list. Switch on "Return All". And finally, under Options, "Fields to Include". We'll pick just four fields: default code, which is Odoo's name for the SKU, name, quantity available, and standard price. Why only four? Because every extra field is more reading for Stocky, which means more tokens, more cost, and more chance of confusion. Give the intern the page they need, not the whole binder.
+
+Tool number two is quicker. Duplicate the first one and change three things. The name: "get reorder rules". The drawer: "stock dot warehouse dot orderpoint", which Odoo may show as "Minimum Inventory Rule". And the fields: product, minimum quantity, and maximum quantity. The minimum quantity is your reorder point. Update the description to say exactly that.
+
+And tool number three: "get supplier info". The drawer is "product dot supplier info", which may show as "Supplier Pricelist". The fields: the partner, which is the vendor, the product, the price, the minimum order quantity, and "delay". In Odoo, "delay" means the delivery lead time in days. That's an odd name, so we explain it in the description: "delay is the lead time in days." Without that sentence, Stocky might think "delay" means the shipment is late.
+
+Step back and look. A doorbell, an intern, a brain, a notepad, and three hands, each reaching into a different drawer. And notice: every tool only uses "Get Many". Stocky can read, but it can't change anything in Odoo. That's on purpose. Reading first, acting later, with your approval. Save it.
+```
+<!-- VOICEOVER END -->
+
 ---
 
 ## Prompt 3 of 6: Write Stocky's System Prompt (11:30–13:45, 2 min 15 s)
@@ -317,6 +361,23 @@ CHECKLIST
 ```
 
 **After Claude builds it:** Check that the full prompt is readable at your recording resolution; if the text looks small, ask Claude to increase the editor font and auto-scroll more. Keep the paste moment (00:18) crisp, as it's the "wow" beat. Trim the Start click.
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*268 words, about 1 min 47 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Open the AI Agent node, go to Options, add "System Message", delete the default "You are a helpful assistant", and paste Stocky's job description. You'll find the full text in the Stocky Prompt Builder activity file, so you don't need to pause and type. Let's walk through it, because every line is there for a reason.
+
+Role and Goal: who Stocky is, who it works for, and what success means. Notice I wrote the headings in capital letters with a hash sign. That's not code. It's just a tidy way to organise text so both you and the AI can find each section.
+
+Tools: each tool, in plain English, with the Odoo field names in brackets, so Stocky can match "lead time" to the odd word "delay". And one important line: "Always use the tools to get fresh data. Never answer from memory." Stock changes every hour. Yesterday's number is a wrong number.
+
+Rules. The first two are the most important lines in the whole prompt. Only answer from tool data. And if the data isn't there, say "I don't know." Then, our business definitions: running low means at or below the reorder point, and the watch list is anything within fifteen percent above it. That's a decision a supply chain person makes, not a programmer. Change the fifteen percent to whatever your company uses.
+
+And the output format: a one-line answer first, then a table, sorted by urgency, and a source line at the end. The source line is my favourite trick. It forces Stocky to tell you which drawers it opened, so you can always check.
+```
+<!-- VOICEOVER END -->
 
 ---
 
@@ -440,6 +501,23 @@ CHECKLIST
 
 **After Claude builds it:** Watch scene 3 closely: the nodes lighting up one by one is the moment that sells the idea, so ask Claude to make the glow brighter if it is subtle. If the chat feels crowded, ask Claude to scroll older messages up smoothly. Trim the Start click.
 
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*286 words, about 1 min 54 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Here we go. The question Sarah asks every morning. "What's running low?" Press Enter. Watch the canvas. The brain lights up, then the stock tool, then the reorder rules tool. Stocky is opening the drawers. And here's the answer. Four products at or below the reorder point. Safety gloves, four hundred and twenty against six hundred. Pallet jack wheels, eighteen against twenty-five. Hydraulic oil, thirty-one against forty. And shipping boxes, one thousand one hundred and eighty against fifteen hundred.
+
+Look at the order. The boxes have the biggest gap in units, minus three hundred and twenty, but they're at the bottom. Why? Because we told Stocky to sort by percentage shortfall. Gloves are thirty percent below their reorder point, boxes only twenty-one percent. That's the rule we wrote, followed exactly. It even flagged the LED lights on the watch list. Thirty-four against thirty. And with a twenty-eight-day lead time from Shenzhen, that's exactly the one Sarah would want to know about.
+
+But don't trust it yet. Check it. Here's Odoo. Gloves, four hundred and twenty. Wheels, eighteen. The numbers match. Ten seconds instead of forty minutes.
+
+Second question: "Which supplier provides BL-1005, and what's the lead time?" Global Lift Parts. Twenty-one days. Thirty-eight dollars a set, minimum order ten sets. And without being asked, it connected the dots: we're seven below the reorder point, and an order today arrives in about three weeks. That's the kind of thinking a good intern does.
+
+Now watch the memory. I'll just say, "And what about the hydraulic oil?" I didn't say "supplier" or "lead time". But Stocky remembered what we were talking about, thanks to Simple Memory, and gave me Gulf Lubricants, fourteen days. That's the notepad at work.
+```
+<!-- VOICEOVER END -->
+
 ---
 
 ## Prompt 5 of 6: Watch the Agent Think: Reading the Execution Log (17:00–19:30, 2 min 30 s)
@@ -535,6 +613,23 @@ CHECKLIST
 
 **After Claude builds it:** The JSON scene (01:12) is the heart of this demo: if the text is small, ask Claude to zoom further (up to 1.6x). Make sure the blurred table rows look clearly intentional. Trim the Start click.
 
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*262 words, about 1 min 45 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+So far we've seen what Stocky said. Now let's see how it thought. Open the "Logs" panel at the bottom of the canvas. This is the step-by-step story of the last question. Read it from top to bottom like a diary.
+
+Step one: the brain reads the question and our job description, and decides, "To answer this, I need the product list and the supplier info." It doesn't answer yet. It asks for tools. That's the big difference between an agent and a chatbot. A chatbot answers straight away from what it already knows. An agent first decides what it needs to find out.
+
+Step two: the Odoo tool runs. Click it and you can see exactly what Odoo sent back. I'll switch to JSON view. Remember JSON from Video 3? A labelled shopping list. Partner: Global Lift Parts. Product: BL-1005, Pallet Jack Wheels. Price: thirty-eight. Minimum quantity: ten. Delay: twenty-one. Every number in Stocky's answer is right here in the shopping list. Nothing was made up.
+
+Step three: the brain reads the shopping lists and writes the answer in our format. So the pattern is always: think, use a tool, read the result, then answer. Sometimes it loops, think, tool, think, another tool, before answering. That loop is what makes it an agent.
+
+And every conversation is also saved in the Executions tab, our logbook from Video 5. If Mr. Harrison ever asks, "Where did Stocky get that number on Tuesday?", you can open the run and show him the exact data Odoo returned. That's traceability. Supply chain people love traceability.
+```
+<!-- VOICEOVER END -->
+
 ---
 
 ## Prompt 6 of 6: Catch a Hallucination, Then Fix It (21:15–23:45, 2 min 30 s)
@@ -629,3 +724,21 @@ CHECKLIST
 ```
 
 **After Claude builds it:** The contrast between the red "made up" answer and the green "I don't know" answer is the point of this demo; if it is not obvious at a glance, ask Claude for stronger colours. If the chat history overflows by scene 19, ask Claude to scroll older bubbles up. Trim the Start click.
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*284 words, about 1 min 54 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+For this experiment, I'll temporarily replace Stocky's job description with a lazy one-liner: "You are a helpful inventory assistant for BrightLeaf Supplies." That's what most people write. I've saved the good version safely. Now I'll start a fresh chat.
+
+Now a question Stocky cannot answer, because it has no tool for purchase orders. "When will purchase order P zero zero zero two seven from Global Lift Parts arrive?" And look. "Expected to arrive in about three weeks, around the end of the month." It sounds great. It's completely made up. Stocky never saw that purchase order. In Video 5, our email said that order was already three days late! It took the lead time and invented a delivery date. That's Jake saying "Tuesday, sir."
+
+And here's how you catch it: open the log. There's no purchase order data anywhere. Only supplier info. The answer can't be traced, so it can't be trusted.
+
+Now let's put the real job description back, reset the chat, and ask the exact same question. "I don't know. That information isn't in the Odoo data I can see." It explains what it CAN see, gives the one useful fact it has, the twenty-one day lead time, clearly labelled as a standard lead time, not a delivery date. And it tells Sarah exactly where to check: Purchase, Orders. That's the intern you want.
+
+Two more traps. A product that doesn't exist, BL-1011. Stocky says it can't find it, and tells me which SKUs it can see. And an action it isn't allowed to take: "Order fifty more pallet jack wheels." Stocky says it can only read. Good. Ordering is next video, and it will always come to you for approval first.
+```
+<!-- VOICEOVER END -->
+

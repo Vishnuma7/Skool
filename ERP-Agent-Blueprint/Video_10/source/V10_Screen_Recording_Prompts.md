@@ -2,6 +2,10 @@
 
 **How to use:** 1. Open claude.ai, start a new chat, and paste ONE prompt. 2. Claude builds an animated demo you can preview. If anything looks wrong, reply in the same chat ("make the cursor slower", "the table is cut off"). 3. Open the demo full-screen in Chrome (press F11 / Ctrl+Cmd+F), start your screen recorder (QuickTime: File → New Screen Recording), then click **Start**. 4. Stop recording when the "END" card appears, trim the start and end, and add your voice-over from the script. Each demo runs for the same length as its script section, so the voice-over lines up.
 
+<!-- VO NOTE START -->
+**Voice-over (Fish Audio):** Under every prompt you'll find a grey **"Voice-over text for Fish Audio"** box. Copy that text into Fish Audio and download the audio. Best order: make the audio FIRST, check its length, and if it's longer or shorter than the section length, add one line to the prompt before sending it to Claude: *"Make the total duration exactly M:SS"* (your audio length). Claude's demo has no sound, so you join the audio and video in a video editor (CapCut, iMovie, Descript): put both on the timeline starting at 0:00.
+<!-- VO NOTE END -->
+
 **Sections in this video:**
 
 | # | Section | Time | Length | Prompt |
@@ -117,6 +121,31 @@ CHECKLIST
 
 **After Claude builds it:**
 
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*421 words, about 2 min 48 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Here's a confession. Until now, Stocky has been logging into Odoo with Sarah's administrator account. That was fine for learning. For going live, it's like giving the new intern the master key to every room in the building, including the finance office and the CEO's safe. Remember our analogy: an API key is a hotel key card. It should open only the doors it needs.
+
+This idea has a name: least privilege. Stocky needs to read products and stock, and create RFQs. That's it. It doesn't need Sales, Accounting, Employees, or Settings. So let's create a dedicated user.
+
+I go to Settings, Users and Companies, Users, and click New. Name: Stocky Bot. Login: stocky dot bot at brightleaf. Naming it "Bot" matters. When anyone looks at an RFQ in six months and sees "Created by Stocky Bot", they instantly know a machine made it, not Sarah.
+
+Now the Access Rights tab, the most important screen in this video. Inventory: User. Purchase: User. Everything else: blank. No Sales, no Accounting, no Administration. If someone ever tricked Stocky into "show me everyone's salaries" or "delete all customers", Odoo itself would say no. The rule isn't just in the prompt. It's in the lock.
+
+I give the bot a long password from the Action menu. On a paid Odoo plan, an extra user may cost a licence seat, so check with whoever manages Odoo. On your trial, it's free.
+
+One more safety net while we're here. In Purchase, Configuration, Settings, I tick "Purchase Order Approval" and set the minimum to 5,000 dollars. Now any order above that needs a Purchase manager to approve it inside Odoo, on top of Sarah's email approval. Two locks on the same door. That answers Mr. Harrison's "10,000 boxes" question.
+
+Now the bot's own key card. In a private window, I log in as Stocky Bot, click the avatar, My Profile, Account Security, New API Key. I name it "n8n Stocky 2026-11", so I know where it's used and when it was made. Generate, and copy it. Odoo shows it only once.
+
+In n8n, I open Credentials, edit the Odoo credential, swap the username to the bot and paste the new key. Save. Green tick, connection tested. And because every Stocky workflow uses this one credential, they've all switched to the safe key card in one move.
+
+Let's test the lock. I ask Stocky for last month's sales invoices. And it can't. Not because it chose to behave, but because the door is locked. That's what safe looks like.
+```
+<!-- VOICEOVER END -->
+
 - Check the masked keys in the preview before recording; a viewer should never be able to read a key.
 - If the Odoo menus move too fast, reply "hold each opened menu for 1 second before clicking".
 
@@ -220,6 +249,27 @@ CHECKLIST
 ```
 
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*351 words, about 2 min 20 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Three rules for keys. Rule one: never share them. Not in email, not on WhatsApp, not in a screenshot, not pasted into a prompt. A key lives in exactly one place: n8n Credentials, which stores it encrypted. If you ever see a key in a chat message, treat it as stolen.
+
+Rule two: rotate them. Hotels change key cards when a guest leaves; you change API keys every ninety days, or the same day someone with access leaves the team. It takes five minutes.
+
+Here's the five-minute rotation. Make a new key, paste it into the n8n credential, save, test. Green tick. Only then do I go back to Odoo and delete the old key with the little trash icon. New one first, old one last, so Stocky never goes offline.
+
+Rule three: if a key leaks, delete it immediately in Odoo and make a new one. A deleted key card opens nothing.
+
+Now money. The AI brain charges by usage, a tiny amount per question. Tiny, unless something loops. So I go to the Anthropic Console, Settings, Limits, and set a monthly spend limit of twenty dollars, with an email alert at ten. On OpenAI it's the same idea under Settings, Limits. Now the worst case is twenty dollars, not a nasty surprise.
+
+Inside n8n, the AI Agent node has an option called Max Iterations. It caps how many times the agent can use a tool in one run. I set it to ten. A confused intern can't run in circles forever.
+
+So what does Stocky cost per month? Here's the estimator from your activity file. Daily reorder check, thirty runs. Risk check, thirty. Monday report, four. About a hundred and fifty chat questions from Sarah and Tom. That's around 220 runs a month. AI cost: about five dollars. Add n8n Cloud's starter plan, roughly twenty to twenty-five dollars a month at the time of recording, and Google Sheets and Gmail are free. Call it thirty-two dollars a month, all in. Prices change, so always check the pricing pages, but the order of magnitude is: less than a team lunch.
+```
+<!-- VOICEOVER END -->
 
 - The Anthropic Console screen is a simplified look-alike; if your real console looks different, that's fine for teaching.
 - If the cost table is too small, ask Claude to "zoom to 1.3 on the table while rows appear".
@@ -326,6 +376,25 @@ CHECKLIST
 
 **After Claude builds it:**
 
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*319 words, about 2 min 08 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Rule one of going live: never practise on the real thing. On odoo.com, under My Databases, I click the gear next to BrightLeaf and choose Duplicate. I name it "brightleaf test" and tick "For testing purposes". That checkbox is important. It switches off outgoing emails and scheduled jobs in the copy, so a test can't accidentally email a real supplier.
+
+In n8n, I make a second Odoo credential pointing at the test copy, and I put TEST in capital letters in its name. So now we have two: LIVE and TEST. Whenever I'm trying something new, the workflow points at TEST. Only when it passes do I switch it to LIVE.
+
+Now the smoke alarm. Things will fail sometimes. The Odoo trial expires, a password changes, Google is having a bad day. That's normal. What's not okay is finding out from Mr. Harrison on Monday that the report never came. So I create a new workflow called "Stocky – Error Alerts" and add an Error Trigger. This doorbell rings whenever any other workflow fails.
+
+Then a Gmail node to Sarah. The subject says "ALERT: Stocky failed", plus the workflow name. The message tells her which step failed, the error message, the time, and a link straight to that run in n8n. Plain English, one click to investigate.
+
+Now I connect the alarm to every Stocky workflow. In each one, the three-dot menu, Settings, Error Workflow, pick "Stocky – Error Alerts", Save. Four workflows, about one minute.
+
+Let's prove it works. One detail: the Error Trigger only fires for automatic runs, not when you click "Test". So on my test copy, I break the key on purpose, set the schedule to every minute, and activate it. A minute later, Sarah's inbox: "ALERT: Stocky failed. Step that failed: Get Products. Error: Access Denied." Perfect. I switch it off and fix the key. Now Sarah hears about problems before anyone else does.
+```
+<!-- VOICEOVER END -->
+
 - The "one minute later" wait is compressed into a 6-second countdown; say "a minute later" in the voice-over as written.
 - If the alert email is hard to read, ask Claude to "zoom the open email to 1.4 when it arrives".
 
@@ -417,6 +486,21 @@ CHECKLIST
 ```
 
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*260 words, about 1 min 44 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Time to go live. Here are all our workflows. In n8n, a workflow with a schedule only runs by itself when it's switched to Active. In newer versions this button is called Publish. I activate the Error Alerts first, so the alarm is on before anything else starts. Then the reorder check, the risk check, the Monday report and the chat.
+
+Now, versioning. Before you edit a workflow that's working, always make a copy. Three dots, Duplicate, and I name it with the word BACKUP and today's date. I leave the backup switched off. I also click Download, which saves the whole recipe card as one small file, and keep it in a Google Drive folder called "Stocky Backups". If an edit goes wrong, I can be back to the working version in thirty seconds.
+
+Last piece: maintenance. An agent isn't "set and forget". It's more like a car. A quick check every week keeps it running for years. Every Friday, Sarah spends ten minutes. First, the Executions tab, filter by Error. Zero this week. Good.
+
+Then the rest of the checklist. Did the Monday report arrive, and do the numbers match the dashboard? Skim the Decision Log. Ask Stocky three questions and check the answers in Odoo. Look at the AI spend and the n8n usage. And my favourite: look at what Sarah rejected this week. Every rejection is a lesson. If she keeps rejecting packing tape orders because a delivery is already coming, that's a rule to add to the prompt. That's how Stocky gets smarter every month.
+```
+<!-- VOICEOVER END -->
 
 - The maintenance table is the payoff: if the rows appear too fast, ask for "one row every 5 seconds".
 - Trim any frames before the Overview list is fully visible.
@@ -515,6 +599,19 @@ CHECKLIST
 
 **After Claude builds it:**
 
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*157 words, about 1 min 03 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Here's your go-live checklist, everything from this video in one place. Twenty-five items, grouped into Access, Keys, Costs, Testing, Errors, Go-Live and Maintenance. For each one, pick a status from the dropdown: Not started, In progress, Done. The percentage at the top updates itself. My rule: don't switch anything to Active until you're above ninety percent, and every item marked "Must" is Done.
+
+Watch. I mark the error workflow as Done and the readiness goes up. It's oddly satisfying.
+
+And the ROI calculator. Yellow cells are yours to change. Sarah's numbers are in already: twelve hours before, two after, twenty dollars an hour, forty-eight weeks, thirty-two dollars a month. Out come the green numbers: 480 hours saved a year, nine thousand six hundred dollars of value, a net benefit of over nine thousand dollars, and a payback time of less than a week. Put in your own numbers, and you have the heart of your one-page pitch.
+```
+<!-- VOICEOVER END -->
+
 - This is a short demo (1 min 30 s); record it in one go and don't trim more than the first second.
 - If 25 rows don't fit, ask Claude to "scroll the checklist slowly during the group highlights".
 
@@ -594,6 +691,21 @@ CHECKLIST
 ```
 
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*208 words, about 1 min 23 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Here's the capstone brief. Part A is your template. It walks you through every decision: the problem in one sentence, the trigger, the tools, the rules, where the human signs off, what gets logged, and how you'll measure success. And a test table with ten rows for your ten questions.
+
+Part B is a complete example from BrightLeaf: Sarah's next agent, a late shipment chaser. Every morning at 8, it finds purchase orders whose receipt date has passed by two or more days, drafts a polite follow-up email to the supplier, and waits for Sarah to approve before sending. Use it as a model when you get stuck.
+
+Recording the demo is easy. On Loom, New video, Screen and Camera, pick your n8n tab, and talk through it. Then copy the link. In our community, click "Write something", choose the Capstone category, give it a title like "Capstone: Late Shipment Chaser for BrightLeaf", paste your Loom link, and write three lines: the problem, what your agent does, and the hours you think it saves.
+
+Part C is the submission checklist. Tick every box before you post. And one last request: leave helpful feedback on two other people's capstones. You'll learn as much from theirs as from your own.
+```
+<!-- VOICEOVER END -->
 
 - This demo is only 1 min 30 s and moves quickly between three apps; preview it once to check the switches feel smooth.
 - If the document text is too small, ask Claude to "show the document at 120% zoom".

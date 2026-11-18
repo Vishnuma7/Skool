@@ -2,6 +2,10 @@
 
 **How to use:** 1. Open claude.ai, start a new chat, and paste ONE prompt. 2. Claude builds an animated demo you can preview. If anything looks wrong, reply in the same chat ("make the cursor slower", "the table is cut off"). 3. Open the demo full-screen in Chrome (press F11 / Ctrl+Cmd+F), start your screen recorder (QuickTime: File → New Screen Recording), then click **Start**. 4. Stop recording when the "END" card appears, trim the start and end, and add your voice-over from the script. Each demo runs for the same length as its script section, so the voice-over lines up.
 
+<!-- VO NOTE START -->
+**Voice-over (Fish Audio):** Under every prompt you'll find a grey **"Voice-over text for Fish Audio"** box. Copy that text into Fish Audio and download the audio. Best order: make the audio FIRST, check its length, and if it's longer or shorter than the section length, add one line to the prompt before sending it to Claude: *"Make the total duration exactly M:SS"* (your audio length). Claude's demo has no sound, so you join the audio and video in a video editor (CapCut, iMovie, Descript): put both on the timeline starting at 0:00.
+<!-- VO NOTE END -->
+
 **Sections in this video:**
 
 | # | Section | Time | Length | Prompt |
@@ -101,6 +105,37 @@ CHECKLIST
 ```
 
 **After Claude builds it:** Watch scenes 13-17 once at full screen: the URL is long, so ask Claude to reduce the URL font if it wraps awkwardly. Start the recorder, then click Start; trim the first second.
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*444 words, about 2 min 58 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Let's start with a picture. Imagine you walk into a restaurant. You're hungry, you know what you want, but you don't walk into the kitchen. You don't open the fridge, you don't touch the chef's knives, and you definitely don't cook. Why? Because the kitchen isn't yours. It's busy, it's organised in its own way, and if every customer walked in, it would be chaos.
+
+So instead, you talk to the waiter. You say, "One chicken burrito, please, not too spicy." The waiter takes your order to the kitchen, the kitchen prepares exactly that, and the waiter brings it back to your table.
+
+That waiter is an API. API stands for Application Programming Interface, but you can forget that phrase right now. Just remember: an API is the waiter between you and somebody else's kitchen.
+
+Now let's swap in BrightLeaf. The kitchen is Odoo, the ERP you set up in the last video. The customer is Stocky, the AI agent we're going to build. Stocky never logs into Odoo like Sarah does. It doesn't click menus. It sends an order to Odoo's waiter: "Please bring me the on-hand quantity for SKU BL-1005, the pallet jack wheels." And the waiter comes back with: "Eighteen sets."
+
+Here's why companies love this. The kitchen stays safe. Odoo decides what the waiter is allowed to bring out. Sarah's customer list stays private, the accounting stays locked, and Stocky gets only what it needs.
+
+Three more words and you've got the whole vocabulary.
+
+The order you give is called a request. What comes back to your table is the response. Simple.
+
+And every restaurant has a menu. You can't order sushi in a pizza place. APIs are the same. Each API has a list of things it can do, and each item on that list has its own address. That address is called an endpoint. One endpoint might be "today's weather forecast". Another might be "latest exchange rates". Think of an endpoint as one dish on the menu.
+
+This is what a real order looks like. Don't panic, we'll take it apart.
+
+The blue part, api dot open-meteo dot com, is the restaurant's address. Which building are we walking into?
+
+The green part, slash v1 slash forecast, is the endpoint. Which dish do we want? The forecast.
+
+The orange part, everything after the question mark, is our order details. Latitude 22.54 and longitude 114.06, that's Shenzhen. Then which bits of the forecast we want: rainfall and wind. The question mark means "here come my order details", and each ampersand, that little "and" sign, means "and also". It's exactly like saying, "One chicken burrito, not too spicy, and extra guacamole."
+```
+<!-- VOICEOVER END -->
 
 ---
 
@@ -212,6 +247,43 @@ CHECKLIST
 
 **After Claude builds it:** Check that the pretty-printed JSON fits in the browser window without scrolling; if it doesn't, ask Claude to scale the JSON font down slightly. Record full-screen and trim the first second.
 
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*517 words, about 3 min 27 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Okay, this is the moment. I've opened a brand-new browser tab, the same browser you use for email. I'm pasting in the web address from the screen. You'll find it in your activity file too, so you don't have to type it.
+
+Notice what we're NOT doing. We're not signing up. We're not downloading anything. Open-Meteo is a free weather service that lets anyone ask for a forecast. No key card needed. I press Enter.
+
+And there it is. The waiter is back at our table. This is a real response, from a real weather service, about the real city of Shenzhen, and it took less than a second.
+
+I know what you're thinking. "This looks like computer gibberish." Give me sixty seconds. It's actually a shopping list.
+
+This format is called JSON. Say it like the name "Jason". And the easiest way to think about JSON is as a labelled shopping list. Every line has a label on the left, in quotes, then a colon, then the value on the right.
+
+So here: label "latitude", value 22.53. Label "timezone", value "Asia/Shanghai". It's the same as a shopping list that says "Milk: 2 litres. Eggs: 12."
+
+Notice the latitude came back as 22.53, not exactly the 22.54 we asked for. That's the weather service saying, "my nearest weather grid point is here." Close enough for a city.
+
+Now this bit is really helpful. "Daily units." It tells us rainfall is measured in millimetres, and wind speed in kilometres per hour. A good API always tells you its units. Hold on to that idea, because in the next video, on databases, mixed-up units are going to be our enemy number one.
+
+Here's the actual forecast. Square brackets mean "a list of several items", like a column in Excel.
+
+"Time" is a list of seven dates. On the day I tested this, it started with the 17th of November and went to the 23rd.
+
+"Precipitation sum" is a list of seven rainfall numbers: 0.1, 0.4, 1.4, then zeros.
+
+"Wind speed max" is seven wind numbers: 16.3, 19.3, 13.7, and so on.
+
+The trick is to read them like columns that line up. The first date goes with the first rain number and the first wind number. So the 17th: 0.1 millimetres of rain, wind up to 16.3 kilometres an hour. The 19th: 1.4 millimetres. That's a light drizzle, nothing to worry about. If you saw 50 or 80 millimetres, that's a seriously wet day, and if the wind went above 60 or 70, you'd want to ask your supplier whether the port is running.
+
+Now watch how easy it is to change the order. Gulf Lubricants, who supply our hydraulic oil, BL-1007, are in Dubai. Dubai is latitude 25.20, longitude 55.27. I change just those two numbers and press Enter.
+
+New response. The timezone now says "Asia/Dubai", and the rainfall is mostly zeros. No surprise there. I changed the order details, and the waiter brought back a different dish. That is literally all Stocky does when it checks five supplier cities. Same request, five different sets of order details.
+```
+<!-- VOICEOVER END -->
+
 ---
 
 ## Prompt 3 of 5: Second Live Call: The Currency Waiter (11:00–13:30, 2 min 30 s)
@@ -301,6 +373,31 @@ CHECKLIST
 ```
 
 **After Claude builds it:** Make sure the address-bar morph at 00:27 is clearly visible (ask for a slower morph if it flickers). Record full-screen and trim the first second.
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*379 words, about 2 min 32 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Let's try a second restaurant. This one is called Frankfurter, and it serves exchange rates. It's free and needs no key card either.
+
+Read the order with me. The endpoint is "latest", meaning the latest rates. The order details: "from" equals USD, the US dollar, and "to" equals CNY, MXN and AED. Chinese yuan, Mexican peso and UAE dirham, the three foreign currencies BrightLeaf's suppliers bill in. Enter.
+
+First, a little surprise. Look at the address bar. It changed by itself. We typed frankfurter dot app, and now it says frankfurter dot dev, slash v1. The restaurant moved to a new building and left a forwarding note on the old door. Your browser read the note and walked over automatically. APIs do move house sometimes, and good ones leave a forwarding address.
+
+Now the shopping list. "Amount": 1. "Base": USD. "Date": the 17th of November. Then "rates", with a smaller list inside it: CNY 6.67, MXN 18.46. A list inside a list, like a shopping list with a "Dairy" section that has its own items.
+
+So on test day, one dollar bought 6.67 yuan and 18.46 pesos. Your numbers will be different, and that's the point. It's live.
+
+Let's make that real for Sarah. Global Lift Parts bills in yuan. Sixty sets of pallet jack wheels at thirty-eight dollars is two thousand two hundred and eighty dollars, which at 6.67 is an invoice of about fifteen thousand two hundred yuan. Now say the yuan gets three percent stronger, and a dollar only buys about 6.47 yuan. That same yuan invoice now costs about two thousand three hundred and fifty dollars. Sixty-eight dollars more, without anyone changing the price. Same story for SafeHands gloves in pesos. Stocky can spot that the moment it happens.
+
+Now, did you notice something missing? We asked for three currencies. We got two. Where's the dirham?
+
+Great lesson. Frankfurter gets its numbers from the European Central Bank, and that kitchen doesn't stock the dirham. The waiter didn't crash or argue. It just brought what the kitchen had.
+
+Luckily the dirham is pegged to the dollar at about 3.67, so it barely moves. But the habit matters: always check that what came back matches what you asked for. We'll teach Stocky to notice missing items too.
+```
+<!-- VOICEOVER END -->
 
 ---
 
@@ -392,6 +489,39 @@ CHECKLIST
 
 **After Claude builds it:** The URL edits happen fast; if the deleted "a" is hard to see, ask Claude to keep the zoom on the address bar for one more second. Record full-screen and trim the first second.
 
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*398 words, about 2 min 39 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Every time the waiter comes back, he also hands you a little receipt with a number on it. This number is called a status code, and it tells you how the order went, before you even look at the plate.
+
+You don't need to memorise hundreds. Four will cover almost everything you'll meet.
+
+200, OK. Your order went perfectly, here's your food. Both our calls today came back with a 200.
+
+401, wrong key card. You tried to open a door your card doesn't open. The API is saying, "I don't know who you are." Usually it means your API key is missing, mistyped or cancelled.
+
+404, wrong address. Not Found. You asked for a dish that isn't on the menu, or you walked to the wrong table. Nine times out of ten, it's a typo in the web address.
+
+429, too many orders. You're ordering too fast. Free APIs often say, "Please slow down, you've asked me a thousand times this minute." The fix is simple. Wait and try again, or ask less often.
+
+Here's a shortcut. Anything starting with a 2 is good news. Anything starting with a 4 means something was wrong with your order. Anything starting with a 5, like 500, means the kitchen itself had a problem, and it's not your fault. Wait a few minutes and try again.
+
+Now let's break something on purpose. You can't break anything here, I promise.
+
+I'm going to misspell "forecast". I'll take out the "a". Enter.
+
+Look at that. "Reason: Not Found. Error: true." That's our 404 receipt. We asked for a dish called "forecst", and there's no such dish on the menu. One missing letter. This is the single most common beginner error, and now you've seen it. You'll recognise it forever.
+
+Let's fix that and try a different mistake. This time the dish is right, but I'll ask for a silly order detail. Instead of rainfall, I'll ask for "banana".
+
+The restaurant exists, the dish exists, but the order doesn't make sense. The waiter says, "I can't give you a daily banana." That's a 400, "bad request", another 4-something, so it's on our side. And look how helpful it is. It tells us exactly which word it didn't understand. When something goes wrong, read the message. It usually tells you what to fix.
+
+And we're back to a 200. Everything fixed in two seconds.
+```
+<!-- VOICEOVER END -->
+
 ---
 
 ## Prompt 5 of 5: API Keys: Your Hotel Key Card (18:00–20:30, 2 min 30 s)
@@ -475,5 +605,30 @@ CHECKLIST
 ```
 
 **After Claude builds it:** If your real Odoo menu says "Preferences" instead of "My Profile", ask Claude to swap the label so it matches what learners will see. Record full-screen and trim the first second.
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*360 words, about 2 min 24 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+The weather and currency APIs serve anyone. But Odoo holds BrightLeaf's stock, costs and customers. You don't want the whole world asking that waiter for things.
+
+So private APIs ask for an API key, and an API key is like a hotel room key card. It opens your room, maybe the gym. Not other guests' rooms, not the manager's office. Lose it, and reception cancels it and gives you a new one. Your passport doesn't change. Just the card.
+
+An API key works the same way. It opens only what it's allowed to, it belongs to a specific user, and it can be cancelled any time without changing your password.
+
+Let me show you where Odoo keeps these key cards. We won't create one today; we'll do that when we connect Stocky. I just want you to know where reception is.
+
+In the BrightLeaf Odoo trial, I open the Settings app and scroll to the bottom. There's a link called "Activate the developer mode". Don't be put off by the name. It just shows a few extra options. Click it, and the page reloads.
+
+Now I click my profile picture in the top right corner, then "My Profile". In some versions it's called "Preferences". Then the tab called "Account Security".
+
+And here it is. "API Keys", with a button called "New API Key". When we create one later, Odoo will show the key exactly once, a long string of letters and numbers, and we'll paste it straight into a safe place. Odoo never shows it again.
+
+Notice something important. This key belongs to a user. When Stocky uses Sarah's key, Odoo treats Stocky like Sarah, with the same permissions. That's why, when we go live, we'll give Stocky its own user with only the access it needs. Its own key card, not the manager's master key.
+
+Three key card rules. One: never paste a key into an email, a WhatsApp chat or a shared document. Two: give each tool its own key, so cancelling one doesn't break the others. Three: if a key might have leaked, delete it here and make a new one. Ten seconds, and nothing else breaks.
+```
+<!-- VOICEOVER END -->
 
 ---

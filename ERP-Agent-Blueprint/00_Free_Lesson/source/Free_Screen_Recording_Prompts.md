@@ -1,6 +1,10 @@
 # Free Lesson: How AI Agents Connect to Your ERP: Screen-Recording Prompts
 **How to use:** 1. Open claude.ai, start a new chat, and paste ONE prompt. 2. Claude builds an animated demo you can preview. If anything looks wrong, reply in the same chat ("make the cursor slower", "the table is cut off"). 3. Open the demo full-screen in Chrome (press F11 / Ctrl+Cmd+F), start your screen recorder (QuickTime: File → New Screen Recording), then click **Start**. 4. Stop recording when the "END" card appears, trim the start and end, and add your voice-over from the script. Each demo runs for the same length as its script section, so the voice-over lines up.
 
+<!-- VO NOTE START -->
+**Voice-over (Fish Audio):** Under every prompt you'll find a grey **"Voice-over text for Fish Audio"** box. Copy that text into Fish Audio and download the audio. Best order: make the audio FIRST, check its length, and if it's longer or shorter than the section length, add one line to the prompt before sending it to Claude: *"Make the total duration exactly M:SS"* (your audio length). Claude's demo has no sound, so you join the audio and video in a video editor (CapCut, iMovie, Descript): put both on the timeline starting at 0:00.
+<!-- VO NOTE END -->
+
 **Sections in this video:**
 
 | # | Section | Time | Length | Prompt |
@@ -102,6 +106,22 @@ CHECKLIST
 - Nothing overflows the 1920x1080 stage; no real logos anywhere.
 ```
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*180 words, about 1 min 12 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Every agent that does real supply chain work walks through one of three doors.
+
+Door number one is your ERP. Think of it as the company's central filing cabinet plus the rulebook. Stock levels, purchase orders, suppliers: it all lives here. This is Odoo, a free ERP we use in the course, but SAP, Oracle and NetSuite are the same idea.
+
+Door number two is an API. An API is like a waiter in a restaurant. You don't walk into the kitchen. You give your order to the waiter, and the waiter brings back exactly what you asked for. Here, I just asked a free weather service, "What's the weather in Shenzhen right now?" That's where two of BrightLeaf's suppliers are. No code. I just opened a link.
+
+Door number three is a database. Think of it as a super-organised Excel workbook. Tables are sheets, rows are records, columns are fields. This is where the agent writes down what it did, so there's always a paper trail. And yes, for beginners, a Google Sheet works perfectly as your first database.
+```
+<!-- VOICEOVER END -->
+
 - The JSON temperature and rain values are illustrative. If you want the real numbers, open the Open-Meteo link on the day you record and ask Claude to swap in those two values.
 - Click Start about one second after you begin recording, then trim that second off.
 - If the door zoom feels too fast, reply "make each door transition 1 second slower but keep the total at 1:30".
@@ -191,6 +211,24 @@ CHECKLIST
 - Nothing overflows the 1920x1080 stage; no real logos (n8n, Odoo, Gmail and Google look-alikes only).
 ```
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*154 words, about 1 min 02 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+This is Stocky, BrightLeaf's inventory and procurement agent. It's the exact agent you build in the paid course. Each box is one step, like a Lego block. No code anywhere.
+
+Let me ask it the question Sarah asks every single morning.
+
+Watch. It went into Odoo, read the live stock, compared it with the reorder points, and came back in plain English. Four products are low. Safety gloves from SafeHands Co. in Monterrey, Mexico, pallet jack wheels from Global Lift Parts in Shenzhen, and so on. It even suggests how many to order.
+
+Now the important bit. It doesn't just go and buy things. It drafts the purchase order and sends Sarah an email asking for approval. Nothing happens until she clicks Approve.
+
+One click, and the draft is in Odoo, and the decision is logged in the database. That whole thing took about thirty seconds. It used to take Sarah half her morning.
+```
+<!-- VOICEOVER END -->
+
 - Stocky's long reply has to fit the chat panel: if it is cut off, reply "make the chat panel 760 px wide and the reply font 22 px".
 - The voice-over line "Watch." starts as the nodes light up at 00:25, so begin speaking that paragraph exactly when the Odoo node starts spinning.
 - Trim the first second (before you click Start) and the last frame after END.
@@ -283,6 +321,20 @@ CHECKLIST
 - All 10 cards fit on one slide without overflowing the 1920x1080 stage; no real logos.
 ```
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*233 words, about 1 min 33 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+So, how do you go from where you are today to building Stocky yourself? That's exactly what The ERP Agent Blueprint is. Ten videos, about four hours, step by step. Here's the path.
+
+Video 1, Why Your ERP Needs an AI Agent: you'll see the full Stocky demo and map your journey. Video 2, ERP Demystified: you set up your own free Odoo and load BrightLeaf's products. Video 3, APIs Explained Like You're Ordering at a Restaurant: you call a live API from your browser in minutes. Video 4, Databases Without Fear: you turn a messy spreadsheet into a clean home for your agent's data. Video 5, Your No-Code Toolkit: you set up n8n and your AI brain, and build your first workflow. Video 6, Your First Agent: Stocky reads the ERP and answers "What's running low?" Video 7, Agents That Take Action: Stocky drafts purchase orders, but only with your approval. Video 8, Seeing Beyond the ERP: weather, currency and holiday data become a supplier risk score. Video 9, Memory and Reports: Stocky logs every decision and sends the Monday report on its own. Video 10, Going Live Safely: security, testing, costs, and your capstone project.
+
+Every video comes with a short quiz to lock in what you learned, a hands-on activity file in Excel or Word, and step-by-step guides. And every tool we use has a free tier or free trial.
+```
+<!-- VOICEOVER END -->
+
 - Read the titles at a steady pace; if you speak faster than the cards appear, ask Claude to "shift every card 1 second earlier and hold the last slide longer, keeping the total at 1:45".
 - If two-line titles (Video 3) wrap awkwardly, reply "allow the Video 3 card to be taller".
 - Trim the first second before Start and the frames after END.

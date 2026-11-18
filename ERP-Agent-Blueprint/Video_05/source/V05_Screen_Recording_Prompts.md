@@ -2,6 +2,10 @@
 
 **How to use:** 1. Open claude.ai, start a new chat, and paste ONE prompt. 2. Claude builds an animated demo you can preview. If anything looks wrong, reply in the same chat ("make the cursor slower", "the table is cut off"). 3. Open the demo full-screen in Chrome (press F11 / Ctrl+Cmd+F), start your screen recorder (QuickTime: File → New Screen Recording), then click **Start**. 4. Stop recording when the "END" card appears, trim the start and end, and add your voice-over from the script. Each demo runs for the same length as its script section, so the voice-over lines up.
 
+<!-- VO NOTE START -->
+**Voice-over (Fish Audio):** Under every prompt you'll find a grey **"Voice-over text for Fish Audio"** box. Copy that text into Fish Audio and download the audio. Best order: make the audio FIRST, check its length, and if it's longer or shorter than the section length, add one line to the prompt before sending it to Claude: *"Make the total duration exactly M:SS"* (your audio length). Claude's demo has no sound, so you join the audio and video in a video editor (CapCut, iMovie, Descript): put both on the timeline starting at 0:00.
+<!-- VO NOTE END -->
+
 **Sections in this video:**
 
 | # | Section | Time | Length | Prompt |
@@ -87,6 +91,23 @@ CHECKLIST
 ```
 
 **After Claude builds it:** The real n8n sign-up flow changes often; if yours differs, ask Claude to match the field order you see. Record full-screen and trim the first second.
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*244 words, about 1 min 38 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+This is n8n. People pronounce it "n-eight-n". The name is short for "nodemation", which tells you what it does: it automates work using little building blocks called nodes. We'll come back to nodes in a minute. First, let's get you an account. Click "Get started for free".
+
+Fill in your name, your email and a password. I'm signing up as Sarah. Use an email you actually check, because n8n will send you a confirmation link. The cloud trial is free for fourteen days and you don't need a credit card to start.
+
+Now n8n asks for an account name. This becomes your personal web address. I'll type "brightleaf", so my n8n lives at brightleaf dot app dot n8n dot cloud. Pick your company name or your own name. Write that address down, because it's where you'll log in from now on.
+
+n8n asks a few questions about you. There are no wrong answers here. I'll pick Operations. Then click through.
+
+Check your inbox, click the confirmation link, and you land here, on the Overview page. Think of this as your kitchen. It's empty right now. Over the next few videos, this list will fill up with recipe cards: Stocky reading stock, Stocky drafting purchase orders, Stocky sending the Monday report. And just so you know, there are other tools that do a similar job, Make.com is a popular one, but we'll use n8n because its AI Agent building block is the friendliest for beginners.
+```
+<!-- VOICEOVER END -->
 
 ---
 
@@ -175,6 +196,31 @@ CHECKLIST
 
 **After Claude builds it:** On a dark canvas the cursor must stay visible; if it gets lost, ask Claude to add a soft white glow to the cursor. Record full-screen and trim the first second.
 
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*465 words, about 3 min 06 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Click "Create Workflow". This dotted grid is called the canvas. It's a blank recipe card. Every workflow you build will read from left to right, like a sentence. Step one, step two, step three.
+
+First habit: name your workflow. Click "My workflow" at the top left and call it "V05 Hello World". In six months you'll have twenty of these, and "My workflow 7" won't help anyone.
+
+Now click "Add first step". Look at the list. Every one of these is a trigger. A trigger is the doorbell that starts the recipe. Nothing happens in n8n until a doorbell rings. "Trigger manually" means you press a button. "On a schedule" means a clock rings it, say, every morning at seven. "On chat message" means someone types a question, which is exactly how we'll talk to Stocky next video. And "On webhook call" is a doorbell that another app can press.
+
+Let's pick "Trigger manually". See this box? That's a node. One node is one step, one Lego block on the recipe card. This one says "When clicking Execute workflow". Simple: when I press the button, start.
+
+Every node has a little plus on its right side. Click it, and you can add the next step. Look at the search box. Type "odoo". There it is, a ready-made Odoo block. Type "gmail". There's Gmail. "Google Sheets". There's your database from Video 4. These are the doors Stocky will walk through. Hundreds of apps, already built, no code. I'll press Escape for now.
+
+When two nodes are joined, you get a line between them. That's a connection. It's the arrow on the recipe card that says "and then". Information flows along this line, from left to right. If two nodes are not connected, they don't talk to each other. A very common beginner mistake is building a beautiful node and forgetting to connect it.
+
+Now the big orange button at the bottom: "Execute workflow". Click it. Green ticks. That means each step ran successfully. And see "1 item" on the line? That's n8n telling you one piece of information travelled down the connection. Later, when Stocky reads ten products from Odoo, this will say "10 items".
+
+Last stop on the tour. At the top, next to "Editor", there's a tab called "Executions". This is your logbook. Every time a workflow runs, n8n writes it down here: when it ran, how long it took, and whether it succeeded or failed. When something goes wrong at two in the morning, this is where you look first. It's like the CCTV footage of your recipe card.
+
+I'll delete that test node, keep the manual trigger, and save with Control S, or Command S on a Mac. Now let's give our intern a brain. But first, a quick story about keys.
+```
+<!-- VOICEOVER END -->
+
 ---
 
 ## Prompt 3 of 6: Get Your AI Brain's Key and Set a Spending Limit (09:45–12:15, 2 min 30 s)
@@ -255,6 +301,25 @@ CHECKLIST
 
 **After Claude builds it:** Compare menu names with your real console on recording day (Billing / Limits / API Keys); ask Claude to rename any label that has changed. Record full-screen and trim the first second.
 
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*311 words, about 2 min 04 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Our intern's brain will be Claude, made by a company called Anthropic. Claude is what we call an LLM, a large language model. In plain English: the intern's brain. Go to console dot anthropic dot com. Notice the word "console". This is NOT the normal Claude chat website. It's the developer side, where you get keys and pay for usage. Sign in with Google or with your email.
+
+The first time, it asks for an organisation name. I'll type "BrightLeaf Supplies". You can use your company name or just your own name.
+
+Before we make a key, let's add a little money. Go to Settings, then Billing, then "Buy credits". I'm adding five dollars, which is the minimum. Now, look carefully at this option: auto reload. Leave it OFF. That way, when the five dollars is used up, Claude simply stops. No surprises. Five dollars will easily carry you through this entire course and then some.
+
+Next, under Settings, click "Limits". Here you can set a monthly spending limit, and an email alert before you reach it. I'll set the limit to ten dollars a month and an alert at five. This is your safety rail. Even if you build a workflow with a mistake that runs in a loop all night, it can't cost more than this number.
+
+Now the key itself. Click "API Keys", then "Create Key". Give it a name that tells future-you where it's used. I'll call it "n8n stocky brightleaf". Click "Add". And here's your key. It starts with "sk-ant". Read this message: Anthropic shows you the full key only once. If you close this window without copying it, it's gone, and you simply make a new one.
+
+Click the copy icon. Now, don't paste it into a notepad, don't email it to yourself. We go straight to n8n and put it in the locked cabinet.
+```
+<!-- VOICEOVER END -->
+
 ---
 
 ## Prompt 4 of 6: Store the Key Safely in n8n Credentials (12:15–13:30, 1 min 15 s)
@@ -325,6 +390,21 @@ CHECKLIST
 ```
 
 **After Claude builds it:** This demo is short, so check the paste-and-rename step (00:23-00:32) is readable; ask Claude to slow the typing slightly if it feels rushed. Record full-screen and trim the first second.
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*148 words, about 0 min 59 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Back in n8n, on the Overview page, click the "Credentials" tab. This is the locked key cabinet. Now click the arrow next to "Create Workflow" and choose "Create Credential".
+
+Search for "Anthropic", select it, and click "Continue". There's one field: API Key. Paste your key here.
+
+Let's also rename it. Click the name at the top and call it "Anthropic, BrightLeaf". Now click "Save". n8n tests the key straight away, and we get a green message: "Connection tested successfully". That means the key works, and it's now stored encrypted inside n8n.
+
+Watch this. If I open it again, I can't see the key. Only dots. That's the whole point. From now on, any workflow can use "Anthropic, BrightLeaf", but nobody can read the key, not even me. If you ever need it again, you don't copy it from here. You create a new one in the Anthropic console.
+```
+<!-- VOICEOVER END -->
 
 ---
 
@@ -446,6 +526,33 @@ CHECKLIST
 
 **After Claude builds it:** Check that the full email fits in the OUTPUT column without scrolling at 1920x1080; if it doesn't, ask Claude to reduce the output font to 22px. Record full-screen and trim the first second.
 
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*512 words, about 3 min 25 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Time for the fun part. Open "V05 Hello World". Click the plus next to the manual trigger, search for "AI Agent", and select it. This is the most important building block in the whole course. This node IS the intern. It can think, and later it can use tools.
+
+The settings panel opens. The first setting is "Source for Prompt". That's a fancy way of asking, "Where does the instruction come from?" Next video, the instruction will come from a chat window. Today, we'll type it right here, so change it to "Define below".
+
+Here's the instruction. Notice how I wrote it. I didn't just say "write an email to a supplier". I gave the facts like a good manager briefing an intern: the PO number, P zero zero zero two seven. The item, BL-1005, pallet jack wheels, forty sets. The fact that it's three days late. Our stock: eighteen sets against a reorder point of twenty-five. And exactly what I want back: a tracking number and a new date by Friday. The more specific your brief, the better the intern's work.
+
+Now scroll down to "Options", click "Add Option" and choose "System Message". The system message is the intern's job description. It stays the same every time, while the user message changes. I'm telling it who it is, Stocky, BrightLeaf's procurement assistant. How to write: polite and professional. And one golden rule: never invent facts. Keep that rule in mind. It becomes very important next video.
+
+Close the panel and look underneath the AI Agent node. Three little plugs: Chat Model, Memory and Tool. The chat model is the brain. Memory lets it remember a conversation. Tools are its hands, like the Odoo door. Today, we only need the brain. Click the plus under "Chat Model".
+
+Pick "Anthropic Chat Model". In "Credential to connect with", choose the credential we just saved, "Anthropic, BrightLeaf". See? We never touch the key again. Then, in "Model", choose the newest Claude Sonnet you see in the list. Model names get updated every few months, so your list might look a little different from mine. Sonnet is the all-rounder: smart and affordable.
+
+Here's our recipe card. The doorbell, the intern, and the intern's brain. Moment of truth. Click "Execute workflow".
+
+Let's open the AI Agent node and look at the output. Read that. A subject line with the PO number. Polite. It explains why it's urgent, using our real numbers, eighteen against twenty-five. It asks for exactly two things. And it's signed properly. That took about four seconds and cost about a third of a cent. Sarah used to spend ten minutes on emails like this, several times a day.
+
+And check the logbook. Executions tab. There's our run, saved, with the exact output. Nothing gets lost.
+
+Try that challenge yourself. When I changed the delay to ten days, the email got noticeably firmer and asked to escalate to a manager. Same recipe card, different facts, different email. That's the power of a good instruction. Now, one more key before we finish: the key to Odoo.
+```
+<!-- VOICEOVER END -->
+
 ---
 
 ## Prompt 6 of 6: Get Your Odoo API Key and Save the Odoo Credential (19:45–22:30, 2 min 45 s)
@@ -535,5 +642,28 @@ CHECKLIST
 ```
 
 **After Claude builds it:** If your Odoo version shows the API key under "My Profile" instead of Users & Companies, ask Claude to change the click path in scene 4 to match. Record full-screen and trim the first second.
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*392 words, about 2 min 37 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Over to Odoo, our central filing cabinet. Odoo needs its own key card too. In some versions, the key menu is hidden until you switch on developer mode. Don't let the name scare you. It changes no data, it just shows a few extra menus. Go to Settings, scroll all the way to the bottom, and click "Activate the developer mode". The page reloads, and you'll see a little bug icon at the top. That's how you know it's on.
+
+Now, in Settings, click "Users and Companies", then "Users". Click your own user. I'm logged in as Sarah. Open the tab called "Account Security". And there's the button: "New API Key". Click it.
+
+Odoo asks for your password first, to be sure it's really you. Then add a description. I'll write "n8n Stocky". Some Odoo versions also ask how long the key should last. Pick a sensible length, like three months, and write the expiry date in your Credentials Safety Log. Click "Generate Key". Same rule as before: Odoo shows this key once. Copy it, and go straight to n8n.
+
+Back in n8n: "Create Credential", search "Odoo", and select "Odoo API". This one has four fields. Think of it as a delivery address with four lines. Get any line wrong, and the waiter can't find the kitchen.
+
+Line one, Site URL. That's the address in your browser bar, starting with https and ending with dot odoo dot com, with nothing after it. Line two, Username. That's the email you log in to Odoo with. Line three, Password or API Key. Paste the key we just generated, not your password. Line four, Database Name. On Odoo Online, this is usually the first part of your web address. My address is brightleaf-demo dot odoo dot com, so my database is called "brightleaf-demo".
+
+Rename it "Odoo, BrightLeaf", and click "Save". And there it is: "Connection tested successfully". n8n just knocked on Odoo's door, showed the key card, and Odoo said "come in".
+
+See a red error instead? It's almost always one of three things: extra text at the end of the URL, a typo in the database name, or your password pasted instead of the API key. Fix it and save again.
+
+Look at our key cabinet. Two keys, both locked away safely. A brain, and a door to the ERP. That's everything Stocky needs.
+```
+<!-- VOICEOVER END -->
 
 ---

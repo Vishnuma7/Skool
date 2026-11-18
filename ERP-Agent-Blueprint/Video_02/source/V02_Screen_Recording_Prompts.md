@@ -1,6 +1,10 @@
 # Video 2: ERP Demystified: A Supply Chain Pro's Tour of Odoo: Screen-Recording Prompts
 **How to use:** 1. Open claude.ai, start a new chat, and paste ONE prompt. 2. Claude builds an animated demo you can preview. If anything looks wrong, reply in the same chat ("make the cursor slower", "the table is cut off"). 3. Open the demo full-screen in Chrome (press F11 / Ctrl+Cmd+F), start your screen recorder (QuickTime: File → New Screen Recording), then click **Start**. 4. Stop recording when the "END" card appears, trim the start and end, and add your voice-over from the script. Each demo runs for the same length as its script section, so the voice-over lines up.
 
+<!-- VO NOTE START -->
+**Voice-over (Fish Audio):** Under every prompt you'll find a grey **"Voice-over text for Fish Audio"** box. Copy that text into Fish Audio and download the audio. Best order: make the audio FIRST, check its length, and if it's longer or shorter than the section length, add one line to the prompt before sending it to Claude: *"Make the total duration exactly M:SS"* (your audio length). Claude's demo has no sound, so you join the audio and video in a video editor (CapCut, iMovie, Descript): put both on the timeline starting at 0:00.
+<!-- VO NOTE END -->
+
 **Sections in this video:**
 
 | # | Section | Time | Length | Prompt |
@@ -102,6 +106,40 @@ CHECKLIST
 - Nothing overflows the 1920x1080 stage; no real logos (Odoo and Gmail look-alikes only).
 ```
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*477 words, about 3 min 11 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+We're on odoo dot com. Odoo is an ERP used by millions of businesses, and the good news for us is that it runs entirely in your browser. Nothing to install.
+
+First, let me explain the word. ERP stands for Enterprise Resource Planning, which is a terrible name, so forget it. Here's what it really is: the company's central filing cabinet plus its rulebook. Every department keeps its records in one place, and the system enforces the rules. When the warehouse receives fifty boxes, the stock number goes up for everyone, instantly. No emailing spreadsheets around.
+
+Let's create our own. Click "Start now - It's free".
+
+Odoo asks which apps we want. Think of each app as a department's drawer in the filing cabinet. For supply chain, we need three: Inventory, for what's on the shelf. Purchase, for buying from suppliers. And Sales, for selling to customers. Tick those three and nothing else. Odoo will quietly add Contacts as well, because both sales and purchasing need a list of companies to deal with.
+
+Click Continue.
+
+Now the sign-up form. I'm filling it in as Sarah, but you use your own name and email. For company name, type "BrightLeaf Supplies", so your screen matches mine for the rest of the course. Pick your country and click Start now.
+
+Odoo is now building your database. This takes about a minute.
+
+And we're in. Before we do anything else, look at the address bar. This web address is your Odoo's home. Mine is brightleaf-supplies dot odoo dot com. Yours will be a bit different. And the first part, before dot odoo dot com, is your database name.
+
+Write both of these down right now. There's a box for them on the Setup Checklist sheet in your activity workbook. In video six, when we connect Stocky to Odoo, these are the first two things it asks for.
+
+Odoo also sends you an email to confirm your account and set a password. Do that now, so you can log back in tomorrow.
+
+One more thing to know. The free trial lasts fifteen days. That's plenty for this course, but if it runs out, don't panic. You can start a fresh trial with a new email, and because we're going to load our products from an Excel file, you'll be back to exactly this point in about five minutes.
+
+Last setup step. BrightLeaf buys from suppliers in the US, Mexico, China and Dubai, and in this course we'll keep all our prices in US dollars. Go to the Settings app, type "currency" in the search box, and check that the main currency is USD. If it isn't, set it to USD and click Save.
+
+If your Odoo won't let you change it, or you can't find it, don't worry. Just treat the numbers as dollars. Nothing in the course depends on the symbol.
+```
+<!-- VOICEOVER END -->
+
 - Odoo's real sign-up pages change often; this demo is a simplified look-alike, so don't worry if your live screens look slightly different.
 - If the form typing feels rushed, ask Claude to "start the sign-up form 2 seconds earlier by shortening scene 6".
 - Trim the first second before Start and the frames after END.
@@ -186,6 +224,34 @@ CHECKLIST
 - Nothing overflows the 1920x1080 stage; no real logos.
 ```
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*349 words, about 2 min 20 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+This is the home screen, and every icon here is what ERP people call a module. A module is just one department's drawer in the filing cabinet. Same cabinet, same data underneath, different drawers.
+
+You'll notice a couple of extras. Invoicing appeared because sales and purchases eventually turn into invoices. Discuss is Odoo's internal chat. We won't need them, so ignore them.
+
+Let's open the three drawers that matter to a supply chain pro.
+
+First, Inventory. This is Tom's world, the warehouse. These cards are the two directions goods move: Receipts, things coming in from suppliers, and Delivery Orders, things going out to customers.
+
+Along the top, you'll see the same pattern in nearly every Odoo app. Operations, where the day-to-day work happens. Products, your catalogue. Reporting, where you get numbers out. And Configuration, the rulebook settings. Remember that pattern. Once you know it in one app, you know it in all of them.
+
+Next, Purchase. This is Sarah's drawer. The first thing you see is "Requests for Quotation", or RFQ for short. In Odoo, every purchase starts life as an RFQ, basically a draft. When the supplier agrees and Sarah confirms it, the same record becomes a Purchase Order. Same folder, new status. Keep that in mind, because in video seven, Stocky will create these RFQs for Sarah to approve.
+
+Sales works the same way, but in the other direction. Quotations become Sales Orders.
+
+And Contacts is the shared address book. Customers, suppliers, even your own company live here, all in one list. Notice there's no separate "supplier list" and "customer list". A company is just a contact. Whether it's a supplier or a customer depends on what you do with it.
+
+Here's why this matters. These drawers talk to each other. When Sarah confirms a purchase order, Inventory automatically expects a receipt. When a salesperson confirms an order, Inventory automatically prepares a delivery. One action, every department updated.
+
+That's also why an agent is so much more powerful connected to an ERP than to a pile of spreadsheets. Stocky reads one place and sees the whole truth.
+```
+<!-- VOICEOVER END -->
+
 - This script has a PAUSE & THINK after this section ("Which drawers do you open most?"); add it as a freeze-frame card in your editor if you want it on screen.
 - If the menu tooltips in scene 6 overlap, reply "show the menu tooltips below the bar, one at a time".
 - Trim the first second before Start and the frames after END.
@@ -278,6 +344,40 @@ CHECKLIST
 - Nothing overflows the 1920x1080 stage; no real logos.
 ```
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*433 words, about 2 min 53 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Let's create our first record by hand, so you can see every field. Go to Inventory, then Products, then Products again, and click New.
+
+This blank form is one empty folder. Let's fill it in with BrightLeaf's best seller.
+
+Product name: Steel Hex Bolts M10, box of one hundred. Just under the name, make sure both "Can be Sold" and "Can be Purchased" are ticked. BrightLeaf buys these from a supplier and sells them to customers, so both are true.
+
+Now the most important field on this whole form, and the number one beginner mistake. Product Type. Choose "Goods", and then tick "Track Inventory".
+
+If you forget that tick, Odoo will happily let you buy and sell the product, but it will never count it. There will be no stock number. And when Stocky asks "how many bolts do we have?", the answer will be nothing at all.
+
+If your Odoo shows a list with "Storable Product" instead, choose "Storable Product". It means the same thing.
+
+Sales Price: sixteen eighty-eight. Cost: twelve fifty. That's a thirty-five percent mark-up, and your workbook shows you the calculation.
+
+Then Internal Reference: BL dash one zero zero one. This is your SKU, your product code. Please never skip this field. Product names change, people type them differently, someone writes "M10 bolts" and someone else writes "Hex Bolt M10". But BL-1001 is always BL-1001. When Stocky talks about products, it will use this code, so nothing gets mixed up.
+
+Now the Purchase tab. This is where we tell Odoo who we buy from. Click "Add a line" under Vendors. Type Apex Fasteners. It doesn't exist yet, so Odoo offers to create it. Click Create.
+
+Price, twelve fifty. And delivery lead time, seven days. That's how long Apex usually takes from order to arrival at our Columbus warehouse. Lead time is gold for an agent. It's the difference between "you're low" and "you're low and you have seven days before it's a problem".
+
+Save, with this little cloud icon. And there it is: our first record. One folder in the Inventory drawer.
+
+Look at these buttons across the top. Odoo calls them smart buttons. On Hand says zero, because we haven't received anything yet. We'll fix that in a few minutes.
+
+And here's that "drawers talk to each other" idea again. We created Apex Fasteners from inside a product, but it lives in Contacts, the shared address book. Let me add its city, Columbus, Ohio, and the country, United States. In video eight, Stocky uses supplier cities to check the local weather. So this little field will matter later.
+```
+<!-- VOICEOVER END -->
+
 - If your own Odoo shows "Storable Product", the demo still matches the voice-over line at 01:10, so no change is needed.
 - If the form looks too crowded at 1920x1080, reply "make the product form 1500 px wide and the field text 24 px".
 - Trim the first second before Start and the frames after END.
@@ -370,6 +470,36 @@ CHECKLIST
 - Nothing overflows the 1920x1080 stage (the 9-column spreadsheet must fit); no real logos.
 ```
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*332 words, about 2 min 13 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Typing one product took us about three minutes. BrightLeaf has ten. Your company probably has ten thousand. Nobody types those in by hand. We import them.
+
+Here's the import file from your resources. One row per product, one column per field. Look at the column headers: Internal Reference, Name, Product Type, Track Inventory, Sales Price, Cost. They are spelled exactly like the field labels we just saw on the form. That's on purpose. When the headers match, Odoo matches the columns for you.
+
+Notice BL-1001 isn't in here, because we just created it by hand. If we imported it again, we'd have two bolt records, and that's the kind of duplicate that confuses humans and agents alike.
+
+Back in Odoo, on the Products list. Click the little gear icon next to the word Products, and choose "Import records".
+
+Click Upload File and choose the import workbook.
+
+And this is the screen I want you to understand. On the left, your Excel columns. On the right, the Odoo field each one will go into. Odoo has matched them all automatically, because our headers match the field names.
+
+If one of your columns ever shows "To import, select a field", or it's left blank, just click the dropdown and pick the right field yourself. That's all mapping is: telling Odoo which labelled box each column belongs in.
+
+Before importing, always click Test. Test checks every row without saving anything. If something's wrong, like a letter in the price column, it tells you which row. Green banner, everything seems valid.
+
+Now click Import. And there we go. Ten products. BL-1001 that we typed, plus nine imported in about four seconds.
+
+Let's spot-check one. Pallet Jack Wheels, BL-1005. Goods, inventory tracked, cost thirty-eight, sales price fifty-one thirty. Perfect.
+
+Now try something. Use the search bar at the top of the list and type "BL-100". Every product code starting with BL-100 appears. That's the power of a clean, consistent SKU code. Stocky will search exactly like this.
+```
+<!-- VOICEOVER END -->
+
 - If the 9 spreadsheet columns don't fit, reply "shrink the spreadsheet font to 20 px and hide the ribbon".
 - Scene 7 (the amber "select a field" row) is only an illustration of what to do if a column isn't matched; mention that in your voice-over if you like.
 - Trim the first second before Start and the frames after END.
@@ -475,6 +605,38 @@ CHECKLIST
 - Nothing overflows the 1920x1080 stage; no real logos.
 ```
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*464 words, about 3 min 06 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Our products exist, but the shelves are empty. Let's give BrightLeaf some starting stock. Go to Inventory, Operations, Physical Inventory. This is the screen you'd use after a stock count.
+
+Click New. Product: BL-1001, the bolts. Location: WH slash Stock, that's the main warehouse shelf. Counted quantity: one hundred and forty-five. Then Apply.
+
+Pallet jack wheels, BL-1005: eighteen. And I'll speed through the rest. All ten numbers are on the "Starting Stock and Reorder" sheet in your workbook, so you can copy them exactly.
+
+I've chosen these numbers on purpose. Four of our products are now below their reorder point. Don't fix that. Those four are Stocky's first job in video six.
+
+Now the rulebook part of our filing cabinet. Open the pallet jack wheels. Click the smart button for reorder rules. Depending on your version it says "Min / Max" or shows a little refresh icon. Then New.
+
+Min quantity: twenty-five. That's BrightLeaf's reorder point for the wheels. Max quantity: fifty. That's how high we want to refill to. At BrightLeaf, the Max is simply double the reorder point.
+
+So the rule now reads: when wheels drop below twenty-five sets, top them back up to fifty. We have eighteen. So Odoo knows we need thirty-two more. And remember, these come from Shenzhen with a twenty-one-day lead time. That's exactly the kind of product that keeps Sarah awake at night.
+
+And here's where it pays off. Inventory, Operations, Replenishment. Odoo already shows BL-1005 with a suggested "To Order" of thirty-two. Don't click Order. We're leaving that decision for Stocky and Sarah later in the course.
+
+Add reorder rules for the other nine products using your workbook. Once they are in, three more products join the wheels below their reorder point: the shipping boxes, the safety gloves and the hydraulic oil. It takes about five minutes, and it's great practice.
+
+Last thing, and it's my favourite. Open the bolts, BL-1001, and click "In slash Out". This is the product's paper trail. Every time stock moves in or out, Odoo writes it down: the date, from where, to where, how many and who did it.
+
+Right now there's just one line: one hundred and forty-five boxes of bolts added by an inventory adjustment, by Sarah, today. Once BrightLeaf starts buying and selling, this list grows. Receipt from Apex. Delivery to a customer in Dubai. Every move, forever.
+
+This is the rulebook side of the ERP. Nobody can quietly change a stock number. There's always a record of what happened. And for an agent, this history is gold. It's how Stocky will one day be able to say, "we've used about forty boxes of bolts a week for the last month, so a hundred and forty-five will last under four weeks. Fine for now, but watch it."
+```
+<!-- VOICEOVER END -->
+
 - The fast-forward in scene 4 should feel obviously sped up; if not, reply "add a subtle motion blur and a 4x badge during the fast-forward".
 - Speak "Don't click Order" while the cursor hovers the button at about 02:05.
 - Trim the first second before Start and the frames after END.

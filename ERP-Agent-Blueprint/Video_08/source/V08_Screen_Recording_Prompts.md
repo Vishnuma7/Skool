@@ -2,6 +2,10 @@
 
 **How to use:** 1. Open claude.ai, start a new chat, and paste ONE prompt. 2. Claude builds an animated demo you can preview. If anything looks wrong, reply in the same chat ("make the cursor slower", "the table is cut off"). 3. Open the demo full-screen in Chrome (press F11 / Ctrl+Cmd+F), start your screen recorder (QuickTime: File → New Screen Recording), then click **Start**. 4. Stop recording when the "END" card appears, trim the start and end, and add your voice-over from the script. Each demo runs for the same length as its script section, so the voice-over lines up.
 
+<!-- VO NOTE START -->
+**Voice-over (Fish Audio):** Under every prompt you'll find a grey **"Voice-over text for Fish Audio"** box. Copy that text into Fish Audio and download the audio. Best order: make the audio FIRST, check its length, and if it's longer or shorter than the section length, add one line to the prompt before sending it to Claude: *"Make the total duration exactly M:SS"* (your audio length). Claude's demo has no sound, so you join the audio and video in a video editor (CapCut, iMovie, Descript): put both on the timeline starting at 0:00.
+<!-- VO NOTE END -->
+
 **Sections in this video:**
 
 | # | Section | Time | Length | Prompt |
@@ -133,6 +137,31 @@ CHECKLIST
 
 **After Claude builds it:**
 
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*635 words, about 4 min 14 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Remember from Video 3, an API is a waiter. You don't walk into the kitchen; you give your order to the waiter and they bring back exactly what you asked for. Today we're visiting three new restaurants. And here's the lovely part: none of them asks for a key card. No sign-up, no API key, no credit card. You can test all three right now in your browser.
+
+First, weather, from a service called Open-Meteo. Let me read this web address like a restaurant order. "forecast" is the menu. Latitude 22.54, longitude 114.06: that's the map pin for Shenzhen. "daily equals precipitation sum, wind speed max" means: for each day, tell me total rain and the strongest wind. "timezone equals auto" means use Shenzhen's local time. And "forecast days equals 7" means the next week.
+
+And here's the answer, a labelled shopping list. Rain for the next seven days, in millimetres: small numbers, a millimetre here and there, mostly dry. Wind, in kilometres per hour: nothing anywhere near forty. That's a calm week in Shenzhen. For comparison, a typhoon brings winds of 120 kilometres an hour and more, and 100-plus millimetres of rain in a day.
+
+Here are the map pins for all five BrightLeaf supplier cities. Shenzhen, Dubai, Monterrey in Mexico, Chicago, and Columbus, right here at home. Notice the minus signs on the longitudes for the three American cities: minus just means west of London. You find these by searching the city name plus the word "coordinates". They're in your activity file too, so no need to write them down.
+
+Second window: currency, from a service called Frankfurter. You met it in Video 3, and remember, the restaurant moved: the old frankfurter dot app address now forwards to frankfurter dot dev, so that's the one we use. "latest", from USD, to the Chinese yuan and the Mexican peso. Our Columbus and Chicago suppliers bill in dollars, so they need no exchange rate at all. And the answer: one US dollar equals 6.67 yuan and 18.46 pesos today. Now, did you notice I didn't ask for the UAE dirham, AED, for our Dubai supplier?
+
+That's on purpose. As we said in Video 3, an API only serves what its kitchen stocks. Frankfurter uses the European Central Bank's reference rates, and the ECB doesn't publish the dirham, so it isn't on the menu. And it turns out we don't need it, because the UAE dirham is pegged to the US dollar at about 3.67 dirhams per dollar, and has been since 1997. It basically never moves. So for Gulf Lubricants in Dubai, dollar-to-dirham currency risk is zero. That's the kind of thing an experienced buyer knows, and we'll teach it to Stocky.
+
+Swap "latest" for a date, and you get the rate on that day. On the 16th of October the dollar bought 18.38 pesos. Today it buys 18.46. That's a move of about 0.4% in a month. The yuan went from 6.69 to 6.67, about 0.3%. Both small moves. Keep those numbers in mind.
+
+Third window: public holidays, from Nager.Date. The address is the year, 2026, and the country code, CN for China. Back comes the list: New Year, Chinese New Year on the 17th of February, Labour Day, Dragon Boat Festival, Mid-Autumn Festival on the 25th of September, and National Day on the 1st of October.
+
+Change CN to US: Thanksgiving on the 26th of November, Christmas on the 25th of December. MX for Mexico: Revolution Day was yesterday, the 16th, and Christmas again. Now watch. AE for the UAE. Blank. Nager.Date doesn't cover every country, and the UAE isn't on its list today. That's real life with free tools. So for the UAE, we'll give Stocky a short holiday list in its rulebook instead. Good agents work around gaps; they don't pretend.
+```
+<!-- VOICEOVER END -->
+
 - Click Start, wait half a second, then start your recorder only if you want a clean first frame; trim the first second either way.
 - If you record on a day other than 17 Nov 2026, your own live numbers will differ; mention that in the voice-over (the demo keeps the script's numbers).
 - If the URL text is too small, reply "make the URL bar text 30px and zoom in more on each segment".
@@ -235,6 +264,25 @@ CHECKLIST
 ```
 
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*268 words, about 1 min 47 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Before we build anything, let's agree on the scoring rules. If you can't explain a score on a napkin, an agent can't either. Ours has four parts and adds up to ten.
+
+Weather, zero to three points. Zero if the next seven days are calm. One point for a heavy-rain day, 20 millimetres, or wind over 40. Two points for 50 millimetres or wind over 60. And three points for storm or typhoon strength: 100 millimetres of rain, or wind over 90 kilometres an hour.
+
+Holidays, zero to three. Look 30 days ahead. No holidays, zero. One holiday day, one point. Two or more days, two points. And a major shutdown, where factories close for a week or more, like Golden Week or Chinese New Year, is the full three.
+
+Currency, zero to two. Compare today's rate with 30 days ago for the supplier's own currency. If the peso or the yuan moves a lot, suppliers start re-pricing. Under 1%, zero. One to three percent, one point. Three percent or more, two points. US suppliers we pay in dollars score zero, because there's no exchange rate involved.
+
+And lead time, zero to two, straight from Odoo. Seven days or less, zero. Eight to twenty days, one. Twenty-one days or more, two. A long lead time means less room to recover if something goes wrong.
+
+Add them up. Zero to three is low risk, green. Four to six is medium, amber. Seven to ten is high, red. That's it. Four simple questions any buyer could answer with a calculator. Stocky just answers them faster, for every supplier, every day.
+```
+<!-- VOICEOVER END -->
 
 - This is a calm, table-only scene: if it feels static, reply "add a gentle zoom on each group as it is highlighted".
 - If the table text is too small to read on a phone, ask for "Rules table text at 28px minimum".
@@ -342,6 +390,27 @@ CHECKLIST
 
 **After Claude builds it:**
 
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*313 words, about 2 min 05 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Here's Stocky from Video 6. I've duplicated it and called it "Stocky, Risk Radar", so the original stays safe. You can see the brain, the memory and the Odoo tool hanging underneath the agent. Today we hang three more tools there.
+
+Click the plus under Tool, search HTTP, and choose HTTP Request Tool. This is a waiter that the agent can call whenever it decides it needs to. That's the big difference from a normal workflow step. We don't say "call the weather at step 3". We give Stocky the waiter's phone number, and Stocky decides when to call.
+
+Name it "get weather". Then the description, which is the most important box on this screen. This is how Stocky knows what the tool is for. Write it like you're briefing the intern: "Gets the seven-day weather forecast for one supplier city. Give it the latitude and longitude. Returns daily rain and maximum wind."
+
+Method: GET, which just means "fetch me something". URL: the Open-Meteo forecast address, only up to the word "forecast". We'll add the rest as separate fields so it's easy to read.
+
+Switch on "Send Query Parameters". These are the blanks on the order form. Add "latitude", and instead of typing a number, click this little sparkle button: "Let the model define this parameter". That means Stocky fills in this blank itself, depending on which city it's checking. Same for longitude. The other three never change, so we type them in: daily, precipitation sum comma wind speed 10m max. Timezone, auto. Forecast days, seven.
+
+Let's test it with Dubai: 25.20 and 55.27. And back comes Dubai's week. Practically no rain, light wind. Exactly what you'd expect in November.
+
+If you're curious what the sparkle button did, it wrote a little placeholder that says "the AI fills this in". You never need to type it yourself. One tool down, two to go.
+```
+<!-- VOICEOVER END -->
+
 - The description typing is the longest typing beat; if it runs late, ask Claude to "keep the typing at 14 characters/second but start it at 01:03 exactly".
 - Trim the first second of the recording so the video opens on the workflow list.
 
@@ -446,6 +515,25 @@ CHECKLIST
 ```
 
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*226 words, about 1 min 30 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Second tool: get exchange rates. The description tells Stocky three things: what it gets, how to ask for today or for a past date, and, importantly, not to ask for the dirham, and why. If we don't say that, Stocky might order something the kitchen doesn't stock and think the tool is broken.
+
+For the URL, paste this from the activity file. The part in curly brackets is the same placeholder the sparkle button makes. It means "Stocky, fill in the date here: either the word latest, or a date". Then two fixed blanks: from, USD; to, CNY comma MXN.
+
+Test with "latest". 6.67 yuan, 18.46 pesos. Working.
+
+Third tool: get public holidays. Again, the description says what's covered and what isn't. And the URL has two blanks for Stocky to fill: the year and the country code.
+
+Let's test with next year: 2027, China. And there it is: Chinese New Year, 6th of February 2027. If you buy from China, put that date in your calendar right now. Factories often close for two to three weeks around it, not just the official days.
+
+Zoom out and look at Stocky now. One brain, one memory, and four tools: the Odoo filing cabinet inside the building, and three windows to the outside world. No code, and no API keys to manage for any of the new ones.
+```
+<!-- VOICEOVER END -->
 
 - The URLs are long: if they are cut off in the field, reply "let the URL field wrap onto two lines".
 - The 01:06–01:11 test beat is short on purpose; it matches a one-line voice-over.
@@ -601,6 +689,27 @@ CHECKLIST
 ```
 
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*555 words, about 3 min 42 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Now the rulebook. Open the agent, Options, System Message, and paste this in. It's in your activity file. Let me walk you through it, because it's all plain English. First, today's date: that little placeholder fills in today automatically, so Stocky knows what "next 30 days" means. Then the six suppliers, with their cities, map pins, currencies and longest lead times. Then the scoring rules we just agreed on. Then the holidays the API can't give us, for the UAE. And then the rules of behaviour. Use the tools, never invent a number. If something fails, say so. Give me a table, then one plain sentence for anything medium or high, or for the top scorer if everything is low. And always end with "guidance, not truth".
+
+Let's try it. Open chat. "Good morning Stocky. Give me today's supplier risk scores."
+
+Watch the logs on the right. This is the bit I love. Stocky called the weather tool five times, once per city. It didn't call it twice for Shenzhen, even though two suppliers are there. It called the currency tool twice: today and 30 days ago. And it called the holiday tool three times, for the US, Mexico and China, and skipped the UAE, because it knows the UAE isn't covered. Nobody told it that order. It worked it out from the descriptions. These logs are your receipts. You can always check exactly what the agent looked at.
+
+And here's the answer. Calm weather everywhere this week, and tiny currency moves. The Shenzhen suppliers score two, low, purely because of their long lead times. Columbus and Chicago pick up a point each for Thanksgiving. And Gulf Lubricants comes out on top with three out of ten, still low, but only just, because of the UAE National Day holiday on the 2nd and 3rd of December. And look: Stocky also used its Odoo tool from Video 6, and noticed Hydraulic Oil is already below its reorder point, 31 drums against 40. So the sentence is: "Place the oil order this week, before the holiday." Inside data plus outside data, in one sentence. That's a buyer's sentence. And notice: low doesn't mean ignore.
+
+Now, a calm week is great for BrightLeaf, but it's a boring demo. So let's run a fire drill. A fire drill is when you feed the agent a pretend emergency to check it reacts properly, the same way you'd test a smoke alarm.
+
+I'll type: "Fire drill. Pretend today is the 24th of September 2026. Use the real holiday and currency tools. For weather, assume Shenzhen shows 110 kilometres an hour of wind and 140 millimetres of rain on the 29th and 30th. Score Shenzhen BrightTech." This is the exact week from Sarah's story.
+
+Eight out of ten. HIGH. And read the reasons: typhoon-strength winds, the Mid-Autumn Festival, and then Golden Week. It even pulled the real exchange rates for those dates. And then the sentence Sarah needed back in September: "Golden Week holiday plus typhoon warning. Order LED lights ten days earlier." Ten days, because the factory closes for about seven days, and there's a few days of storm and backlog on top. Plus a sensible next step: confirm the closure dates with the supplier. That's not the agent taking over. That's the agent making sure Sarah never gets surprised again.
+```
+<!-- VOICEOVER END -->
 
 - This is the longest demo (5 min 15 s). Watch it once all the way through in the preview before recording.
 - If the long answers stream too fast to read, reply "stream each answer over 6 seconds, then hold it" (the timeline already leaves hold time).

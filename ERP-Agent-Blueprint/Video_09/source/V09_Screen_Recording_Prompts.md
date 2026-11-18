@@ -2,6 +2,10 @@
 
 **How to use:** 1. Open claude.ai, start a new chat, and paste ONE prompt. 2. Claude builds an animated demo you can preview. If anything looks wrong, reply in the same chat ("make the cursor slower", "the table is cut off"). 3. Open the demo full-screen in Chrome (press F11 / Ctrl+Cmd+F), start your screen recorder (QuickTime: File → New Screen Recording), then click **Start**. 4. Stop recording when the "END" card appears, trim the start and end, and add your voice-over from the script. Each demo runs for the same length as its script section, so the voice-over lines up.
 
+<!-- VO NOTE START -->
+**Voice-over (Fish Audio):** Under every prompt you'll find a grey **"Voice-over text for Fish Audio"** box. Copy that text into Fish Audio and download the audio. Best order: make the audio FIRST, check its length, and if it's longer or shorter than the section length, add one line to the prompt before sending it to Claude: *"Make the total duration exactly M:SS"* (your audio length). Claude's demo has no sound, so you join the audio and video in a video editor (CapCut, iMovie, Descript): put both on the timeline starting at 0:00.
+<!-- VO NOTE END -->
+
 **Sections in this video:**
 
 | # | Section | Time | Length | Prompt |
@@ -93,6 +97,27 @@ CHECKLIST
 ```
 
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*339 words, about 2 min 16 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Here's the Google Sheet we built back in Video 4. Remember, a database is just a super-organised Excel workbook. Each tab is a table, each row is a record, each column is a field. We already have "Stock Log" and "Suppliers". Now we add the most important tab of all.
+
+I click the little plus at the bottom left, right-click the new tab, choose Rename, and call it "Decision Log". Spelling matters here, because n8n will look for this exact name. Capital D, capital L, one space.
+
+Now the column headers. Think of these as the questions Mr. Harrison or an auditor might ask. Log ID, a unique number for each row. Timestamp, when did it happen. SKU and Product, what item. Stock On Hand, what was the stock at that moment. Action, what did Stocky do: things like "RFQ created", "Hold", "Rejected", or "Alert sent". Approved By, which human signed off, or "Auto" if no approval was needed. Risk Score, the supplier risk out of ten from Video 8. And Notes, a short sentence in plain English explaining why.
+
+I freeze the header row with View, Freeze, one row, so it stays visible when the log gets long. And it will get long. Stocky makes maybe five to fifteen decisions a day. That's a few thousand rows a year, and Google Sheets handles that easily.
+
+One small but important habit from Video 4: clean data. I set column B to "Date time" and column H to "Number". If you skip this, Google Sheets may treat "7.8" as text and your charts later will quietly break.
+
+I always type one test row by hand first. It shows me what "good" looks like before the robot starts writing. Stretch wrap, stock 150, reorder point 200, RFQ created, approved by Sarah, risk score 3.1, and a note. Notice the note is written for a human, not a computer. If Mr. Harrison reads only this column, he should understand the story.
+
+That's our notebook. Now let's teach Stocky to write in it.
+```
+<!-- VOICEOVER END -->
 
 - The header typing is long (about 45 s); if it feels slow, keep it: it matches the voice-over describing each column.
 - If the nine columns don't fit, ask Claude to "narrow columns A-H so A to I fit on screen, and widen I only when the note is typed".
@@ -211,6 +236,31 @@ CHECKLIST
 ```
 
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*483 words, about 3 min 13 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Here is the daily reorder check from Video 7. Quick reminder of the recipe card: every morning the trigger, our doorbell, rings. Stocky reads stock from Odoo, finds items below their reorder point, emails Sarah for approval, and if she says yes, it creates an RFQ in Odoo. Right now, though, the moment that happens, it's forgotten. Let's fix that.
+
+I click the plus after the "Create RFQ" node, search for Google Sheets, and pick "Append Row in Sheet". Append simply means "add to the bottom". It never overwrites anything. Like writing on the next empty line of a notebook.
+
+Credential: the Google Sheets connection we already saved. Document: "BrightLeaf – Stocky Database". Sheet: "Decision Log". If "Decision Log" doesn't appear in the list, check the spelling of the tab, then click the little refresh icon.
+
+Now the fun part. n8n has read our headers and is showing me nine empty boxes, one per column. I'll fill each one by dragging data from the left side, where the earlier steps' results are shown. Remember JSON? It's just a labelled shopping list. I'm picking items off that list.
+
+For Timestamp, I type this short expression, dollar sign "now", which simply means "the time right now", formatted as year, month, day, hour, minute. You don't need to memorise it. It's in the activity file to copy and paste. For SKU, product and stock, I just drag the green labels across. Action, I type "RFQ created". Approved By, "Sarah Mitchell". Risk score, I drag in the score from Video 8. And Notes, I build a little sentence that mixes fixed words with live data: "Below reorder point 40, RFQ P00030 for 49 units."
+
+I click "Test step", flip to the Sheet, and there it is. A brand new row, written by Stocky. Hydraulic oil, stock 31, RFQ created for 49 drums, which is the reorder point times two minus what's on hand, approved by Sarah, risk 5.1. That's Stocky's first diary entry.
+
+But here's something beginners miss. A "no" is a decision too. If Sarah rejects an order, we want that written down even more, because next week someone will ask why we didn't order. So I copy the node, paste it on the rejected branch, and change Action to "Rejected" with her reason in the notes.
+
+Now let's use the memory. In the chat agent from Video 6, I add one more tool: Google Sheets, "Get Rows", pointing at the Decision Log. And I write a plain English description so the intern's brain knows when to use it: "Use this to look up past Stocky decisions by SKU or date."
+
+And now, the exact question Mr. Harrison asked in the intro. "Did we order stretch wrap recently? Who approved it and why?" Look at that answer. Date, quantity, stock level, reorder point, who approved, and the risk score. Ten seconds. That's the power of memory.
+```
+<!-- VOICEOVER END -->
 
 - The ON-SCREEN TEXT caption appears at 02:14; check it doesn't hide the Notes field (ask Claude to move the panel up if it does).
 - If the drags look too fast, reply "make each drag 1.2 seconds with a visible ghost label".
@@ -334,6 +384,29 @@ CHECKLIST
 ```
 
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*385 words, about 2 min 34 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Time for the Monday Report. I create a new workflow and call it "Stocky – Monday Report". Here's the plan on our recipe card: a doorbell that rings every Monday at 7, three steps that collect information, one step where the AI writes, and one step that sends the email.
+
+The first step is a Schedule Trigger. In Video 7 we used it daily. Now I set the interval to Weeks, every one week, on Monday, at 7 am, minute zero. That's our doorbell.
+
+One trap. n8n Cloud might run on a different time zone than you. If you skip this, "7 am" could mean 7 am in London, which is 2 in the morning here in Columbus. So I open the workflow Settings and set the time zone to America/New_York, which is Columbus time. You set yours.
+
+Step two: read Odoo. This is exactly the Odoo node you built in Video 6, so I'm just going to copy it in. It asks the waiter, our API, for every product with its SKU, name, stock on hand, unit cost and reorder point. Test step, and ten products come back.
+
+Step three: read Stocky's diary, but only the last seven days. I add Google Sheets, "Get Rows", Decision Log. Then a Filter node that keeps only rows where the timestamp is after "now minus seven days". Again, the expression is in your activity file. Test it, and we get seven rows: the decisions from last week.
+
+Step four: the Suppliers tab, which since Video 8 also holds each supplier's latest risk score. Shenzhen BrightTech is at 7.8 this week because of heavy rain in Shenzhen and a stronger yuan against the dollar. Global Lift Parts at 7.2.
+
+Now, a small but important step. The Odoo node gave us ten separate items. If we sent them straight to the AI, n8n would run the AI ten times and write ten reports. We want one report. So I add an Aggregate node after each branch. Think of it as putting ten loose receipts into one envelope. Then a Merge node puts the three envelopes into one parcel: products, decisions, suppliers.
+
+Test workflow, and look: one single item, with three neat lists inside. That's everything Stocky needs to write the report. Now let's give the intern's brain its instructions.
+```
+<!-- VOICEOVER END -->
 
 - The ON-SCREEN TEXT caption is long; if it wraps badly, ask for "two-line caption, 30px".
 - Record in one take; the envelope animation is the moment that explains Aggregate, so keep it slow.
@@ -500,6 +573,23 @@ CHECKLIST
 
 **After Claude builds it:**
 
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*352 words, about 2 min 21 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+I add the AI Agent node, connect the same Claude or OpenAI model from Video 5, and choose "Define below" for the prompt. Here's the prompt. I'm going to read it with you, because this is where the quality of your report is decided. A vague prompt gives you a vague report. A precise prompt gives you the same clean report every single week.
+
+Let's walk through it. The system message tells the intern who they are, who they're writing for, and the golden rule: never invent numbers. Use only the data provided. Then the user prompt gives three things. Data: the three lists we just collected. Calculate: exactly how to work out stock health and money tied up, so the AI doesn't guess its own formula. And Format: the exact structure, in order. Headline, key numbers, top five risks, items reordered, rejections, and a "needs your decision" section, because directors love being asked for at most two decisions, not twenty.
+
+Notice I ask for simple HTML tags. HTML is just the formatting language of emails and web pages. H2 means "a heading", "b" means bold, "li" means bullet. You don't need to learn it. You just ask the AI to use it, and your email arrives looking neat instead of like one big grey paragraph.
+
+And here's the report. Read the headline: "Pallet jack wheels and hydraulic oil are our two biggest risks this week." That's what a director wants in the first line. Stock health 60 percent, because six of our ten SKUs are healthy. Money tied up in stock, 16,153 dollars. Top five risks, each with a reason and an action. The items reordered, who approved them, the two on hold and why. And just two decisions for Mr. Harrison. Sarah used to spend three hours on this. Stocky took about twelve seconds.
+
+Now, never trust, always verify, especially in the first few weeks. I check the numbers against my own spreadsheet. Money tied up, 16,153, matches. Stock health, 60 percent, matches. If the AI's numbers ever disagree with your spreadsheet, the spreadsheet wins and you tighten the prompt.
+```
+<!-- VOICEOVER END -->
+
 - The report is long: if it doesn't fit, ask Claude to "scroll the OUTPUT panel smoothly instead of shrinking the text".
 - Pause on the Dashboard ticks in your edit if you want an extra beat for "never trust, always verify".
 
@@ -592,6 +682,23 @@ CHECKLIST
 ```
 
 **After Claude builds it:**
+
+<!-- VOICEOVER START -->
+### Voice-over text for Fish Audio (paste this)
+*277 words, about 1 min 51 s at a natural pace (150 words/min). Paste it as is; each paragraph is a natural pause.*
+
+```text
+Before the email, a quick dashboard, so Mr. Harrison can click through to the detail. I add a "Dashboard" tab to the same Google Sheet. A couple of formulas you already know from Excel, COUNTIF and COUNTIFS, count how many RFQs were created each week. Then I select that little table, click Insert, Chart, and in the Chart editor pick "Column chart". Four bars, one per week. Simple, honest, and it updates itself because the Decision Log keeps growing.
+
+Then I share the sheet with Mr. Harrison as a Viewer only. Viewer, not Editor. He can look, he can't accidentally delete the log. I copy the link.
+
+Now the Gmail node. Send a message to Mr. Harrison, CC Sarah so she always sees what her boss sees. Subject: "Monday Stock Report, Week of", and the date fills itself in. Email type: HTML, so our headings and bullets show nicely. In the message, I take the AI's output and swap the word "link" for a real clickable link to the dashboard. And I turn off "Append n8n Attribution", so the email doesn't end with an advert.
+
+Test the whole workflow, and switch to Mr. Harrison's inbox. There it is. "Monday Stock Report, week of 16 November." Clean headline, key numbers, risks, the reorder table, and a link that opens the dashboard. That's the email Sarah used to spend her Monday morning building.
+
+Last step: I switch the workflow to Active. In newer versions of n8n the button is called Publish. Either way, from now on it runs every Monday at 7 am, whether Sarah is in the office, on leave, or stuck in traffic on the I-270 outerbelt.
+```
+<!-- VOICEOVER END -->
 
 - The first 42 seconds are spreadsheet work; keep the formula visible in the formula bar so viewers can pause and copy it.
 - If you want a longer look at the email, freeze the frame at 02:05 in your editor rather than changing the demo timing.
