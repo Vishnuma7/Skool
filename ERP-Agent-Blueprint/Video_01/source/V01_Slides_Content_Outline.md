@@ -17,10 +17,10 @@
 - **Suggested visual:** Big number "576" with a calendar graphic where 14 weeks are shaded in red.
 
 ### Slide 3: Meet BrightLeaf Supplies
-- Distributor of industrial and packaging supplies, warehouse in Pune
-- Customers across India and the Middle East; runs on Odoo
-- Priya Sharma (Procurement & Inventory), Ravi (Warehouse), Mr. Kapoor (Operations Director)
-- **Suggested visual:** Simple "cast" card with three illustrated avatars and their roles, plus a small map pin on Pune.
+- Distributor of industrial and packaging supplies, warehouse in Columbus, Ohio
+- Customers across the US and Canada; runs on Odoo
+- Sarah Mitchell (Procurement & Inventory), Tom (Warehouse), Mr. Harrison (Operations Director)
+- **Suggested visual:** Simple "cast" card with three illustrated avatars and their roles, plus a small map pin on Columbus, Ohio.
 
 ### Slide 4: The Promise
 - By the end you will have built a working AI agent that:
@@ -43,12 +43,12 @@
 - **Suggested visual:** Screenshot of the full Stocky workflow in n8n, with numbered labels over each node.
 
 ### Slide 7: The Human Click
-- Stocky prepares; Priya approves
+- Stocky prepares; Sarah approves
 - 4 draft RFQs appear in Odoo only after "Approve"
 - Monday morning work: from about 3 hours to 90 seconds
 - **Suggested visual:** Before/after split: left, a stressed person with stacks of spreadsheets; right, a single "Approve" button and a coffee cup.
 
-### Slide 8: Priya's Monday Before Stocky
+### Slide 8: Sarah's Monday Before Stocky
 - Export, copy, paste, fix broken formulas, highlight red, email suppliers
 - Stretch wrap was on the report... in row 41 of 60
 - The job asked her to be a copy machine, a calculator and an analyst at once
@@ -99,7 +99,7 @@
 ### Slide 16: Recap + Your Activity
 - A chatbot talks, an automation follows, an agent reasons and acts
 - Every agent = brain + instructions + tools + memory + human
-- Goal: give Priya back her 576 hours, not replace her
+- Goal: give Sarah back her 576 hours, not replace her
 - Activity: **V01_Activity_Agent_or_Not.xlsx** (sort 20 tasks + your Automation Wishlist) | Quiz: 10 questions
 - Next: ERP Demystified: A Supply Chain Pro's Tour of Odoo
 - **Suggested visual:** Three takeaway tiles, a thumbnail of the activity workbook, and a "Next video" card with an Odoo screenshot.

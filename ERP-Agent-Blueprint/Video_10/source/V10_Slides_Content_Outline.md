@@ -9,14 +9,14 @@
 - Video 10 of The ERP Agent Blueprint: the finale
 - **Suggested visual:** Stocky standing at a "LIVE" switch with a shield on its chest; confetti in the corners.
 
-### Slide 2: Priya, 10 Weeks Later
+### Slide 2: Sarah, 10 Weeks Later
 - Before: 12 hours/week of copying, chasing and reporting
 - Now: Stocky reads, acts with approval, checks risks, logs and reports
-- **Suggested visual:** Before/after split: a stressed Priya with piles of paper vs a relaxed Priya with a coffee and one clean inbox.
+- **Suggested visual:** Before/after split: a stressed Sarah with piles of paper vs a relaxed Sarah with a coffee and one clean inbox.
 
-### Slide 3: Mr. Kapoor's Four Questions
+### Slide 3: Mr. Harrison's Four Questions
 - Is it safe? What if it orders 10,000 boxes? What if a password is stolen? What does it cost? What if it breaks at 2 am?
-- **Suggested visual:** Four speech bubbles around Mr. Kapoor, each with an icon: shield, box stack, key, coin, alarm clock.
+- **Suggested visual:** Four speech bubbles around Mr. Harrison, each with an icon: shield, box stack, key, coin, alarm clock.
 
 ### Slide 4: Least Privilege = The Right Key Card
 - The intern doesn't get the master key
@@ -24,9 +24,9 @@
 - **Suggested visual:** A hotel corridor with doors labelled Inventory and Purchase open (green), and Sales, Accounting, HR, Settings locked (red padlocks).
 
 ### Slide 5: Two Locks on the Same Door
-- Lock 1: Priya's email approval (Video 7)
+- Lock 1: Sarah's email approval (Video 7)
 - Lock 2: Odoo Purchase Order Approval above $5,000
-- **Suggested visual:** A door with two padlocks, one labelled "Priya approves" and one labelled "Odoo > $5,000".
+- **Suggested visual:** A door with two padlocks, one labelled "Sarah approves" and one labelled "Odoo > $5,000".
 
 ### Slide 6: The Bot's Own API Key
 - Log in as Stocky Bot → My Profile → Account Security → New API Key
@@ -61,10 +61,10 @@
 - **Suggested visual:** Two Odoo boxes side by side: "LIVE: real money" (red border) and "TEST: sandbox" (green border, toy shovel icon).
 
 ### Slide 12: The Smoke Alarm: Error Trigger Workflow
-- "Stocky – Error Alerts": Error Trigger → Gmail to Priya
+- "Stocky – Error Alerts": Error Trigger → Gmail to Sarah
 - Connect in each workflow: Settings → Error Workflow
 - Fires on automatic runs only (test with a scheduled test copy)
-- **Suggested visual:** Flow diagram: four Stocky workflows with dotted lines into one smoke alarm node, which sends an envelope to Priya.
+- **Suggested visual:** Flow diagram: four Stocky workflows with dotted lines into one smoke alarm node, which sends an envelope to Sarah.
 
 ### Slide 13: Go Live: Activate, Version, Maintain
 - Activate (Publish) the Error Alerts first, then the rest
@@ -94,7 +94,7 @@
 
 ### Slide 19: Your Journey: Video 1 to Video 10
 - Agents → ERP → APIs → Databases → n8n + brain → Stocky reads → Stocky acts → Outside data → Memory + reports → Live safely
-- **Suggested visual:** A winding path with 10 milestones, Priya walking from "nervous about tech" at the start to "agent builder" at the summit.
+- **Suggested visual:** A winding path with 10 milestones, Sarah walking from "nervous about tech" at the start to "agent builder" at the summit.
 
 ### Slide 20: Congratulations
 - 3 takeaways: least privilege + protected keys + limits • test, alert, back up, maintain • measure hours and pitch in time/money/risk

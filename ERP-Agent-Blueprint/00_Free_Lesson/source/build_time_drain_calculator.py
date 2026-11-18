@@ -69,7 +69,7 @@ lines = [
     ("BLUE cells = formulas. They calculate by themselves, so please don't type over them.", False),
     ("", False),
     ("Step 1: Look at the example (2 minutes)", True),
-    ("Open the 'Time Drain Calculator' sheet. The first 6 rows show Priya's week at BrightLeaf Supplies. "
+    ("Open the 'Time Drain Calculator' sheet. The first 6 rows show Sarah's week at BrightLeaf Supplies. "
      "Notice how small tasks add up to about 12 hours a week.", False),
     ("", False),
     ("Step 2: Add your own tasks (8 minutes)", True),
@@ -78,7 +78,7 @@ lines = [
     ("For each task, type how many times per week you do it, how many minutes it takes each time, "
      "and your rough hourly cost (your salary divided by working hours is fine; a guess is fine too).", False),
     ("Then choose Yes / Partly / No from the dropdown: could a smart intern with access to your ERP do this?", False),
-    ("Tip: you can delete Priya's example rows once you've added your own, or keep them for comparison.", False),
+    ("Tip: you can delete Sarah's example rows once you've added your own, or keep them for comparison.", False),
     ("", False),
     ("Step 3: Read your totals (1 minute)", True),
     ("The green totals row shows your hours per week, hours per year and cost per year, "
@@ -125,11 +125,11 @@ examples = [
      "Daily morning check"),
     ("Answer sales team's 'do we have it in stock?' emails", "Odoo, Email", 12, 5, 25, "Yes", ""),
     ("Type up purchase orders / RFQs for low-stock items", "Odoo, Excel", 4, 30, 25, "Partly",
-     "Agent drafts, Priya approves"),
+     "Agent drafts, Sarah approves"),
     ("Chase suppliers by email for delivery dates", "Email", 6, 10, 25, "Partly", ""),
     ("Check weather, exchange rates and holidays for overseas suppliers", "Websites, Excel", 4, 30, 25, "Yes",
-     "Shenzhen, Dubai, Chennai"),
-    ("Build the Monday stock report for Mr. Kapoor", "Odoo, Excel, Email", 1, 180, 25, "Yes", ""),
+     "Shenzhen, Dubai, Monterrey"),
+    ("Build the Monday stock report for Mr. Harrison", "Odoo, Excel, Email", 1, 180, 25, "Yes", ""),
 ]
 FIRST = HEAD + 1
 EMPTY_ROWS = 10
@@ -218,15 +218,15 @@ ws = wb.create_sheet("BrightLeaf Stock Snapshot")
 title(ws, "BrightLeaf Stock Snapshot (Monday 08:00)",
       "This is the kind of check Stocky the agent does every morning. Column J flags what needs reordering.")
 products = [
-    ("BL-1001", "Steel Hex Bolts M10 (box of 100)", 12.50, 80, 7, "Apex Fasteners", "Pune", 145),
-    ("BL-1002", "Corrugated Shipping Box 18x12x10", 0.85, 1500, 5, "PackRight Industries", "Mumbai", 1180),
-    ("BL-1003", "Stretch Wrap Film 500mm", 9.20, 200, 6, "PackRight Industries", "Mumbai", 260),
-    ("BL-1004", "Industrial Safety Gloves (pair)", 2.40, 600, 10, "SafeHands Co.", "Chennai", 420),
+    ("BL-1001", "Steel Hex Bolts M10 (box of 100)", 12.50, 80, 7, "Apex Fasteners", "Columbus", 145),
+    ("BL-1002", "Corrugated Shipping Box 18x12x10", 0.85, 1500, 5, "PackRight Industries", "Chicago", 1180),
+    ("BL-1003", "Stretch Wrap Film 500mm", 9.20, 200, 6, "PackRight Industries", "Chicago", 260),
+    ("BL-1004", "Industrial Safety Gloves (pair)", 2.40, 600, 10, "SafeHands Co.", "Monterrey", 420),
     ("BL-1005", "Pallet Jack Wheels (set)", 38.00, 25, 21, "Global Lift Parts", "Shenzhen", 18),
-    ("BL-1006", "Packing Tape 48mm (roll)", 1.10, 1000, 5, "PackRight Industries", "Mumbai", 1850),
+    ("BL-1006", "Packing Tape 48mm (roll)", 1.10, 1000, 5, "PackRight Industries", "Chicago", 1850),
     ("BL-1007", "Hydraulic Oil 20L", 54.00, 40, 14, "Gulf Lubricants", "Dubai", 31),
     ("BL-1008", "LED Warehouse Light 150W", 72.00, 30, 28, "Shenzhen BrightTech", "Shenzhen", 34),
-    ("BL-1009", "Nylon Cable Ties (pack of 500)", 6.30, 150, 7, "Apex Fasteners", "Pune", 410),
+    ("BL-1009", "Nylon Cable Ties (pack of 500)", 6.30, 150, 7, "Apex Fasteners", "Columbus", 410),
     ("BL-1010", "Forklift Battery Water Kit", 19.75, 20, 12, "Global Lift Parts", "Shenzhen", 26),
 ]
 HEAD = 4
@@ -305,8 +305,8 @@ ws.conditional_formatting.add("D5:D7", FormulaRule(formula=['LEFT(D5,7)="Correct
 
 ws["B10"] = "Bonus thinking question (no right answer)"
 ws["B10"].font = Font(bold=True, size=12, color=NAVY)
-ws["B11"] = ("Priya does this check by hand every morning. Which 'door' would an agent use to get the on-hand "
-             "numbers (ERP, API or database)? And what should the agent ALWAYS ask Priya before doing?")
+ws["B11"] = ("Sarah does this check by hand every morning. Which 'door' would an agent use to get the on-hand "
+             "numbers (ERP, API or database)? And what should the agent ALWAYS ask Sarah before doing?")
 ws["B11"].alignment = WRAP
 ws.row_dimensions[11].height = 48
 ws["B12"] = "Your thoughts:"
@@ -321,7 +321,7 @@ answers = [
     "1) 4 products: BL-1002 boxes, BL-1004 gloves, BL-1005 pallet jack wheels, BL-1007 hydraulic oil.",
     "2) BL-1005 Pallet Jack Wheels: 21-day lead time from Shenzhen, and only 9 sets on hand.",
     "3) About $3,218 ($510 + $912 + $608 + $1,188).",
-    "Bonus) The ERP door (Odoo), and the agent should ask Priya before sending any purchase order to a supplier.",
+    "Bonus) The ERP door (Odoo), and the agent should ask Sarah before sending any purchase order to a supplier.",
 ]
 for i, a in enumerate(answers):
     c = ws.cell(row=17 + i, column=2, value=a)

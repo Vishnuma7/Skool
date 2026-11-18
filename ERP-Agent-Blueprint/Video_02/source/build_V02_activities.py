@@ -51,15 +51,15 @@ def box(ws, r, c1, c2):
 
 # SKU, name, cost, reorder point (min), max, lead time, supplier, city, country, starting stock
 PRODUCTS = [
-    ("BL-1001", "Steel Hex Bolts M10 (box of 100)", "12.50", 80, 160, 7, "Apex Fasteners", "Pune", "India", 145),
-    ("BL-1002", "Corrugated Shipping Box 18x12x10", "0.85", 1500, 3000, 5, "PackRight Industries", "Mumbai", "India", 1180),
-    ("BL-1003", "Stretch Wrap Film 500mm", "9.20", 200, 400, 6, "PackRight Industries", "Mumbai", "India", 260),
-    ("BL-1004", "Industrial Safety Gloves (pair)", "2.40", 600, 1200, 10, "SafeHands Co.", "Chennai", "India", 420),
+    ("BL-1001", "Steel Hex Bolts M10 (box of 100)", "12.50", 80, 160, 7, "Apex Fasteners", "Columbus", "United States", 145),
+    ("BL-1002", "Corrugated Shipping Box 18x12x10", "0.85", 1500, 3000, 5, "PackRight Industries", "Chicago", "United States", 1180),
+    ("BL-1003", "Stretch Wrap Film 500mm", "9.20", 200, 400, 6, "PackRight Industries", "Chicago", "United States", 260),
+    ("BL-1004", "Industrial Safety Gloves (pair)", "2.40", 600, 1200, 10, "SafeHands Co.", "Monterrey", "Mexico", 420),
     ("BL-1005", "Pallet Jack Wheels (set)", "38.00", 25, 50, 21, "Global Lift Parts", "Shenzhen", "China", 18),
-    ("BL-1006", "Packing Tape 48mm (roll)", "1.10", 1000, 2000, 5, "PackRight Industries", "Mumbai", "India", 1850),
+    ("BL-1006", "Packing Tape 48mm (roll)", "1.10", 1000, 2000, 5, "PackRight Industries", "Chicago", "United States", 1850),
     ("BL-1007", "Hydraulic Oil 20L", "54.00", 40, 80, 14, "Gulf Lubricants", "Dubai", "United Arab Emirates", 31),
     ("BL-1008", "LED Warehouse Light 150W", "72.00", 30, 60, 28, "Shenzhen BrightTech", "Shenzhen", "China", 34),
-    ("BL-1009", "Nylon Cable Ties (pack of 500)", "6.30", 150, 300, 7, "Apex Fasteners", "Pune", "India", 410),
+    ("BL-1009", "Nylon Cable Ties (pack of 500)", "6.30", 150, 300, 7, "Apex Fasteners", "Columbus", "United States", 410),
     ("BL-1010", "Forklift Battery Water Kit", "19.75", 20, 40, 12, "Global Lift Parts", "Shenzhen", "China", 26),
 ]
 
@@ -171,7 +171,7 @@ STEPS = [
     ("Tour", "Open each module: Inventory, Purchase, Sales, Contacts", "Home screen app icons"),
     ("Product", "Create BL-1001 by hand: Goods + Track Inventory, Sales Price 16.88, Cost 12.50, Internal Reference BL-1001", "Inventory > Products > Products > New"),
     ("Product", "Add vendor Apex Fasteners, price 12.50, lead time 7 days", "Product form > Purchase tab > Add a line"),
-    ("Contacts", "Add City 'Pune' and Country 'India' to Apex Fasteners", "Contacts > Apex Fasteners"),
+    ("Contacts", "Add City 'Columbus', State 'Ohio' and Country 'United States' to Apex Fasteners", "Contacts > Apex Fasteners"),
     ("Import", "Import BL-1002 to BL-1010 from the import file (Test first!)", "Inventory > Products > Products > gear icon > Import records"),
     ("Import", "Spot-check BL-1005: Goods, tracked, Cost 38.00, Sales Price 51.30", "Products list > BL-1005"),
     ("Stock", "Enter starting stock for all 10 products (see Starting_Stock_Reorder)", "Inventory > Operations > Physical Inventory > New > Counted Quantity > Apply"),
@@ -226,8 +226,8 @@ for r, p in enumerate(PRODUCTS, start=6):
             cell.number_format = "0.00"
         if c in (4, 5):
             cell.fill = fill(GREY)
-ws.conditional_formatting.add("J6:J15", FormulaRule(formula=['$K6<>"India"'], fill=fill(ORANGE)))
-ws["A17"] = "Orange cities = overseas suppliers. In Video 8, Stocky checks weather, currency and holidays for these."
+ws.conditional_formatting.add("J6:J15", FormulaRule(formula=['$K6<>"United States"'], fill=fill(ORANGE)))
+ws["A17"] = "Orange cities = suppliers outside the US. In Video 8, Stocky checks weather, currency and holidays for these."
 ws["A17"].font = Font(italic=True, color="808080")
 ws.freeze_panes = "C6"
 
@@ -326,10 +326,10 @@ dv_need = DataValidation(type="list", formula1='"Yes,Later,No"', allow_blank=Tru
 for d in (dv_sys, dv_q, dv_need):
     ws.add_data_validation(d)
 EXAMPLE = [
-    ("Inventory", "ERP", "Odoo > Inventory", "Products, stock moves", "Internal Reference, Quantity On Hand, Reorder Min", "Ravi", "Good", "Yes"),
-    ("Purchasing", "ERP", "Odoo > Purchase", "RFQs, purchase orders", "Vendor, Order Date, Expected Arrival", "Priya", "OK", "Yes"),
-    ("Suppliers", "ERP", "Odoo > Contacts", "Supplier contacts", "Name, City, Country", "Priya", "Messy", "Yes"),
-    ("Supplier delays", "Email", "Priya's inbox", "Supplier emails", "Supplier, PO number, New date", "Priya", "Messy", "Later"),
+    ("Inventory", "ERP", "Odoo > Inventory", "Products, stock moves", "Internal Reference, Quantity On Hand, Reorder Min", "Tom", "Good", "Yes"),
+    ("Purchasing", "ERP", "Odoo > Purchase", "RFQs, purchase orders", "Vendor, Order Date, Expected Arrival", "Sarah", "OK", "Yes"),
+    ("Suppliers", "ERP", "Odoo > Contacts", "Supplier contacts", "Name, City, Country", "Sarah", "Messy", "Yes"),
+    ("Supplier delays", "Email", "Sarah's inbox", "Supplier emails", "Supplier, PO number, New date", "Sarah", "Messy", "Later"),
 ]
 AREAS = ["Inventory / stock", "Purchasing", "Suppliers", "Sales orders", "Customers",
          "Warehouse & shipping", "Demand forecast", "Production / BOM", "Finance / invoices", "Other:"]

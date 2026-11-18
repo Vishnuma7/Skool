@@ -7,7 +7,7 @@ Content only, slide by slide. Design will be applied once the brand theme arrive
 - **Title:** The ERP Agent Blueprint
 - **Subtitle:** Connect AI Agents to Your ERP, APIs & Databases (No Code Required)
 - **Line:** For supply chain, procurement and inventory professionals
-- **Footer:** Agentic SCM community | 10 videos · 4 hours · $49
+- **Footer:** Agentic SCM community | 10 videos · 4 hours · included in the paid tier, just $49
 - **Suggested visual:** A friendly robot ("Stocky") holding a clipboard in front of warehouse shelves.
 
 ## Slide 2: Sound familiar?
@@ -16,14 +16,14 @@ Content only, slide by slide. Design will be applied once the brand theme arrive
 - Chasing suppliers on email
 - Rebuilding the same Monday report, every Monday
 - Finding out about a stock-out *after* it happens
-- **Suggested visual:** Priya at a desk surrounded by spreadsheets and sticky notes, a clock showing "12 hrs / week".
+- **Suggested visual:** Sarah at a desk surrounded by spreadsheets and sticky notes, a clock showing "12 hrs / week".
 
-## Slide 3: Meet Priya and BrightLeaf Supplies
+## Slide 3: Meet Sarah and BrightLeaf Supplies
 - **Title:** The story you'll follow
-- BrightLeaf Supplies: a distributor of industrial and packaging supplies, warehouse in Pune
-- Priya Sharma, Procurement & Inventory Manager, the hero of the course (and that's you)
+- BrightLeaf Supplies: a distributor of industrial and packaging supplies, warehouse in Columbus, Ohio
+- Sarah Mitchell, Procurement & Inventory Manager, the hero of the course (and that's you)
 - Runs on Odoo, a free ERP you can practise on without breaking anything
-- **Suggested visual:** Simple character cards for Priya, Ravi (warehouse lead) and Mr. Kapoor (operations director).
+- **Suggested visual:** Simple character cards for Sarah, Tom (warehouse lead) and Mr. Harrison (operations director).
 
 ## Slide 4: Chatbot vs automation vs AI agent
 - **Title:** What an AI agent really is
@@ -48,7 +48,7 @@ Content only, slide by slide. Design will be applied once the brand theme arrive
 - **Suggested visual:** Screenshot-style flow: chat question → stock list → approval email with Approve button → draft PO.
 
 ## Slide 7: Before and after
-- **Title:** Priya's week, before and after
+- **Title:** Sarah's week, before and after
 - Daily stock check: 4 hrs → about 0
 - Drafting purchase orders: 3 hrs → 30 min
 - Supplier risk checks: 2 hrs → 5 min
@@ -89,7 +89,7 @@ Content only, slide by slide. Design will be applied once the brand theme arrive
 
 ## Slide 11: Get started
 - **Title:** Build your first ERP agent
-- **Price:** $49, one time
-- **Button text:** Join The ERP Agent Blueprint → [LINK]
+- **Price:** Upgrade to the Agentic SCM paid tier for just $49: unlocks The ERP Agent Blueprint plus all the other paid content in the community
+- **Button text:** Upgrade for only $49 → [LINK]
 - **Line:** Start with the free activity: the ERP Time Drain Calculator
 - **Suggested visual:** Stocky waving, with a large call-to-action button and the Agentic SCM logo.

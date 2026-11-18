@@ -54,7 +54,7 @@ lines = [
     ("Task 1 (10 min) 'GoLive_Checklist': BrightLeaf is at 72% ready. Set item 17 to 'Done' and watch it reach 76%. Then reset every status and fill it in for YOUR agent.", None),
     ("               Rule: don't activate anything until readiness is 90%+ AND 'Open MUST items' shows 0.", None),
     ("Task 2 (5 min) 'Monthly_Cost_Estimator': change the runs per month to match your agent. How close are you to your spend limit?", None),
-    ("Task 3 (5 min) 'ROI_Calculator': replace Priya's numbers (12 h before, 2 h after, $20/h) with yours. Write down your ROI multiple.", None),
+    ("Task 3 (5 min) 'ROI_Calculator': replace Sarah's numbers (12 h before, 2 h after, $20/h) with yours. Write down your ROI multiple.", None),
     ("Task 4 (5 min) 'Weekly_Maintenance': put the 10-minute Friday check in your calendar. Try week 1 this Friday.", None),
     ("Task 5 (10 min) 'One_Page_Pitch': write your 5-section pitch for your boss using your ROI and cost numbers.", None),
     ("", None),
@@ -90,31 +90,31 @@ wc["D2"] = '=IF(AND(C2>=0.9,C3=0),"READY TO GO LIVE","NOT READY YET")'
 wc["D2"].font = BOLD
 header(wc, 5, ["#", "Area", "Checklist item", "Priority", "Status", "Owner", "Where / how (from Video 10)"])
 items = [
-    ("Access", "Dedicated 'Stocky Bot' user created in Odoo", "Must", "Done", "Priya", "Settings → Users & Companies → Users → New"),
-    ("Access", "Bot has ONLY Inventory: User + Purchase: User (all else blank)", "Must", "Done", "Priya", "User form → Access Rights tab"),
-    ("Access", "Purchase Order Approval above $5,000 switched on", "Should", "Done", "Priya", "Purchase → Configuration → Settings"),
-    ("Access", "Readers have Viewer access; only n8n edits the Decision Log", "Should", "Done", "Priya", "Google Sheet → Share"),
-    ("Keys", "Bot's own API key, named with purpose + date", "Must", "Done", "Priya", "My Profile → Account Security → New API Key"),
-    ("Keys", "Keys stored ONLY in n8n Credentials", "Must", "Done", "Priya", "n8n → Credentials"),
-    ("Keys", "90-day key rotation reminder in calendar", "Should", "Done", "Priya", "New key → update n8n → test → delete old"),
+    ("Access", "Dedicated 'Stocky Bot' user created in Odoo", "Must", "Done", "Sarah", "Settings → Users & Companies → Users → New"),
+    ("Access", "Bot has ONLY Inventory: User + Purchase: User (all else blank)", "Must", "Done", "Sarah", "User form → Access Rights tab"),
+    ("Access", "Purchase Order Approval above $5,000 switched on", "Should", "Done", "Sarah", "Purchase → Configuration → Settings"),
+    ("Access", "Readers have Viewer access; only n8n edits the Decision Log", "Should", "Done", "Sarah", "Google Sheet → Share"),
+    ("Keys", "Bot's own API key, named with purpose + date", "Must", "Done", "Sarah", "My Profile → Account Security → New API Key"),
+    ("Keys", "Keys stored ONLY in n8n Credentials", "Must", "Done", "Sarah", "n8n → Credentials"),
+    ("Keys", "90-day key rotation reminder in calendar", "Should", "Done", "Sarah", "New key → update n8n → test → delete old"),
     ("Keys", "No keys in emails, chats, screenshots, sheets, prompts or Looms", "Must", "Done", "Everyone", "Treat any shared key as stolen: delete it"),
-    ("Costs", "Monthly AI spend limit set ($20)", "Must", "Done", "Priya", "AI console → Settings → Limits"),
-    ("Costs", "Spend alert email set ($10)", "Should", "Done", "Priya", "AI console → Settings → Limits"),
-    ("Costs", "Max Iterations = 10 on every AI Agent node", "Should", "In progress", "Priya", "AI Agent node → Add Option"),
-    ("Costs", "Monthly cost estimate done and shared", "Should", "Done", "Priya", "Sheet 'Monthly_Cost_Estimator'"),
-    ("Testing", "Test database duplicated 'For testing purposes'", "Must", "Done", "Priya", "odoo.com → My Databases → Duplicate"),
-    ("Testing", "Credentials clearly named LIVE and TEST", "Must", "Done", "Priya", "n8n → Credentials"),
-    ("Testing", "10 test questions passed (8/10 or better)", "Must", "Done", "Priya", "Capstone brief, section A7"),
-    ("Testing", "Approval flow tested for BOTH approve and reject", "Must", "Done", "Priya", "Gmail 'Send and Wait for Response'"),
-    ("Errors", "'Stocky – Error Alerts' workflow emails the owner", "Must", "In progress", "Priya", "Error Trigger → Gmail"),
-    ("Errors", "Error Workflow selected in EVERY Stocky workflow", "Must", "Not started", "Priya", "Workflow … → Settings → Error Workflow"),
-    ("Errors", "Error alert tested with a deliberate failure", "Should", "Not started", "Priya", "Test copy, wrong key, schedule every 1 min"),
-    ("Go-Live", "Backup duplicate + download of every workflow", "Must", "Done", "Priya", "… → Duplicate, … → Download → Drive 'Stocky Backups'"),
-    ("Go-Live", "Workflow time zone set (Asia/Kolkata)", "Should", "Done", "Priya", "Workflow … → Settings → Timezone"),
-    ("Go-Live", "Error Alerts activated FIRST, then other workflows", "Must", "Not started", "Priya", "Active toggle / Publish"),
-    ("Go-Live", "Boss signed off the one-page pitch", "Should", "In progress", "Mr. Kapoor", "Sheet 'One_Page_Pitch'"),
-    ("Maintenance", "10-minute Friday check in the calendar", "Should", "Done", "Priya", "Sheet 'Weekly_Maintenance'"),
-    ("Maintenance", "Owner AND backup person named (who fixes it if Priya is on leave?)", "Should", "In progress", "Priya + Ravi", "Write both names here"),
+    ("Costs", "Monthly AI spend limit set ($20)", "Must", "Done", "Sarah", "AI console → Settings → Limits"),
+    ("Costs", "Spend alert email set ($10)", "Should", "Done", "Sarah", "AI console → Settings → Limits"),
+    ("Costs", "Max Iterations = 10 on every AI Agent node", "Should", "In progress", "Sarah", "AI Agent node → Add Option"),
+    ("Costs", "Monthly cost estimate done and shared", "Should", "Done", "Sarah", "Sheet 'Monthly_Cost_Estimator'"),
+    ("Testing", "Test database duplicated 'For testing purposes'", "Must", "Done", "Sarah", "odoo.com → My Databases → Duplicate"),
+    ("Testing", "Credentials clearly named LIVE and TEST", "Must", "Done", "Sarah", "n8n → Credentials"),
+    ("Testing", "10 test questions passed (8/10 or better)", "Must", "Done", "Sarah", "Capstone brief, section A7"),
+    ("Testing", "Approval flow tested for BOTH approve and reject", "Must", "Done", "Sarah", "Gmail 'Send and Wait for Response'"),
+    ("Errors", "'Stocky – Error Alerts' workflow emails the owner", "Must", "In progress", "Sarah", "Error Trigger → Gmail"),
+    ("Errors", "Error Workflow selected in EVERY Stocky workflow", "Must", "Not started", "Sarah", "Workflow … → Settings → Error Workflow"),
+    ("Errors", "Error alert tested with a deliberate failure", "Should", "Not started", "Sarah", "Test copy, wrong key, schedule every 1 min"),
+    ("Go-Live", "Backup duplicate + download of every workflow", "Must", "Done", "Sarah", "… → Duplicate, … → Download → Drive 'Stocky Backups'"),
+    ("Go-Live", "Workflow time zone set (America/New_York)", "Should", "Done", "Sarah", "Workflow … → Settings → Timezone"),
+    ("Go-Live", "Error Alerts activated FIRST, then other workflows", "Must", "Not started", "Sarah", "Active toggle / Publish"),
+    ("Go-Live", "Boss signed off the one-page pitch", "Should", "In progress", "Mr. Harrison", "Sheet 'One_Page_Pitch'"),
+    ("Maintenance", "10-minute Friday check in the calendar", "Should", "Done", "Sarah", "Sheet 'Weekly_Maintenance'"),
+    ("Maintenance", "Owner AND backup person named (who fixes it if Sarah is on leave?)", "Should", "In progress", "Sarah + Tom", "Write both names here"),
 ]
 for i, (area, item, prio, status, owner, where) in enumerate(items, start=1):
     r = 5 + i
@@ -146,7 +146,7 @@ runs = [
     ("Stocky – Daily Reorder Check", 30, 0.03, "Once a day"),
     ("Stocky – Supplier Risk Check", 30, 0.03, "Once a day"),
     ("Stocky – Monday Report", 4, 0.08, "Once a week (bigger prompt = higher cost)"),
-    ("Stocky – Chat (Priya + Ravi)", 150, 0.02, "About 7 questions per working day"),
+    ("Stocky – Chat (Sarah + Tom)", 150, 0.02, "About 7 questions per working day"),
     ("Stocky – Error Alerts (no AI)", 5, 0.00, "Hopefully fewer!"),
     ("(your workflow)", 0, 0.00, ""),
 ]
@@ -209,7 +209,7 @@ wr["A1"].font = TITLE
 wr["A2"] = "ROI = hours saved × hourly cost, compared with what the tools cost. Yellow = your inputs."
 header(wr, 4, ["INPUTS", "Value", "Notes"])
 inputs = [
-    ("Hours per week on this work BEFORE the agent", 12, "Priya: copying ERP data, chasing reorders, Monday report", "0"),
+    ("Hours per week on this work BEFORE the agent", 12, "Sarah: copying ERP data, chasing reorders, Monday report", "0"),
     ("Hours per week AFTER the agent", 2, "Approving RFQs, reading the report, Friday check", "0"),
     ("Fully loaded hourly cost (salary + benefits) (USD)", 20, "Use your own number. Ask HR or estimate: yearly cost ÷ 1,900 hours", "$#,##0.00"),
     ("Working weeks per year", 48, "After holidays and leave", "0"),
@@ -279,7 +279,7 @@ sample = ["OK", "OK", "Issue", "OK", "OK", "OK", "Issue", "OK"]
 for i, v in enumerate(sample):
     wk.cell(row=5 + i, column=4, value=v)
 wk.cell(row=7, column=8, value="Week 1: Stocky suggested BL-1006 again while P00012 was in transit. Added 'check Decision Log first' rule.")
-wk.cell(row=11, column=8, value="Week 1: Priya rejected 2 tape orders (delivery coming). Rule added.")
+wk.cell(row=11, column=8, value="Week 1: Sarah rejected 2 tape orders (delivery coming). Rule added.")
 dvm = DataValidation(type="list", formula1='"OK,Issue"', allow_blank=True)
 wk.add_data_validation(dvm)
 dvm.add("D5:G12")
@@ -296,7 +296,7 @@ widths(wp, {"A": 26, "B": 62, "C": 62})
 wp["A1"] = "One-Page Pitch for Your Boss"
 wp["A1"].font = TITLE
 wp["A2"] = "Bosses don't buy AI. They buy hours back, fewer mistakes and less risk. Keep each box to 2–4 lines."
-header(wp, 4, ["Section", "BrightLeaf example (Priya → Mr. Kapoor)", "Your version"])
+header(wp, 4, ["Section", "BrightLeaf example (Sarah → Mr. Harrison)", "Your version"])
 pitch = [
     ("1. The problem", "I spend ~12 hours a week copying Odoo data, chasing reorders and building the Monday report. Reorders get missed when I'm busy (e.g. pallet jack wheels ran short in October)."),
     ("2. What the agent does", "• Checks stock every morning and drafts RFQs for my approval\n• Scores supplier risk (weather, currency, holidays)\n• Logs every decision and emails you the Monday report at 7 am"),

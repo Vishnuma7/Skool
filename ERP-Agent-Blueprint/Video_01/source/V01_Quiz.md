@@ -13,7 +13,7 @@ Choose the best answer for each question. The answer key with explanations is at
 - C. A smart new intern who can read, think, use tools and take action, but needs clear instructions and supervision
 - D. A spreadsheet macro that formats your stock report
 
-**2. Priya asks ChatGPT, "How many pallet jack wheels do we have in stock right now?" Why can't it answer?**
+**2. Sarah asks ChatGPT, "How many pallet jack wheels do we have in stock right now?" Why can't it answer?**
 - A. The question is too long
 - B. On its own, a chatbot has no access to BrightLeaf's ERP, so it only knows what you type into it
 - C. ChatGPT doesn't understand supply chain words
@@ -31,9 +31,9 @@ Choose the best answer for each question. The answer key with explanations is at
 - C. A printer
 - D. Human supervisor
 
-**5. In the Stocky demo, why did Stocky tell Priya to order the pallet jack wheels (BL-1005) "today"?**
+**5. In the Stocky demo, why did Stocky tell Sarah to order the pallet jack wheels (BL-1005) "today"?**
 - A. Because they are the most expensive product
-- B. Because Mr. Kapoor asked for it
+- B. Because Mr. Harrison asked for it
 - C. Because the supplier is in Shenzhen, heavy rain and a public holiday were coming, and the lead time is already 21 days
 - D. Because the stock was at zero
 
@@ -43,11 +43,11 @@ Choose the best answer for each question. The answer key with explanations is at
 - C. The list of products below the reorder point
 - D. A Google Sheet used for memory
 
-**7. Scenario: Priya wants Stocky to start helping next week, but she is nervous about it spending money by mistake. What should she do first?**
+**7. Scenario: Sarah wants Stocky to start helping next week, but she is nervous about it spending money by mistake. What should she do first?**
 - A. Give Stocky permission to send purchase orders directly, to save the most time
 - B. Start with "read and suggest", and keep any spending action behind a human Approve button
 - C. Wait until the AI is perfect before using it at all
-- D. Let Ravi approve everything instead
+- D. Let Tom approve everything instead
 
 **8. Why does Stocky write its decisions into a Google Sheet (the "Stocky_Decision_Log")?**
 - A. Because Odoo can't store numbers
@@ -55,7 +55,7 @@ Choose the best answer for each question. The answer key with explanations is at
 - C. To make the email look nicer
 - D. Because Google Sheets is the only free tool
 
-**9. Scenario: Priya receives 40 supplier emails a week, each written differently. She needs to know which shipments are delayed and what that means for next week's stock. Which tool fits best?**
+**9. Scenario: Sarah receives 40 supplier emails a week, each written differently. She needs to know which shipments are delayed and what that means for next week's stock. Which tool fits best?**
 - A. A chatbot, because it can read text
 - B. A simple automation with one IF rule
 - C. An AI agent, because the task needs reading messy information, judgement and access to stock data
@@ -81,9 +81,9 @@ Choose the best answer for each question. The answer key with explanations is at
 
 **6. A.** LLM stands for large language model. In our analogy, it's the intern's brain. On its own it can only think and write; tools let it act.
 
-**7. B.** Start with "read and suggest", then "draft", and keep "send" or "spend" behind a human approval. That's the manager's signature before the cheque goes out.
+**7. B.** Start with "read and suggest", then "draft", and keep "send" or "spend" behind a human approval. That's the manager's signature before the check goes out.
 
-**8. B.** The log is Stocky's notebook. It lets the agent (and Mr. Kapoor) look back at what was flagged, what was suggested and who approved it.
+**8. B.** The log is Stocky's notebook. It lets the agent (and Mr. Harrison) look back at what was flagged, what was suggested and who approved it.
 
 **9. C.** Every email is different and the answer must be connected to stock levels. That combination of reading, judging and using tools is exactly what agents are for.
 

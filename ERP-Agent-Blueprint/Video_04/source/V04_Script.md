@@ -24,9 +24,9 @@
 ## [ON CAMERA] Intro (00:00–02:00)
 
 **SAY:**
-Two hundred rolls of stretch wrap. That's what BrightLeaf ordered last month that it didn't need. One thousand eight hundred and forty dollars of film, sitting on a rack in the Pune warehouse, because of one cell in a spreadsheet.
+Two hundred rolls of stretch wrap. That's what BrightLeaf ordered last month that it didn't need. One thousand eight hundred and forty dollars of film, sitting on a rack in the Columbus warehouse, because of one cell in a spreadsheet.
 
-Here's what happened. The stock sheet said "21" next to stretch wrap, SKU BL-1003. The reorder point is 200. Twenty-one is way below 200, so a purchase order went out. But Ravi's team hadn't counted rolls. They'd counted cartons. Twenty-one cartons of twelve rolls, plus eight loose rolls. Two hundred and sixty rolls. Plenty of stock. The number was right. The unit was missing.
+Here's what happened. The stock sheet said "21" next to stretch wrap, SKU BL-1003. The reorder point is 200. Twenty-one is way below 200, so a purchase order went out. But Tom's team hadn't counted rolls. They'd counted cartons. Twenty-one cartons of twelve rolls, plus eight loose rolls. Two hundred and sixty rolls. Plenty of stock. The number was right. The unit was missing.
 
 Now imagine that sheet being read not by a tired human on a Monday morning, but by an AI agent that reads it every hour and can raise a purchase order in seconds. Messy data doesn't just slow an agent down. It makes the agent confidently wrong, at speed.
 
@@ -85,15 +85,15 @@ My shortcut: I just typed "sheets dot new" in the address bar, and a blank sheet
 **SAY:**
 Before we build anything, a story about why IDs matter.
 
-Last year Mr. Kapoor asked Priya a simple question. "How much do we spend with PackRight Industries? I want to negotiate a volume discount."
+Last year Mr. Harrison asked Sarah a simple question. "How much do we spend with PackRight Industries? I want to negotiate a volume discount."
 
-Priya pulled the purchase history into Excel and filtered on "PackRight Industries". Answer: about eighteen percent of BrightLeaf's packaging spend. Not much leverage. Mr. Kapoor dropped the idea.
+Sarah pulled the purchase history into Excel and filtered on "PackRight Industries". Answer: about eighteen percent of BrightLeaf's packaging spend. Not much leverage. Mr. Harrison dropped the idea.
 
-Six months later, Priya found the problem. PackRight existed three times. "PackRight Industries". "Pack Right Ind." with a space. And "PACKRIGHT (Mumbai)" in capitals, typed by someone in a hurry. Three spellings, one company. When she added them up, PackRight was forty-one percent of packaging spend. They'd had real negotiating power the whole time, and they'd left it on the table.
+Six months later, Sarah found the problem. PackRight existed three times. "PackRight Industries". "Pack Right Ind." with a space. And "PACKRIGHT (Chicago)" in capitals, typed by someone in a hurry. Three spellings, one company. When she added them up, PackRight was forty-one percent of packaging spend. They'd had real negotiating power the whole time, and they'd left it on the table.
 
-That's the problem with names. People spell them differently, companies get renamed, and two customers can both be called "Sharma Traders".
+That's the problem with names. People spell them differently, companies get renamed, and two customers can both be called "Mitchell Traders".
 
-The fix is a **unique ID**, like a passport or Aadhaar number. Thousands of people are called Priya Sharma, but each has one passport number. If PackRight is supplier SUP-002, every purchase order and every stock row points to SUP-002. Spell the name any way you like; the total is always right.
+The fix is a **unique ID**, like a passport or Social Security number. Thousands of people are called Sarah Mitchell, but each has one passport number. If PackRight is supplier SUP-002, every purchase order and every stock row points to SUP-002. Spell the name any way you like; the total is always right.
 
 For an agent this matters even more. Agents guess too, but sometimes wrongly, and they don't tell you they guessed. So never make your agent guess who you mean. Give everything an ID.
 
@@ -111,7 +111,7 @@ Let's build Stocky's first table. One table for one kind of thing. This table is
 **SAY:**
 Now the headers, the column names, in row 1. Supplier ID, supplier name, city, country code, currency, latitude, longitude, contact email, and active.
 
-Notice two things about how I'm writing them. First, there's exactly one header row. No title above it, no "BrightLeaf supplier list, updated by Priya" in a merged banner. Row 1 is headers, and data starts in row 2. Agents and automation tools expect that.
+Notice two things about how I'm writing them. First, there's exactly one header row. No title above it, no "BrightLeaf supplier list, updated by Sarah" in a merged banner. Row 1 is headers, and data starts in row 2. Agents and automation tools expect that.
 
 Second, I'm using underscores instead of spaces, like "Supplier underscore ID". Spaces in headers work in Sheets, but they cause small annoyances in automation tools later. Underscores never do. It's a two-second habit that saves real headaches.
 
@@ -124,15 +124,15 @@ I'll make the headers bold, then View, Freeze, one row. Now when the list gets l
 
 | Supplier_ID | Supplier_Name | City | Country_Code | Currency | Latitude | Longitude | Contact_Email | Active |
 |---|---|---|---|---|---|---|---|---|
-| SUP-001 | Apex Fasteners | Pune | IN | INR | 18.52 | 73.86 | orders@apexfasteners.example | TRUE |
-| SUP-002 | PackRight Industries | Mumbai | IN | INR | 19.08 | 72.88 | sales@packright.example | TRUE |
-| SUP-003 | SafeHands Co. | Chennai | IN | INR | 13.08 | 80.27 | supply@safehands.example | TRUE |
+| SUP-001 | Apex Fasteners | Columbus | US | USD | 39.96 | -83.00 | orders@apexfasteners.example | TRUE |
+| SUP-002 | PackRight Industries | Chicago | US | USD | 41.88 | -87.63 | sales@packright.example | TRUE |
+| SUP-003 | SafeHands Co. | Monterrey | MX | MXN | 25.69 | -100.32 | supply@safehands.example | TRUE |
 | SUP-004 | Global Lift Parts | Shenzhen | CN | CNY | 22.54 | 114.06 | export@globallift.example | TRUE |
 | SUP-005 | Gulf Lubricants | Dubai | AE | AED | 25.20 | 55.27 | trade@gulflube.example | TRUE |
 | SUP-006 | Shenzhen BrightTech | Shenzhen | CN | CNY | 22.54 | 114.06 | b2b@brighttech.example | TRUE |
 
 **SAY:**
-Now the data. Supplier ID first, SUP dash 001. Apex Fasteners, Pune. SUP-002, PackRight Industries, Mumbai. All the way to SUP-006, Shenzhen BrightTech.
+Now the data. Supplier ID first, SUP dash 001. Apex Fasteners, Columbus. SUP-002, PackRight Industries, Chicago. All the way to SUP-006, Shenzhen BrightTech.
 
 See the ID pattern? Three letters that tell you what kind of thing it is, a dash, and a number with leading zeros. SUP for suppliers, and in a minute LOG for stock log entries. When you see "SUP-004" in an email, you instantly know it's a supplier, not a product.
 
@@ -143,17 +143,17 @@ Now look at the latitude and longitude columns. Recognise those numbers? 22.54 a
 **SAY:**
 Because they're different companies. Same city, same weather, but different contracts, different products, different people to call. The ID identifies the supplier, not the city.
 
-**SHOW:** Select D2:D100. Go to **Data > Data validation**. In the sidebar, click **Add rule**. Under **Criteria**, choose **Dropdown**. Enter options `IN`, `CN`, `AE`. Click **Done**. Click D2 to show the dropdown arrow.
+**SHOW:** Select D2:D100. Go to **Data > Data validation**. In the sidebar, click **Add rule**. Under **Criteria**, choose **Dropdown**. Enter options `US`, `MX`, `CN`, `AE`. Click **Done**. Click D2 to show the dropdown arrow.
 
 **SAY:**
-Here's a trick that prevents mess before it happens. I select the country code column, then Data, Data validation, Add rule. For criteria, I choose "Dropdown", and I type the allowed values: IN, CN, AE. Done.
+Here's a trick that prevents mess before it happens. I select the country code column, then Data, Data validation, Add rule. For criteria, I choose "Dropdown", and I type the allowed values: US, MX, CN, AE. Done.
 
-Now nobody can type "India" in one row, "IND" in another and "in" in a third. They pick from the list. A dropdown is a tiny guard dog for your data. I'll do the same for the currency column: INR, CNY, AED.
+Now nobody can type "Mexico" in one row, "MEX" in another and "mx" in a third. They pick from the list. A dropdown is a tiny guard dog for your data. I'll do the same for the currency column: USD, MXN, CNY, AED.
 
 **SHOW:** Select I2:I100. **Insert > Checkbox**. Checkboxes appear, already ticked for the six rows that said TRUE.
 
 **SAY:**
-Last one. The "Active" column. I select it and click Insert, Checkbox. TRUE becomes a ticked box. If BrightLeaf stops buying from a supplier, Priya unticks it. We don't delete the row, because old purchase orders still point to that ID. We just mark it inactive, and Stocky will skip it.
+Last one. The "Active" column. I select it and click Insert, Checkbox. TRUE becomes a ticked box. If BrightLeaf stops buying from a supplier, Sarah unticks it. We don't delete the row, because old purchase orders still point to that ID. We just mark it inactive, and Stocky will skip it.
 
 > BEGINNER MISTAKE: Deleting old suppliers or products. Mark them inactive instead. Deleting breaks the history that still points to their IDs.
 
@@ -166,18 +166,18 @@ Last one. The "Active" column. I select it and click Insert, Checkbox. TRUE beco
 **SAY:**
 Second table: the Stock Log. This is where Stocky will write down every stock check it does. I click the plus sign at the bottom, rename the tab "Stock underscore Log", and add the headers: log ID, log date, SKU, quantity on hand, unit, reorder point, status, supplier ID, logged by, and note. Bold and freeze.
 
-A log is like a ship's logbook or a diary. You never rub out yesterday's entry. Every check gets a brand-new row. That way, three months from now, Priya can ask, "How fast were we burning through safety gloves in October?" and the answer is sitting right there.
+A log is like a ship's logbook or a diary. You never rub out yesterday's entry. Every check gets a brand-new row. That way, three months from now, Sarah can ask, "How fast were we burning through safety gloves in October?" and the answer is sitting right there.
 
 **SHOW:** Type three rows:
 
 | Log_ID | Log_Date | SKU | Qty_On_Hand | Unit | Reorder_Point | Status | Supplier_ID | Logged_By | Note |
 |---|---|---|---|---|---|---|---|---|---|
-| LOG-0001 | 2026-11-16 | BL-1005 | 18 | set | 25 | | SUP-004 | Priya | 3 pallet jacks waiting for wheels |
-| LOG-0002 | 2026-11-16 | BL-1002 | 1180 | each | 1500 | | SUP-002 | Priya | |
-| LOG-0003 | 2026-11-16 | BL-1001 | 145 | box | 80 | | SUP-001 | Priya | |
+| LOG-0001 | 2026-11-16 | BL-1005 | 18 | set | 25 | | SUP-004 | Sarah | 3 pallet jacks waiting for wheels |
+| LOG-0002 | 2026-11-16 | BL-1002 | 1180 | each | 1500 | | SUP-002 | Sarah | |
+| LOG-0003 | 2026-11-16 | BL-1001 | 145 | box | 80 | | SUP-001 | Sarah | |
 
 **SAY:**
-Let me add three entries. LOG-0001, today's date, BL-1005, the pallet jack wheels. Quantity: 18. Unit: set. Reorder point: 25. Supplier: SUP-004. Logged by Priya. And in the note column: "3 pallet jacks waiting for wheels."
+Let me add three entries. LOG-0001, today's date, BL-1005, the pallet jack wheels. Quantity: 18. Unit: set. Reorder point: 25. Supplier: SUP-004. Logged by Sarah. And in the note column: "3 pallet jacks waiting for wheels."
 
 Now pay close attention to the quantity cell. I typed "18". Just the number. Not "18 sets". Not "18 - urgent!". The unit has its own column. The comment has its own column. This is the most important rule in this whole video: **one fact per cell**.
 
@@ -188,7 +188,7 @@ Why? Because "18" is a number. You can add it, compare it, and ask "is it below 
 **SAY:**
 That brings us to data types. Every column holds one type of thing. Quantity holds numbers. Names hold text. Active holds true or false. And dates hold real dates, not text that looks like a date.
 
-I select the date column, then Format, Number, Custom date and time, and pick year-month-day. Why? Because "03/04" means the 3rd of April in India and March the 4th in America. 2026-11-16 can't be misread by anyone, human or machine, and it sorts correctly.
+I select the date column, then Format, Number, Custom date and time, and pick year-month-day. Why? Because "03/04" means the 3rd of April in Mexico, where SafeHands is, and March the 4th here in the US. 2026-11-16 can't be misread by anyone, human or machine, and it sorts correctly.
 
 **SHOW:** Click G2. Type `=IF(D2<=F2,"REORDER","OK")`. Press Enter. Drag the fill handle down to G4. Results: REORDER, REORDER, OK.
 
@@ -204,7 +204,7 @@ That formula only works because quantity and reorder point are clean numbers. If
 **SAY:**
 One last bit of magic, for my fellow Excel lovers. The stock log only stores the supplier ID, not the name. But I can look up the name from the Suppliers table. In K2: equals XLOOKUP, H2, then the Suppliers ID column, then the Suppliers name column. Drag down. There they are.
 
-This is what makes it a real database. The name lives in one place only. If PackRight renames itself tomorrow, Priya changes it once, and every stock log row updates instantly. In database language, this ID connection is called a relationship. You've just built one.
+This is what makes it a real database. The name lives in one place only. If PackRight renames itself tomorrow, Sarah changes it once, and every stock log row updates instantly. In database language, this ID connection is called a relationship. You've just built one.
 
 ---
 
@@ -236,7 +236,7 @@ And here's a bonus rule that's really part of the others: **no merged cells, and
 **SAY:**
 Now the fun part. This is BrightLeaf's real-world stock sheet. It started as an Odoo export three years ago and has been passed between five people since. You might recognise some of these crimes.
 
-Merged title rows. Supplier names merged across several rows. Quantities like "145 boxes", "approx 1,850" and "18 - urgent!!". "BL 1002" with a space next to "BL-1002" with a dash. A blank SKU. Dates in five different formats. Red cells only Ravi understands. And a TOTAL row that just says "lots". A human can muddle through. An agent will stumble on every one. Let's fix them.
+Merged title rows. Supplier names merged across several rows. Quantities like "145 boxes", "approx 1,850" and "18 - urgent!!". "BL 1002" with a space next to "BL-1002" with a dash. A blank SKU. Dates in five different formats. Red cells only Tom understands. And a TOTAL row that just says "lots". A human can muddle through. An agent will stumble on every one. Let's fix them.
 
 **SHOW:** Select the merged title rows 1–3. Right-click > **Delete rows 1 - 3**.
 
@@ -258,12 +258,12 @@ Fix three: inconsistent IDs. To a computer, "BL 1002" and "BL-1002" are as diffe
 **SAY:**
 Fix four: duplicates. Data, Data cleanup, Remove duplicates, data has a header row. The duplicate hex bolts disappear. The two corrugated box rows had different date formats, so I delete one by hand. Before this, a stock total would have counted 2,360 boxes instead of 1,180, which is above the reorder point of 1,500, so the reorder alert would never have fired.
 
-**SHOW:** Insert a new column next to Qty called **Unit**. Rewrite the quantities one by one: `145 boxes` → 145 | box; `21 cartons (12 rolls each) + 8 loose` → 260 | roll; `approx 1,850` → 1850 | roll, note "estimate, recount"; `18 - urgent!!` → 18 | set, note "urgent"; `31 (check w/ Ravi)` → 31 | drum; `34 nos` → 34 | each.
+**SHOW:** Insert a new column next to Qty called **Unit**. Rewrite the quantities one by one: `145 boxes` → 145 | box; `21 cartons (12 rolls each) + 8 loose` → 260 | roll; `approx 1,850` → 1850 | roll, note "estimate, recount"; `18 - urgent!!` → 18 | set, note "urgent"; `31 (check w/ Tom)` → 31 | drum; `34 nos` → 34 | each.
 
 **SAY:**
 Fix five: one fact per cell. I insert a Unit column and split every quantity. "145 boxes" becomes 145 and "box". "approx 1,850" becomes 1,850, with "estimate, recount" in the remarks. And our stretch wrap: "21 cartons, 12 rolls each, plus 8 loose" becomes 260 rolls, because the reorder point is in rolls. Not a stock-out. The eighteen-hundred-dollar cell, fixed in five seconds.
 
-**SHOW:** Click the blank SKU cell in the gloves row. Check the Products list. Type `BL-1004`. Then in the red-filled rows, type "urgent per Ravi" into Remarks and clear the fill colour (**Fill color > Reset**). Delete the TOTAL row.
+**SHOW:** Click the blank SKU cell in the gloves row. Check the Products list. Type `BL-1004`. Then in the red-filled rows, type "urgent per Tom" into Remarks and clear the fill colour (**Fill color > Reset**). Delete the TOTAL row.
 
 **SAY:**
 Fix six: the blank ID. The safety gloves have no SKU. The product list says BL-1004. A row without an ID is a parcel without a label.
@@ -273,7 +273,7 @@ Fix seven: the red cells meant "urgent", so I write that in the remarks and rese
 **SHOW:** Side-by-side slide: messy (17 rows, 2 red cells) vs clean (10 rows, a Status column showing 4 REORDER and 6 OK).
 
 **SAY:**
-Before and after. Messy: seventeen rows and two red "urgent" cells. Clean: ten rows, one per product, and four need reordering: boxes, gloves, wheels and hydraulic oil. Two surprises. The packing tape coloured red for "urgent"? 1,850 rolls against a reorder point of 1,000. Fine. And the hydraulic oil nobody flagged is at 31 drums against 40, with a 14-day lead time from Dubai. That's a real emergency, and the messy sheet was hiding it under "check with Ravi".
+Before and after. Messy: seventeen rows and two red "urgent" cells. Clean: ten rows, one per product, and four need reordering: boxes, gloves, wheels and hydraulic oil. Two surprises. The packing tape coloured red for "urgent"? 1,850 rolls against a reorder point of 1,000. Fine. And the hydraulic oil nobody flagged is at 31 drums against 40, with a 14-day lead time from Dubai. That's a real emergency, and the messy sheet was hiding it under "check with Tom".
 
 ---
 

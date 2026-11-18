@@ -27,7 +27,7 @@ Quick question. If a customer calls BrightLeaf and asks, "Do you have two hundre
 
 At a lot of companies, the honest answer is: it depends who picks up the phone. Sales checks their spreadsheet. The warehouse checks the shelf. Procurement checks the purchase orders on email. Three people, three different numbers, and a customer waiting on the line.
 
-That's exactly the problem an ERP solves. And it's why every agent we build in this course starts with the ERP. An agent is only as good as the data it reads. If Stocky reads the wrong number, it gives Priya the wrong advice, very confidently.
+That's exactly the problem an ERP solves. And it's why every agent we build in this course starts with the ERP. An agent is only as good as the data it reads. If Stocky reads the wrong number, it gives Sarah the wrong advice, very confidently.
 
 So in this video, we're going inside. I'll give you a supply chain pro's tour of an ERP called Odoo. You'll set up your own free copy in about five minutes. You'll learn three words that unlock every ERP on the planet: module, record and field. And you'll load BrightLeaf's ten products, with stock and reorder points, so that Stocky has something real to read later in the course.
 
@@ -53,10 +53,10 @@ Odoo asks which apps we want. Think of each app as a department's drawer in the 
 
 Click Continue.
 
-**SHOW:** The sign-up form. Fill in: Name "Priya Sharma", Email (the spare address), Company name "BrightLeaf Supplies", Country "India", Phone, and choose a company size. Click **Start now**.
+**SHOW:** The sign-up form. Fill in: Name "Sarah Mitchell", Email (the spare address), Company name "BrightLeaf Supplies", Country "United States", Phone, and choose a company size. Click **Start now**.
 
 **SAY:**
-Now the sign-up form. I'm filling it in as Priya, but you use your own name and email. For company name, type "BrightLeaf Supplies", so your screen matches mine for the rest of the course. Pick your country and click Start now.
+Now the sign-up form. I'm filling it in as Sarah, but you use your own name and email. For company name, type "BrightLeaf Supplies", so your screen matches mine for the rest of the course. Pick your country and click Start now.
 
 **SHOW:** The loading screen "Your database is being created". Then the browser lands on the Odoo home screen. Zoom in on the address bar: brightleaf-supplies.odoo.com (yours will differ).
 
@@ -81,7 +81,7 @@ One more thing to know. The free trial lasts fifteen days. That's plenty for thi
 **SHOW:** Click the menu to reach **Settings**. In the search box at the top of Settings, type "currency". Show the **Main Currency** option and set it to **USD**. Click **Save**.
 
 **SAY:**
-Last setup step. BrightLeaf buys from suppliers in India, China and Dubai, and in this course we'll keep all our prices in US dollars. Go to the Settings app, type "currency" in the search box, and set the main currency to USD. Then click Save.
+Last setup step. BrightLeaf buys from suppliers in the US, Mexico, China and Dubai, and in this course we'll keep all our prices in US dollars. Go to the Settings app, type "currency" in the search box, and check that the main currency is USD. If it isn't, set it to USD and click Save.
 
 If your Odoo won't let you change it, or you can't find it, don't worry. Just treat the numbers as dollars. Nothing in the course depends on the symbol.
 
@@ -101,16 +101,16 @@ Let's open the three drawers that matter to a supply chain pro.
 **SHOW:** Click **Inventory**. The Inventory Overview shows cards for "Receipts" and "Delivery Orders". Then hover over the top menu: Overview, Operations, Products, Reporting, Configuration.
 
 **SAY:**
-First, Inventory. This is Ravi's world, the warehouse. These cards are the two directions goods move: Receipts, things coming in from suppliers, and Delivery Orders, things going out to customers.
+First, Inventory. This is Tom's world, the warehouse. These cards are the two directions goods move: Receipts, things coming in from suppliers, and Delivery Orders, things going out to customers.
 
 Along the top, you'll see the same pattern in nearly every Odoo app. Operations, where the day-to-day work happens. Products, your catalogue. Reporting, where you get numbers out. And Configuration, the rulebook settings. Remember that pattern. Once you know it in one app, you know it in all of them.
 
 **SHOW:** Click the home icon, then **Purchase**. The empty "Requests for Quotation" list.
 
 **SAY:**
-Next, Purchase. This is Priya's drawer. The first thing you see is "Requests for Quotation", or RFQ for short. In Odoo, every purchase starts life as an RFQ, basically a draft. When the supplier agrees and Priya confirms it, the same record becomes a Purchase Order. Same folder, new status. Keep that in mind, because in video seven, Stocky will create these RFQs for Priya to approve.
+Next, Purchase. This is Sarah's drawer. The first thing you see is "Requests for Quotation", or RFQ for short. In Odoo, every purchase starts life as an RFQ, basically a draft. When the supplier agrees and Sarah confirms it, the same record becomes a Purchase Order. Same folder, new status. Keep that in mind, because in video seven, Stocky will create these RFQs for Sarah to approve.
 
-**SHOW:** Home icon, then **Sales**. The empty "Quotations" list. Then home icon, then **Contacts**. The Contacts kanban shows "BrightLeaf Supplies" and "Priya Sharma".
+**SHOW:** Home icon, then **Sales**. The empty "Quotations" list. Then home icon, then **Contacts**. The Contacts kanban shows "BrightLeaf Supplies" and "Sarah Mitchell".
 
 **SAY:**
 Sales works the same way, but in the other direction. Quotations become Sales Orders.
@@ -120,7 +120,7 @@ And Contacts is the shared address book. Customers, suppliers, even your own com
 **SHOW:** Graphic: one central filing cabinet labelled "Odoo database" with four drawers: Inventory, Purchase, Sales, Contacts. Arrows show: Purchase confirmed > Inventory receipt; Sales confirmed > Inventory delivery.
 
 **SAY:**
-Here's why this matters. These drawers talk to each other. When Priya confirms a purchase order, Inventory automatically expects a receipt. When a salesperson confirms an order, Inventory automatically prepares a delivery. One action, every department updated.
+Here's why this matters. These drawers talk to each other. When Sarah confirms a purchase order, Inventory automatically expects a receipt. When a salesperson confirms an order, Inventory automatically prepares a delivery. One action, every department updated.
 
 That's also why an agent is so much more powerful connected to an ERP than to a pile of spreadsheets. Stocky reads one place and sees the whole truth.
 
@@ -182,7 +182,7 @@ Then Internal Reference: BL dash one zero zero one. This is your SKU, your produ
 **SAY:**
 Now the Purchase tab. This is where we tell Odoo who we buy from. Click "Add a line" under Vendors. Type Apex Fasteners. It doesn't exist yet, so Odoo offers to create it. Click Create.
 
-Price, twelve fifty. And delivery lead time, seven days. That's how long Apex usually takes from order to arrival at our Pune warehouse. Lead time is gold for an agent. It's the difference between "you're low" and "you're low and you have seven days before it's a problem".
+Price, twelve fifty. And delivery lead time, seven days. That's how long Apex usually takes from order to arrival at our Columbus warehouse. Lead time is gold for an agent. It's the difference between "you're low" and "you're low and you have seven days before it's a problem".
 
 **SHOW:** Click the **save** icon (cloud icon next to the record name). Then point to the breadcrumb "Products / Steel Hex Bolts M10 (box of 100)" and the smart buttons at the top: On Hand, Forecasted, In / Out.
 
@@ -191,10 +191,10 @@ Save, with this little cloud icon. And there it is: our first record. One folder
 
 Look at these buttons across the top. Odoo calls them smart buttons. On Hand says zero, because we haven't received anything yet. We'll fix that in a few minutes.
 
-**SHOW:** Click **Contacts** in the home menu. Open **Apex Fasteners**. Show it was created as a contact. Set **City** to Pune, **Country** India, then save.
+**SHOW:** Click **Contacts** in the home menu. Open **Apex Fasteners**. Show it was created as a contact. Set **City** to Columbus, **State** Ohio, **Country** United States, then save.
 
 **SAY:**
-And here's that "drawers talk to each other" idea again. We created Apex Fasteners from inside a product, but it lives in Contacts, the shared address book. Let me add its city, Pune, and the country, India. In video eight, Stocky uses supplier cities to check the local weather. So this little field will matter later.
+And here's that "drawers talk to each other" idea again. We created Apex Fasteners from inside a product, but it lives in Contacts, the shared address book. Let me add its city, Columbus, Ohio, and the country, United States. In video eight, Stocky uses supplier cities to check the local weather. So this little field will matter later.
 
 ---
 
@@ -283,12 +283,12 @@ Now the rulebook part of our filing cabinet. Open the pallet jack wheels. Click 
 
 Min quantity: twenty-five. That's BrightLeaf's reorder point for the wheels. Max quantity: fifty. That's how high we want to refill to. At BrightLeaf, the Max is simply double the reorder point.
 
-So the rule now reads: when wheels drop below twenty-five sets, top them back up to fifty. We have eighteen. So Odoo knows we need thirty-two more. And remember, these come from Shenzhen with a twenty-one-day lead time. That's exactly the kind of product that keeps Priya awake at night.
+So the rule now reads: when wheels drop below twenty-five sets, top them back up to fifty. We have eighteen. So Odoo knows we need thirty-two more. And remember, these come from Shenzhen with a twenty-one-day lead time. That's exactly the kind of product that keeps Sarah awake at night.
 
 **SHOW:** Go to **Inventory > Operations > Replenishment**. Show the list with BL-1005, its On Hand 18, Min 25, Max 50 and **To Order** 32. Do not click Order.
 
 **SAY:**
-And here's where it pays off. Inventory, Operations, Replenishment. Odoo already shows BL-1005 with a suggested "To Order" of thirty-two. Don't click Order. We're leaving that decision for Stocky and Priya later in the course.
+And here's where it pays off. Inventory, Operations, Replenishment. Odoo already shows BL-1005 with a suggested "To Order" of thirty-two. Don't click Order. We're leaving that decision for Stocky and Sarah later in the course.
 
 Add reorder rules for the other nine products using your workbook. Once they are in, three more products join the wheels below their reorder point: the shipping boxes, the safety gloves and the hydraulic oil. It takes about five minutes, and it's great practice.
 
@@ -297,7 +297,7 @@ Add reorder rules for the other nine products using your workbook. Once they are
 **SAY:**
 Last thing, and it's my favourite. Open the bolts, BL-1001, and click "In slash Out". This is the product's paper trail. Every time stock moves in or out, Odoo writes it down: the date, from where, to where, how many and who did it.
 
-Right now there's just one line: one hundred and forty-five boxes of bolts added by an inventory adjustment, by Priya, today. Once BrightLeaf starts buying and selling, this list grows. Receipt from Apex. Delivery to a customer in Dubai. Every move, forever.
+Right now there's just one line: one hundred and forty-five boxes of bolts added by an inventory adjustment, by Sarah, today. Once BrightLeaf starts buying and selling, this list grows. Receipt from Apex. Delivery to a customer in Dubai. Every move, forever.
 
 This is the rulebook side of the ERP. Nobody can quietly change a stock number. There's always a record of what happened. And for an agent, this history is gold. It's how Stocky will one day be able to say, "we've used about forty boxes of bolts a week for the last month, so a hundred and forty-five will last under four weeks. Fine for now, but watch it."
 

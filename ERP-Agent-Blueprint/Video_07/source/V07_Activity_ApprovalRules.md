@@ -20,10 +20,10 @@
 |---|---|---|
 | Read stock levels from Odoo | Green | Nobody |
 | Read supplier lead times and prices | Green | Nobody |
-| Create a draft RFQ for a low SKU | Amber | Priya (or Mr. Kapoor over $2,000) |
-| Confirm a purchase order | Red | Priya, by hand in Odoo. Stocky never does this. |
-| Email the PO to the supplier | Red | Priya, by hand. Stocky never does this. |
-| Change a reorder point | Red | Priya + Mr. Kapoor. Stocky never does this. |
+| Create a draft RFQ for a low SKU | Amber | Sarah (or Mr. Harrison over $2,000) |
+| Confirm a purchase order | Red | Sarah, by hand in Odoo. Stocky never does this. |
+| Email the PO to the supplier | Red | Sarah, by hand. Stocky never does this. |
+| Change a reorder point | Red | Sarah + Mr. Harrison. Stocky never does this. |
 
 ### Your company
 
@@ -52,8 +52,8 @@ What would need to be true first: ______________________________________
 
 | Order value (USD) | Who approves | How they're asked |
 |---|---|---|
-| $0 – $2,000 | Priya Sharma (Procurement & Inventory Manager) | Approval email with Approve / Reject buttons |
-| Over $2,000 | Mr. Kapoor (Operations Director) | Approval email with Approve / Reject buttons |
+| $0 – $2,000 | Sarah Mitchell (Procurement & Inventory Manager) | Approval email with Approve / Reject buttons |
+| Over $2,000 | Mr. Harrison (Operations Director) | Approval email with Approve / Reject buttons |
 | Over $10,000 | Not proposed by Stocky at all. Flagged in the morning email for a meeting. | Hard ceiling |
 
 ### Your company
@@ -66,7 +66,7 @@ What would need to be true first: ______________________________________
 
 **Who is the backup approver when the main approver is on leave?** ____________________
 
-> BEGINNER MISTAKE: Writing a person's name instead of a role. People change jobs and go on holiday. Write "Procurement Manager (currently Priya)" so the rule survives.
+> BEGINNER MISTAKE: Writing a person's name instead of a role. People change jobs and go on holiday. Write "Procurement Manager (currently Sarah)" so the rule survives.
 
 ---
 
@@ -78,7 +78,7 @@ A sanity check is a rule that says "stop and show a human, this looks unusual", 
 - If the suggested quantity is **more than 3 × the reorder point**, start the email with "CHECK THIS FIRST".
 - If the order value is **over $5,000**, start the email with "CHECK THIS FIRST".
 - If the same SKU was already approved **in the last 7 days**, flag it as a possible duplicate.
-- If on-hand stock is **negative**, don't suggest an order at all; ask Ravi to count the shelf.
+- If on-hand stock is **negative**, don't suggest an order at all; ask Tom to count the shelf.
 
 ### Your company
 Write at least three sanity checks that fit your products:

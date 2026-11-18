@@ -51,7 +51,7 @@ lines = [
     ("The ERP Agent Blueprint | Video 6 | Time needed: 30-40 minutes", "sub"),
     ("", None),
     ("WHY TEST?", "h"),
-    ("You would never let a new intern send stock numbers to Mr. Kapoor without checking their first week of work. Same with Stocky. A test bank is a fixed list of questions with known correct answers. Run it every time you change the prompt, and you'll know immediately if Stocky got better or worse.", None),
+    ("You would never let a new intern send stock numbers to Mr. Harrison without checking their first week of work. Same with Stocky. A test bank is a fixed list of questions with known correct answers. Run it every time you change the prompt, and you'll know immediately if Stocky got better or worse.", None),
     ("", None),
     ("STEPS", "h"),
     ("1. Check the 'BrightLeaf Data' sheet matches your Odoo trial (On hand, reorder point, vendor, lead time). If your numbers differ, update that sheet first; the expected answers depend on it.", None),

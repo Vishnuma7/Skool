@@ -17,7 +17,7 @@ Answer all 10 questions, then check yourself with the Answer Key at the end. Aim
 - A) Administration: Settings, so it never gets blocked
 - B) Sales: Administrator and Accounting: Billing
 - C) Inventory: User and Purchase: User, everything else blank
-- D) No rights at all; the agent should use Priya's login
+- D) No rights at all; the agent should use Sarah's login
 
 **3. Where should an API key be stored?**
 - A) In a WhatsApp group so the team can find it
@@ -41,7 +41,7 @@ Answer all 10 questions, then check yourself with the Answer Key at the end. Aim
 - C) It deletes all products in the copy
 - D) It gives the copy unlimited users for free
 
-**7. Priya wants to change the prompt in the live "Daily Reorder Check" workflow. What should she do first?**
+**7. Sarah wants to change the prompt in the live "Daily Reorder Check" workflow. What should she do first?**
 - A) Edit the live workflow directly and hope it works
 - B) Duplicate it as a dated BACKUP (and download it), edit and test the copy on the TEST credential, then swap
 - C) Delete the workflow and rebuild it from scratch
@@ -53,7 +53,7 @@ Answer all 10 questions, then check yourself with the Answer Key at the end. Aim
 - C) Turning off the Monday Report and the Decision Log
 - D) Using Google Sheets instead of Airtable
 
-**9. Priya used to spend 12 hours a week on this work; now she spends 2. Her cost is $20/hour and she works 48 weeks a year. What is the yearly value of the time saved?**
+**9. Sarah used to spend 12 hours a week on this work; now she spends 2. Her cost is $20/hour and she works 48 weeks a year. What is the yearly value of the time saved?**
 - A) $2,400
 - B) $4,800
 - C) $9,600

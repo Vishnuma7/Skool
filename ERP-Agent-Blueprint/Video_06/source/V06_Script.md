@@ -34,11 +34,11 @@
 
 ---
 
-## [ON CAMERA] Intro: The Question Priya Asks Every Morning (00:00–02:00)
+## [ON CAMERA] Intro: The Question Sarah Asks Every Morning (00:00–02:00)
 
-Every single morning, Priya asks the same question. "What's running low?"
+Every single morning, Sarah asks the same question. "What's running low?"
 
-And every single morning, answering it takes her about forty minutes. She opens Odoo. She exports the stock list. She opens last week's Excel file with the reorder points. She runs a VLOOKUP, fixes the VLOOKUP, colours the red rows, and finally sends Ravi a list. By then, the warehouse has already shipped another two hundred boxes.
+And every single morning, answering it takes her about forty minutes. She opens Odoo. She exports the stock list. She opens last week's Excel file with the reorder points. She runs a VLOOKUP, fixes the VLOOKUP, colours the red rows, and finally sends Tom a list. By then, the warehouse has already shipped another two hundred boxes.
 
 Forty minutes a day is more than three hours a week. On one question.
 
@@ -136,7 +136,7 @@ Think about the last time you hired someone for the warehouse or the purchasing 
 
 A system prompt is exactly that. And every good one has five parts. I call it the prompt anatomy.
 
-**One: Role.** Who is the agent? "You are Stocky, the inventory and procurement assistant for BrightLeaf Supplies in Pune." This sets the context, so it talks like a procurement professional, not a poet.
+**One: Role.** Who is the agent? "You are Stocky, the inventory and procurement assistant for BrightLeaf Supplies in Columbus, Ohio." This sets the context, so it talks like a procurement professional, not a poet.
 
 **Two: Goal.** What does success look like? "Help the team understand stock levels quickly and accurately so nothing runs out."
 
@@ -146,7 +146,7 @@ A system prompt is exactly that. And every good one has five parts. I call it th
 
 **Five: Output format.** How should the answer look? A table with SKU, product, on hand, reorder point and gap, sorted by urgency, with the source at the bottom.
 
-Here's the thing most people miss: the AI doesn't know your business. It doesn't know that BrightLeaf calls it "reorder point" and the warehouse calls it "the red line". It doesn't know Mr. Kapoor hates long answers. You know all of that. Writing the prompt is where your expertise turns into the agent's behaviour. You're not a programmer here. You're the manager writing the job description.
+Here's the thing most people miss: the AI doesn't know your business. It doesn't know that BrightLeaf calls it "reorder point" and the warehouse calls it "the red line". It doesn't know Mr. Harrison hates long answers. You know all of that. Writing the prompt is where your expertise turns into the agent's behaviour. You're not a programmer here. You're the manager writing the job description.
 
 ---
 
@@ -156,7 +156,7 @@ Here's the thing most people miss: the AI doesn't know your business. It doesn't
 
 ```
 # ROLE
-You are Stocky, the inventory and procurement assistant for BrightLeaf Supplies, an industrial and packaging supplies distributor with a warehouse in Pune, India. You support Priya Sharma (Procurement & Inventory Manager) and her team.
+You are Stocky, the inventory and procurement assistant for BrightLeaf Supplies, an industrial and packaging supplies distributor with a warehouse in Columbus, Ohio, USA. You support Sarah Mitchell (Procurement & Inventory Manager) and her team.
 
 # GOAL
 Help the team understand stock levels quickly and accurately, so that nothing runs out: answer questions about on-hand stock, reorder points, suppliers, prices and lead times.
@@ -169,7 +169,7 @@ You have three read-only tools that look at live Odoo data:
 Always use the tools to get fresh data before answering any question about stock, reorder points, suppliers, prices or lead times. Never answer these from memory.
 
 # RULES
-- Only answer from data your tools returned in this conversation. If the tool data does not contain the answer, say: "I don't know. That information isn't in the Odoo data I can see." Then suggest where in Odoo Priya could check.
+- Only answer from data your tools returned in this conversation. If the tool data does not contain the answer, say: "I don't know. That information isn't in the Odoo data I can see." Then suggest where in Odoo Sarah could check.
 - Never guess or invent numbers, dates, suppliers, purchase orders or delivery dates.
 - A product is "running low" when quantity on hand is at or below its reorder point.
 - A product is "on the watch list" when quantity on hand is above its reorder point by 15% or less.
@@ -230,9 +230,9 @@ Watch list: BL-1008 LED Warehouse Light 150W – 34 on hand, reorder point 30 (1
 Source: Odoo (live) – get_products_and_stock, get_reorder_rules
 ```
 
-**SAY:** Here we go. The question Priya asks every morning. "What's running low?" Press Enter. Watch the canvas. The brain lights up, then the stock tool, then the reorder rules tool. Stocky is opening the drawers. And here's the answer. Four products at or below the reorder point. Safety gloves, four hundred and twenty against six hundred. Pallet jack wheels, eighteen against twenty-five. Hydraulic oil, thirty-one against forty. And shipping boxes, one thousand one hundred and eighty against fifteen hundred.
+**SAY:** Here we go. The question Sarah asks every morning. "What's running low?" Press Enter. Watch the canvas. The brain lights up, then the stock tool, then the reorder rules tool. Stocky is opening the drawers. And here's the answer. Four products at or below the reorder point. Safety gloves, four hundred and twenty against six hundred. Pallet jack wheels, eighteen against twenty-five. Hydraulic oil, thirty-one against forty. And shipping boxes, one thousand one hundred and eighty against fifteen hundred.
 
-**SAY:** Look at the order. The boxes have the biggest gap in units, minus three hundred and twenty, but they're at the bottom. Why? Because we told Stocky to sort by percentage shortfall. Gloves are thirty percent below their reorder point, boxes only twenty-one percent. That's the rule we wrote, followed exactly. It even flagged the LED lights on the watch list. Thirty-four against thirty. And with a twenty-eight-day lead time from Shenzhen, that's exactly the one Priya would want to know about.
+**SAY:** Look at the order. The boxes have the biggest gap in units, minus three hundred and twenty, but they're at the bottom. Why? Because we told Stocky to sort by percentage shortfall. Gloves are thirty percent below their reorder point, boxes only twenty-one percent. That's the rule we wrote, followed exactly. It even flagged the LED lights on the watch list. Thirty-four against thirty. And with a twenty-eight-day lead time from Shenzhen, that's exactly the one Sarah would want to know about.
 
 **SHOW:** Switch to the Odoo tab: Inventory → Products, list view, On Hand column. Point at Industrial Safety Gloves: 420, Pallet Jack Wheels: 18.
 
@@ -268,7 +268,7 @@ Source: Odoo (live) – get_products_and_stock, get_supplier_info
 
 **SAY:** Now watch the memory. I'll just say, "And what about the hydraulic oil?" I didn't say "supplier" or "lead time". But Stocky remembered what we were talking about, thanks to Simple Memory, and gave me Gulf Lubricants, fourteen days. That's the notepad at work.
 
-> PAUSE & THINK: Look at the "What's running low?" answer. If you were Priya, which product would you order FIRST, and why? Hint: compare the gap with the lead time. Wheels are 7 below with a 21-day lead time; boxes are 320 below with a 5-day lead time.
+> PAUSE & THINK: Look at the "What's running low?" answer. If you were Sarah, which product would you order FIRST, and why? Hint: compare the gap with the lead time. Wheels are 7 below with a 21-day lead time; boxes are 320 below with a 5-day lead time.
 
 ---
 
@@ -305,7 +305,7 @@ Source: Odoo (live) – get_products_and_stock, get_supplier_info
 
 **SHOW:** Click the "Executions" tab at the top. Show the list of chat runs, each with a status and duration (about 6–9 seconds each). Open one to show the same frozen canvas.
 
-**SAY:** And every conversation is also saved in the Executions tab, our logbook from Video 5. If Mr. Kapoor ever asks, "Where did Stocky get that number on Tuesday?", you can open the run and show him the exact data Odoo returned. That's traceability. Supply chain people love traceability.
+**SAY:** And every conversation is also saved in the Executions tab, our logbook from Video 5. If Mr. Harrison ever asks, "Where did Stocky get that number on Tuesday?", you can open the run and show him the exact data Odoo returned. That's traceability. Supply chain people love traceability.
 
 > PRO TIP: When an answer looks wrong, don't argue with the agent in the chat. Open the log. Either the tool returned the wrong data (a data problem in Odoo), the agent opened the wrong drawer (fix the tool description), or it read the right data and still got it wrong (fix the rules in the prompt). The log tells you which one.
 
@@ -313,19 +313,19 @@ Source: Odoo (live) – get_products_and_stock, get_supplier_info
 
 ## [ON CAMERA] The Confident Intern: What Hallucination Really Is (19:30–21:15)
 
-Let me tell you about an intern I'll call Rohan.
+Let me tell you about an intern I'll call Jake.
 
-Rohan was smart, keen and eager to please. In his second week, Mr. Kapoor stopped by his desk and asked, "When do the LED warehouse lights from Shenzhen arrive?" Rohan didn't know. But he didn't want to look bad in front of the director. So he said, "Tuesday, sir."
+Jake was smart, keen and eager to please. In his second week, Mr. Harrison stopped by his desk and asked, "When do the LED warehouse lights from Shenzhen arrive?" Jake didn't know. But he didn't want to look bad in front of the director. So he said, "Tuesday, sir."
 
-It sounded confident. Mr. Kapoor promised a customer installation on Wednesday. And the lights? They hadn't even left the factory. Twenty-eight-day lead time.
+It sounded confident. Mr. Harrison promised a customer installation on Wednesday. And the lights? They hadn't even left the factory. Twenty-eight-day lead time.
 
-Rohan wasn't lying to hurt anyone. He just gave the answer that sounded most likely. And that is exactly what AI hallucination is.
+Jake wasn't lying to hurt anyone. He just gave the answer that sounded most likely. And that is exactly what AI hallucination is.
 
 Language models like Claude and ChatGPT are trained to produce the most likely next words. Most of the time, "likely" and "true" are the same thing. But when the AI doesn't have the facts, it can still produce something that sounds perfectly reasonable, with complete confidence. A date. A number. A supplier name. And it looks just as convincing as a real answer.
 
 In supply chain, a confident wrong answer is worse than no answer. A wrong delivery date becomes a broken customer promise. A wrong stock number becomes a stock-out or an unnecessary rush order.
 
-The fix is the same for Stocky as it was for Rohan. One: give it the real data, through tools. Two: make it a rule that it may only answer from that data. And three: make "I don't know" an acceptable, even praised, answer. Let's catch Stocky in the act and then fix it.
+The fix is the same for Stocky as it was for Jake. One: give it the real data, through tools. Two: make it a rule that it may only answer from that data. And three: make "I don't know" an acceptable, even praised, answer. Let's catch Stocky in the act and then fix it.
 
 ---
 
@@ -341,7 +341,7 @@ The fix is the same for Stocky as it was for Rohan. One: give it the real data, 
 Purchase order P00027 from Global Lift Parts is expected to arrive in about 3 weeks, since their lead time is 21 days. You should receive it around the end of the month.
 ```
 
-**SAY:** Now a question Stocky cannot answer, because it has no tool for purchase orders. "When will purchase order P zero zero zero two seven from Global Lift Parts arrive?" And look. "Expected to arrive in about three weeks, around the end of the month." It sounds great. It's completely made up. Stocky never saw that purchase order. In Video 5, our email said that order was already three days late! It took the lead time and invented a delivery date. That's Rohan saying "Tuesday, sir."
+**SAY:** Now a question Stocky cannot answer, because it has no tool for purchase orders. "When will purchase order P zero zero zero two seven from Global Lift Parts arrive?" And look. "Expected to arrive in about three weeks, around the end of the month." It sounds great. It's completely made up. Stocky never saw that purchase order. In Video 5, our email said that order was already three days late! It took the lead time and invented a delivery date. That's Jake saying "Tuesday, sir."
 
 **SHOW:** Open the Logs panel. Show that only `get_supplier_info` was called and no purchase order data exists anywhere in the log.
 
@@ -357,7 +357,7 @@ What I can tell you: Global Lift Parts' standard lead time for BL-1005 is 21 day
 Source: Odoo (live) – get_supplier_info
 ```
 
-**SAY:** Now let's put the real job description back, reset the chat, and ask the exact same question. "I don't know. That information isn't in the Odoo data I can see." It explains what it CAN see, gives the one useful fact it has, the twenty-one day lead time, clearly labelled as a standard lead time, not a delivery date. And it tells Priya exactly where to check: Purchase, Orders. That's the intern you want.
+**SAY:** Now let's put the real job description back, reset the chat, and ask the exact same question. "I don't know. That information isn't in the Odoo data I can see." It explains what it CAN see, gives the one useful fact it has, the twenty-one day lead time, clearly labelled as a standard lead time, not a delivery date. And it tells Sarah exactly where to check: Purchase, Orders. That's the intern you want.
 
 **SHOW:** Type two more trap questions, one at a time:
 1. `How many BL-1011 do we have?` → "I don't know. I can't find a product with SKU BL-1011 in Odoo. The SKUs I can see run from BL-1001 to BL-1010."
@@ -385,4 +385,4 @@ Three key takeaways.
 
 Now your activities. First, open **V06_Activity_Stocky_Prompt_Builder.docx**. It has Stocky's full prompt as an example, and space to write a version for YOUR company, with your own definition of running low. Second, open **V06_Activity_Test_Question_Bank.xlsx**. Ask Stocky the twenty test questions, mark each one pass or fail, and the sheet calculates your pass rate. Aim for eighteen out of twenty. Then take the Video 6 quiz.
 
-Right now, Stocky can read. But Priya still has to raise the purchase order herself. In the next video, Stocky learns to act. It will draft the purchase order in Odoo for you, and then stop and wait for your approval on email before anything happens. The manager's signature before the cheque goes out. That's Video 7: **Agents That Take Action: Draft Purchase Orders with Human Approval**. See you there.
+Right now, Stocky can read. But Sarah still has to raise the purchase order herself. In the next video, Stocky learns to act. It will draft the purchase order in Odoo for you, and then stop and wait for your approval on email before anything happens. The manager's signature before the check goes out. That's Video 7: **Agents That Take Action: Draft Purchase Orders with Human Approval**. See you there.

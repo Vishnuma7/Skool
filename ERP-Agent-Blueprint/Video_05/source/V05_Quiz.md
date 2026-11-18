@@ -24,7 +24,7 @@ What is a **node** in n8n?
 - D) The name of your n8n web address
 
 ### Question 3
-Priya builds two nodes on the canvas, presses "Execute workflow", and only the first node runs. The second node has no green tick. What is the most likely reason?
+Sarah builds two nodes on the canvas, presses "Execute workflow", and only the first node runs. The second node has no green tick. What is the most likely reason?
 
 - A) Her Claude credits have run out
 - B) The two nodes are not joined by a connection
@@ -46,7 +46,7 @@ If you already pay for a Claude Pro or ChatGPT Plus subscription, that subscript
 - B) False
 
 ### Question 6 (Scenario)
-Priya has just created her Claude API key in the Anthropic console. Ravi suggests she paste it into the "Suppliers" tab of the BrightLeaf Google Sheet "so the team can find it". What should she do?
+Sarah has just created her Claude API key in the Anthropic console. Tom suggests she paste it into the "Suppliers" tab of the BrightLeaf Google Sheet "so the team can find it". What should she do?
 
 - A) Paste it into the Google Sheet, but in a hidden column
 - B) Email it to herself so she has a backup
@@ -70,7 +70,7 @@ AI usage is billed in **tokens**. Roughly how many words is 1,000 tokens?
 - D) About 75,000 words
 
 ### Question 9 (Scenario)
-Priya saves her Odoo credential in n8n and gets a red error instead of "Connection tested successfully". Her Site URL is `https://brightleaf-demo.odoo.com/odoo/inventory`. What is the most likely fix?
+Sarah saves her Odoo credential in n8n and gets a red error instead of "Connection tested successfully". Her Site URL is `https://brightleaf-demo.odoo.com/odoo/inventory`. What is the most likely fix?
 
 - A) Activate developer mode again
 - B) Shorten the Site URL to `https://brightleaf-demo.odoo.com`, with nothing after `.odoo.com`

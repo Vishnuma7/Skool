@@ -4,7 +4,7 @@
 ## Course identity
 - **Course name:** The ERP Agent Blueprint: Connect AI Agents to Your ERP, APIs & Databases (No Code Required)
 - **Short name:** The ERP Agent Blueprint
-- **Price:** $49 (one-time, paid tier of the Skool community "Agentic SCM")
+- **Price:** included in the paid tier of the Skool community "Agentic SCM" (upgrade for just $49, which unlocks this course and all the other paid content in the community)
 - **Format:** 10 videos, total 4 hours (240 min)
 - **Audience:** supply chain, procurement, inventory, logistics and operations professionals. **They are NOT technical.** They have never coded, they don't know what an API or JSON is, and they are a bit nervous about "tech". They are good at Excel and they know their business deeply.
 - **Level:** beginner. Never mention other levels, future courses, "intermediate" or "pro". Never say "in the advanced course".
@@ -23,7 +23,7 @@
    - **Node** (n8n) = "one step / one Lego block on the recipe card".
    - **JSON** = "a labelled shopping list", e.g. `{ "product": "Steel Bolts", "qty": 40 }`. Never go deeper than this.
    - **Webhook** = "a doorbell another app can press".
-   - **Human-in-the-loop** = "the manager's signature before the cheque goes out".
+   - **Human-in-the-loop** = "the manager's signature before the check goes out".
 2. Speak like a friendly mentor. Short sentences. "You" and "we". No jargon walls.
 3. Use **supply chain examples only**: stock-outs, reorder points, purchase orders, supplier delays, shipments, lead times, demand.
 4. Reassure often: "If this feels new, that's normal." "You can't break anything in the test system."
@@ -41,24 +41,24 @@
 - How the agent connects to Odoo: n8n has a built-in **Odoo node** (needs URL, database name, username, API key). Use it. Don't teach XML-RPC.
 
 ## The running case study (use in EVERY video)
-**BrightLeaf Supplies**: a fictional mid-size distributor of industrial and packaging supplies, with a warehouse in Pune and customers across India and the Middle East. It runs on **Odoo**.
-- **Priya Sharma**, Procurement & Inventory Manager. She spends ~12 hours a week copying ERP numbers into Excel, chasing suppliers on email, and building the Monday stock report. She is the hero; the learner is "Priya".
-- **Ravi**, the warehouse lead. **Mr. Kapoor**, the operations director, who wants the Monday report.
+**BrightLeaf Supplies**: a fictional mid-size distributor of industrial and packaging supplies, headquartered with its warehouse in Columbus, Ohio, USA, and customers across the US and Canada. All money is in US dollars. It runs on **Odoo**.
+- **Sarah Mitchell**, Procurement & Inventory Manager. She spends ~12 hours a week copying ERP numbers into Excel, chasing suppliers on email, and building the Monday stock report. She is the hero; the learner is "Sarah".
+- **Tom**, the warehouse lead. **Mr. Harrison**, the operations director, who wants the Monday report.
 - The agent we build across the course is called **"Stocky", BrightLeaf's inventory & procurement agent.**
 - Sample products (use these SKUs and names consistently):
   | SKU | Product | Unit cost (USD) | Reorder point | Typical lead time (days) | Main supplier |
   |---|---|---|---|---|---|
-  | BL-1001 | Steel Hex Bolts M10 (box of 100) | 12.50 | 80 | 7 | Apex Fasteners (Pune) |
-  | BL-1002 | Corrugated Shipping Box 18x12x10 | 0.85 | 1500 | 5 | PackRight Industries (Mumbai) |
-  | BL-1003 | Stretch Wrap Film 500mm | 9.20 | 200 | 6 | PackRight Industries (Mumbai) |
-  | BL-1004 | Industrial Safety Gloves (pair) | 2.40 | 600 | 10 | SafeHands Co. (Chennai) |
+  | BL-1001 | Steel Hex Bolts M10 (box of 100) | 12.50 | 80 | 7 | Apex Fasteners (Columbus, OH) |
+  | BL-1002 | Corrugated Shipping Box 18x12x10 | 0.85 | 1500 | 5 | PackRight Industries (Chicago, IL) |
+  | BL-1003 | Stretch Wrap Film 500mm | 9.20 | 200 | 6 | PackRight Industries (Chicago, IL) |
+  | BL-1004 | Industrial Safety Gloves (pair) | 2.40 | 600 | 10 | SafeHands Co. (Monterrey, Mexico) |
   | BL-1005 | Pallet Jack Wheels (set) | 38.00 | 25 | 21 | Global Lift Parts (Shenzhen) |
-  | BL-1006 | Packing Tape 48mm (roll) | 1.10 | 1000 | 5 | PackRight Industries (Mumbai) |
+  | BL-1006 | Packing Tape 48mm (roll) | 1.10 | 1000 | 5 | PackRight Industries (Chicago, IL) |
   | BL-1007 | Hydraulic Oil 20L | 54.00 | 40 | 14 | Gulf Lubricants (Dubai) |
   | BL-1008 | LED Warehouse Light 150W | 72.00 | 30 | 28 | Shenzhen BrightTech (Shenzhen) |
-  | BL-1009 | Nylon Cable Ties (pack of 500) | 6.30 | 150 | 7 | Apex Fasteners (Pune) |
+  | BL-1009 | Nylon Cable Ties (pack of 500) | 6.30 | 150 | 7 | Apex Fasteners (Columbus, OH) |
   | BL-1010 | Forklift Battery Water Kit | 19.75 | 20 | 12 | Global Lift Parts (Shenzhen) |
-- Supplier cities matter for the risk agent (weather in Shenzhen/Dubai/Chennai, USD→INR/CNY/AED exchange rates, public holidays in China/UAE/India).
+- Supplier cities matter for the risk agent (weather in Shenzhen/Dubai/Monterrey, USD→CNY/MXN/AED exchange rates, public holidays in China/UAE/Mexico/US).
 
 ## Course outline (10 videos = 240 min)
 | # | Title | Length | Core outcome |
@@ -71,7 +71,7 @@
 | 6 | Your First Agent: Stocky Reads the ERP | 26 min | Connect n8n to Odoo, pull stock levels, and let the AI agent answer "What's running low?" |
 | 7 | Agents That Take Action: Draft Purchase Orders with Human Approval | 26 min | The agent drafts RFQs/POs in Odoo for low stock, but only after the human approves on email/Slack |
 | 8 | Seeing Beyond the ERP: Connecting Outside APIs for Supply Chain Risk | 24 min | Weather, currency and holiday APIs feed a supplier risk score; the agent explains the risks in plain English |
-| 9 | Memory & Reports: Logging to a Database and the Monday Report | 24 min | The agent writes every decision to Google Sheets and auto-sends Mr. Kapoor's Monday stock report |
+| 9 | Memory & Reports: Logging to a Database and the Monday Report | 24 min | The agent writes every decision to Google Sheets and auto-sends Mr. Harrison's Monday stock report |
 | 10 | Going Live Safely + Your Capstone Project | 26 min | Permissions, security, testing, costs, error handling, the go-live checklist and the capstone build |
 
 ## Script format (for every paid video)
@@ -103,7 +103,7 @@ Top of every script file:
 ```
 
 ## Quiz format
-- 10 questions per video: mostly multiple choice (4 options A–D), plus 2 scenario-based ("Priya wants to… what should she do?") and 1 true/false.
+- 10 questions per video: mostly multiple choice (4 options A–D), plus 2 scenario-based ("Sarah wants to… what should she do?") and 1 true/false.
 - Beginner-friendly, testing understanding, not trivia.
 - File has two parts: the **Questions** section (learner-facing) and then an **Answer Key** section with the correct answer + a 1–2 sentence explanation for each.
 
@@ -132,3 +132,21 @@ PDF/PPT slide resources are NOT created now (we're waiting for the brand theme).
 ## CANONICAL STARTING STOCK (added mid-production — use these exact numbers everywhere)
 On hand: BL-1001 145, BL-1002 1,180, BL-1003 260, BL-1004 420, BL-1005 18, BL-1006 1,850, BL-1007 31, BL-1008 34, BL-1009 410, BL-1010 26.
 Below reorder point: BL-1002, BL-1004, BL-1005, BL-1007. Max stock = 2 × reorder point. Suggested order qty = reorder point × 2 − on hand.
+
+## SETTING UPDATE (overrides everything above — US-based company, no Indian references)
+Characters: Sarah Mitchell (Procurement & Inventory Manager), Tom (warehouse lead), Mr. Harrison (operations director), Jake (intern story in V6).
+BrightLeaf Supplies: distributor headquartered with its warehouse in **Columbus, Ohio, USA**; customers across the **US and Canada**. All money in **US dollars ($)**. No rupees, INR, lakh, crore, GST, Diwali, Indian cities or Indian public holidays anywhere.
+Suppliers (names unchanged, locations updated):
+| Supplier | City | Country | Currency | Lat, Long |
+|---|---|---|---|---|
+| Apex Fasteners | Columbus, OH | USA | USD | 39.96, -83.00 |
+| PackRight Industries | Chicago, IL | USA | USD | 41.88, -87.63 |
+| SafeHands Co. | Monterrey | Mexico | MXN | 25.69, -100.32 |
+| Global Lift Parts | Shenzhen | China | CNY | 22.54, 114.06 |
+| Shenzhen BrightTech | Shenzhen | China | CNY | 22.54, 114.06 |
+| Gulf Lubricants | Dubai | UAE | AED (pegged ≈3.67/USD) | 25.20, 55.27 |
+Currency API: https://api.frankfurter.dev/v1/latest?from=USD&to=CNY,MXN
+Real values: 17 Nov 2026 → CNY 6.6661, MXN 18.4639. 16 Oct 2026 → CNY 6.6862, MXN 18.3835 (peso moved ~0.4%, yuan ~0.3%).
+Holiday API (Nager.Date) covers US, MX and CN (CN partial: only Oct 1 listed, not full Golden Week). It returns nothing for AE (UAE) — keep the "gap" lesson using UAE only, with a written UAE holiday list (UAE National Day 2–3 Dec).
+Real upcoming holidays: US Thanksgiving 26 Nov 2026, US Christmas 25 Dec; Mexico Revolution Day 16 Nov 2026, Christmas 25 Dec.
+Pricing message: $49 is NOT a one-time course fee. It is the price to UPGRADE to the paid tier of the Agentic SCM Skool community, which unlocks this course AND all the other paid content in the community. Say "just $49" / "only $49".

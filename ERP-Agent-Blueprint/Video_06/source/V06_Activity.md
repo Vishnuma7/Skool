@@ -18,7 +18,7 @@ You don't need any technical knowledge. If you can write clear instructions for 
 
 | Part | The question it answers | Stocky's example (short) |
 |---|---|---|
-| **Role** | Who is the agent, and who does it work for? | "You are Stocky, the inventory and procurement assistant for BrightLeaf Supplies, Pune." |
+| **Role** | Who is the agent, and who does it work for? | "You are Stocky, the inventory and procurement assistant for BrightLeaf Supplies, Columbus." |
 | **Goal** | What does success look like? | "Help the team understand stock levels quickly and accurately, so that nothing runs out." |
 | **Tools** | What can it use, and when? | "get_supplier_info: vendor, price, minimum order quantity and lead time in days (delay)." |
 | **Rules** | What must it always / never do? What do your business words mean? | "Only answer from tool data. Say 'I don't know'. Running low = at or below the reorder point." |
@@ -31,7 +31,7 @@ Copy this into the AI Agent node → Options → System Message if you are follo
 
 ```
 # ROLE
-You are Stocky, the inventory and procurement assistant for BrightLeaf Supplies, an industrial and packaging supplies distributor with a warehouse in Pune, India. You support Priya Sharma (Procurement & Inventory Manager) and her team.
+You are Stocky, the inventory and procurement assistant for BrightLeaf Supplies, an industrial and packaging supplies distributor with a warehouse in Columbus, Ohio, USA. You support Sarah Mitchell (Procurement & Inventory Manager) and her team.
 
 # GOAL
 Help the team understand stock levels quickly and accurately, so that nothing runs out: answer questions about on-hand stock, reorder points, suppliers, prices and lead times.
@@ -44,7 +44,7 @@ You have three read-only tools that look at live Odoo data:
 Always use the tools to get fresh data before answering any question about stock, reorder points, suppliers, prices or lead times. Never answer these from memory.
 
 # RULES
-- Only answer from data your tools returned in this conversation. If the tool data does not contain the answer, say: "I don't know. That information isn't in the Odoo data I can see." Then suggest where in Odoo Priya could check.
+- Only answer from data your tools returned in this conversation. If the tool data does not contain the answer, say: "I don't know. That information isn't in the Odoo data I can see." Then suggest where in Odoo Sarah could check.
 - Never guess or invent numbers, dates, suppliers, purchase orders or delivery dates.
 - A product is "running low" when quantity on hand is at or below its reorder point.
 - A product is "on the watch list" when quantity on hand is above its reorder point by 15% or less.
@@ -68,7 +68,7 @@ For each line from Stocky's prompt, write which part it belongs to (Role / Goal 
 | "Never guess or invent numbers, dates, suppliers, purchase orders or delivery dates." | | |
 | "get_supplier_info: ... delivery lead time in days (delay)" | | |
 | "Sort low-stock items by urgency: the biggest shortfall as a percentage first." | | |
-| "You support Priya Sharma (Procurement & Inventory Manager) and her team." | | |
+| "You support Sarah Mitchell (Procurement & Inventory Manager) and her team." | | |
 | "End with one line: Source: Odoo (live) – ..." | | |
 
 ---

@@ -61,7 +61,7 @@ lines = [
     ("Yellow cells = you type here. Blue cells = formulas, don't overwrite them. Dark header rows are frozen so they stay visible when you scroll.", None),
     ("", None),
     ("BRIGHTLEAF EXAMPLE", "h"),
-    ("Each sheet is pre-filled with Priya's BrightLeaf setup as an example. Keep her rows for reference, and add your own rows underneath.", None),
+    ("Each sheet is pre-filled with Sarah's BrightLeaf setup as an example. Keep her rows for reference, and add your own rows underneath.", None),
     ("", None),
     ("NOW TRY IT WITH YOUR COMPANY", "h"),
     ("On the Cost Estimator, fill in the 'My Company' column: how many questions per day would your team ask an agent? What is one hour of your time worth? How many hours a week could it save? Bring your number to the community and compare with other learners.", None),
@@ -138,9 +138,9 @@ cols = ["Key / credential", "Service", "What doors it opens", "Where it lives (n
 header(ws, 4, cols, [26, 16, 34, 32, 13, 15, 16, 14, 16, 30])
 examples = [
     ("n8n-stocky-brightleaf", "Anthropic (Claude)", "Run Claude models, billed to BrightLeaf's console account",
-     "Anthropic – BrightLeaf", "2026-11-16", "Priya Sharma", "Yes", "No"),
-    ("n8n Stocky", "Odoo", "Read/write Odoo data with Priya's user rights (products, stock, purchases)",
-     "Odoo – BrightLeaf", "2026-11-16", "Priya Sharma", "N/A", "No"),
+     "Anthropic – BrightLeaf", "2026-11-16", "Sarah Mitchell", "Yes", "No"),
+    ("n8n Stocky", "Odoo", "Read/write Odoo data with Sarah's user rights (products, stock, purchases)",
+     "Odoo – BrightLeaf", "2026-11-16", "Sarah Mitchell", "N/A", "No"),
 ]
 import datetime as _dt
 for r in range(5, 25):
@@ -196,7 +196,7 @@ rows = [
     ("Output tokens per run", 600, 600, None, "Words the AI writes back, including its tool requests. A short email ≈ 200"),
     ("Price per 1M input tokens (USD)", 2.00, 0.10, None, "Example: Claude Sonnet ≈ $2, Claude Haiku ≈ $0.10 (check current prices)"),
     ("Price per 1M output tokens (USD)", 10.00, 0.50, None, "Example: Claude Sonnet ≈ $10, Claude Haiku ≈ $0.50"),
-    ("Hours saved per week", 4, 4, None, "Be conservative. Priya spends ~12 h/week on manual ERP work"),
+    ("Hours saved per week", 4, 4, None, "Be conservative. Sarah spends ~12 h/week on manual ERP work"),
     ("Value of one hour of your time (USD)", 15, 15, None, "Your loaded hourly cost, or what your manager would value it at"),
 ]
 r0 = 5

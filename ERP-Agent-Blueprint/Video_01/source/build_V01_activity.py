@@ -49,9 +49,9 @@ TASKS = [
      "Same steps every time, clear rule, no judgement. An agent would be overkill."),
     ("Read 40 supplier emails a week and work out which shipments are delayed and what that means for next week's stock.", "AI Agent",
      "Every email is worded differently and the answer must be linked to stock data: reading + judgement + tools."),
-    ("Help Priya rewrite a polite but firm email to a late supplier.", "Chatbot",
-     "One-off writing help, no company data needed, and Priya reads it before sending."),
-    ("Send Ravi an email every time a receipt is validated in Odoo.", "Automation",
+    ("Help Sarah rewrite a polite but firm email to a late supplier.", "Chatbot",
+     "One-off writing help, no company data needed, and Sarah reads it before sending."),
+    ("Send Tom an email every time a receipt is validated in Odoo.", "Automation",
      "A trigger (doorbell) plus one fixed action. No thinking required."),
     ("Every Monday, check all 10 products against reorder points, consider supplier risk (weather, holidays, currency) and suggest what to order, with reasons.", "AI Agent",
      "This is Stocky's core job: several tools, weighing several factors, explaining a recommendation."),
@@ -59,7 +59,7 @@ TASKS = [
      "General knowledge question. No access to BrightLeaf's systems is needed."),
     ("Once a year, decide whether to switch BrightLeaf's main packaging supplier after site visits and negotiation.", "Not worth automating",
      "Rare, high-stakes, relationship-heavy. AI can help research, but the decision stays human."),
-    ("Convert the USD price list into INR every morning using the published exchange rate.", "Automation",
+    ("Convert the Mexican supplier's peso (MXN) price list into US dollars every morning using the published exchange rate.", "Automation",
      "Fetch a number, multiply, save. A recipe card does this perfectly."),
     ("Read supplier quotations (PDFs in different layouts) and compare price, lead time and payment terms in one table.", "AI Agent",
      "Messy, differently formatted documents need reading and judgement before they can be compared."),
@@ -98,14 +98,14 @@ title(ws, "Video 1 Activity: Agent or Not? + My Automation Wishlist",
 rows = [
     ("WHAT YOU'LL DO", ""),
     ("Part 1: Agent or Not?", "Sort 20 real BrightLeaf tasks into Chatbot, Automation, AI Agent or Not worth automating. The sheet checks your answers."),
-    ("Part 2: Priya's Example", "See how Priya's 12 hours a week add up to 576 hours a year. Use it as a model."),
+    ("Part 2: Sarah's Example", "See how Sarah's 12 hours a week add up to 576 hours a year. Use it as a model."),
     ("Part 3: My Wishlist", "Now try it with your company: list your own repetitive tasks. The workbook calculates hours per year and ranks your best candidates."),
     ("", ""),
     ("STEP BY STEP", ""),
     ("Step 1", "Go to the 'Agent_or_Not' sheet. For each task, choose an answer from the dropdown in the yellow column (C)."),
     ("Step 2", "In column D, write one short reason. Ask yourself: Is it the same every time? Does it need judgement? Does it need company data or actions?"),
     ("Step 3", "Column E tells you if you matched the answer key. Your score appears at the top. Only open the 'Answer_Key' sheet after you've tried all 20."),
-    ("Step 4", "Read 'Priya_Example'. Notice the formulas: hours each time x times per year = hours per year."),
+    ("Step 4", "Read 'Sarah_Example'. Notice the formulas: hours each time x times per year = hours per year."),
     ("Step 5", "Go to 'My_Wishlist'. Fill in the yellow cells only (task, frequency, hours, systems, judgement, best fit, pain level). Grey cells calculate themselves."),
     ("Step 6", "Look at your Rank column. Your number 1 task is a great candidate for your capstone project in Video 10. Keep this file."),
     ("", ""),
@@ -255,17 +255,17 @@ def wishlist(ws, rows, n_blank, ttl, sub):
     ws.freeze_panes = "C6"
 
 
-PRIYA = [
-    ("Copy stock numbers from Odoo into the Excel stock sheet", "Priya", "Weekly", 3, "Odoo Inventory, Excel", "No", "Automation", 4),
-    ("Build the Monday stock report for Mr. Kapoor", "Priya", "Weekly", 2.5, "Odoo, Excel, Email", "Some", "AI Agent", 5),
-    ("Chase suppliers on email for delivery dates", "Priya", "Daily", 0.5, "Email, Odoo Purchase", "Yes", "AI Agent", 4),
-    ("Check what's below reorder point and draft RFQs", "Priya", "Weekly", 2, "Odoo Inventory + Purchase", "Some", "AI Agent", 5),
-    ("Update exchange rates in the landed-cost sheet", "Priya", "Weekly", 1, "Bank website, Excel", "No", "Automation", 2),
-    ("Answer 'do we have stock?' questions from sales", "Priya", "Daily", 0.2, "Odoo Inventory, phone, chat", "Some", "AI Agent", 3),
+SARAH = [
+    ("Copy stock numbers from Odoo into the Excel stock sheet", "Sarah", "Weekly", 3, "Odoo Inventory, Excel", "No", "Automation", 4),
+    ("Build the Monday stock report for Mr. Harrison", "Sarah", "Weekly", 2.5, "Odoo, Excel, Email", "Some", "AI Agent", 5),
+    ("Chase suppliers on email for delivery dates", "Sarah", "Daily", 0.5, "Email, Odoo Purchase", "Yes", "AI Agent", 4),
+    ("Check what's below reorder point and draft RFQs", "Sarah", "Weekly", 2, "Odoo Inventory + Purchase", "Some", "AI Agent", 5),
+    ("Update exchange rates in the landed-cost sheet", "Sarah", "Weekly", 1, "Bank website, Excel", "No", "Automation", 2),
+    ("Answer 'do we have stock?' questions from sales", "Sarah", "Daily", 0.2, "Odoo Inventory, phone, chat", "Some", "AI Agent", 3),
 ]
-wishlist(wb.create_sheet("Priya_Example"), PRIYA, 0,
-         "Part 2: Priya's Example (BrightLeaf Supplies)",
-         "Priya's 12 hours a week. Change any yellow cell to see the formulas react.")
+wishlist(wb.create_sheet("Sarah_Example"), SARAH, 0,
+         "Part 2: Sarah's Example (BrightLeaf Supplies)",
+         "Sarah's 12 hours a week. Change any yellow cell to see the formulas react.")
 wishlist(wb.create_sheet("My_Wishlist"), [], 15,
          "Part 3: My Automation Wishlist (now try it with your company)",
          "List every repetitive task in your week, even small ones. Fill yellow cells; grey cells calculate. Priority = hours per year x pain / 5.")

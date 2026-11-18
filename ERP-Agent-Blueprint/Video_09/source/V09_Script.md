@@ -12,7 +12,7 @@
 - n8n open with the Stocky workflows from Videos 6, 7 and 8: "Stocky – Chat", "Stocky – Daily Reorder Check" and "Stocky – Supplier Risk Check".
 - The Google Sheet "BrightLeaf – Stocky Database" from Video 4 with the tabs "Stock Log" and "Suppliers". Have an empty browser tab ready to add "Decision Log".
 - The Odoo trial with the 10 BrightLeaf SKUs. Stock is at the canonical course numbers: BL-1001 = 145, BL-1002 = 1,180, BL-1003 = 260, BL-1004 = 420, BL-1005 = 18, BL-1006 = 1,850, BL-1007 = 31, BL-1008 = 34, BL-1009 = 410, BL-1010 = 26 (below reorder point: BL-1002, BL-1004, BL-1005, BL-1007).
-- Gmail credential already connected in n8n (from Video 7). A second inbox (or your own) playing "Mr. Kapoor" so you can show the email arriving.
+- Gmail credential already connected in n8n (from Video 7). A second inbox (or your own) playing "Mr. Harrison" so you can show the email arriving.
 - The activity file V09_Activity_Decision_Log_Dashboard.xlsx open in a background tab.
 
 **Resources for this video:** V09_Activity_Decision_Log_Dashboard.xlsx, V09_Quiz.docx
@@ -21,21 +21,21 @@
 
 ## [ON CAMERA] Intro (00:00–02:00)
 
-It's 9:40 on a Monday morning at BrightLeaf Supplies in Pune. Mr. Kapoor, the operations director, walks over to Priya's desk with a coffee in his hand and asks one simple question.
+It's 9:40 on a Monday morning at BrightLeaf Supplies in Columbus. Mr. Harrison, the operations director, walks over to Sarah's desk with a coffee in his hand and asks one simple question.
 
-"Priya, last Monday we ordered more stretch wrap. Who approved that, and why?"
+"Sarah, last Monday we ordered more stretch wrap. Who approved that, and why?"
 
-And Priya freezes. Because she knows the order happened. She remembers a busy morning. She remembers an email thread somewhere. But the "why"? The stock level that day? Who clicked yes? That's buried in her inbox, in Ravi's WhatsApp, and in her memory, which, let's be honest, is full.
+And Sarah freezes. Because she knows the order happened. She remembers a busy morning. She remembers an email thread somewhere. But the "why"? The stock level that day? Who clicked yes? That's buried in her inbox, in Tom's WhatsApp, and in her memory, which, let's be honest, is full.
 
-At the same time, Priya hasn't even started the Monday stock report yet. That report alone takes her about three hours every single week. Copy numbers out of Odoo, paste into Excel, colour the red cells, write a few lines for Mr. Kapoor, attach, send. Three hours, fifty-two weeks a year. That's more than 150 hours a year on one report.
+At the same time, Sarah hasn't even started the Monday stock report yet. That report alone takes her about three hours every single week. Copy numbers out of Odoo, paste into Excel, colour the red cells, write a few lines for Mr. Harrison, attach, send. Three hours, fifty-two weeks a year. That's more than 150 hours a year on one report.
 
 Today we fix both problems.
 
-First, we give Stocky a memory. Every decision Stocky makes, every reorder, every "hold", every approval, gets written into a Google Sheet automatically. So when Mr. Kapoor asks "who approved that?", Priya answers in ten seconds.
+First, we give Stocky a memory. Every decision Stocky makes, every reorder, every "hold", every approval, gets written into a Google Sheet automatically. So when Mr. Harrison asks "who approved that?", Sarah answers in ten seconds.
 
-Second, we build the Monday Report. At 7 am every Monday, before Priya has even had her chai, Stocky reads Odoo, reads its own log, reads the supplier risk scores, writes a one-page executive summary, and emails it to Mr. Kapoor. Priya's three hours become zero.
+Second, we build the Monday Report. At 7 am every Monday, before Sarah has even had her chai, Stocky reads Odoo, reads its own log, reads the supplier risk scores, writes a one-page executive summary, and emails it to Mr. Harrison. Sarah's three hours become zero.
 
-And in about fifteen minutes, I'm going to show you the actual email that lands in Mr. Kapoor's inbox. It's the moment this course stops feeling like a project and starts feeling like a teammate. Let's go.
+And in about fifteen minutes, I'm going to show you the actual email that lands in Mr. Harrison's inbox. It's the moment this course stops feeling like a project and starts feeling like a teammate. Let's go.
 
 ## [ON CAMERA] Why Logs Matter: Memory + Audit Trail (02:00–03:30)
 
@@ -47,7 +47,7 @@ A log fixes that. A log is a notebook the intern writes in after every decision.
 
 One: memory. Stocky can read its own notebook and say, "I already raised an order for the pallet jack wheels on Wednesday, so I won't raise another one today." That stops duplicate orders, which is one of the most common and expensive mistakes in automation.
 
-Two: an audit trail. Auditors, finance teams, and directors all live by one rule: if it isn't written down, it didn't happen. When a purchase goes wrong, nobody wants to hear "the AI did it." They want to see: on this date, stock was 150, reorder point was 200, Stocky suggested 250 rolls, Priya approved at 10:14 am. That's trust. And trust is what lets you give an agent more responsibility over time.
+Two: an audit trail. Auditors, finance teams, and directors all live by one rule: if it isn't written down, it didn't happen. When a purchase goes wrong, nobody wants to hear "the AI did it." They want to see: on this date, stock was 150, reorder point was 200, Stocky suggested 250 rolls, Sarah approved at 10:14 am. That's trust. And trust is what lets you give an agent more responsibility over time.
 
 So: memory for the agent, proof for the humans. Let's build the notebook.
 
@@ -65,7 +65,7 @@ So: memory for the agent, proof for the humans. Let's build the notebook.
 
 **SHOW:** Type headers in row 1, A1 to I1: `Log ID`, `Timestamp`, `SKU`, `Product`, `Stock On Hand`, `Action`, `Approved By`, `Risk Score`, `Notes`.
 
-**SAY:** Now the column headers. Think of these as the questions Mr. Kapoor or an auditor might ask. Log ID, a unique number for each row. Timestamp, when did it happen. SKU and Product, what item. Stock On Hand, what was the stock at that moment. Action, what did Stocky do: things like "RFQ created", "Hold", "Rejected", or "Alert sent". Approved By, which human signed off, or "Auto" if no approval was needed. Risk Score, the supplier risk out of ten from Video 8. And Notes, a short sentence in plain English explaining why.
+**SAY:** Now the column headers. Think of these as the questions Mr. Harrison or an auditor might ask. Log ID, a unique number for each row. Timestamp, when did it happen. SKU and Product, what item. Stock On Hand, what was the stock at that moment. Action, what did Stocky do: things like "RFQ created", "Hold", "Rejected", or "Alert sent". Approved By, which human signed off, or "Auto" if no approval was needed. Risk Score, the supplier risk out of ten from Video 8. And Notes, a short sentence in plain English explaining why.
 
 **ON-SCREEN TEXT:** Decision Log columns: Log ID | Timestamp | SKU | Product | Stock On Hand | Action | Approved By | Risk Score | Notes
 
@@ -77,11 +77,11 @@ So: memory for the agent, proof for the humans. Let's build the notebook.
 
 **SAY:** One small but important habit from Video 4: clean data. I set column B to "Date time" and column H to "Number". If you skip this, Google Sheets may treat "7.8" as text and your charts later will quietly break.
 
-**SHOW:** Type one manual test row: `LOG-0001`, `2026-11-09 10:14`, `BL-1003`, `Stretch Wrap Film 500mm`, `150`, `RFQ created`, `Priya Sharma`, `3.1`, `Below reorder point 200. Ordered 250 rolls from PackRight.`
+**SHOW:** Type one manual test row: `LOG-0001`, `2026-11-09 10:14`, `BL-1003`, `Stretch Wrap Film 500mm`, `150`, `RFQ created`, `Sarah Mitchell`, `3.1`, `Below reorder point 200. Ordered 250 rolls from PackRight.`
 
-**SAY:** I always type one test row by hand first. It shows me what "good" looks like before the robot starts writing. Stretch wrap, stock 150, reorder point 200, RFQ created, approved by Priya, risk score 3.1, and a note. Notice the note is written for a human, not a computer. If Mr. Kapoor reads only this column, he should understand the story.
+**SAY:** I always type one test row by hand first. It shows me what "good" looks like before the robot starts writing. Stretch wrap, stock 150, reorder point 200, RFQ created, approved by Sarah, risk score 3.1, and a note. Notice the note is written for a human, not a computer. If Mr. Harrison reads only this column, he should understand the story.
 
-> PRO TIP: Never put two pieces of information in one cell. "Approved by Priya on Tuesday" is two fields: a name and a date. Split them, and every report later becomes easy.
+> PRO TIP: Never put two pieces of information in one cell. "Approved by Sarah on Tuesday" is two fields: a name and a date. Split them, and every report later becomes easy.
 
 **SAY:** That's our notebook. Now let's teach Stocky to write in it.
 
@@ -89,7 +89,7 @@ So: memory for the agent, proof for the humans. Let's build the notebook.
 
 **SHOW:** n8n → open workflow **"Stocky – Daily Reorder Check"** from Video 7. Zoom in on the end of the flow: the approval step (Gmail "Send and Wait for Response") branching into "Approved" → Odoo "Create RFQ", and "Rejected".
 
-**SAY:** Here is the daily reorder check from Video 7. Quick reminder of the recipe card: every morning the trigger, our doorbell, rings. Stocky reads stock from Odoo, finds items below their reorder point, emails Priya for approval, and if she says yes, it creates an RFQ in Odoo. Right now, though, the moment that happens, it's forgotten. Let's fix that.
+**SAY:** Here is the daily reorder check from Video 7. Quick reminder of the recipe card: every morning the trigger, our doorbell, rings. Stocky reads stock from Odoo, finds items below their reorder point, emails Sarah for approval, and if she says yes, it creates an RFQ in Odoo. Right now, though, the moment that happens, it's forgotten. Let's fix that.
 
 **SHOW:** Hover over the output of the Odoo "Create RFQ" node → click the **+** → search `Google Sheets` → choose **Append Row in Sheet**.
 
@@ -110,21 +110,21 @@ So: memory for the agent, proof for the humans. Let's build the notebook.
 - Product: drag `name`
 - Stock On Hand: drag `qty_available`
 - Action: type `RFQ created`
-- Approved By: type `Priya Sharma`
+- Approved By: type `Sarah Mitchell`
 - Risk Score: drag `risk_score` from the "Supplier Risk Check" step
 - Notes: `Below reorder point {{ $json.reorder_point }}. RFQ {{ $('Create RFQ').item.json.name }} for {{ $json.suggested_qty }} units.`
 
-**SAY:** For Timestamp, I type this short expression, dollar sign "now", which simply means "the time right now", formatted as year, month, day, hour, minute. You don't need to memorise it. It's in the activity file to copy and paste. For SKU, product and stock, I just drag the green labels across. Action, I type "RFQ created". Approved By, "Priya Sharma". Risk score, I drag in the score from Video 8. And Notes, I build a little sentence that mixes fixed words with live data: "Below reorder point 40, RFQ P00030 for 49 units."
+**SAY:** For Timestamp, I type this short expression, dollar sign "now", which simply means "the time right now", formatted as year, month, day, hour, minute. You don't need to memorise it. It's in the activity file to copy and paste. For SKU, product and stock, I just drag the green labels across. Action, I type "RFQ created". Approved By, "Sarah Mitchell". Risk score, I drag in the score from Video 8. And Notes, I build a little sentence that mixes fixed words with live data: "Below reorder point 40, RFQ P00030 for 49 units."
 
 **ON-SCREEN TEXT:** Copy-paste expressions are in the activity file, sheet "Instructions".
 
-**SHOW:** Click **Test step**. Switch to the Google Sheet: a new row appears: `LOG-20261116071503 | 2026-11-16 07:15 | BL-1007 | Hydraulic Oil 20L | 31 | RFQ created | Priya Sharma | 5.1 | Below reorder point 40. RFQ P00030 for 49 units.`
+**SHOW:** Click **Test step**. Switch to the Google Sheet: a new row appears: `LOG-20261116071503 | 2026-11-16 07:15 | BL-1007 | Hydraulic Oil 20L | 31 | RFQ created | Sarah Mitchell | 5.1 | Below reorder point 40. RFQ P00030 for 49 units.`
 
-**SAY:** I click "Test step", flip to the Sheet, and there it is. A brand new row, written by Stocky. Hydraulic oil, stock 31, RFQ created for 49 drums, which is the reorder point times two minus what's on hand, approved by Priya, risk 5.1. That's Stocky's first diary entry.
+**SAY:** I click "Test step", flip to the Sheet, and there it is. A brand new row, written by Stocky. Hydraulic oil, stock 31, RFQ created for 49 drums, which is the reorder point times two minus what's on hand, approved by Sarah, risk 5.1. That's Stocky's first diary entry.
 
-**SHOW:** Go back to n8n. Copy the Google Sheets node (Ctrl/Cmd + C), paste it after the **"Rejected"** branch. Change Action to `Rejected` and Notes to `Priya rejected. Reason: {{ $json.data.text }}`.
+**SHOW:** Go back to n8n. Copy the Google Sheets node (Ctrl/Cmd + C), paste it after the **"Rejected"** branch. Change Action to `Rejected` and Notes to `Sarah rejected. Reason: {{ $json.data.text }}`.
 
-**SAY:** But here's something beginners miss. A "no" is a decision too. If Priya rejects an order, we want that written down even more, because next week someone will ask why we didn't order. So I copy the node, paste it on the rejected branch, and change Action to "Rejected" with her reason in the notes.
+**SAY:** But here's something beginners miss. A "no" is a decision too. If Sarah rejects an order, we want that written down even more, because next week someone will ask why we didn't order. So I copy the node, paste it on the rejected branch, and change Action to "Rejected" with her reason in the notes.
 
 > BEGINNER MISTAKE: Logging only the happy path. If you only log approvals, your log tells half the story. Log every branch: approved, rejected, held, and alerts.
 
@@ -132,9 +132,9 @@ So: memory for the agent, proof for the humans. Let's build the notebook.
 
 **SAY:** Now let's use the memory. In the chat agent from Video 6, I add one more tool: Google Sheets, "Get Rows", pointing at the Decision Log. And I write a plain English description so the intern's brain knows when to use it: "Use this to look up past Stocky decisions by SKU or date."
 
-**SHOW:** Open the chat panel and type: `Did we order stretch wrap recently? Who approved it and why?` Stocky replies: "Yes. On 9 November at 10:14, an RFQ was created for 250 rolls of Stretch Wrap Film 500mm (BL-1003) from PackRight Industries. Stock was 150 against a reorder point of 200. It was approved by Priya Sharma. Supplier risk score was 3.1 out of 10, which is low."
+**SHOW:** Open the chat panel and type: `Did we order stretch wrap recently? Who approved it and why?` Stocky replies: "Yes. On 9 November at 10:14, an RFQ was created for 250 rolls of Stretch Wrap Film 500mm (BL-1003) from PackRight Industries. Stock was 150 against a reorder point of 200. It was approved by Sarah Mitchell. Supplier risk score was 3.1 out of 10, which is low."
 
-**SAY:** And now, the exact question Mr. Kapoor asked in the intro. "Did we order stretch wrap recently? Who approved it and why?" Look at that answer. Date, quantity, stock level, reorder point, who approved, and the risk score. Ten seconds. That's the power of memory.
+**SAY:** And now, the exact question Mr. Harrison asked in the intro. "Did we order stretch wrap recently? Who approved it and why?" Look at that answer. Date, quantity, stock level, reorder point, who approved, and the risk score. Ten seconds. That's the power of memory.
 
 > PRO TIP: Do the same in your Supplier Risk Check workflow from Video 8: add an Append Row with Action = "Risk alert" whenever a score goes above 7. Then your log shows risks AND decisions side by side.
 
@@ -166,9 +166,9 @@ So in your Stocky reorder prompt, add this line now: "Check the Decision Log fir
 
 **SAY:** The first step is a Schedule Trigger. In Video 7 we used it daily. Now I set the interval to Weeks, every one week, on Monday, at 7 am, minute zero. That's our doorbell.
 
-**SHOW:** Top-right **…** menu → **Settings** → **Timezone** = Asia/Kolkata (or your own) → Save.
+**SHOW:** Top-right **…** menu → **Settings** → **Timezone** = America/New_York (or your own) → Save.
 
-**SAY:** One trap. n8n Cloud might run on a different time zone than you. If you skip this, "7 am" could mean 7 am in New York, which is 5:30 in the evening in Pune. So I open the workflow Settings and set the time zone to Asia/Kolkata. You set yours.
+**SAY:** One trap. n8n Cloud might run on a different time zone than you. If you skip this, "7 am" could mean 7 am in London, which is 2 in the morning here in Columbus. So I open the workflow Settings and set the time zone to America/New_York, which is Columbus time. You set yours.
 
 > BEGINNER MISTAKE: Forgetting the workflow time zone. Your report arrives at a strange hour and you think it's broken. Always set it in workflow Settings.
 
@@ -182,7 +182,7 @@ So in your Stocky reorder prompt, add this line now: "Check the Decision Log fir
 
 **SHOW:** Add node → **Google Sheets** → Get Row(s), Sheet: "Suppliers" (which now has the column "Risk Score" written by the Video 8 workflow).
 
-**SAY:** Step four: the Suppliers tab, which since Video 8 also holds each supplier's latest risk score. Shenzhen BrightTech is at 7.8 this week because of heavy rain in Shenzhen and a weaker rupee against the yuan. Global Lift Parts at 7.2.
+**SAY:** Step four: the Suppliers tab, which since Video 8 also holds each supplier's latest risk score. Shenzhen BrightTech is at 7.8 this week because of heavy rain in Shenzhen and a stronger yuan against the dollar. Global Lift Parts at 7.2.
 
 **SHOW:** After each of the three data branches, add an **Aggregate** node → **Aggregate** = All Item Data (Into a Single List), **Put Output in Field** = `products`, `decisions`, `suppliers` respectively. Then a **Merge** node, **Mode** = Combine, **Combine By** = Position, with 3 inputs.
 
@@ -203,7 +203,7 @@ So in your Stocky reorder prompt, add this line now: "Check the Decision Log fir
 ```
 SYSTEM MESSAGE:
 You are Stocky, the inventory and procurement agent of BrightLeaf Supplies
-(Pune, India). You write the weekly stock report for Mr. Kapoor, Operations
+(Columbus, Ohio). You write the weekly stock report for Mr. Harrison, Operations
 Director. He reads it on his phone in 2 minutes. Be clear, calm and factual.
 Never invent numbers. Use only the data provided. If data is missing, say so.
 
@@ -233,7 +233,7 @@ FORMAT (use simple HTML: <h2>, <p>, <ul>, <li>, <b>, <table>)
    recommended action.
 4. Items reordered this week: a table with SKU, qty, supplier, approved by.
 5. Decisions rejected or on hold, with the reason.
-6. "Needs your decision": maximum 2 items for Mr. Kapoor.
+6. "Needs your decision": maximum 2 items for Mr. Harrison.
 Keep it under 350 words. No jargon. End with: "Full dashboard: [link]".
 ```
 
@@ -267,18 +267,18 @@ TOP 5 RISKS
    point 30. 28-day lead time, Shenzhen BrightTech risk 7.8/10.
    Action: consider ordering early.
 4. BL-1004 Industrial Safety Gloves: stock 420 vs 600. RFQ P00029 for
-   780 pairs raised with SafeHands (risk 4.6, heavy rain in Chennai).
+   780 pairs raised with SafeHands (risk 4.6, heavy rain in Monterrey).
 5. BL-1002 Corrugated Shipping Box: stock 1,180 vs 1,500. RFQ P00028
    for 1,820 boxes raised with PackRight (risk 2.3). Low risk.
 
 ITEMS REORDERED THIS WEEK
-BL-1003 | 250 rolls | PackRight Industries | Priya Sharma
-BL-1005 | 32 sets | Global Lift Parts | Priya Sharma
-BL-1002 | 1,820 boxes | PackRight Industries | Priya Sharma
-BL-1004 | 780 pairs | SafeHands Co. | Priya Sharma
+BL-1003 | 250 rolls | PackRight Industries | Sarah Mitchell
+BL-1005 | 32 sets | Global Lift Parts | Sarah Mitchell
+BL-1002 | 1,820 boxes | PackRight Industries | Sarah Mitchell
+BL-1004 | 780 pairs | SafeHands Co. | Sarah Mitchell
 
 REJECTED / ON HOLD
-BL-1007: on hold by Priya, asking Gulf Lubricants for an 80-drum price.
+BL-1007: on hold by Sarah, asking Gulf Lubricants for an 80-drum price.
 BL-1008: on hold, waiting for a revised quote ($72 to $68 per unit).
 
 NEEDS YOUR DECISION
@@ -290,35 +290,35 @@ NEEDS YOUR DECISION
 Full dashboard: [link]
 ```
 
-**SAY:** And here's the report. Read the headline: "Pallet jack wheels and hydraulic oil are our two biggest risks this week." That's what a director wants in the first line. Stock health 60 percent, because six of our ten SKUs are healthy. Money tied up in stock, 16,153 dollars. Top five risks, each with a reason and an action. The items reordered, who approved them, the two on hold and why. And just two decisions for Mr. Kapoor. Priya used to spend three hours on this. Stocky took about twelve seconds.
+**SAY:** And here's the report. Read the headline: "Pallet jack wheels and hydraulic oil are our two biggest risks this week." That's what a director wants in the first line. Stock health 60 percent, because six of our ten SKUs are healthy. Money tied up in stock, 16,153 dollars. Top five risks, each with a reason and an action. The items reordered, who approved them, the two on hold and why. And just two decisions for Mr. Harrison. Sarah used to spend three hours on this. Stocky took about twelve seconds.
 
 **SHOW:** Open the activity file, sheet "Dashboard". Point to cell showing Money tied up = $16,153 and Stock health = 60%.
 
 **SAY:** Now, never trust, always verify, especially in the first few weeks. I check the numbers against my own spreadsheet. Money tied up, 16,153, matches. Stock health, 60 percent, matches. If the AI's numbers ever disagree with your spreadsheet, the spreadsheet wins and you tighten the prompt.
 
-> PAUSE & THINK: If you were Mr. Kapoor, what ONE extra number would you want in this report every Monday? Write it down. You'll add it to the prompt in the activity.
+> PAUSE & THINK: If you were Mr. Harrison, what ONE extra number would you want in this report every Monday? Write it down. You'll add it to the prompt in the activity.
 
 ## [SCREEN RECORDING] Send It: Gmail + a Simple Dashboard (19:00–21:30)
 
 **SHOW:** Google Sheet → add tab `Dashboard`. In A1 type `Week starting`, in B1 `RFQs created`, in C1 `Rejected / Hold`. A2:A5 = the last four Monday dates. In B2: `=COUNTIFS('Decision Log'!F:F,"RFQ created",'Decision Log'!B:B,">="&A2,'Decision Log'!B:B,"<"&A2+7)`, drag down. Same idea in C2 for "Rejected". Select A1:C5 → **Insert → Chart** → Chart editor **Setup → Chart type = Column chart**.
 
-**SAY:** Before the email, a quick dashboard, so Mr. Kapoor can click through to the detail. I add a "Dashboard" tab to the same Google Sheet. A couple of formulas you already know from Excel, COUNTIF and COUNTIFS, count how many RFQs were created each week. Then I select that little table, click Insert, Chart, and in the Chart editor pick "Column chart". Four bars, one per week. Simple, honest, and it updates itself because the Decision Log keeps growing.
+**SAY:** Before the email, a quick dashboard, so Mr. Harrison can click through to the detail. I add a "Dashboard" tab to the same Google Sheet. A couple of formulas you already know from Excel, COUNTIF and COUNTIFS, count how many RFQs were created each week. Then I select that little table, click Insert, Chart, and in the Chart editor pick "Column chart". Four bars, one per week. Simple, honest, and it updates itself because the Decision Log keeps growing.
 
-**SHOW:** Click the chart's **⋮** menu → **Publish chart** is optional; instead, click **Share** (top right) → General access: **Restricted**, add `kapoor@brightleaf.example` as **Viewer** → **Copy link**.
+**SHOW:** Click the chart's **⋮** menu → **Publish chart** is optional; instead, click **Share** (top right) → General access: **Restricted**, add `harrison@brightleaf.example` as **Viewer** → **Copy link**.
 
-**SAY:** Then I share the sheet with Mr. Kapoor as a Viewer only. Viewer, not Editor. He can look, he can't accidentally delete the log. I copy the link.
+**SAY:** Then I share the sheet with Mr. Harrison as a Viewer only. Viewer, not Editor. He can look, he can't accidentally delete the log. I copy the link.
 
-**SHOW:** Back in n8n, after the AI Agent add **Gmail** → Resource: Message, Operation: **Send**. To: `kapoor@brightleaf.example`, CC: `priya@brightleaf.example`. Subject: `Monday Stock Report – Week of {{ $now.toFormat('d LLL yyyy') }}`. **Email Type** = HTML. Message: `{{ $json.output.replace('[link]', '<a href="PASTE-SHEET-LINK">Open dashboard</a>') }}`. Options → **Append n8n Attribution** = off.
+**SHOW:** Back in n8n, after the AI Agent add **Gmail** → Resource: Message, Operation: **Send**. To: `harrison@brightleaf.example`, CC: `sarah@brightleaf.example`. Subject: `Monday Stock Report – Week of {{ $now.toFormat('d LLL yyyy') }}`. **Email Type** = HTML. Message: `{{ $json.output.replace('[link]', '<a href="PASTE-SHEET-LINK">Open dashboard</a>') }}`. Options → **Append n8n Attribution** = off.
 
-**SAY:** Now the Gmail node. Send a message to Mr. Kapoor, CC Priya so she always sees what her boss sees. Subject: "Monday Stock Report, Week of", and the date fills itself in. Email type: HTML, so our headings and bullets show nicely. In the message, I take the AI's output and swap the word "link" for a real clickable link to the dashboard. And I turn off "Append n8n Attribution", so the email doesn't end with an advert.
+**SAY:** Now the Gmail node. Send a message to Mr. Harrison, CC Sarah so she always sees what her boss sees. Subject: "Monday Stock Report, Week of", and the date fills itself in. Email type: HTML, so our headings and bullets show nicely. In the message, I take the AI's output and swap the word "link" for a real clickable link to the dashboard. And I turn off "Append n8n Attribution", so the email doesn't end with an advert.
 
-**SHOW:** Click **Test workflow**. Switch to the "Mr. Kapoor" inbox: email "Monday Stock Report – Week of 16 Nov 2026" with bold headline, bullets, table, and "Open dashboard" link. Click the link: the chart opens.
+**SHOW:** Click **Test workflow**. Switch to the "Mr. Harrison" inbox: email "Monday Stock Report – Week of 16 Nov 2026" with bold headline, bullets, table, and "Open dashboard" link. Click the link: the chart opens.
 
-**SAY:** Test the whole workflow, and switch to Mr. Kapoor's inbox. There it is. "Monday Stock Report, week of 16 November." Clean headline, key numbers, risks, the reorder table, and a link that opens the dashboard. That's the email Priya used to spend her Monday morning building.
+**SAY:** Test the whole workflow, and switch to Mr. Harrison's inbox. There it is. "Monday Stock Report, week of 16 November." Clean headline, key numbers, risks, the reorder table, and a link that opens the dashboard. That's the email Sarah used to spend her Monday morning building.
 
 **SHOW:** Top right: toggle **Active** (in newer n8n versions this button is called **Publish**).
 
-**SAY:** Last step: I switch the workflow to Active. In newer versions of n8n the button is called Publish. Either way, from now on it runs every Monday at 7 am, whether Priya is in the office, on leave, or stuck in Pune traffic.
+**SAY:** Last step: I switch the workflow to Active. In newer versions of n8n the button is called Publish. Either way, from now on it runs every Monday at 7 am, whether Sarah is in the office, on leave, or stuck in traffic on the I-270 outerbelt.
 
 > PRO TIP: Prefer Airtable? It's a friendly alternative database with nicer forms and views, and n8n has an Airtable node with the same "create record" idea. Everything in this video works the same way.
 
@@ -332,7 +332,7 @@ Two: letting people type into the Decision Log by hand. The log is Stocky's note
 
 Three: trusting the report blindly in week one. Check the numbers for the first three or four Mondays. Once they match every time, then you relax.
 
-And four: making the report too long. If Mr. Kapoor has to scroll for a minute, he won't read it. Under 350 words, two decisions maximum. Short reports get read. Long reports get archived.
+And four: making the report too long. If Mr. Harrison has to scroll for a minute, he won't read it. Under 350 words, two decisions maximum. Short reports get read. Long reports get archived.
 
 ## [ON CAMERA] Outro (22:30–24:00)
 
@@ -344,7 +344,7 @@ Two: the Append Row node is your agent's pen. Put one on every branch, approvals
 
 Three: a great report is a great prompt. Give the AI the data, spell out the formulas, fix the format, and it writes the same clean executive summary every Monday at 7 am.
 
-Now your activity. Open V09_Activity_Decision_Log_Dashboard.xlsx. It has four weeks of Stocky's decisions already filled in. You'll use COUNTIFS and SUMIFS to build the KPIs, check stock health and money tied up, read the chart, and then answer three "Mr. Kapoor questions" from the log. At the end, there's a sheet to design the Decision Log and Monday Report for your own company. It takes about thirty minutes.
+Now your activity. Open V09_Activity_Decision_Log_Dashboard.xlsx. It has four weeks of Stocky's decisions already filled in. You'll use COUNTIFS and SUMIFS to build the KPIs, check stock health and money tied up, read the chart, and then answer three "Mr. Harrison questions" from the log. At the end, there's a sheet to design the Decision Log and Monday Report for your own company. It takes about thirty minutes.
 
 Then take the Video 9 quiz to lock it in.
 

@@ -13,7 +13,7 @@ In Stocky v1, which trigger starts the workflow?
 - A) A Manual Trigger button
 - B) A schedule that runs every morning at 7:00
 - C) A Chat Trigger ("On chat message"), so every typed question starts the recipe
-- D) An email arriving in Priya's inbox
+- D) An email arriving in Sarah's inbox
 
 ### Question 2
 What does the **Simple Memory** connected to the AI Agent do?
@@ -48,7 +48,7 @@ Which list shows the five parts of the **prompt anatomy** taught in this video?
 - D) SKU, Product, On hand, Reorder point, Gap
 
 ### Question 6 (Scenario)
-Stocky says the Industrial Safety Gloves (BL-1004) have 240 pairs on hand, but Priya believes it's 420. What should she do FIRST?
+Stocky says the Industrial Safety Gloves (BL-1004) have 240 pairs on hand, but Sarah believes it's 420. What should she do FIRST?
 
 - A) Argue with Stocky in the chat until it changes the number
 - B) Delete the workflow and start again
@@ -70,7 +70,7 @@ Because Stocky v1's Odoo tools only use the "Get Many" operation, Stocky can rea
 - B) False
 
 ### Question 9 (Scenario)
-Priya asks Stocky, "When will PO P00027 arrive?" Stocky has no tool for purchase orders. Which answer shows that her system prompt is working well?
+Sarah asks Stocky, "When will PO P00027 arrive?" Stocky has no tool for purchase orders. Which answer shows that her system prompt is working well?
 
 - A) "PO P00027 will arrive next Tuesday."
 - B) "It should arrive in about 3 weeks, around the end of the month."
@@ -105,6 +105,6 @@ According to Stocky's rules, BL-1008 LED Warehouse Light has 34 on hand and a re
 
 **8. A (True).** "Get Many" only reads records. Stocky v1 is read-only by design, which makes it safe to experiment with. Taking action comes later, always with human approval.
 
-**9. C.** The rules "only answer from tool data" and "say I don't know" make Stocky admit what it can't see and point Priya to where she can check. Answers A, B and D are confident guesses: hallucinations.
+**9. C.** The rules "only answer from tool data" and "say I don't know" make Stocky admit what it can't see and point Sarah to where she can check. Answers A, B and D are confident guesses: hallucinations.
 
-**10. B.** 34 is above 30, so it is not running low. But 34 is only about 13% above the reorder point, within the 15% watch-list rule, and with a 28-day lead time from Shenzhen, it's exactly the item Priya wants flagged early.
+**10. B.** 34 is above 30, so it is not running low. But 34 is only about 13% above the reorder point, within the 15% watch-list rule, and with a 28-day lead time from Shenzhen, it's exactly the item Sarah wants flagged early.

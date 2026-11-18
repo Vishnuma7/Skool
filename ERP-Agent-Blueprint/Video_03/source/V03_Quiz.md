@@ -42,7 +42,7 @@ Choose the best answer for each question. The answer key with explanations is at
 - B. False
 
 **7. Which of these tasks would be a POST request (submitting, not just asking)?**
-- A. Checking today's USD to INR exchange rate
+- A. Checking today's USD to MXN exchange rate
 - B. Reading the on-hand quantity of BL-1005 in Odoo
 - C. Creating a new purchase order for 1,820 corrugated boxes from PackRight Industries
 - D. Looking up the weather forecast for Dubai
@@ -53,13 +53,13 @@ Choose the best answer for each question. The answer key with explanations is at
 - C. Stocky is asking too many times per minute
 - D. Everything worked fine
 
-**9. Scenario: Priya calls the Frankfurter API asking for USD to INR, CNY and AED. The response only contains INR and CNY. What should she do?**
+**9. Scenario: Sarah calls the Frankfurter API asking for USD to CNY, MXN and AED. The response only contains CNY and MXN. What should she do?**
 - A. Assume the AED rate is zero and carry on
 - B. Delete her browser history and try again in a week
 - C. Notice that AED is missing, understand that this API's source doesn't provide it, and get the AED rate another way (it is pegged at about 3.67 per USD)
 - D. Report the API as broken, because every API must return everything you ask for
 
-**10. Scenario: Priya's colleague asks her to paste BrightLeaf's Odoo API key into the team WhatsApp group "so everyone can use it". Following the hotel key card rules, what should she do?**
+**10. Scenario: Sarah's colleague asks her to paste BrightLeaf's Odoo API key into the team WhatsApp group "so everyone can use it". Following the hotel key card rules, what should she do?**
 - A. Paste it, because WhatsApp is private
 - B. Paste it, but delete the message after an hour
 - C. Refuse; keys are never shared in chats. Each tool or person should get its own key, and any key that might have leaked should be deleted and replaced
@@ -81,7 +81,7 @@ Choose the best answer for each question. The answer key with explanations is at
 
 **6. A. True.** Pasting an address into the browser is "asking" (GET). Asking about the weather never changes the weather, and it never changes the API's data either.
 
-**7. C. Creating a new purchase order.** Creating or changing something in the kitchen is submitting (POST). The other three only read information. Important POSTs, like purchase orders, should need Priya's approval.
+**7. C. Creating a new purchase order.** Creating or changing something in the kitchen is submitting (POST). The other three only read information. Important POSTs, like purchase orders, should need Sarah's approval.
 
 **8. B. The API key is missing, wrong or cancelled.** 401 is the "wrong key card" receipt. A typo in the address is usually 404, and too many requests is 429.
 

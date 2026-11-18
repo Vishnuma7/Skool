@@ -36,24 +36,26 @@
 ### Slide 6: Supplier map pins
 - Shenzhen 22.54, 114.06 (Shenzhen BrightTech, Global Lift Parts)
 - Dubai 25.20, 55.27 (Gulf Lubricants)
-- Chennai 13.08, 80.27 (SafeHands Co.)
-- Mumbai 19.08, 72.88 (PackRight Industries)
-- Pune 18.52, 73.86 (Apex Fasteners)
-- **Suggested visual:** A map of Asia and the Middle East with five pins, each labelled with city, supplier and coordinates.
+- Monterrey 25.69, -100.32 (SafeHands Co.)
+- Chicago 41.88, -87.63 (PackRight Industries)
+- Columbus 39.96, -83.00 (Apex Fasteners)
+- **Suggested visual:** A world map with five pins (Columbus, Chicago, Monterrey, Dubai, Shenzhen), each labelled with city, supplier and coordinates, and a "HQ" star on Columbus.
 
 ### Slide 7: Currency: one dollar, today vs 30 days ago
-- 16 Oct 2026: USD→INR 94.96 · USD→CNY 6.6862
-- 16 Nov 2026: USD→INR 93.93 · USD→CNY 6.6665
-- INR moved ~1.1% · CNY moved ~0.3%
-- `api.frankfurter.dev/v1/latest?from=USD&to=INR,CNY` (the old .app address forwards here)
+- 16 Oct 2026: USD→CNY 6.6862 · USD→MXN 18.3835
+- 17 Nov 2026: USD→CNY 6.6661 · USD→MXN 18.4639
+- CNY moved ~0.3% · MXN moved ~0.4% (both under 1% = 0 points)
+- `api.frankfurter.dev/v1/latest?from=USD&to=CNY,MXN` (the old .app address forwards here)
+- Columbus and Chicago suppliers bill in dollars: no exchange rate needed
 - No AED on the menu ("an API only serves what its kitchen stocks"); the dirham is pegged at **about 3.67** per USD, so Dubai's currency risk ≈ 0
 - **Suggested visual:** Two simple exchange-rate "price tags" (before/after) with a small arrow showing % change, plus a padlock icon next to AED labelled "pegged".
 
 ### Slide 8: Holidays and the gaps
 - `date.nager.at/api/v3/PublicHolidays/2026/CN` → Mid-Autumn 25 Sept, National Day 1 Oct, Chinese New Year 2027 = 6 Feb
-- India (IN) and UAE (AE): **blank = not covered**, not "no holidays"
-- Fix: a short written holiday list in Stocky's rulebook
-- **Suggested visual:** A calendar with Chinese holidays circled in red; next to it two empty calendars labelled IN and AE with a sticky note "use our own list".
+- `.../2026/US` → Thanksgiving 26 Nov, Christmas 25 Dec · `.../2026/MX` → Revolution Day 16 Nov, Christmas 25 Dec
+- UAE (AE): **blank = not covered**, not "no holidays"
+- Fix: a short written UAE holiday list in Stocky's rulebook (National Day 2–3 Dec, Eid breaks)
+- **Suggested visual:** Three calendars (CN, US, MX) with holidays circled in red; next to them an empty calendar labelled AE with a sticky note "use our own list".
 
 ### Slide 9: Pause & Think
 - Your top 3 suppliers: which city? What outside event has hurt you there before?
@@ -67,7 +69,7 @@
 ### Slide 11: The scoring rules on a napkin
 - Weather (7 days): rain ≥20/50/100 mm or wind ≥40/60/90 km/h → 1/2/3
 - Holiday (30 days): 1 day → 1 · 2+ days → 2 · major shutdown → 3
-- Currency (30 days): <1% → 0 · 1–3% → 1 · ≥3% → 2 · Indian suppliers → 0
+- Currency (30 days): <1% → 0 · 1–3% → 1 · ≥3% → 2 · US suppliers paid in USD → 0
 - Lead time: ≤7 → 0 · 8–20 → 1 · ≥21 → 2
 - **Suggested visual:** A literal paper napkin with the four rules handwritten, a coffee cup ring in the corner.
 
@@ -88,11 +90,12 @@
 - Never invent numbers · say "not checked" if data is missing · end with "guidance, not truth"
 - **Suggested visual:** A one-page "employee handbook" with five tabbed sections, Stocky reading it.
 
-### Slide 15: Live run (16 Nov 2026)
-- All five cities calm this week
-- Shenzhen suppliers 3/10 LOW (long lead times) · **Gulf Lubricants 4/10 MEDIUM** (UAE National Day 2–3 Dec)
-- Hydraulic Oil already below reorder point (31 vs 40) → "place the oil order this week"
-- **Suggested visual:** The six-row risk table with coloured band chips, the Gulf Lubricants row highlighted amber, and a small Logs panel showing 8 tool calls.
+### Slide 15: Live run (17 Nov 2026)
+- All five cities calm this week · currency moves under 1%
+- Shenzhen suppliers 2/10 LOW (long lead times) · Columbus and Chicago 1/10 (Thanksgiving 26 Nov)
+- **Gulf Lubricants 3/10 LOW, top of the list** (UAE National Day 2–3 Dec)
+- Hydraulic Oil already below reorder point (31 vs 40) → "place the oil order this week" · LOW doesn't mean ignore
+- **Suggested visual:** The six-row risk table with coloured band chips, the Gulf Lubricants row highlighted, and a small Logs panel showing 10 tool calls.
 
 ### Slide 16: Fire drill: Golden Week + typhoon
 - Pretend date: 24 Sept 2026 · assumed 110 km/h wind, 140 mm rain
@@ -113,4 +116,4 @@
 - The score is guidance, not truth
 - Activity: **V08_Activity_SupplierRiskScorecard.xlsx** · Quiz: **V08_Quiz**
 - Next: **Memory & Reports** (logging to a database and the Monday report)
-- **Suggested visual:** Three takeaway tiles, then a teaser strip showing a Google Sheet filling with rows and an email titled "Monday Stock Report" landing in Mr. Kapoor's inbox.
+- **Suggested visual:** Three takeaway tiles, then a teaser strip showing a Google Sheet filling with rows and an email titled "Monday Stock Report" landing in Mr. Harrison's inbox.

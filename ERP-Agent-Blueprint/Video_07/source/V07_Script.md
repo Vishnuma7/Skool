@@ -4,7 +4,7 @@
 **Learning objectives:**
 - Explain the difference between an agent that **reads** and an agent that **writes**, and why the risk is different (the traffic-light rule)
 - Build a workflow that wakes up every morning at 8am, finds SKUs below their reorder point and calculates a suggested order quantity
-- Send an approval email with Approve / Reject buttons, with a guardrail that sends any order over $2,000 to Mr. Kapoor instead of Priya
+- Send an approval email with Approve / Reject buttons, with a guardrail that sends any order over $2,000 to Mr. Harrison instead of Sarah
 - Create a **draft** Request for Quotation (RFQ) in Odoo only after a human clicks Approve, and confirm it back by email
 - Know the "week-one rules": why an agent should never confirm a purchase order on its own
 
@@ -14,7 +14,7 @@
 - n8n open with the Odoo, Gmail and Claude credentials from Video 5, and Stocky v1 from Video 6 saved
 - The BrightLeaf Google Sheet from Video 4, with a new tab called **Supplier Map** (columns: SKU, Supplier, Odoo Vendor ID), filled in for all 10 SKUs
 - A finished copy of today's workflow called **"Stocky – Morning Reorder"** (for the tour in section 3), plus an empty copy to build live
-- Two email inboxes open in browser tabs: one playing Priya, one playing Mr. Kapoor (use your own addresses for testing)
+- Two email inboxes open in browser tabs: one playing Sarah, one playing Mr. Harrison (use your own addresses for testing)
 - The diagram "Read / Draft / Commit" traffic light on a slide
 
 **Resources for this video:** V07_Activity_ReorderSimulator.xlsx, V07_Activity_ApprovalRules.docx, V07_Quiz.docx
@@ -23,11 +23,11 @@
 
 ## [ON CAMERA] Intro: From "What's Low?" to "Shall I Order It?" (00:00–02:00)
 
-Last video, Stocky learned to read. You typed "What's running low?" and Stocky looked inside Odoo and answered in plain English. That alone saves Priya a lot of copying and pasting.
+Last video, Stocky learned to read. You typed "What's running low?" and Stocky looked inside Odoo and answered in plain English. That alone saves Sarah a lot of copying and pasting.
 
-But be honest with yourself for a second. When Stocky says "Hydraulic Oil is at 31 and the reorder point is 40", what happens next? Priya still opens Odoo. She still works out how many to order. She still finds the supplier, creates the request for quotation, types the quantity, double-checks the price and saves it. Every single morning. For BrightLeaf that's roughly 20 to 30 minutes a day, which is about two and a half hours a week of pure clicking.
+But be honest with yourself for a second. When Stocky says "Hydraulic Oil is at 31 and the reorder point is 40", what happens next? Sarah still opens Odoo. She still works out how many to order. She still finds the supplier, creates the request for quotation, types the quantity, double-checks the price and saves it. Every single morning. For BrightLeaf that's roughly 20 to 30 minutes a day, which is about two and a half hours a week of pure clicking.
 
-Today Stocky stops just *talking* about the problem and starts *doing* something about it. By the end of this video, Stocky will wake up at 8 o'clock every morning on its own, check every product in Odoo, work out what's below the reorder point, calculate how much to order, and send Priya an email with two buttons: Approve and Reject. She clicks Approve on her phone with her morning coffee, and a draft RFQ appears in Odoo, ready for the right supplier.
+Today Stocky stops just *talking* about the problem and starts *doing* something about it. By the end of this video, Stocky will wake up at 8 o'clock every morning on its own, check every product in Odoo, work out what's below the reorder point, calculate how much to order, and send Sarah an email with two buttons: Approve and Reject. She clicks Approve on her phone with her morning coffee, and a draft RFQ appears in Odoo, ready for the right supplier.
 
 Now, the moment an agent can *create* things in your ERP, the stakes change. So today is also about safety. I'm going to tell you a real-world style story about an automation that ordered ten times too much stock, and I'll show you the three simple guardrails that would have stopped it.
 
@@ -43,11 +43,11 @@ Here's the most important idea in this whole video, and it fits on a traffic lig
 
 **Green is reading.** Stocky looks at stock levels, looks at prices, looks at suppliers. If Stocky reads the wrong thing, the worst case is a wrong answer in a chat. Nobody loses money. Everything we did in Video 6 was green.
 
-**Amber is drafting.** Stocky creates something in Odoo, but it's a draft. A request for quotation sitting in Odoo with the status "RFQ" hasn't been sent to anyone and hasn't committed a single rupee. If it's wrong, Priya deletes it in two clicks. Today we are working in amber.
+**Amber is drafting.** Stocky creates something in Odoo, but it's a draft. A request for quotation sitting in Odoo with the status "RFQ" hasn't been sent to anyone and hasn't committed a single dollar. If it's wrong, Sarah deletes it in two clicks. Today we are working in amber.
 
 **Red is committing.** Confirming a purchase order, emailing it to the supplier, approving a payment. Once that's done, the truck is getting loaded. Red actions are where real money and real relationships are on the line.
 
-Think of Stocky like a smart new intern. In week one, would you let a new intern sign purchase orders? Of course not. You'd let them prepare the paperwork, and you'd sign it. That signature is what we call **human-in-the-loop**: the manager's signature before the cheque goes out.
+Think of Stocky like a smart new intern. In week one, would you let a new intern sign purchase orders? Of course not. You'd let them prepare the paperwork, and you'd sign it. That signature is what we call **human-in-the-loop**: the manager's signature before the check goes out.
 
 So our rule for today is simple. Stocky can read anything. Stocky can draft, but only after a human says yes. And Stocky never, ever touches red.
 
@@ -63,7 +63,7 @@ So our rule for today is simple. Stocky can read anything. Stocky can draft, but
 
 **SHOW:** Hover over the first node, "Every Morning 8am".
 
-**SAY:** Step one is the doorbell. Instead of Priya typing a question, a clock rings the doorbell at 8am every day.
+**SAY:** Step one is the doorbell. Instead of Sarah typing a question, a clock rings the doorbell at 8am every day.
 
 **SHOW:** Hover over "Get Stock from Odoo", then "Below Reorder Point", then "Calculate Order".
 
@@ -73,11 +73,11 @@ So our rule for today is simple. Stocky can read anything. Stocky can draft, but
 
 **SAY:** We look up the right supplier, and Stocky, our AI agent, writes a short, friendly approval request in plain English.
 
-**SHOW:** Hover over the diamond "Over $2,000?" and the two email nodes "Ask Mr. Kapoor" and "Ask Priya".
+**SHOW:** Hover over the diamond "Over $2,000?" and the two email nodes "Ask Mr. Harrison" and "Ask Sarah".
 
-**SAY:** This diamond is Mr. Kapoor's rule. Anything over two thousand dollars goes to him. Everything else goes to Priya. Then the workflow literally pauses and waits for a human to click a button.
+**SAY:** This diamond is Mr. Harrison's rule. Anything over two thousand dollars goes to him. Everything else goes to Sarah. Then the workflow literally pauses and waits for a human to click a button.
 
-**SHOW:** Hover over "Approved?", "Create Draft RFQ", "Add Product Line" and "Confirm to Priya".
+**SHOW:** Hover over "Approved?", "Create Draft RFQ", "Add Product Line" and "Confirm to Sarah".
 
 **SAY:** Only if someone clicks Approve do we create a draft RFQ in Odoo. That's amber. And then Stocky confirms back by email. Twelve blocks. No code. Let's build it from scratch.
 
@@ -99,11 +99,11 @@ So our rule for today is simple. Stocky can read anything. Stocky can draft, but
 
 **SAY:** Trigger interval: Days. Days between triggers: one. Trigger at hour: 8am. Minute: zero. I'll rename it "Every Morning 8am" so anyone can read the canvas like a sentence.
 
-**SHOW:** Click the **three dots (…)** at the top right of the canvas → **Settings** → **Timezone** → choose **Asia/Kolkata**. Save.
+**SHOW:** Click the **three dots (…)** at the top right of the canvas → **Settings** → **Timezone** → choose **America/New_York** (Columbus runs on Eastern Time). Save.
 
-> BEGINNER MISTAKE: Forgetting the timezone. n8n Cloud may run on a different clock, so "8am" could mean 8am in New York, which is 6:30pm in Pune. Always set the workflow timezone to your warehouse's timezone.
+> BEGINNER MISTAKE: Forgetting the timezone. n8n Cloud may run on a different clock, so "8am" could mean 8am UTC, which is 3am in Columbus. Always set the workflow timezone to your warehouse's timezone.
 
-**SAY:** Here's a mistake I see all the time. The alarm clock needs to know which time zone it lives in. Click the three dots, Settings, and set Timezone to Asia/Kolkata, or whatever your warehouse uses. Otherwise 8am might be 8am in New York.
+**SAY:** Here's a mistake I see all the time. The alarm clock needs to know which time zone it lives in. Click the three dots, Settings, and set Timezone to America/New_York, because Columbus runs on Eastern Time, or whatever your warehouse uses. Otherwise 8am might be 8am in London.
 
 **SHOW:** Click the **+** after the trigger → search "Odoo" → choose **Odoo** → action **Get many custom resources**. Credential: the Odoo credential from Video 5.
 
@@ -191,7 +191,7 @@ The PO went out on a Friday at 11pm. The supplier, who was delighted, shipped on
 
 Here's the thing. The automation didn't break. It did exactly what it was told. What was missing were three simple guardrails. One: a human approval before anything goes out. Two: a maximum order value, above which a senior person must sign. Three: a sanity check, something that says "hang on, this is ten times bigger than usual."
 
-Today we're building all three into Stocky. The approval email is guardrail one. Mr. Kapoor's two-thousand-dollar rule is guardrail two. And Stocky itself is going to be guardrail three.
+Today we're building all three into Stocky. The approval email is guardrail one. Mr. Harrison's two-thousand-dollar rule is guardrail two. And Stocky itself is going to be guardrail three.
 
 ---
 
@@ -220,7 +220,7 @@ Today we're building all three into Stocky. The approval email is guardrail one.
 **SHOW:** Prompt (User Message) field, with values dragged in from earlier nodes:
 
 ```
-Write an approval request for Priya about this reorder.
+Write an approval request for Sarah about this reorder.
 Product: {{ name }} ({{ SKU }})
 On hand: {{ qty_available }} | Reorder point: {{ reordering_min_qty }}
 Suggested order: {{ suggested_qty }} units at ${{ standard_price }} = ${{ order_value }}
@@ -250,39 +250,39 @@ Never say the order is placed. It is only a draft request.
 
 ---
 
-## [SCREEN RECORDING] Step 4: Mr. Kapoor's Rule and the Approval Email (17:30–20:15)
+## [SCREEN RECORDING] Step 4: Mr. Harrison's Rule and the Approval Email (17:30–20:15)
 
 **SHOW:** **+** → **If**. Rename "Over $2,000?". Condition: drag **order_value** from "Calculate Order" → **Number → is greater than** → **2000**.
 
-**SAY:** Now, guardrail two. Add an IF node and call it "Over two thousand dollars?". Drag in order value from the Calculate Order step, "is greater than", two thousand. This diamond has two exits. True means "big order, go to Mr. Kapoor". False means "Priya can approve this herself". This is BrightLeaf's real approval policy, just written as a block.
+**SAY:** Now, guardrail two. Add an IF node and call it "Over two thousand dollars?". Drag in order value from the Calculate Order step, "is greater than", two thousand. This diamond has two exits. True means "big order, go to Mr. Harrison". False means "Sarah can approve this herself". This is BrightLeaf's real approval policy, just written as a block.
 
-**SHOW:** From the **true** exit → **+** → **Gmail** → action **Send message and wait for response**. Rename "Ask Mr. Kapoor".
+**SHOW:** From the **true** exit → **+** → **Gmail** → action **Send message and wait for response**. Rename "Ask Mr. Harrison".
 
-**SAY:** From the true exit, add a Gmail node and choose this special action: "Send message and wait for response". This is human-in-the-loop in one block. The email goes out, and the whole workflow pauses, like a cheque sitting on the manager's desk, until somebody clicks a button.
+**SAY:** From the true exit, add a Gmail node and choose this special action: "Send message and wait for response". This is human-in-the-loop in one block. The email goes out, and the whole workflow pauses, like a check sitting on the manager's desk, until somebody clicks a button.
 
-**SHOW:** Fields: **To:** kapoor's test address. **Subject:** `Approval needed: {{ name }} – ${{ order_value }}`. **Message:** drag in **output** from "Stocky Writes Request". **Response Type: Approval.** **Approval Options → Type of Approval: Approve and Disapprove**, **Approve Button Label:** "Approve draft RFQ", **Disapprove Button Label:** "Reject".
+**SHOW:** Fields: **To:** harrison's test address. **Subject:** `Approval needed: {{ name }} – ${{ order_value }}`. **Message:** drag in **output** from "Stocky Writes Request". **Response Type: Approval.** **Approval Options → Type of Approval: Approve and Disapprove**, **Approve Button Label:** "Approve draft RFQ", **Disapprove Button Label:** "Reject".
 
-**SAY:** To: Mr. Kapoor. Subject: "Approval needed", plus the product and value. Message: drag in the text Stocky just wrote. Response type: Approval. Type of approval: Approve and Disapprove. I'll label the buttons "Approve draft RFQ" and "Reject". Notice the word "draft" on the button. Words matter. Nobody should think they're spending money with this click.
+**SAY:** To: Mr. Harrison. Subject: "Approval needed", plus the product and value. Message: drag in the text Stocky just wrote. Response type: Approval. Type of approval: Approve and Disapprove. I'll label the buttons "Approve draft RFQ" and "Reject". Notice the word "draft" on the button. Words matter. Nobody should think they're spending money with this click.
 
 **SHOW:** **Options → Add option → Limit Wait Time** → **1 day**.
 
 **SAY:** Then one more option: Limit Wait Time, one day. If nobody answers in 24 hours, the request expires. In procurement, silence should never mean yes.
 
-**SHOW:** Right-click "Ask Mr. Kapoor" → **Duplicate**. Connect the duplicate to the **false** exit. Rename "Ask Priya". Change **To:** Priya's address.
+**SHOW:** Right-click "Ask Mr. Harrison" → **Duplicate**. Connect the duplicate to the **false** exit. Rename "Ask Sarah". Change **To:** Sarah's address.
 
-**SAY:** Duplicate that node, connect the copy to the false exit, call it "Ask Priya", and change the email address. Same email, different approver.
+**SAY:** Duplicate that node, connect the copy to the false exit, call it "Ask Sarah", and change the email address. Same email, different approver.
 
 **SHOW:** Click **Execute workflow** (top). The canvas shows the green ticks up to the Gmail nodes, which spin with "Waiting".
 
 **SAY:** Let's run the whole thing. Execute workflow. Watch the canvas. Green ticks march along, and then the email nodes say "waiting". The recipe is paused, waiting for people.
 
-**SHOW:** Switch to Mr. Kapoor's inbox. Email "Approval needed: Hydraulic Oil 20L – $2,646" with Stocky's text and two buttons.
+**SHOW:** Switch to Mr. Harrison's inbox. Email "Approval needed: Hydraulic Oil 20L – $2,646" with Stocky's text and two buttons.
 
-**SAY:** Here's Mr. Kapoor's inbox. The Hydraulic Oil request, two thousand six hundred and forty-six dollars, with Stocky's explanation and two big buttons. He reads it in ten seconds and clicks "Approve draft RFQ".
+**SAY:** Here's Mr. Harrison's inbox. The Hydraulic Oil request, two thousand six hundred and forty-six dollars, with Stocky's explanation and two big buttons. He reads it in ten seconds and clicks "Approve draft RFQ".
 
-**SHOW:** Switch to Priya's inbox. Three emails: Shipping Boxes ($1,547), Safety Gloves ($1,872) and Pallet Jack Wheels ($1,216). Click Approve on Boxes and Wheels. Click **Reject** on Safety Gloves.
+**SHOW:** Switch to Sarah's inbox. Three emails: Shipping Boxes ($1,547), Safety Gloves ($1,872) and Pallet Jack Wheels ($1,216). Click Approve on Boxes and Wheels. Click **Reject** on Safety Gloves.
 
-**SAY:** Priya got three emails. Shipping boxes and Pallet Jack Wheels: she approves both. Safety gloves: she rejects. Why? Because she knows there are 500 pairs arriving from SafeHands on Thursday on an open order. Stocky didn't know that. This, right here, is why the human stays in the loop. Priya knows things the system doesn't.
+**SAY:** Sarah got three emails. Shipping boxes and Pallet Jack Wheels: she approves both. Safety gloves: she rejects. Why? Because she knows there are 500 pairs arriving from SafeHands on Thursday on an open order. Stocky didn't know that. This, right here, is why the human stays in the loop. Sarah knows things the system doesn't.
 
 **ON-SCREEN TEXT:** The human adds context the ERP doesn't have.
 
@@ -290,7 +290,7 @@ Never say the order is placed. It is only a draft request.
 
 ## [SCREEN RECORDING] Step 5: Creating the Draft RFQ in Odoo and Confirming Back (20:15–23:15)
 
-**SHOW:** Back in n8n. Connect both "Ask Mr. Kapoor" and "Ask Priya" outputs into a new **If** node. Rename "Approved?". Condition: drag **data → approved** → **Boolean → is true**.
+**SHOW:** Back in n8n. Connect both "Ask Mr. Harrison" and "Ask Sarah" outputs into a new **If** node. Rename "Approved?". Condition: drag **data → approved** → **Boolean → is true**.
 
 **SAY:** Back in n8n. Both email nodes now connect into one IF node called "Approved?". When someone clicks a button, n8n receives a little labelled shopping list that says approved: true or approved: false. Our condition: approved is true. Rejected or expired requests go out the false exit and simply stop. Next video, we'll log those too.
 
@@ -302,17 +302,17 @@ Never say the order is placed. It is only a draft request.
 
 **SAY:** A purchase order is like a paper form with a header, who we're buying from, and lines, what we're buying. The first node made the header. This second Odoo node adds the line. Pick Purchase Order Line. Order ID is the number Odoo just gave us back. Product ID comes from "Get Stock from Odoo". And product quantity is our suggested quantity. Odoo fills in the description and the vendor price by itself.
 
-**SHOW:** **+** → **Gmail** → **Send a message**. Rename "Confirm to Priya". To: Priya. Subject: `Draft RFQ created: {{ name }}`. Message: "Done. Draft RFQ #{{ order id }} created in Odoo for {{ suggested_qty }} x {{ name }} from {{ Supplier }}. It is a DRAFT. Review it in Purchase → Requests for Quotation, then send it to the supplier yourself."
+**SHOW:** **+** → **Gmail** → **Send a message**. Rename "Confirm to Sarah". To: Sarah. Subject: `Draft RFQ created: {{ name }}`. Message: "Done. Draft RFQ #{{ order id }} created in Odoo for {{ suggested_qty }} x {{ name }} from {{ Supplier }}. It is a DRAFT. Review it in Purchase → Requests for Quotation, then send it to the supplier yourself."
 
-**SAY:** Last block: a confirmation email back to Priya. "Done. Draft RFQ created for this quantity, from this supplier. It's a draft. Review it in Odoo and send it yourself." Stocky always closes the loop.
+**SAY:** Last block: a confirmation email back to Sarah. "Done. Draft RFQ created for this quantity, from this supplier. It's a draft. Review it in Odoo and send it yourself." Stocky always closes the loop.
 
 **SHOW:** Run again and approve. Then Odoo → **Purchase** → **Orders → Requests for Quotation**. Three new rows, status **RFQ**: PackRight Industries (1,820 × Corrugated Shipping Box, $1,547.00), Global Lift Parts (32 × Pallet Jack Wheels, $1,216.00) and Gulf Lubricants (49 × Hydraulic Oil 20L, $2,646.00). Open one; Source Document reads "Stocky – approved by email".
 
-**SAY:** Let's check Odoo. Purchase, Requests for Quotation. There they are. PackRight, 1,820 boxes. Global Lift Parts, 32 Pallet Jack Wheels. Gulf Lubricants, 49 drums of hydraulic oil, the one Mr. Kapoor approved. Status: RFQ. Not confirmed. Not sent. Source document: "Stocky, approved by email". And no safety gloves, because Priya said no.
+**SAY:** Let's check Odoo. Purchase, Requests for Quotation. There they are. PackRight, 1,820 boxes. Global Lift Parts, 32 Pallet Jack Wheels. Gulf Lubricants, 49 drums of hydraulic oil, the one Mr. Harrison approved. Status: RFQ. Not confirmed. Not sent. Source document: "Stocky, approved by email". And no safety gloves, because Sarah said no.
 
 **SHOW:** Point at the **Confirm Order** button in Odoo without clicking it.
 
-**SAY:** And see this "Confirm Order" button? That's red. That stays Priya's job. Stocky prepares, Priya signs. What used to take her twenty-five minutes every morning now takes about forty seconds of reading and clicking.
+**SAY:** And see this "Confirm Order" button? That's red. That stays Sarah's job. Stocky prepares, Sarah signs. What used to take her twenty-five minutes every morning now takes about forty seconds of reading and clicking.
 
 **SHOW:** Toggle the workflow **Active** (or click **Publish**, depending on your n8n version).
 
@@ -326,7 +326,7 @@ Before we wrap up, four mistakes I see beginners make once their agent can write
 
 Mistake one: auto-confirming purchase orders in week one. It's so tempting when the test runs perfectly. Don't. Run with approvals for at least a month. Count how often you click Reject. If you're rejecting one in five, the rules aren't ready.
 
-Mistake two: forgetting incoming stock. Our formula uses quantity on hand. Priya rejected the gloves because 500 pairs were already on the way. When you're comfortable, switch from "Quantity On Hand" to Odoo's "Forecasted Quantity", which counts open purchase orders too.
+Mistake two: forgetting incoming stock. Our formula uses quantity on hand. Sarah rejected the gloves because 500 pairs were already on the way. When you're comfortable, switch from "Quantity On Hand" to Odoo's "Forecasted Quantity", which counts open purchase orders too.
 
 Mistake three: giving the Odoo key more power than it needs. Stocky's Odoo user should be able to create RFQs, not approve them or post bills. A key card only opens the doors it needs to.
 
@@ -344,8 +344,8 @@ One: the traffic-light rule. Reading is green, drafting is amber, committing is 
 
 Two: human-in-the-loop is just one block. "Send message and wait for response" turns any workflow into "prepare, then ask the manager to sign".
 
-Three: guardrails beat cleverness. A simple order formula, a two-thousand-dollar rule for Mr. Kapoor and a sanity check would have stopped that ten-times-too-big order cold.
+Three: guardrails beat cleverness. A simple order formula, a two-thousand-dollar rule for Mr. Harrison and a sanity check would have stopped that ten-times-too-big order cold.
 
-Your activity for this video has two parts. First, open **V07_Activity_ReorderSimulator.xlsx**. You'll play Stocky and Priya for a morning: ten SKUs, the formulas already built, and you decide Approve or Reject for each one. There's a tab where you'll try to recreate the glove disaster and see if the sanity check catches it. Second, fill in **V07_Activity_ApprovalRules.docx**, the Approval Rules Designer. You'll write down which actions are green, amber and red at your own company, and who signs what. That document becomes Stocky's rulebook for your business. Then take the quiz, **V07_Quiz**, to lock it in.
+Your activity for this video has two parts. First, open **V07_Activity_ReorderSimulator.xlsx**. You'll play Stocky and Sarah for a morning: ten SKUs, the formulas already built, and you decide Approve or Reject for each one. There's a tab where you'll try to recreate the glove disaster and see if the sanity check catches it. Second, fill in **V07_Activity_ApprovalRules.docx**, the Approval Rules Designer. You'll write down which actions are green, amber and red at your own company, and who signs what. That document becomes Stocky's rulebook for your business. Then take the quiz, **V07_Quiz**, to lock it in.
 
-So far Stocky only sees what's inside Odoo. But your biggest risks often come from outside the building: a typhoon near Shenzhen, a week-long holiday in China, the rupee moving overnight. In the next video, "Seeing Beyond the ERP", we'll connect Stocky to free weather, currency and holiday APIs, and it'll build a supplier risk score that tells Priya, in plain English, which orders to place early. See you there.
+So far Stocky only sees what's inside Odoo. But your biggest risks often come from outside the building: a typhoon near Shenzhen, a week-long holiday in China, the peso moving overnight. In the next video, "Seeing Beyond the ERP", we'll connect Stocky to free weather, currency and holiday APIs, and it'll build a supplier risk score that tells Sarah, in plain English, which orders to place early. See you there.

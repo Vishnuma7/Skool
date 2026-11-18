@@ -23,16 +23,16 @@ Answer all 10 questions, then check yourself with the Answer Key at the end. Aim
 - A) "done"
 - B) "RFQ"
 - C) "Below reorder point 80. RFQ P00027 for 200 boxes from Apex Fasteners."
-- D) "Approved by Priya on Tuesday because stock was low and supplier ok"
+- D) "Approved by Sarah on Tuesday because stock was low and supplier ok"
 
 **4. True or False: You only need to log the approved orders. Rejections are not important.**
 - A) True
 - B) False
 
-**5. Priya wants the Monday Report to arrive at 7 am Pune time, but it keeps arriving at 5:30 pm. What should she do?**
-- A) Change the Schedule Trigger to 5:30 pm
-- B) Set the workflow's Timezone to Asia/Kolkata in the workflow Settings
-- C) Ask Mr. Kapoor to read it in the evening
+**5. Sarah wants the Monday Report to arrive at 7 am Columbus time, but it keeps arriving at 2 am. What should she do?**
+- A) Change the Schedule Trigger to 2 am
+- B) Set the workflow's Timezone to America/New_York in the workflow Settings
+- C) Ask Mr. Harrison to read it in the evening
 - D) Delete the Schedule Trigger and run it by hand
 
 **6. In the Monday Report workflow, why do we add an Aggregate node after reading the 10 products from Odoo?**
@@ -53,7 +53,7 @@ Answer all 10 questions, then check yourself with the Answer Key at the end. Aim
 - C) Because Gmail needs the formula to send HTML
 - D) It isn't needed; it only makes the prompt longer
 
-**9. Mr. Kapoor needs to see the Google Sheets dashboard. Priya is worried he might accidentally delete rows from the Decision Log. What should she do?**
+**9. Mr. Harrison needs to see the Google Sheets dashboard. Sarah is worried he might accidentally delete rows from the Decision Log. What should she do?**
 - A) Share the sheet with him as Editor
 - B) Email him a screenshot every month instead
 - C) Share the sheet with him as Viewer, so he can look but not change anything
@@ -63,7 +63,7 @@ Answer all 10 questions, then check yourself with the Answer Key at the end. Aim
 - A) Turn off the daily reorder check permanently
 - B) Raise the reorder point to 1,000 drums
 - C) Add a rule: check the Decision Log first and don't suggest a second RFQ for a SKU that already has an open RFQ within its lead time
-- D) Ask Ravi to delete the extra RFQs every afternoon
+- D) Ask Tom to delete the extra RFQs every afternoon
 
 ---
 
@@ -77,7 +77,7 @@ Answer all 10 questions, then check yourself with the Answer Key at the end. Aim
 
 **4. B (False).** A "no" is a decision too. Rejections and holds are often what people ask about later ("why didn't we order?"), so log every branch.
 
-**5. B.** n8n may run in a different time zone. Set the workflow's Timezone in Settings so "7 am" means 7 am in Pune.
+**5. B.** n8n may run in a different time zone. Set the workflow's Timezone in Settings so "7 am" means 7 am in Columbus.
 
 **6. C.** n8n runs the next step once per item. Aggregate puts the 10 "loose receipts" into one "envelope", so the AI Agent runs once and writes one report.
 

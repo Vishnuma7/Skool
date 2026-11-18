@@ -23,11 +23,11 @@
 
 ## [ON CAMERA] Intro: The Intern Needs a Desk (00:00–02:00)
 
-Monday, 8:10 in the morning, BrightLeaf Supplies, Pune.
+Monday, 8:10 in the morning, BrightLeaf Supplies, Columbus, Ohio.
 
-Priya has a coffee in one hand and a spreadsheet in the other. She's chasing three suppliers, Mr. Kapoor wants the stock report by eleven, and Ravi from the warehouse has just told her the pallet jack wheels are almost gone. Again.
+Sarah has a coffee in one hand and a spreadsheet in the other. She's chasing three suppliers, Mr. Harrison wants the stock report by eleven, and Tom from the warehouse has just told her the pallet jack wheels are almost gone. Again.
 
-Here's the thing. Over the last four videos, Priya learned everything she needs to understand. What an ERP is. What an API is: the waiter. What a database is: the super-organised Excel workbook. But understanding doesn't save her twelve hours a week. Building does.
+Here's the thing. Over the last four videos, Sarah learned everything she needs to understand. What an ERP is. What an API is: the waiter. What a database is: the super-organised Excel workbook. But understanding doesn't save her twelve hours a week. Building does.
 
 And today, we start building.
 
@@ -49,9 +49,9 @@ If you've never touched a tool like this, that's completely normal. Nothing we d
 
 **ON-SCREEN TEXT:** n8n = your workflow builder. Free trial, no credit card needed.
 
-**SHOW:** The sign-up form: first name, last name, email, password. Fill in "Priya", "Sharma", a work email, and a password.
+**SHOW:** The sign-up form: first name, last name, email, password. Fill in "Sarah", "Mitchell", a work email, and a password.
 
-**SAY:** Fill in your name, your email and a password. I'm signing up as Priya. Use an email you actually check, because n8n will send you a confirmation link. The cloud trial is free for fourteen days and you don't need a credit card to start.
+**SAY:** Fill in your name, your email and a password. I'm signing up as Sarah. Use an email you actually check, because n8n will send you a confirmation link. The cloud trial is free for fourteen days and you don't need a credit card to start.
 
 **SHOW:** The "Choose your account name" screen. Type `brightleaf` and the address preview shows `brightleaf.app.n8n.cloud`.
 
@@ -107,7 +107,7 @@ If you've never touched a tool like this, that's completely normal. Nothing we d
 
 **ON-SCREEN TEXT:** Trigger = doorbell | Node = one step | Connection = "and then" | Execution = one run, saved in the logbook
 
-> PAUSE & THINK: Think of one task you do every week. What would ring the doorbell, and what would the first two steps be? For example: "Every Monday at 8 (trigger) → read stock from the ERP (node 1) → email the low items to Ravi (node 2)."
+> PAUSE & THINK: Think of one task you do every week. What would ring the doorbell, and what would the first two steps be? For example: "Every Monday at 8 (trigger) → read stock from the ERP (node 1) → email the low items to Tom (node 2)."
 
 **SHOW:** Back to "Editor", delete the "No Operation" node (select it and press Delete). Press Cmd+S / Ctrl+S.
 
@@ -199,9 +199,9 @@ At the time of recording, a Claude Sonnet model costs about two dollars per mill
 
 Our hello world email? About three hundred and fifty tokens in and two hundred out. That works out to around three tenths of a cent. You could write three hundred supplier emails for one dollar.
 
-When Stocky starts reading Odoo next video, each question costs more, because the stock data goes in too. Think two to four cents per question. Say Priya asks Stocky twenty questions a day, twenty-two working days a month. That's four hundred and forty questions, at three cents each, about thirteen dollars a month.
+When Stocky starts reading Odoo next video, each question costs more, because the stock data goes in too. Think two to four cents per question. Say Sarah asks Stocky twenty questions a day, twenty-two working days a month. That's four hundred and forty questions, at three cents each, about thirteen dollars a month.
 
-Now compare that to the twelve hours a week Priya spends copying numbers into Excel. Even if Stocky saves her just four of those hours, the maths isn't close.
+Now compare that to the twelve hours a week Sarah spends copying numbers into Excel. Even if Stocky saves her just four of those hours, the maths isn't close.
 
 And there are cheaper brains. Claude Haiku is a smaller, faster model that costs a fraction of Sonnet. It's perfect for simple jobs like formatting emails. In your activity file, the Cost Estimator lets you plug in your own numbers and compare both. And remember the safety rail we just set: prepaid credits and a monthly limit. You stay in control.
 
@@ -227,7 +227,7 @@ Facts:
 - Expected delivery date was 3 days ago and we have not received any shipping update
 - Our stock is down to 18 sets and our reorder point is 25
 Ask for the tracking number and a confirmed new delivery date by Friday.
-Sign it as: Priya Sharma, Procurement & Inventory Manager, BrightLeaf Supplies, Pune.
+Sign it as: Sarah Mitchell, Procurement & Inventory Manager, BrightLeaf Supplies, Columbus, Ohio.
 ```
 
 **SAY:** Here's the instruction. Notice how I wrote it. I didn't just say "write an email to a supplier". I gave the facts like a good manager briefing an intern: the PO number, P zero zero zero two seven. The item, BL-1005, pallet jack wheels, forty sets. The fact that it's three days late. Our stock: eighteen sets against a reorder point of twenty-five. And exactly what I want back: a tracking number and a new date by Friday. The more specific your brief, the better the intern's work.
@@ -235,7 +235,7 @@ Sign it as: Priya Sharma, Procurement & Inventory Manager, BrightLeaf Supplies, 
 **SHOW:** Scroll down to "Options", click "Add Option", choose "System Message". Replace the default text with:
 
 ```
-You are Stocky, the procurement assistant at BrightLeaf Supplies, an industrial and packaging supplies distributor in Pune, India.
+You are Stocky, the procurement assistant at BrightLeaf Supplies, an industrial and packaging supplies distributor in Columbus, Ohio, USA.
 You write clear, polite, professional emails to suppliers.
 Keep every email under 120 words, include a subject line, and never invent facts that are not in the request.
 ```
@@ -275,12 +275,12 @@ Could you please share the tracking number and confirm a new delivery date by Fr
 Thank you for your help.
 
 Best regards,
-Priya Sharma
+Sarah Mitchell
 Procurement & Inventory Manager
-BrightLeaf Supplies, Pune
+BrightLeaf Supplies, Columbus, Ohio
 ```
 
-**SAY:** Let's open the AI Agent node and look at the output. Read that. A subject line with the PO number. Polite. It explains why it's urgent, using our real numbers, eighteen against twenty-five. It asks for exactly two things. And it's signed properly. That took about four seconds and cost about a third of a cent. Priya used to spend ten minutes on emails like this, several times a day.
+**SAY:** Let's open the AI Agent node and look at the output. Read that. A subject line with the PO number. Polite. It explains why it's urgent, using our real numbers, eighteen against twenty-five. It asks for exactly two things. And it's signed properly. That took about four seconds and cost about a third of a cent. Sarah used to spend ten minutes on emails like this, several times a day.
 
 **ON-SCREEN TEXT:** ~4 seconds | ~$0.003 | 0 lines of code
 
@@ -300,9 +300,9 @@ BrightLeaf Supplies, Pune
 
 **SAY:** Over to Odoo, our central filing cabinet. Odoo needs its own key card too. In some versions, the key menu is hidden until you switch on developer mode. Don't let the name scare you. It changes no data, it just shows a few extra menus. Go to Settings, scroll all the way to the bottom, and click "Activate the developer mode". The page reloads, and you'll see a little bug icon at the top. That's how you know it's on.
 
-**SHOW:** In Settings, click "Users & Companies" in the top menu, then "Users". Click your own user (for example "Priya Sharma" or "Administrator"). Click the "Account Security" tab. Click "New API Key".
+**SHOW:** In Settings, click "Users & Companies" in the top menu, then "Users". Click your own user (for example "Sarah Mitchell" or "Administrator"). Click the "Account Security" tab. Click "New API Key".
 
-**SAY:** Now, in Settings, click "Users and Companies", then "Users". Click your own user. I'm logged in as Priya. Open the tab called "Account Security". And there's the button: "New API Key". Click it.
+**SAY:** Now, in Settings, click "Users and Companies", then "Users". Click your own user. I'm logged in as Sarah. Open the tab called "Account Security". And there's the button: "New API Key". Click it.
 
 **SHOW:** A "Security Control" pop-up asks for your password. Enter it and click "Confirm Password". Then a "New API Key" dialog asks for a description. Type `n8n Stocky`. If a duration option appears, choose the longest one your plan allows for the course (for example 3 months) and note the date. Click "Generate Key". A key appears with the warning that it won't be shown again.
 
@@ -316,7 +316,7 @@ BrightLeaf Supplies, Pune
 
 **SHOW:** Fill in, one field at a time, highlighting each:
 - Site URL: `https://brightleaf-demo.odoo.com`
-- Username: the email you log in to Odoo with, for example `priya@brightleaf-demo.com`
+- Username: the email you log in to Odoo with, for example `sarah@brightleaf-demo.com`
 - Password or API Key: paste the Odoo API key
 - Database Name: `brightleaf-demo`
 

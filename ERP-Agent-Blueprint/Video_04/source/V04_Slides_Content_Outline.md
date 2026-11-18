@@ -42,9 +42,9 @@
 - **Suggested visual:** Three icon tiles: a price tag "Free", a cloud "Online", an eye "Transparent". A small Airtable logo-free icon labelled "Alternative".
 
 ## Slide 7: The Supplier Who Existed Three Times (story)
-- "PackRight Industries" · "Pack Right Ind." · "PACKRIGHT (Mumbai)"
+- "PackRight Industries" · "Pack Right Ind." · "PACKRIGHT (Chicago)"
 - Looked like 18% of packaging spend → really **41%**
-- Fix: a unique ID, like a passport/Aadhaar number → SUP-002
+- Fix: a unique ID, like a passport number → SUP-002
 - Never make your agent guess who you mean
 - **Suggested visual:** Three name tags with different spellings merging into one ID badge reading "SUP-002", with a pie chart growing from 18% to 41%.
 
@@ -57,7 +57,7 @@
 - **Pause & Think:** Why do SUP-004 and SUP-006 share a city but have different IDs?
 
 ## Slide 9: Guard Dogs for Your Data
-- Data > Data validation > Dropdown (IN, CN, AE; INR, CNY, AED)
+- Data > Data validation > Dropdown (US, MX, CN, AE; USD, MXN, CNY, AED)
 - Insert > Checkbox for "Active"
 - Mark old records inactive; never delete them
 - **Suggested visual:** A cartoon guard dog sitting next to a dropdown arrow, with a ticked/unticked checkbox pair.
@@ -70,7 +70,7 @@
 
 ## Slide 11: One Fact per Cell & Data Types
 - "18" = a number you can calculate with; "18 sets - urgent!" = text
-- Dates in yyyy-mm-dd (03/04 means different things in India and the USA)
+- Dates in yyyy-mm-dd (03/04 means different things in Mexico and the USA)
 - Formula: `=IF(D2<=F2,"REORDER","OK")` → BL-1005 REORDER, BL-1002 REORDER, BL-1001 OK
 - **Suggested visual:** A "bad cell vs good cells" comparison: one crowded cell splitting into three neat cells (Qty | Unit | Note), plus a calendar showing 03/04 with two different readings.
 

@@ -29,7 +29,7 @@ Choose the best answer for each question. The answer key with explanations is at
 - A. `18 sets - urgent!`
 - B. `approx 18`
 - C. `18`
-- D. `18 (see Ravi's email)`
+- D. `18 (see Tom's email)`
 
 **5. Why are merged cells dangerous in a data table?**
 - A. They make the file larger
@@ -53,13 +53,13 @@ Choose the best answer for each question. The answer key with explanations is at
 - C. 12, REORDER
 - D. 200, REORDER
 
-**9. Scenario: BrightLeaf stops buying from Gulf Lubricants (SUP-005). Priya wants Stocky to stop checking them. What should she do in the Suppliers table?**
+**9. Scenario: BrightLeaf stops buying from Gulf Lubricants (SUP-005). Sarah wants Stocky to stop checking them. What should she do in the Suppliers table?**
 - A. Delete the SUP-005 row so it disappears
 - B. Untick the "Active" checkbox for SUP-005, so the history still links to it but Stocky skips it
 - C. Colour the row grey
 - D. Change the Supplier_ID to "OLD"
 
-**10. Scenario: Priya's Stock_Log has a formula `=IF(D2<=F2,"REORDER","OK")`, but row 7 shows an error. Cell D7 contains "31 - urgent!!" for BL-1007 Hydraulic Oil (reorder point 40). What is the best fix?**
+**10. Scenario: Sarah's Stock_Log has a formula `=IF(D2<=F2,"REORDER","OK")`, but row 7 shows an error. Cell D7 contains "31 - urgent!!" for BL-1007 Hydraulic Oil (reorder point 40). What is the best fix?**
 - A. Delete the formula
 - B. Put 31 in D7 and move "urgent" into the Note column
 - C. Make D7 bold so the formula notices it
@@ -71,7 +71,7 @@ Choose the best answer for each question. The answer key with explanations is at
 
 **1. B. A super-organised Excel workbook.** Tables are like sheets, rows are records (one thing each) and columns are fields (one type of information each). You already know most of this from Excel.
 
-**2. C. One record: a single stock check.** A log adds a new row for every check and never overwrites old ones, like a ship's logbook. That's how Priya can see trends later.
+**2. C. One record: a single stock check.** A log adds a new row for every check and never overwrites old ones, like a ship's logbook. That's how Sarah can see trends later.
 
 **3. C. Names vary; IDs don't.** PackRight existed three times under different spellings, which hid 41% of packaging spend. A unique ID, like a passport number, keeps every record pointing to the same supplier.
 
@@ -81,7 +81,7 @@ Choose the best answer for each question. The answer key with explanations is at
 
 **6. B. False.** Agents read values, not colours. If something is urgent, write "urgent" in a Note column.
 
-**7. C. 2026-11-16.** "03/04" means 3 April in India and 4 March in the USA. Year-month-day is unambiguous for humans and machines, and it sorts in the right order.
+**7. C. 2026-11-16.** "03/04" means 3 April in Mexico (and most of the world) and 4 March in the USA. Year-month-day is unambiguous for humans and machines, and it sorts in the right order.
 
 **8. B. 260, OK.** 21 cartons × 12 rolls + 8 loose rolls = 260 rolls, which is above the 200 reorder point. Reading "21" as rolls would trigger an unnecessary order of about 200 rolls (about $1,840).
 

@@ -7,11 +7,11 @@
 ## Slide 1: Title
 - **Title:** APIs Explained Like You're Ordering at a Restaurant
 - **Subtitle:** The ERP Agent Blueprint · Video 3
-- **Suggested visual:** A friendly waiter carrying a tray. On the tray is a small "Shenzhen weather" card and a "USD → INR" card.
+- **Suggested visual:** A friendly waiter carrying a tray. On the tray is a small "Shenzhen weather" card and a "USD → CNY / MXN" card.
 
 ## Slide 2: The Copy-Paste Problem (Intro hook)
-- Priya copied numbers from websites into Excel **31 times** in one month
-- USD→INR rate every Monday, Shenzhen weather every week, supplier holidays
+- Sarah copied numbers from websites into Excel **31 times** in one month
+- USD→CNY and USD→MXN rates every Monday, Shenzhen weather every week, supplier holidays
 - About 4–5 minutes each: **2+ hours a month**
 - **Suggested visual:** A tally chart of 31 marks next to a browser window, an Excel sheet and an arrow labelled "copy… paste… repeat".
 
@@ -20,7 +20,7 @@
 - Two live API calls: weather and currency
 - Reading JSON like a shopping list
 - GET vs POST, status codes, API keys
-- **Suggested visual:** A 5-step path / road map with icons (waiter, cloud with rain, rupee coin, receipt, key card).
+- **Suggested visual:** A 5-step path / road map with icons (waiter, cloud with rain, peso coin, receipt, key card).
 
 ## Slide 4: An API Is a Waiter
 - You (Stocky) never walk into the kitchen (Odoo)
@@ -44,7 +44,7 @@
 ## Slide 7: The Shenzhen Rainstorm (story)
 - 60 sets of BL-1005 Pallet Jack Wheels, Global Lift Parts, 21-day lead time
 - Storm → port slowed for 3 days → shipment 9 days late
-- Warning was public on Sunday; Priya learned about it the next Monday by email
+- Warning was public on Sunday; Sarah learned about it the next Monday by email
 - With an API check: a **4-day head start**
 - **Suggested visual:** A timeline: Sunday "Warning public" → Tuesday "Storm" → following Monday "Supplier email", with a second, green timeline showing "Stocky alert: Sunday".
 
@@ -69,26 +69,26 @@
 ## Slide 11: Change the Order, Change the Dish
 - Swap latitude/longitude to 25.20, 55.27 → Dubai (Gulf Lubricants, BL-1007)
 - Same request, different details = 5 supplier cities checked in seconds
-- **Suggested visual:** A world map with pins on Shenzhen, Dubai, Chennai, Mumbai and Pune, each pin with a little weather icon.
+- **Suggested visual:** A world map with pins on Shenzhen, Dubai, Monterrey, Chicago and Columbus, each pin with a little weather icon.
 
 ## Slide 12: Live Call #2: The Currency Waiter
-- `api.frankfurter.app/latest?from=USD&to=INR,CNY,AED`
-- The address moves to frankfurter.**dev** (a forwarding note)
-- Test day: 1 USD = 93.93 INR, 6.67 CNY
-- 60 × $38 = $2,280 ≈ ₹2,14,000; at 95 INR/USD it costs ~₹2,400 more
-- **Suggested visual:** The JSON response, with a calculator graphic showing the price impact for BL-1005.
+- `api.frankfurter.app/latest?from=USD&to=CNY,MXN,AED`
+- The address moves to frankfurter.**dev**/v1 (a forwarding note). New home: `api.frankfurter.dev/v1/latest?from=USD&to=CNY,MXN`
+- Test day (17 Nov): 1 USD = 6.6661 CNY, 18.4639 MXN
+- Global Lift Parts bills in yuan: 60 × $38 = $2,280 ≈ ¥15,200. If the yuan strengthens 3% (≈6.47 per $), the same ¥15,200 costs ≈ $2,348: **$68 more**, same price
+- **Suggested visual:** The JSON response, with a calculator graphic showing the dollar impact of a stronger yuan on BL-1005.
 
 ## Slide 13: Where's the Dirham?
 - We asked for 3 currencies, got 2
 - The kitchen (European Central Bank data) doesn't stock AED
 - AED is pegged at about 3.67 per USD
 - **Lesson:** always check that what came back matches what you asked for
-- **Suggested visual:** An order slip with three ticks expected (INR, CNY, AED) and a plate with only two items; AED crossed out with a question mark.
+- **Suggested visual:** An order slip with three ticks expected (CNY, MXN, AED) and a plate with only two items; AED crossed out with a question mark.
 
 ## Slide 14: GET vs POST: Asking vs Submitting
 - **GET** = asking ("How many BL-1002 boxes do we have?"), safe, changes nothing
 - **POST** = submitting ("Create a PO for 1,820 boxes from PackRight"), creates or changes something
-- Rule: Stocky can GET freely; important POSTs need Priya's approval
+- Rule: Stocky can GET freely; important POSTs need Sarah's approval
 - **Suggested visual:** Split screen: left, a customer asking the waiter a question (speech bubble); right, a customer handing over a signed order slip with a manager's signature stamp.
 - **Pause & Think:** GET or POST? Lead time check · Update reorder point · Reminder email · Read sales orders
 

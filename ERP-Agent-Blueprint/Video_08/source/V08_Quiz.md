@@ -7,10 +7,10 @@ Answer each question, then check yourself against the Answer Key at the end. Tak
 
 ## Questions
 
-**1. Why did Priya's LED lights arrive eleven days late, even though Odoo said there was "plenty of time"?**
+**1. Why did Sarah's LED lights arrive eleven days late, even though Odoo said there was "plenty of time"?**
 - A) Odoo had the wrong unit cost
 - B) Odoo didn't know about outside events: Golden Week factory closures and a storm that closed the port
-- C) Priya typed the wrong quantity
+- C) Sarah typed the wrong quantity
 - D) The supplier's API key had expired
 
 **2. What do Open-Meteo, Frankfurter and Nager.Date have in common?**
@@ -25,10 +25,10 @@ Answer each question, then check yourself against the Answer Key at the end. Tak
 - C) The number of days in the forecast
 - D) The supplier's Odoo vendor ID
 
-**4. Frankfurter doesn't serve the UAE dirham (AED), so Stocky only asks it for INR and CNY. Why is that OK for the Dubai supplier?**
+**4. Frankfurter doesn't serve the UAE dirham (AED), so Stocky only asks it for CNY and MXN. Why is that OK for the Dubai supplier?**
 - A) The API is broken, so we should stop using it for every currency
 - B) The dirham is pegged to the US dollar at about 3.67, so its dollar currency risk is about zero
-- C) AED is the same as INR
+- C) AED is the same as the Mexican peso
 - D) The dirham only trades on weekends
 
 **5. Using the course's rules, what is the risk band for a supplier scoring Weather 1, Holiday 2, Currency 1, Lead time 1?**
@@ -43,13 +43,13 @@ Answer each question, then check yourself against the Answer Key at the end. Tak
 - C) The Method (GET)
 - D) The workflow name
 
-**7. Scenario: Priya opens `https://date.nager.at/api/v3/PublicHolidays/2026/IN` and gets a blank page. What should she conclude, and do?**
-- A) India has no public holidays in 2026, so the Holiday score for Indian suppliers is always 0
-- B) Nager.Date doesn't cover India; she should give Stocky a short written list of Indian holidays in its instructions
+**7. Scenario: Sarah opens `https://date.nager.at/api/v3/PublicHolidays/2026/AE` and gets a blank page. What should she conclude, and do?**
+- A) The UAE has no public holidays in 2026, so the Holiday score for Gulf Lubricants is always 0
+- B) Nager.Date doesn't cover the UAE; she should give Stocky a short written list of UAE holidays (like National Day, 2–3 Dec) in its instructions
 - C) Her internet is down
 - D) She needs to buy an API key
 
-**8. Scenario: Stocky says "Shenzhen BrightTech: HIGH risk (8/10). Golden Week holiday + typhoon warning; order LED lights 10 days earlier." What is the BEST next step for Priya?**
+**8. Scenario: Stocky says "Shenzhen BrightTech: HIGH risk (8/10). Golden Week holiday + typhoon warning; order LED lights 10 days earlier." What is the BEST next step for Sarah?**
 - A) Immediately triple the LED order without checking anything
 - B) Ignore it, because AI can be wrong
 - C) Treat it as guidance: check stock cover, confirm the factory's closure dates with the supplier, check the official weather service, then decide
@@ -83,7 +83,7 @@ Answer each question, then check yourself against the Answer Key at the end. Tak
 
 **7. B.** Blank means "no data for this country", not "no holidays". Good agents work around gaps with written rules instead of guessing.
 
-**8. C.** The score is guidance, not truth. It tells Priya where to look today; she combines it with what she knows and makes the call.
+**8. C.** The score is guidance, not truth. It tells Sarah where to look today; she combines it with what she knows and makes the call.
 
 **9. B (False).** Forecasts are guesses, holiday data has gaps and the rules are simple on purpose. The score points your attention; it doesn't predict the future. Review it monthly against what actually happened.
 

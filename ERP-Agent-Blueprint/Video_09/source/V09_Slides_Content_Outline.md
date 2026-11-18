@@ -11,15 +11,15 @@
 - **Suggested visual:** Stocky (friendly robot/intern icon) holding a notebook in one hand and an envelope marked "Monday Report" in the other.
 
 ### Slide 2: The Monday Morning Problem
-- Mr. Kapoor: "Who approved the extra stretch wrap, and why?"
-- Priya can't find the answer: inbox, WhatsApp, memory
+- Mr. Harrison: "Who approved the extra stretch wrap, and why?"
+- Sarah can't find the answer: inbox, WhatsApp, memory
 - The Monday report takes ~3 hours a week = 150+ hours a year
-- **Suggested visual:** Priya at her desk surrounded by sticky notes, email icons and a WhatsApp bubble with a big red question mark; a clock showing 9:40 am.
+- **Suggested visual:** Sarah at her desk surrounded by sticky notes, email icons and a WhatsApp bubble with a big red question mark; a clock showing 9:40 am.
 
 ### Slide 3: What You'll Build Today
 - A "Decision Log" tab that Stocky writes into automatically
 - Stocky's chat can answer "what did we decide?"
-- The Monday Report: every Monday 7 am, emailed to Mr. Kapoor
+- The Monday Report: every Monday 7 am, emailed to Mr. Harrison
 - A simple dashboard chart linked from the email
 - **Suggested visual:** Three-step strip: Notebook icon → Robot reading notebook → Envelope landing in an inbox at 7:00.
 
@@ -47,14 +47,14 @@
 
 ### Slide 8: Log Every Branch
 - Approved → "RFQ created" (qty = reorder point × 2 − on hand)
-- Rejected → "Rejected" + Priya's reason
+- Rejected → "Rejected" + Sarah's reason
 - Risk alerts (score > 7) → "Risk alert"
 - **Suggested visual:** Decision tree diagram with three branches each ending at the same notebook icon.
 
 ### Slide 9: Memory in Action
 - New tool in the chat agent: Google Sheets "Get Rows" on the Decision Log
 - Q: "Did we order stretch wrap recently? Who approved it?"
-- A: 9 Nov, 250 rolls, stock 150 vs 200, approved by Priya, risk 3.1
+- A: 9 Nov, 250 rolls, stock 150 vs 200, approved by Sarah, risk 3.1
 - **Suggested visual:** Chat bubble mock-up showing the question and Stocky's answer, with a "10 seconds" stopwatch badge.
 
 ### Slide 10: Story: The Order That Happened Twice (Four Times)
@@ -64,7 +64,7 @@
 - **Suggested visual:** Four identical purchase-order papers stacked, a calendar Mon–Thu, and a dusty shelf of boxes.
 
 ### Slide 11: The Monday Report Recipe Card
-- Schedule Trigger (Mon, 7:00, Asia/Kolkata)
+- Schedule Trigger (Mon, 7:00, America/New_York)
 - Odoo products → Decision Log (last 7 days) → Suppliers + risk scores
 - Aggregate + Merge → AI Agent → Gmail
 - **Suggested visual:** Left-to-right flow diagram with 6 Lego-block nodes; a doorbell icon on the first block and an envelope on the last.

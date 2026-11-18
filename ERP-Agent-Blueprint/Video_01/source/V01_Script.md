@@ -11,7 +11,7 @@
 **Before recording, prepare:**
 - The finished Stocky workflow open in n8n (canvas zoomed to fit, all nodes visible, last run successful)
 - The BrightLeaf Odoo database open on **Inventory > Products > Products** (list view), with starting stock loaded so four products are below their reorder point: BL-1002 (1,180), BL-1004 (420), BL-1005 (18), BL-1007 (31)
-- Gmail open on Priya's inbox with Stocky's Monday 7:00 AM email already received (subject: "Stocky: Monday Stock Check - 4 items need attention")
+- Gmail open on Sarah's inbox with Stocky's Monday 7:00 AM email already received (subject: "Stocky: Monday Stock Check - 4 items need attention")
 - Google Sheet "Stocky_Decision_Log" open in a tab with last week's rows
 - claude.ai open in a fresh chat (no project, no files attached)
 - Slide/graphic: "Chatbot vs Automation vs Agent" comparison table, and the "5 parts of an agent" diagram
@@ -28,7 +28,7 @@ Let me start with a number. Five hundred and seventy-six.
 
 That's how many hours a year one procurement manager I'll introduce you to spends copying numbers out of her ERP, pasting them into Excel, chasing suppliers on email and building the same Monday stock report, week after week. Twelve hours a week, forty-eight working weeks a year. That's more than fourteen full working weeks. Three and a half months of a smart, experienced professional's year, spent being a human copy-paste machine.
 
-Her name is Priya Sharma. She runs procurement and inventory at a company called BrightLeaf Supplies, a distributor of industrial and packaging supplies with a warehouse in Pune. Priya isn't real, but I promise you've met her. Maybe you are her.
+Her name is Sarah Mitchell. She runs procurement and inventory at a company called BrightLeaf Supplies, a distributor of industrial and packaging supplies with a warehouse in Columbus, Ohio. Sarah isn't real, but I promise you've met her. Maybe you are her.
 
 Here's what this course is about. By the end of these ten videos, you will have built a working AI agent that reads your ERP, checks outside data like weather and exchange rates, writes its decisions into a database and sends you an alert. And you'll do it without writing a single line of code.
 
@@ -47,12 +47,12 @@ Let's go and meet Stocky.
 **SHOW:** Gmail inbox. Highlight the unread email from Stocky, received Monday 7:00 AM. Subject: "Stocky: Monday Stock Check - 4 items need attention".
 
 **SAY:**
-It's Monday, seven in the morning. Priya hasn't even had her coffee yet, and there's already an email waiting for her. It's from Stocky. Let's open it.
+It's Monday, seven in the morning. Sarah hasn't even had her coffee yet, and there's already an email waiting for her. It's from Stocky. Let's open it.
 
 **SHOW:** Open the email. The body reads:
-"Good morning Priya. I checked all 10 active products in Odoo at 6:55 AM. 4 are below their reorder point:
-1. BL-1002 Corrugated Shipping Box 18x12x10: 1,180 on hand, reorder point 1,500. Suggest 1,820 boxes from PackRight Industries (Mumbai). Est. USD 1,547.
-2. BL-1004 Industrial Safety Gloves: 420 pairs on hand, reorder point 600. Suggest 780 pairs from SafeHands Co. (Chennai). Est. USD 1,872.
+"Good morning Sarah. I checked all 10 active products in Odoo at 6:55 AM. 4 are below their reorder point:
+1. BL-1002 Corrugated Shipping Box 18x12x10: 1,180 on hand, reorder point 1,500. Suggest 1,820 boxes from PackRight Industries (Chicago). Est. USD 1,547.
+2. BL-1004 Industrial Safety Gloves: 420 pairs on hand, reorder point 600. Suggest 780 pairs from SafeHands Co. (Monterrey). Est. USD 1,872.
 3. BL-1005 Pallet Jack Wheels: 18 on hand, reorder point 25. Suggest 32 sets from Global Lift Parts (Shenzhen). Est. USD 1,216. RISK: heavy rain forecast in Shenzhen this week and a public holiday in China next week. Lead time is already 21 days. Recommend ordering today.
 4. BL-1007 Hydraulic Oil 20L: 31 drums on hand, reorder point 40. Suggest 49 drums from Gulf Lubricants (Dubai). Est. USD 2,646.
 Total suggested spend: USD 7,281. Draft RFQs are ready in Odoo. [Approve] [Decline]"
@@ -62,45 +62,45 @@ Total suggested spend: USD 7,281. Draft RFQs are ready in Odoo. [Approve] [Decli
 **SAY:**
 This is the whole course in one email.
 
-Stocky looked inside BrightLeaf's ERP and checked all ten products. It found four that have dropped below their reorder point. For each one, it tells Priya how many are on hand, what the reorder point is, who the supplier is, how much to order and roughly what it costs.
+Stocky looked inside BrightLeaf's ERP and checked all ten products. It found four that have dropped below their reorder point. For each one, it tells Sarah how many are on hand, what the reorder point is, who the supplier is, how much to order and roughly what it costs.
 
 But look at number three, the pallet jack wheels. Stocky didn't just say "you're low". It noticed that the supplier is in Shenzhen, it checked the weather there and saw heavy rain coming, it checked the calendar and saw a public holiday in China next week, and it knows the lead time is already twenty-one days. So it says: order this one today. That's not a report. That's a colleague giving you advice.
 
-And at the bottom, two buttons. Approve. Decline. Stocky has prepared the purchase requests, but it will not send anything until Priya says yes. Hold on to that idea. It's important, and we'll come back to it.
+And at the bottom, two buttons. Approve. Decline. Stocky has prepared the purchase requests, but it will not send anything until Sarah says yes. Hold on to that idea. It's important, and we'll come back to it.
 
 **SHOW:** Switch to the n8n tab. The full Stocky workflow on the canvas: Schedule Trigger > Odoo (Get Many products) > AI Agent (with Anthropic Chat Model attached) > HTTP Request nodes (Open-Meteo, Frankfurter, Nager.Date) > Google Sheets (Append Row) > Gmail (Send and Wait for Response) > Odoo (Create RFQ).
 
 **SAY:**
 So how did that happen? This is what's behind the curtain. It's a tool called n8n, and every box you see is one step. There's no code here. You build this by dragging boxes onto the screen and filling in forms.
 
-Left to right: a timer that says "every Monday at six fifty-five AM, start". Then a box that pulls stock levels from the ERP, which for BrightLeaf is a system called Odoo. The big box in the middle is the agent, the part that thinks. These three check the weather, exchange rates and public holidays. This one writes every decision into a Google Sheet. And the last one emails Priya and waits for her click.
+Left to right: a timer that says "every Monday at six fifty-five AM, start". Then a box that pulls stock levels from the ERP, which for BrightLeaf is a system called Odoo. The big box in the middle is the agent, the part that thinks. These three check the weather, exchange rates and public holidays. This one writes every decision into a Google Sheet. And the last one emails Sarah and waits for her click.
 
 **SHOW:** Click the Google Sheets tab, "Stocky_Decision_Log". Rows show Date, SKU, On Hand, Reorder Point, Action Suggested, Risk Notes, Approved By, Approved At.
 
 **SAY:**
-Here's that record. Every Monday, every product Stocky flagged, what it suggested and who approved it. When Mr. Kapoor, BrightLeaf's operations director, asks "why did we order those wheels early?", Priya doesn't have to remember. It's written down.
+Here's that record. Every Monday, every product Stocky flagged, what it suggested and who approved it. When Mr. Harrison, BrightLeaf's operations director, asks "why did we order those wheels early?", Sarah doesn't have to remember. It's written down.
 
 **SHOW:** Back to Gmail. Click "Approve". Switch to Odoo: **Purchase > Orders > Requests for Quotation**. Four new RFQs appear in status "RFQ", one per supplier.
 
 **SAY:**
-Now watch. Priya clicks Approve. And over in Odoo, under Purchase, Requests for Quotation, there they are. Four draft requests, one for each supplier, already filled in with the right products and quantities.
+Now watch. Sarah clicks Approve. And over in Odoo, under Purchase, Requests for Quotation, there they are. Four draft requests, one for each supplier, already filled in with the right products and quantities.
 
-What used to take Priya most of her Monday morning took ninety seconds. And here's the part I want you to hear: you are going to build this. Not watch me build it. You. One piece per video. By video nine, your Stocky sends this exact email.
+What used to take Sarah most of her Monday morning took ninety seconds. And here's the part I want you to hear: you are going to build this. Not watch me build it. You. One piece per video. By video nine, your Stocky sends this exact email.
 
 ---
 
-## [ON CAMERA] Real-World Story: Priya's Monday Morning (06:30–08:00)
+## [ON CAMERA] Real-World Story: Sarah's Monday Morning (06:30–08:00)
 
 **SAY:**
-Let me tell you what Priya's Monday looked like before Stocky.
+Let me tell you what Sarah's Monday looked like before Stocky.
 
 She gets in at eight thirty. She opens Odoo, goes to the inventory report, exports it to Excel. She opens last week's spreadsheet, copies the new numbers across, and fixes the formulas that broke because someone added a column. She highlights everything below the reorder point in red. Then she emails three suppliers to ask about lead times, because last month PackRight was late.
 
-By eleven, she's ready to send Mr. Kapoor his report. And then Ravi, the warehouse lead, walks in and says, "Priya, we're out of stretch wrap. The Dubai order can't ship."
+By eleven, she's ready to send Mr. Harrison his report. And then Tom, the warehouse lead, walks in and says, "Sarah, we're out of stretch wrap. The Dubai order can't ship."
 
 How? The stretch wrap was on the report. It was red. But it was row forty-one of a sixty-row spreadsheet, and she was looking at the bolts.
 
-That's the real problem. It's not that Priya isn't good at her job. She's excellent. It's that the job asks her to be a copy machine, a calculator and an analyst at the same time, and humans are only good at one of those.
+That's the real problem. It's not that Sarah isn't good at her job. She's excellent. It's that the job asks her to be a copy machine, a calculator and an analyst at the same time, and humans are only good at one of those.
 
 An agent takes the copy machine and the calculator off her desk, so she can spend her brain on the analyst part. That's the trade we're making in this course.
 
@@ -135,14 +135,14 @@ Useful, and lots of companies have one. But it follows the rule exactly, even wh
 
 **ON-SCREEN TEXT:** Automation = a recipe card. Same steps, every time. Fast and reliable, but no judgement.
 
-**SHOW:** Switch back to the full Stocky workflow. Double-click the AI Agent node. Show the "System Message" field: "You are Stocky, BrightLeaf Supplies' inventory and procurement assistant. Check every product against its reorder point. For suppliers outside India, consider weather, currency and holidays. Never send a purchase order without Priya's approval. Explain your reasoning in plain English." Then show the Tools attached underneath: Odoo, Weather, Currency, Holidays, Google Sheets.
+**SHOW:** Switch back to the full Stocky workflow. Double-click the AI Agent node. Show the "System Message" field: "You are Stocky, BrightLeaf Supplies' inventory and procurement assistant. Check every product against its reorder point. For suppliers outside the US, consider weather, currency and holidays. Never send a purchase order without Sarah's approval. Explain your reasoning in plain English." Then show the Tools attached underneath: Odoo, Weather, Currency, Holidays, Google Sheets.
 
 **SAY:**
 And third, the agent. Let's open Stocky's brain.
 
 The best way to think about an AI agent is a smart new intern. A good intern can read, think, use the tools you give them and take action. But they need clear instructions, and they need supervision, especially in their first few weeks.
 
-Here are Stocky's instructions. In plain English. "You are Stocky, BrightLeaf Supplies' inventory and procurement assistant. Check every product against its reorder point. For suppliers outside India, consider weather, currency and holidays. Never send a purchase order without Priya's approval. Explain your reasoning in plain English."
+Here are Stocky's instructions. In plain English. "You are Stocky, BrightLeaf Supplies' inventory and procurement assistant. Check every product against its reorder point. For suppliers outside the US, consider weather, currency and holidays. Never send a purchase order without Sarah's approval. Explain your reasoning in plain English."
 
 And underneath, the tools it's allowed to use. It can look things up in Odoo. It can check the weather. It can check exchange rates and holidays. It can write to the log.
 
@@ -164,7 +164,7 @@ And one honest note. Agents are not always the right answer. If a task is the sa
 **SAY:**
 Let's test that right now. I'll give you three tasks from BrightLeaf. For each one, decide: is this a job for a chatbot, a simple automation, or an agent?
 
-> PAUSE & THINK: (1) Every night, copy yesterday's sales orders from Odoo into a Google Sheet. (2) Read 40 supplier emails and work out which shipments are delayed and what that means for next week's stock. (3) Help Priya rewrite a polite but firm email to a late supplier.
+> PAUSE & THINK: (1) Every night, copy yesterday's sales orders from Odoo into a Google Sheet. (2) Read 40 supplier emails and work out which shipments are delayed and what that means for next week's stock. (3) Help Sarah rewrite a polite but firm email to a late supplier.
 
 **SAY:**
 Pause the video and decide. I'll wait.
@@ -206,7 +206,7 @@ Part four: memory. Out of the box, an AI brain forgets everything the moment a c
 **SHOW:** Highlight "5 Human Supervisor". Show the Approve / Decline buttons from the email.
 
 **SAY:**
-And part five, the one people forget: the human supervisor. That's you. In this course, Stocky never spends BrightLeaf's money without a human click. It's like the manager's signature before the cheque goes out. The agent prepares, the human approves.
+And part five, the one people forget: the human supervisor. That's you. In this course, Stocky never spends BrightLeaf's money without a human click. It's like the manager's signature before the check goes out. The agent prepares, the human approves.
 
 > BEGINNER MISTAKE: Giving an agent full power on day one. Start with "read and suggest". Only add "draft" once you trust it, and keep "send" behind a human approval button.
 
@@ -223,7 +223,7 @@ Here's the road we'll travel together, one piece of Stocky at a time.
 
 In video two, we'll tour an ERP and set up your own free copy of Odoo, loaded with BrightLeaf's ten products. Video three explains APIs, the way software talks to software, using a restaurant. Video four makes databases friendly, using something you already know: Excel. In video five, we set up your no-code toolkit.
 
-Then the building starts. Video six: Stocky reads the ERP and answers "what's running low?". Video seven: Stocky drafts purchase orders, but only with your approval. Video eight: Stocky looks beyond the ERP at weather, currency and holidays. Video nine: memory and Mr. Kapoor's Monday report. And video ten: going live safely, plus your capstone, where you build a Stocky for your own company.
+Then the building starts. Video six: Stocky reads the ERP and answers "what's running low?". Video seven: Stocky drafts purchase orders, but only with your approval. Video eight: Stocky looks beyond the ERP at weather, currency and holidays. Video nine: memory and Mr. Harrison's Monday report. And video ten: going live safely, plus your capstone, where you build a Stocky for your own company.
 
 **SHOW:** Toolkit slide with logos: Odoo, n8n, Claude / ChatGPT, Google Sheets, Gmail, and the three free outside APIs (Open-Meteo, Frankfurter, Nager.Date).
 
@@ -243,7 +243,7 @@ One. A chatbot talks, an automation follows and an agent reasons and acts. Use e
 
 Two. Every agent has five parts: a brain, instructions, tools, memory and a human supervisor. If any one of them is missing, you don't have an agent you can trust.
 
-Three. The goal is not to replace Priya. It's to give her back those five hundred and seventy-six hours a year, so she can do the thinking that only she can do.
+Three. The goal is not to replace Sarah. It's to give her back those five hundred and seventy-six hours a year, so she can do the thinking that only she can do.
 
 Now it's your turn. Download the activity file called "V01 Activity Agent or Not". It's an Excel workbook with two parts. In the first part, you'll sort twenty real supply chain tasks into chatbot, automation, agent or "not worth automating", and the sheet will check your answers for you. In the second part, the Automation Wishlist, you'll list the repetitive tasks from your own week, and the workbook will add up how many hours a year they cost you. Most people are shocked by that number. Bring it with you, because it becomes your capstone project in video ten.
 

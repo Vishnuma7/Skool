@@ -43,7 +43,7 @@ Choose the best answer for each question. The answer key with explanations is at
 - C. Deletes old products
 - D. Emails the file to Odoo support
 
-**7. Scenario: Priya has already created BL-1001 by hand. She now wants to import the rest of the catalogue. What should she do?**
+**7. Scenario: Sarah has already created BL-1001 by hand. She now wants to import the rest of the catalogue. What should she do?**
 - A. Import all ten products, including BL-1001, then delete one later
 - B. Import only BL-1002 to BL-1010, so she doesn't create a duplicate bolt record
 - C. Type all the remaining products by hand to be safe
@@ -55,7 +55,7 @@ Choose the best answer for each question. The answer key with explanations is at
 - C. 32
 - D. 50
 
-**9. Scenario: Ravi says the stock of hydraulic oil looks wrong, and Priya wants to see every movement in and out of the warehouse for that product. Where should she look?**
+**9. Scenario: Tom says the stock of hydraulic oil looks wrong, and Sarah wants to see every movement in and out of the warehouse for that product. Where should she look?**
 - A. The product's "In / Out" smart button (the moves history), which is its paper trail
 - B. The Sales app's Quotations list
 - C. The Settings app

@@ -20,13 +20,13 @@
 
 ## [ON CAMERA] Hook + Your Question for This Video (00:00–01:00)
 
-Meet Priya. She's the Procurement and Inventory Manager at a distributor called BrightLeaf Supplies.
+Meet Sarah. She's the Procurement and Inventory Manager at a distributor called BrightLeaf Supplies.
 
-Every week, Priya spends **twelve hours** copying numbers out of her ERP into Excel. Then into emails. Then into the Monday report for her director.
+Every week, Sarah spends **twelve hours** copying numbers out of her ERP into Excel. Then into emails. Then into the Monday report for her director.
 
 Twelve hours. That's a day and a half, every single week, spent being a human copy-paste machine.
 
-Now picture this instead. It's Tuesday morning. Before Priya even opens her laptop, her phone buzzes: *"Packing gloves will run out in 6 days. I've drafted an order with SafeHands Co. Approve?"* She taps yes. Done.
+Now picture this instead. It's Tuesday morning. Before Sarah even opens her laptop, her phone buzzes: *"Packing gloves will run out in 6 days. I've drafted an order with SafeHands Co. Approve?"* She taps yes. Done.
 
 That's not science fiction. That's an AI agent connected to an ERP. And by the end of these ten minutes, you'll see one do exactly that.
 
@@ -63,19 +63,19 @@ And here's the thing: an intern locked in an empty room is useless. The magic on
 
 > PAUSE & THINK: Pause the video. Which of the three doors holds the data you copy most often: your ERP, an outside website or service, or a spreadsheet? Most people say the ERP. Let's see if that's you.
 
-## [ON CAMERA] 4 Agent Jobs That Give Priya Her Week Back (03:45–05:00)
+## [ON CAMERA] 4 Agent Jobs That Give Sarah Her Week Back (03:45–05:00)
 
-Let's get practical. Remember Priya's twelve hours? Here's where they go, and what an agent does with them.
+Let's get practical. Remember Sarah's twelve hours? Here's where they go, and what an agent does with them.
 
-**One: the daily stock check.** Before: Priya exports stock from the ERP and compares it to reorder points in Excel. About four hours a week. After: the agent checks every morning and messages her only what's running low. Close to zero.
+**One: the daily stock check.** Before: Sarah exports stock from the ERP and compares it to reorder points in Excel. About four hours a week. After: the agent checks every morning and messages her only what's running low. Close to zero.
 
-**Two: drafting purchase orders.** Before: three hours a week typing up orders. After: the agent drafts them, Priya reviews and approves. Thirty minutes.
+**Two: drafting purchase orders.** Before: three hours a week typing up orders. After: the agent drafts them, Sarah reviews and approves. Thirty minutes.
 
 **Three: supplier risk.** Before: two hours a week checking news, weather and exchange rates for suppliers in Shenzhen and Dubai. After: the agent checks those outside sources and warns her in plain English. Five minutes.
 
-**Four: the Monday report for Mr. Kapoor, her director.** Before: three hours every Monday morning. After: it lands in his inbox automatically. Ten minutes to review.
+**Four: the Monday report for Mr. Harrison, her director.** Before: three hours every Monday morning. After: it lands in his inbox automatically. Ten minutes to review.
 
-Twelve hours down to under one. And notice: Priya still approves every order. The agent prepares the cheque; the manager signs it.
+Twelve hours down to under one. And notice: Sarah still approves every order. The agent prepares the check; the manager signs it.
 
 ## [SCREEN RECORDING] Sneak Peek: Meet Stocky (05:00–06:30)
 
@@ -83,16 +83,16 @@ Twelve hours down to under one. And notice: Priya still approves every order. Th
 **SAY:** This is Stocky, BrightLeaf's inventory and procurement agent. It's the exact agent you build in the paid course. Each box is one step, like a Lego block. No code anywhere.
 
 **SHOW:** Open the chat window. Type: "What's running low and who should I order from?" Press Enter.
-**SAY:** Let me ask it the question Priya asks every single morning.
+**SAY:** Let me ask it the question Sarah asks every single morning.
 
 **SHOW:** The Odoo node lights up green, then the AI Agent node. The reply appears: 4 products below reorder point (Corrugated Shipping Boxes, Industrial Safety Gloves, Pallet Jack Wheels, Hydraulic Oil), each with its supplier and a suggested quantity.
-**SAY:** Watch. It went into Odoo, read the live stock, compared it with the reorder points, and came back in plain English. Four products are low. Safety gloves from SafeHands Co. in Chennai, pallet jack wheels from Global Lift Parts in Shenzhen, and so on. It even suggests how many to order.
+**SAY:** Watch. It went into Odoo, read the live stock, compared it with the reorder points, and came back in plain English. Four products are low. Safety gloves from SafeHands Co. in Monterrey, Mexico, pallet jack wheels from Global Lift Parts in Shenzhen, and so on. It even suggests how many to order.
 
 **SHOW:** Type: "Draft the PO for the gloves." Then switch to Gmail: an email "Stocky: approve PO for 1,000 pairs of Industrial Safety Gloves from SafeHands Co.?" with Approve / Reject buttons.
-**SAY:** Now the important bit. It doesn't just go and buy things. It drafts the purchase order and sends Priya an email asking for approval. Nothing happens until she clicks Approve.
+**SAY:** Now the important bit. It doesn't just go and buy things. It drafts the purchase order and sends Sarah an email asking for approval. Nothing happens until she clicks Approve.
 
 **SHOW:** Click Approve. Switch to Odoo, Purchase > Requests for Quotation: a new draft for SafeHands Co. Then the Google Sheet with a new row added.
-**SAY:** One click, and the draft is in Odoo, and the decision is logged in the database. That whole thing took about thirty seconds. It used to take Priya half her morning.
+**SAY:** One click, and the draft is in Odoo, and the decision is logged in the database. That whole thing took about thirty seconds. It used to take Sarah half her morning.
 **ON-SCREEN TEXT:** You build this in The ERP Agent Blueprint. No code.
 
 > PAUSE & THINK: If you had Stocky at your company tomorrow, what is the FIRST question you would ask it? Type it in the comments below this video.
@@ -125,19 +125,19 @@ Now, you might be thinking a few things. Let me answer them.
 
 "I don't have a tech background." Good. This course was built for you. If you can use Excel, you can do this. Every technical word gets an everyday analogy, just like the waiter and the filing cabinet.
 
-"I don't have time." It's four hours, split into short videos. That's less than what Priya used to lose every two days.
+"I don't have time." It's four hours, split into short videos. That's less than what Sarah used to lose every two days.
 
 "My company uses SAP, not Odoo." The ideas transfer completely. Filing cabinet, waiter, workbook: every ERP works the same way. Odoo is just the free practice kitchen where you can't break anything.
 
 ## [ON CAMERA] Outro + Your Next Step (09:00–10:00)
 
-So, remember the question from the start? **How many times this week did you copy a number out of your ERP into Excel or an email?** Drop that number in the comments right now. I read every one, and I'm curious who has the highest.
+So, remember the question from the start? **How many times this week did you copy a number out of your ERP into Excel or an email?** Drop that number in the comments. I read every one.
 
 Three things to take away. One: an AI agent is a smart intern that can read, think and act. Two: it reaches your data through three doors: the ERP, APIs and databases. Three: you stay in charge, because the agent asks before it acts.
 
-Your free homework: download the **ERP Time Drain Calculator** and the **Find Your First AI Agent** worksheet below this video. In fifteen minutes you'll know how many hours, and how much money, your copy-pasting costs each year. Post your number and your agent's one-line job description in the community.
+Your free homework: download the **ERP Time Drain Calculator** and the **Find Your First AI Agent** worksheet below this video. In fifteen minutes you'll know what your copy-pasting costs you each year. Post your number and your agent's one-line job description in the community.
 
-And if you want to actually build Stocky, The ERP Agent Blueprint is just **$49**. One time. The link is right here: **[LINK]**.
+Want to build Stocky? Upgrade to the Agentic SCM paid tier for just **$49**. It unlocks The ERP Agent Blueprint and all the other paid content in the community. Only **$49**. The link is right here: **[LINK]**.
 
 See you inside. Let's give you your week back.
 
@@ -145,7 +145,7 @@ See you inside. Let's give you your week back.
 
 ## Video description / Skool post copy
 
-**Title:** Priya spends 12 hours a week copying ERP data. Here's how an AI agent gives that time back (free 10-min lesson)
+**Title:** Sarah spends 12 hours a week copying ERP data. Here's how an AI agent gives that time back (free 10-min lesson)
 
 You voted, and "Connecting AI agents with ERP systems, APIs and databases" won by a mile. So here's a free 10-minute lesson on exactly that.
 
@@ -160,4 +160,4 @@ In this video:
 2. Fill in the **Find Your First AI Agent** worksheet.
 3. Comment below with: (a) how many times you copied ERP numbers this week, and (b) your agent's one-sentence job description.
 
-**Want to build Stocky yourself?** The ERP Agent Blueprint walks you through it step by step: 10 videos, 4 hours, quizzes, activity files and guides. No coding. Works with whatever ERP you use at work. **$49 one-time: [LINK]**
+**Want to build Stocky yourself?** The ERP Agent Blueprint walks you through it step by step: 10 videos, 4 hours, quizzes, activity files and guides. No coding. Works with whatever ERP you use at work. Upgrade to the Agentic SCM paid tier for **just $49** to unlock it, plus all the other paid content in the community: **[LINK]**

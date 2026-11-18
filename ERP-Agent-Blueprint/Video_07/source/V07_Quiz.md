@@ -15,7 +15,7 @@ Answer each question, then check yourself against the Answer Key at the end. The
 
 **2. What does "human-in-the-loop" mean in this course?**
 - A) A person has to type every number into Odoo by hand
-- B) The agent asks a human to approve before it takes an important action, like a manager's signature before the cheque goes out
+- B) The agent asks a human to approve before it takes an important action, like a manager's signature before the check goes out
 - C) A human watches the n8n screen all day
 - D) The agent sends a report after the order is already placed
 
@@ -31,10 +31,10 @@ Answer each question, then check yourself against the Answer Key at the end. The
 - C) Filter
 - D) Edit Fields (Set)
 
-**5. Why did we set the workflow Timezone to Asia/Kolkata in Settings?**
-- A) Because n8n only works in India
-- B) So that Odoo shows prices in rupees
-- C) So "8am" means 8am at the Pune warehouse, not 8am on some other clock
+**5. Why did we set the workflow Timezone to America/New_York in Settings?**
+- A) Because n8n only works in the USA
+- B) So that Odoo shows prices in US dollars
+- C) So "8am" means 8am at the Columbus warehouse, not 8am on some other clock
 - D) Because Gmail needs it to send approval buttons
 
 **6. Which Gmail action pauses the workflow until someone clicks Approve or Reject?**
@@ -43,13 +43,13 @@ Answer each question, then check yourself against the Answer Key at the end. The
 - C) Send message and wait for response
 - D) Add label to message
 
-**7. Scenario: Stocky suggests ordering 49 drums of Hydraulic Oil at $54 each ($2,646). BrightLeaf's rule says any order over $2,000 needs Mr. Kapoor. What should happen?**
+**7. Scenario: Stocky suggests ordering 49 drums of Hydraulic Oil at $54 each ($2,646). BrightLeaf's rule says any order over $2,000 needs Mr. Harrison. What should happen?**
 - A) Stocky confirms the PO because the stock is low
-- B) The IF node "Over $2,000?" sends the approval email to Mr. Kapoor instead of Priya
-- C) Priya approves it anyway because she's the procurement manager
+- B) The IF node "Over $2,000?" sends the approval email to Mr. Harrison instead of Sarah
+- C) Sarah approves it anyway because she's the procurement manager
 - D) Stocky splits it into two orders of $1,323 to avoid the rule
 
-**8. Scenario: Priya gets an approval email for 780 pairs of Industrial Safety Gloves, but she knows 500 pairs are already arriving on Thursday on an open purchase order. What should she do?**
+**8. Scenario: Sarah gets an approval email for 780 pairs of Industrial Safety Gloves, but she knows 500 pairs are already arriving on Thursday on an open purchase order. What should she do?**
 - A) Approve it, because the agent is always right
 - B) Reject it, and later consider switching the workflow to use Odoo's Forecasted Quantity, which counts incoming orders
 - C) Delete the whole workflow
@@ -71,7 +71,7 @@ Answer each question, then check yourself against the Answer Key at the end. The
 
 **1. B.** A draft RFQ is amber: something is created, but nothing is committed and it can be deleted in two clicks. Reading (A) is green; confirming a PO (C) and approving payments (D) are red.
 
-**2. B.** Human-in-the-loop is the manager's signature before the cheque goes out. The agent prepares the work and a person approves the important action.
+**2. B.** Human-in-the-loop is the manager's signature before the check goes out. The agent prepares the work and a person approves the important action.
 
 **3. C.** 25 × 2 = 50, and 50 − 18 = 32. The rule "fills the shelf back up to twice the reorder point". It's simple and predictable, which is exactly what you want in week one.
 
@@ -81,9 +81,9 @@ Answer each question, then check yourself against the Answer Key at the end. The
 
 **6. C.** "Send message and wait for response" with Response Type "Approval" sends Approve and Reject buttons and pauses the workflow until someone clicks one, or until the wait limit (we used one day) runs out.
 
-**7. B.** The IF node is Mr. Kapoor's rule written as a block: over $2,000 goes to him. Splitting orders to dodge an approval limit (D) is exactly the behaviour guardrails exist to stop.
+**7. B.** The IF node is Mr. Harrison's rule written as a block: over $2,000 goes to him. Splitting orders to dodge an approval limit (D) is exactly the behaviour guardrails exist to stop.
 
-**8. B.** This is why the human stays in the loop: Priya knows about stock on the way. The formula only sees quantity on hand; Odoo's Forecasted Quantity also counts open purchase orders.
+**8. B.** This is why the human stays in the loop: Sarah knows about stock on the way. The formula only sees quantity on hand; Odoo's Forecasted Quantity also counts open purchase orders.
 
 **9. B (False).** Run with approvals for at least a month and count how often you reject. Confirming POs is a red action, and it stays with a human until the rules have proven themselves.
 

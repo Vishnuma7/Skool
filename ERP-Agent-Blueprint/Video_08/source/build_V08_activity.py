@@ -75,9 +75,9 @@ lines = [
     ("", None),
     ("STEP 1 (5 min): Read the 'Rules' sheet. These are the same scoring rules as in the video and in Stocky's system message.", None),
     ("STEP 2 (10 min): Go to 'Suppliers'. Click each blue weather link (it opens Open-Meteo for that city). Note the highest wind speed and the highest daily rain in the 7-day forecast.", None),
-    ("STEP 3 (10 min): Go to 'Live Data'. The grey example values are from 16 November 2026. Overwrite them with TODAY's values: weather (Step 2), exchange rates (open the two Frankfurter links at the top of Live Data) and holidays (open the Nager.Date China link; for India and UAE use the list on the Rules sheet).", None),
+    ("STEP 3 (10 min): Go to 'Live Data'. The grey example exchange rates and holidays are real values from 17 November 2026 (the weather values are calm-week examples). Overwrite them with TODAY's values: weather (Step 2), exchange rates (open the two Frankfurter links at the top of Live Data) and holidays (open the Nager.Date links for US, MX and CN; for the UAE use the list on the Rules sheet).", None),
     ("STEP 4 (5 min): Go to 'Scorecard'. The four scores, total and risk band fill in automatically. If you disagree with a score (you know something the data doesn't), type your own number in the yellow Override column and say why.", None),
-    ("STEP 5 (5 min): For every MEDIUM or HIGH supplier, write ONE plain-English sentence in the 'Why' column, like Stocky does: 'Gulf Lubricants: MEDIUM. UAE National Day 2-3 Dec; order oil this week.'", None),
+    ("STEP 5 (5 min): For every MEDIUM or HIGH supplier (or, if all are LOW, the highest-scoring one), write ONE plain-English sentence in the 'Why' column, like Stocky does: 'Gulf Lubricants: LOW (3/10) but top of the list. UAE National Day 2-3 Dec; order oil this week.'", None),
     ("STEP 6 (5 min): Look at 'Fire Drill', the Golden Week + typhoon scenario from the video, scored 8/10 HIGH. Change one input at a time and watch the band change.", None),
     ("STEP 7 (10 min): Now try it with your company. On 'Your Company', add your top 3-5 suppliers, look up their city coordinates (search '<city> coordinates'), and score them with today's data.", None),
     ("", None),
@@ -98,8 +98,8 @@ ru["A1"].font = TITLE
 header(ru, 3, ["Part", "Points", "Rule", "Data source"], [16, 9, 78, 34])
 rules = [
     ("Weather", "0-3", "Next 7 days. 0 = calm. 1 = rain >= 20 mm in a day OR wind >= 40 km/h. 2 = rain >= 50 mm OR wind >= 60 km/h. 3 = rain >= 100 mm OR wind >= 90 km/h (storm / typhoon strength).", "Open-Meteo (free, no key)"),
-    ("Holiday", "0-3", "Next 30 days. 0 = no public holiday. 1 = one holiday day. 2 = two or more holiday days. 3 = a major shutdown: Golden Week (1-7 Oct), Chinese New Year, Diwali week, Eid break.", "Nager.Date for China; written list below for India and UAE"),
-    ("Currency", "0-2", "Biggest 30-day move of USD->INR or USD->supplier currency. Under 1% = 0. 1% to 3% = 1. 3% or more = 2. Indian suppliers paid in rupees = 0. AED is pegged to USD at about 3.67, so the dirham itself adds about 0 risk.", "Frankfurter (free, no key; ECB reference rates)"),
+    ("Holiday", "0-3", "Next 30 days. 0 = no public holiday. 1 = one holiday day. 2 = two or more holiday days. 3 = a major shutdown: Golden Week (1-7 Oct), Chinese New Year, Christmas-New Year week, Eid break.", "Nager.Date for US, Mexico and China; written list below for the UAE"),
+    ("Currency", "0-2", "30-day move of USD->supplier currency (CNY, MXN). Under 1% = 0. 1% to 3% = 1. 3% or more = 2. US suppliers paid in dollars = 0. AED is pegged to USD at about 3.67, so the dirham adds about 0 risk.", "Frankfurter (free, no key; ECB reference rates)"),
     ("Lead time", "0-2", "Longest lead time for this supplier's items. 7 days or less = 0. 8-20 days = 1. 21 days or more = 2.", "Odoo (product > Purchase tab)"),
     ("BANDS", "", "0-3 = LOW (green).  4-6 = MEDIUM (amber).  7-10 = HIGH (red).", ""),
 ]
@@ -111,15 +111,11 @@ ru["A10"] = "Holidays NOT covered by Nager.Date (check the exact dates every Jan
 ru["A10"].font = BOLD
 header(ru, 11, ["Country", "Date(s)", "Holiday", "Notes"])
 hol = [
-    ("India", "26 Jan", "Republic Day", ""),
-    ("India", "15 Aug", "Independence Day", ""),
-    ("India", "2 Oct", "Gandhi Jayanti", ""),
-    ("India", "8 Nov 2026 (date changes yearly)", "Diwali", "Many suppliers slow down for most of the week: treat as major shutdown"),
-    ("India", "25 Dec", "Christmas", ""),
     ("UAE", "approx. 20-22 Mar 2026", "Eid al-Fitr", "Moon-dependent; often a multi-day break"),
     ("UAE", "approx. 26-29 May 2026", "Arafat Day + Eid al-Adha", "Moon-dependent"),
     ("UAE", "2-3 Dec", "National Day (Eid Al Etihad)", "Two holiday days"),
     ("China (FYI)", "6 Feb 2027", "Chinese New Year", "Official days are short, but factories often close 2-3 weeks"),
+    ("USA / Mexico (FYI)", "26 Nov 2026 (US) / 16 Nov 2026 (MX)", "Thanksgiving / Revolution Day", "These ARE in Nager.Date (US, MX). Many US plants also close the Friday after Thanksgiving"),
 ]
 for i, r in enumerate(hol, start=12):
     for j, v in enumerate(r, start=1):
@@ -137,9 +133,9 @@ suppliers = [
     ("Shenzhen BrightTech", "Shenzhen", "CN", 22.54, 114.06, "CNY", 28, "BL-1008 LED Warehouse Light 150W"),
     ("Global Lift Parts", "Shenzhen", "CN", 22.54, 114.06, "CNY", 21, "BL-1005 Pallet Jack Wheels, BL-1010 Forklift Battery Water Kit"),
     ("Gulf Lubricants", "Dubai", "AE", 25.20, 55.27, "AED", 14, "BL-1007 Hydraulic Oil 20L"),
-    ("SafeHands Co.", "Chennai", "IN", 13.08, 80.27, "INR", 10, "BL-1004 Industrial Safety Gloves"),
-    ("PackRight Industries", "Mumbai", "IN", 19.08, 72.88, "INR", 6, "BL-1002 Boxes, BL-1003 Stretch Wrap, BL-1006 Packing Tape"),
-    ("Apex Fasteners", "Pune", "IN", 18.52, 73.86, "INR", 7, "BL-1001 Hex Bolts, BL-1009 Cable Ties"),
+    ("SafeHands Co.", "Monterrey", "MX", 25.69, -100.32, "MXN", 10, "BL-1004 Industrial Safety Gloves"),
+    ("PackRight Industries", "Chicago", "US", 41.88, -87.63, "USD", 6, "BL-1002 Boxes, BL-1003 Stretch Wrap, BL-1006 Packing Tape"),
+    ("Apex Fasteners", "Columbus", "US", 39.96, -83.00, "USD", 7, "BL-1001 Hex Bolts, BL-1009 Cable Ties"),
 ]
 SR0 = 5
 for i, s in enumerate(suppliers):
@@ -157,14 +153,14 @@ sp.freeze_panes = "B5"
 ld = wb.create_sheet("Live Data")
 ld["A1"] = "Paste today's live API values here"
 ld["A1"].font = TITLE
-ld["A2"] = "Grey-italic example values were captured on 16 November 2026. Overwrite every yellow cell with what YOU see today."
+ld["A2"] = "Grey-italic examples: exchange rates and holidays are real values from 17 November 2026; weather values are calm-week examples. Overwrite every yellow cell with what YOU see today."
 ld["A2"].font = NOTE
 ld["A4"] = "EXCHANGE RATES (1 US dollar =)"
 ld["A4"].font = BOLD
 header(ld, 5, ["Currency", "Today", "30 days ago", "% move", "Where to look"], [26, 14, 14, 12, 70])
 fx = [
-    ("INR (Indian rupee)", 93.93, 94.96, "https://api.frankfurter.dev/v1/latest?from=USD&to=INR,CNY   then swap 'latest' for the date 30 days ago, e.g. 2026-10-16"),
-    ("CNY (Chinese yuan)", 6.6665, 6.6862, "Same two links as above"),
+    ("MXN (Mexican peso)", 18.4639, 18.3835, "https://api.frankfurter.dev/v1/latest?from=USD&to=CNY,MXN   then swap 'latest' for the date 30 days ago, e.g. 2026-10-16"),
+    ("CNY (Chinese yuan)", 6.6661, 6.6862, "Same two links as above"),
     ("AED (UAE dirham)", 3.6725, 3.6725, "Not on Frankfurter's menu (an API only serves what its kitchen stocks). Pegged to USD at about 3.67 since 1997: leave as is, risk about 0."),
 ]
 for i, (name, today, ago, where) in enumerate(fx, start=6):
@@ -186,10 +182,10 @@ for col, w in zip("ABCDEFGHI", (26, 14, 14, 14, 13, 14, 40, 10, 14)):
 live = [
     (19.3, 1.4, 0, "No", "Next CN holiday: New Year 1 Jan 2027 (outside 30 days)"),
     (19.3, 1.4, 0, "No", "Same city as above"),
-    (15.4, 0.3, 2, "No", "UAE National Day 2-3 Dec"),
-    (24.5, 2.4, 0, "No", "Diwali was 8 Nov (past); Christmas 25 Dec is outside 30 days"),
-    (15.7, 0.0, 0, "No", ""),
-    (13.2, 0.0, 0, "No", ""),
+    (15.4, 0.3, 2, "No", "UAE National Day 2-3 Dec (written list; Nager.Date has no UAE data)"),
+    (18.0, 1.0, 0, "No", "Revolution Day was 16 Nov (past); Christmas 25 Dec is outside 30 days"),
+    (30.0, 6.0, 1, "No", "Thanksgiving 26 Nov"),
+    (26.0, 8.0, 1, "No", "Thanksgiving 26 Nov"),
 ]
 yn = DataValidation(type="list", formula1='"Yes,No"', allow_blank=False)
 ld.add_data_validation(yn)
@@ -203,9 +199,9 @@ for i, (wind, rain, hdays, major, names) in enumerate(live):
         x.font = NOTE
     yn.add(f"F{r}")
     cell(ld, r, 8, f"=Suppliers!F{SR0 + i}", fill=CALC)
-    cell(ld, r, 9, f'=IF(H{r}="INR",0,MAX(ABS($D$6),IF(H{r}="CNY",ABS($D$7),ABS($D$8))))', fill=CALC, fmt="0.00%")
+    cell(ld, r, 9, f'=IF(H{r}="USD",0,IF(H{r}="MXN",ABS($D$6),IF(H{r}="CNY",ABS($D$7),ABS($D$8))))', fill=CALC, fmt="0.00%")
     ld.row_dimensions[r].height = 30
-ld["A20"] = "Holiday link for China: https://date.nager.at/api/v3/PublicHolidays/2026/CN  (change the year if needed). India (IN) and UAE (AE) are not covered: use the list on the Rules sheet."
+ld["A20"] = "Holiday links: https://date.nager.at/api/v3/PublicHolidays/2026/US  (swap US for MX or CN; change the year if needed). The UAE (AE) is not covered: use the list on the Rules sheet."
 ld["A20"].font = NOTE
 ld.freeze_panes = "C13"
 
@@ -263,10 +259,10 @@ for i in range(len(suppliers)):
     score_formulas(scw, r, f"'Live Data'!C{lr}", f"'Live Data'!D{lr}", f"'Live Data'!E{lr}",
                    f"'Live Data'!F{lr}", f"'Live Data'!I{lr}", f"Suppliers!G{sr}")
     scw.row_dimensions[r].height = 32
-scw["Q7"] = "Gulf Lubricants: MEDIUM (4/10). UAE National Day 2-3 Dec falls in the next 30 days and Hydraulic Oil (31 on hand vs reorder point 40) has a 14-day lead time: order this week."
+scw["Q7"] = "Gulf Lubricants: LOW (3/10), but the highest score today. UAE National Day 2-3 Dec falls in the next 30 days and Hydraulic Oil (31 on hand vs reorder point 40) has a 14-day lead time: order this week."
 add_overrides(scw, 5, 10)
 scw.freeze_panes = "C5"
-scw["A12"] = "Example sentence (Gulf Lubricants) is pre-filled in the Why column. Write your own for any MEDIUM or HIGH supplier."
+scw["A12"] = "Example sentence (Gulf Lubricants) is pre-filled in the Why column. Write your own for any MEDIUM or HIGH supplier (if all are LOW, for the highest score). LOW doesn't mean ignore."
 scw["A12"].font = NOTE
 
 # ------------------------------------------------------------ Fire Drill
@@ -282,14 +278,13 @@ drill = [
     ("Max daily rain next 7 days (mm)", 140, "Assumed for the drill"),
     ("Holiday days in next 30 days", 8, "Mid-Autumn Festival 25 Sept + National Day 1 Oct (Golden Week 1-7 Oct), from Nager.Date"),
     ("Major shutdown in next 30 days?", "Yes", "Golden Week: most factories close for the week"),
-    ("USD->INR % move (24 Aug to 24 Sept 2026)", 0.0021, "95.76 -> 95.96 (real Frankfurter rates)"),
     ("USD->CNY % move (24 Aug to 24 Sept 2026)", 0.0015, "6.7227 -> 6.7126 (real Frankfurter rates), size of move"),
     ("Longest lead time (days)", 28, "From Odoo"),
 ]
 for i, (a, b, c) in enumerate(drill, start=5):
     cell(fd, i, 1, a, bold=True)
     x = cell(fd, i, 2, b, fill=INPUT)
-    if i in (10, 11):
+    if i == 10:
         x.number_format = "0.00%"
     cell(fd, i, 3, c, wrap=True)
 fd.add_data_validation(dv_fd := DataValidation(type="list", formula1='"Yes,No"'))
@@ -298,8 +293,8 @@ header(fd, 15, ["Score part", "Points", "Rule applied"])
 parts = [
     ("Weather /3", "=IF(OR(B6>=90,B7>=100),3,IF(OR(B6>=60,B7>=50),2,IF(OR(B6>=40,B7>=20),1,0)))", "Wind >= 90 km/h or rain >= 100 mm = 3"),
     ("Holiday /3", '=IF(B9="Yes",3,IF(B8>=2,2,IF(B8=1,1,0)))', "Major shutdown in next 30 days = 3"),
-    ("Currency /2", "=IF(MAX(ABS(B10),ABS(B11))>=0.03,2,IF(MAX(ABS(B10),ABS(B11))>=0.01,1,0))", "Biggest move under 1% = 0"),
-    ("Lead time /2", "=IF(B12>=21,2,IF(B12>=8,1,0))", "21 days or more = 2"),
+    ("Currency /2", "=IF(ABS(B10)>=0.03,2,IF(ABS(B10)>=0.01,1,0))", "Move under 1% = 0"),
+    ("Lead time /2", "=IF(B11>=21,2,IF(B11>=8,1,0))", "21 days or more = 2"),
     ("TOTAL /10", "=SUM(B16:B19)", ""),
     ("RISK BAND", '=IF(B20>=7,"HIGH",IF(B20>=4,"MEDIUM","LOW"))', "0-3 LOW, 4-6 MEDIUM, 7-10 HIGH"),
 ]
@@ -311,7 +306,7 @@ band_rules(fd, "B21")
 fd["A23"] = "Stocky's sentence:"
 fd["A23"].font = BOLD
 fd["B23"] = '="Shenzhen BrightTech: "&B21&" risk ("&B20&"/10). Golden Week holiday + typhoon warning; order LED lights 10 days earlier."'
-fd["A25"] = "Try: (1) set wind to 30 and rain to 5. (2) set Major shutdown to No. (3) set the INR move to 0.035. What band do you get each time?"
+fd["A25"] = "Try: (1) set wind to 30 and rain to 5. (2) set Major shutdown to No. (3) set the CNY move to 0.035. What band do you get each time?"
 fd["A25"].font = NOTE
 
 # ------------------------------------------------------------ Your Company
@@ -320,7 +315,7 @@ yc["A1"] = "Now try it with your company"
 yc["A1"].font = TITLE
 yc["A2"] = "Step 1: fill in the yellow cells in the top table (your suppliers + today's data). Step 2: the scorecard underneath fills itself in. Write a 'Why' sentence for anything MEDIUM or HIGH."
 yc["A2"].font = NOTE
-ycols = ["Supplier", "City", "Latitude", "Longitude", "Currency (INR = home)", "Longest lead time (days)",
+ycols = ["Supplier", "City", "Latitude", "Longitude", "Currency (USD = home)", "Longest lead time (days)",
          "Max wind next 7 days (km/h)", "Max daily rain (mm)", "Holiday days next 30 days",
          "Major shutdown? (Yes/No)", "Biggest 30-day FX move (e.g. 1.2%)", "Weather link"]
 header(yc, 4, ycols, [22, 12, 10, 10, 12, 11, 11, 11, 11, 11, 13, 30])
@@ -341,7 +336,7 @@ for i in range(8):
     r, src = 16 + i, 5 + i
     cell(yc, r, 1, f'=IF(A{src}="","",A{src})', bold=True)
     cell(yc, r, 2, f'=IF(B{src}="","",B{src})')
-    score_formulas(yc, r, f"G{src}", f"H{src}", f"I{src}", f"J{src}", f'IF(E{src}="INR",0,ABS(K{src}))', f"F{src}")
+    score_formulas(yc, r, f"G{src}", f"H{src}", f"I{src}", f"J{src}", f'IF(E{src}="USD",0,ABS(K{src}))', f"F{src}")
     yc.cell(row=r, column=16, value=f'=IF(A{src}="","",IF(O{r}>=7,"HIGH",IF(O{r}>=4,"MEDIUM","LOW")))')
 add_overrides(yc, 16, 23)
 yc.freeze_panes = "B5"
@@ -359,24 +354,23 @@ SUPPLIERS (name | city | country | lat, long | currency | longest lead time)
 - Shenzhen BrightTech | Shenzhen | CN | 22.54, 114.06 | CNY | 28 days (LED lights)
 - Global Lift Parts | Shenzhen | CN | 22.54, 114.06 | CNY | 21 days
 - Gulf Lubricants | Dubai | AE | 25.20, 55.27 | AED (pegged) | 14 days
-- SafeHands Co. | Chennai | IN | 13.08, 80.27 | INR | 10 days
-- PackRight Industries | Mumbai | IN | 19.08, 72.88 | INR | 6 days
-- Apex Fasteners | Pune | IN | 18.52, 73.86 | INR | 7 days
+- SafeHands Co. | Monterrey | MX | 25.69, -100.32 | MXN | 10 days
+- PackRight Industries | Chicago | US | 41.88, -87.63 | USD | 6 days
+- Apex Fasteners | Columbus | US | 39.96, -83.00 | USD | 7 days
 
 SCORING (total out of 10)
 Weather 0-3 (next 7 days): 0 calm; 1 rain>=20mm or wind>=40km/h;
   2 rain>=50mm or wind>=60km/h; 3 rain>=100mm or wind>=90km/h.
 Holiday 0-3 (next 30 days): 0 none; 1 one holiday day; 2 two or more
   days; 3 major shutdown (China National Day = Golden Week 1-7 Oct,
-  Chinese New Year, Diwali week, Eid break).
-Currency 0-2: biggest 30-day move of USD->INR or USD->supplier currency:
-  <1% = 0; 1-3% = 1; >=3% = 2. Indian suppliers = 0.
+  Chinese New Year, Christmas-New Year week, Eid break).
+Currency 0-2: 30-day move of USD->supplier currency:
+  <1% = 0; 1-3% = 1; >=3% = 2. US suppliers paid in USD = 0.
   AED is pegged to USD (about 3.67), so Dubai's AED risk is about 0.
 Lead time 0-2: <=7 days 0; 8-20 days 1; >=21 days 2.
 Bands: 0-3 LOW, 4-6 MEDIUM, 7-10 HIGH.
 
 HOLIDAYS NOT IN THE API (check dates each year)
-India: 26 Jan, 15 Aug, 2 Oct, Diwali (8 Nov 2026), 25 Dec.
 UAE: Eid al-Fitr (approx. 20-22 Mar 2026), Eid al-Adha (approx.
   26-29 May 2026), National Day 2-3 Dec.
 
@@ -386,7 +380,8 @@ RULES
   with the note "not checked".
 - Output a table: Supplier | Weather | Holiday | Currency | Lead time
   | Total | Band. Then one plain-English sentence per MEDIUM or HIGH
-  supplier: what the risk is and what Priya could do.
+  supplier (if none, for the highest-scoring supplier): what the
+  risk is and what Sarah could do.
 - End with: "This score is guidance, not truth. Please check before acting.\""""
 items = [
     ("TOOL 1 name", "get_weather"),
@@ -394,11 +389,11 @@ items = [
     ("TOOL 1 URL", "https://api.open-meteo.com/v1/forecast"),
     ("TOOL 1 query parameters", "latitude = (sparkle: let the model define)\nlongitude = (sparkle: let the model define)\ndaily = precipitation_sum,wind_speed_10m_max\ntimezone = auto\nforecast_days = 7"),
     ("TOOL 2 name", "get_exchange_rates"),
-    ("TOOL 2 description", 'Gets US dollar exchange rates for INR and CNY. Use date = "latest" for today, or a date like 2026-10-16 to get the rate on that day (for the 30-day comparison). Do not ask for AED: it is not available, and the dirham is pegged to USD at about 3.67, so its currency risk is about 0.'),
+    ("TOOL 2 description", 'Gets US dollar exchange rates for CNY and MXN. Use date = "latest" for today, or a date like 2026-10-16 to get the rate on that day (for the 30-day comparison). Do not ask for AED: it is not available, and the dirham is pegged to USD at about 3.67, so its currency risk is about 0.'),
     ("TOOL 2 URL", "https://api.frankfurter.dev/v1/{{ $fromAI('date', 'latest, or a date in YYYY-MM-DD format') }}"),
-    ("TOOL 2 query parameters", "from = USD\nto = INR,CNY"),
+    ("TOOL 2 query parameters", "from = USD\nto = CNY,MXN"),
     ("TOOL 3 name", "get_public_holidays"),
-    ("TOOL 3 description", "Gets official public holidays for one country and year. countryCode: CN for China. (India and UAE are NOT covered: use the holiday list in your instructions for IN and AE.) Returns a list of dates and holiday names."),
+    ("TOOL 3 description", "Gets official public holidays for one country and year. countryCode: US, MX (Mexico) or CN (China). The UAE is NOT covered: use the holiday list in your instructions for AE. Returns a list of dates and holiday names."),
     ("TOOL 3 URL", "https://date.nager.at/api/v3/PublicHolidays/{{ $fromAI('year', 'four-digit year, e.g. 2026') }}/{{ $fromAI('countryCode', 'two-letter country code, e.g. CN') }}"),
     ("AI Agent > Options > System Message", SYSTEM),
     ("Test message 1", "Good morning Stocky. Give me today's supplier risk scores."),

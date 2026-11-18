@@ -3,9 +3,9 @@
 
 > Think of an AI agent as a smart new intern. It can read, think, use tools and act, but it needs a clear job description and a manager who signs off on important things. Today, you write that job description.
 
-## Worked example: Priya at BrightLeaf Supplies
+## Worked example: Sarah at BrightLeaf Supplies
 
-| Step | Priya's answer |
+| Step | Sarah's answer |
 |---|---|
 | Time drain | Checking stock in Odoo against reorder points every morning and emailing suppliers (about 4 hours a week) |
 | Door(s) needed | ERP (stock levels and suppliers in Odoo) + database (a Google Sheet to log every order) |
@@ -61,4 +61,4 @@ Post in the **Agentic SCM** community, under the free lesson video:
 
 Reading other people's agents is one of the fastest ways to find your next idea.
 
-> Want to build this agent for real? **The ERP Agent Blueprint** shows you how, step by step, with no code: 10 videos, quizzes and activity files, for $49. [LINK]
+> Want to build this agent for real? **The ERP Agent Blueprint** shows you how, step by step, with no code: 10 videos, quizzes and activity files. Upgrade to the Agentic SCM paid tier for **just $49** to unlock it, plus all the other paid content in the community. [LINK]

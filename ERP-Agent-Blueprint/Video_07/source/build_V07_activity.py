@@ -30,18 +30,18 @@ ws.title = "Instructions"
 ws.column_dimensions["A"].width = 4
 ws.column_dimensions["B"].width = 110
 lines = [
-    ("Reorder Decision Simulator: Play Stocky and Priya for one morning", TITLE),
+    ("Reorder Decision Simulator: Play Stocky and Sarah for one morning", TITLE),
     ("Course: The ERP Agent Blueprint | Video 7: Agents That Take Action | Time: 25-35 minutes", Font(italic=True)),
     ("", None),
     ("WHAT THIS IS", BOLD),
-    ("It's Monday, 8am at BrightLeaf Supplies. Stocky has just read stock levels from Odoo. This workbook does exactly what the n8n workflow in the video does: it finds SKUs below the reorder point, calculates a suggested order quantity, works out the order value, decides who must approve, and runs a sanity check. YOU play Priya and make the final call.", None),
+    ("It's Monday, 8am at BrightLeaf Supplies. Stocky has just read stock levels from Odoo. This workbook does exactly what the n8n workflow in the video does: it finds SKUs below the reorder point, calculates a suggested order quantity, works out the order value, decides who must approve, and runs a sanity check. YOU play Sarah and make the final call.", None),
     ("", None),
     ("COLOUR CODE", BOLD),
     ("Yellow cells = you can type here.  Blue cells = formulas (don't type over them).  Red = needs attention.", None),
     ("", None),
-    ("STEP 1 (5 min): Open the 'Simulator' sheet. Look at the Settings box at the top: multiplier 2, Mr. Kapoor's limit $2,000, sanity multiple 3, hard ceiling $10,000.", None),
+    ("STEP 1 (5 min): Open the 'Simulator' sheet. Look at the Settings box at the top: multiplier 2, Mr. Harrison's limit $2,000, sanity multiple 3, hard ceiling $10,000.", None),
     ("STEP 2 (5 min): Read each row. Which SKUs say YES under 'Needs reorder?'. Check one suggested quantity with a calculator: reorder point x 2 - on hand.", None),
-    ("STEP 3 (10 min): Read 'Notes from Priya's desk' (column N). Then choose Approve / Reject / Change qty in column O for every SKU that needs reordering, and write your reason in column P. Remember: the human knows things the ERP doesn't.", None),
+    ("STEP 3 (10 min): Read 'Notes from Sarah's desk' (column N). Then choose Approve / Reject / Change qty in column O for every SKU that needs reordering, and write your reason in column P. Remember: the human knows things the ERP doesn't.", None),
     ("STEP 4 (10 min): Go to the 'Scenarios' sheet and work through the 5 what-if questions. Scenario 4 recreates the 'ten times too big' story from the video. Does the sanity check catch it?", None),
     ("STEP 5 (10 min, optional): Now try it with your company. Open 'Your Company', type 5-10 of your own products with real reorder points, stock and costs, and set your own approval limit.", None),
     ("", None),
@@ -50,7 +50,7 @@ lines = [
     ("", None),
     ("THE THREE GUARDRAILS", BOLD),
     ("1. Human approval: nothing becomes a draft RFQ until someone clicks Approve.", None),
-    ("2. Maximum order value: over $2,000 goes to Mr. Kapoor; over $10,000 is blocked (hard ceiling).", None),
+    ("2. Maximum order value: over $2,000 goes to Mr. Harrison; over $10,000 is blocked (hard ceiling).", None),
     ("3. Sanity check: if the suggested quantity is more than 3 x the reorder point, or the value is over $5,000, the email starts with 'CHECK THIS FIRST'.", None),
     ("", None),
     ("You can't break anything here. If you mess up a formula, just download the file again.", Font(italic=True, color="666666")),
@@ -65,15 +65,15 @@ ws.sheet_view.showGridLines = False
 # ---------------------------------------------------------------- Simulator
 products = [
     # SKU, product, supplier, lead, cost, reorder point, on hand (canonical BrightLeaf stock), note
-    ("BL-1001", "Steel Hex Bolts M10 (box of 100)", "Apex Fasteners (Pune)", 7, 12.50, 80, 145, ""),
-    ("BL-1002", "Corrugated Shipping Box 18x12x10", "PackRight Industries (Mumbai)", 5, 0.85, 1500, 1180, "Big customer shipment went out Friday. Demand for boxes is normal."),
-    ("BL-1003", "Stretch Wrap Film 500mm", "PackRight Industries (Mumbai)", 6, 9.20, 200, 260, ""),
-    ("BL-1004", "Industrial Safety Gloves (pair)", "SafeHands Co. (Chennai)", 10, 2.40, 600, 420, "500 pairs arriving THURSDAY from SafeHands on an open purchase order."),
-    ("BL-1005", "Pallet Jack Wheels (set)", "Global Lift Parts (Shenzhen)", 21, 38.00, 25, 18, "Ravi: two pallet jacks are waiting for new wheels. 21-day lead time."),
-    ("BL-1006", "Packing Tape 48mm (roll)", "PackRight Industries (Mumbai)", 5, 1.10, 1000, 1850, ""),
-    ("BL-1007", "Hydraulic Oil 20L", "Gulf Lubricants (Dubai)", 14, 54.00, 40, 31, "Ravi says two forklifts are due for an oil change next week."),
+    ("BL-1001", "Steel Hex Bolts M10 (box of 100)", "Apex Fasteners (Columbus)", 7, 12.50, 80, 145, ""),
+    ("BL-1002", "Corrugated Shipping Box 18x12x10", "PackRight Industries (Chicago)", 5, 0.85, 1500, 1180, "Big customer shipment went out Friday. Demand for boxes is normal."),
+    ("BL-1003", "Stretch Wrap Film 500mm", "PackRight Industries (Chicago)", 6, 9.20, 200, 260, ""),
+    ("BL-1004", "Industrial Safety Gloves (pair)", "SafeHands Co. (Monterrey)", 10, 2.40, 600, 420, "500 pairs arriving THURSDAY from SafeHands on an open purchase order."),
+    ("BL-1005", "Pallet Jack Wheels (set)", "Global Lift Parts (Shenzhen)", 21, 38.00, 25, 18, "Tom: two pallet jacks are waiting for new wheels. 21-day lead time."),
+    ("BL-1006", "Packing Tape 48mm (roll)", "PackRight Industries (Chicago)", 5, 1.10, 1000, 1850, ""),
+    ("BL-1007", "Hydraulic Oil 20L", "Gulf Lubricants (Dubai)", 14, 54.00, 40, 31, "Tom says two forklifts are due for an oil change next week."),
     ("BL-1008", "LED Warehouse Light 150W", "Shenzhen BrightTech (Shenzhen)", 28, 72.00, 30, 34, "Only 4 above the reorder point, and a 28-day lead time. Keep an eye on it."),
-    ("BL-1009", "Nylon Cable Ties (pack of 500)", "Apex Fasteners (Pune)", 7, 6.30, 150, 410, ""),
+    ("BL-1009", "Nylon Cable Ties (pack of 500)", "Apex Fasteners (Columbus)", 7, 6.30, 150, 410, ""),
     ("BL-1010", "Forklift Battery Water Kit", "Global Lift Parts (Shenzhen)", 12, 19.75, 20, 26, "No open orders. Could combine with a Global Lift Parts order."),
 ]
 
@@ -85,7 +85,7 @@ sim["A2"].font = Font(italic=True, color="666666")
 
 settings = [
     ("Order multiplier (reorder point x ?)", 2, "B4"),
-    ("Mr. Kapoor's approval limit (USD)", 2000, "B5"),
+    ("Mr. Harrison's approval limit (USD)", 2000, "B5"),
     ("Sanity check: flag if qty > reorder point x", 3, "B6"),
     ("Hard ceiling: block orders above (USD)", 10000, "B7"),
 ]
@@ -101,7 +101,7 @@ for r, (label, val, _) in enumerate(settings, start=4):
 
 headers = ["SKU", "Product", "Supplier", "Lead time (days)", "Unit cost (USD)", "Reorder point",
            "On hand (Odoo)", "Needs reorder?", "Suggested qty", "Order value (USD)", "Who approves?",
-           "Sanity check", "Light", "Notes from Priya's desk", "Your decision", "Your reason"]
+           "Sanity check", "Light", "Notes from Sarah's desk", "Your decision", "Your reason"]
 HR = 9
 widths = [10, 34, 30, 10, 11, 10, 11, 11, 11, 13, 22, 18, 9, 48, 14, 40]
 for i, h in enumerate(headers, start=1):
@@ -120,7 +120,7 @@ def formula_row(ws, r):
     ws.cell(row=r, column=10, value=f"=I{r}*E{r}")
     ws.cell(row=r, column=11, value=(
         f'=IF(H{r}<>"YES","-",IF(J{r}>$B$7,"BLOCKED (over hard ceiling)",'
-        f'IF(J{r}>$B$5,"Mr. Kapoor","Priya")))'))
+        f'IF(J{r}>$B$5,"Mr. Harrison","Sarah")))'))
     ws.cell(row=r, column=12, value=(
         f'=IF(H{r}<>"YES","-",IF(OR(I{r}>F{r}*$B$6,J{r}>5000),"CHECK THIS FIRST","OK"))'))
     ws.cell(row=r, column=13, value=f'=IF(H{r}<>"YES","Green",IF(O{r}="Approve","Amber","Waiting"))')
@@ -140,7 +140,7 @@ def formula_row(ws, r):
 def add_rules(ws, first, last):
     rng = lambda col: f"{col}{first}:{col}{last}"
     ws.conditional_formatting.add(rng("H"), CellIsRule(operator="equal", formula=['"YES"'], fill=RED, font=Font(bold=True, color="9C0006")))
-    ws.conditional_formatting.add(rng("K"), CellIsRule(operator="equal", formula=['"Mr. Kapoor"'], fill=AMBER, font=BOLD))
+    ws.conditional_formatting.add(rng("K"), CellIsRule(operator="equal", formula=['"Mr. Harrison"'], fill=AMBER, font=BOLD))
     ws.conditional_formatting.add(rng("K"), FormulaRule(formula=[f'LEFT(K{first},7)="BLOCKED"'], fill=RED, font=Font(bold=True, color="9C0006")))
     ws.conditional_formatting.add(rng("L"), CellIsRule(operator="equal", formula=['"CHECK THIS FIRST"'], fill=RED, font=Font(bold=True, color="9C0006")))
     ws.conditional_formatting.add(rng("M"), CellIsRule(operator="equal", formula=['"Green"'], fill=GREEN))
@@ -150,7 +150,7 @@ def add_rules(ws, first, last):
     ws.conditional_formatting.add(rng("O"), CellIsRule(operator="equal", formula=['"Reject"'], fill=RED))
     dv = DataValidation(type="list", formula1='"Approve,Reject,Change qty"', allow_blank=True)
     dv.error = "Pick Approve, Reject or Change qty"
-    dv.prompt = "Your call, Priya"
+    dv.prompt = "Your call, Sarah"
     ws.add_data_validation(dv)
     dv.add(rng("O"))
 
@@ -172,7 +172,7 @@ summary = [
     ("SKUs that need reordering", f'=COUNTIF(H{first}:H{last},"YES")', None),
     ("Total value Stocky suggested (USD)", f"=SUM(J{first}:J{last})", '"$"#,##0.00'),
     ("Total value YOU approved (USD)", f'=SUMIF(O{first}:O{last},"Approve",J{first}:J{last})', '"$"#,##0.00'),
-    ("Requests that go to Mr. Kapoor", f'=COUNTIF(K{first}:K{last},"Mr. Kapoor")', None),
+    ("Requests that go to Mr. Harrison", f'=COUNTIF(K{first}:K{last},"Mr. Harrison")', None),
     ("Sanity-check flags", f'=COUNTIF(L{first}:L{last},"CHECK THIS FIRST")', None),
     ("Requests you rejected", f'=COUNTIF(O{first}:O{last},"Reject")', None),
 ]
@@ -202,9 +202,9 @@ for i, h in enumerate(sh, start=1):
 for col, w in zip("ABCDE", (5, 28, 42, 46, 46)):
     sc.column_dimensions[col].width = w
 scenarios = [
-    ("Mr. Kapoor gets busy", "Set Mr. Kapoor's limit (B5) to 1000.", "How many requests now go to Mr. Kapoor? Is that a good use of a director's time?"),
+    ("Mr. Harrison gets busy", "Set Mr. Harrison's limit (B5) to 1000.", "How many requests now go to Mr. Harrison? Is that a good use of a director's time?"),
     ("A more cautious buyer", "Set the order multiplier (B4) to 1.5.", "What is the new suggested qty for Pallet Jack Wheels (BL-1005)? Show your maths."),
-    ("Ravi's quick count", "Ravi counts the boxes: change BL-1002 On hand to 1550.", "Does BL-1002 still need reordering? What changed in the Summary?"),
+    ("Tom's quick count", "Tom counts the boxes: change BL-1002 On hand to 1550.", "Does BL-1002 still need reordering? What changed in the Summary?"),
     ("The ten-times-too-big order", "Someone adds an extra zero: change the BL-1004 Reorder point from 600 to 6000.", "What is the suggested qty and order value? Who approves it? Does the sanity check fire? Would the email have stopped the disaster?"),
     ("A quiet typo", "Change BL-1010 On hand from 26 to -60 (a counting error).", "Does the sanity check catch it? What extra rule would you add? (Hint: Part 3 of the Approval Rules Designer.)"),
 ]
@@ -221,11 +221,11 @@ sc.freeze_panes = "A5"
 sc["A12"] = "Answer check (try first, then peek)"
 sc["A12"].font = BOLD
 answers = [
-    "1. All four requests now go to Mr. Kapoor: BL-1002 ($1,547), BL-1004 ($1,872), BL-1005 ($1,216) and BL-1007 ($2,646), up from just one. A director approving $1,200 wheel orders is a poor use of his time, so set limits that match real risk.",
+    "1. All four requests now go to Mr. Harrison: BL-1002 ($1,547), BL-1004 ($1,872), BL-1005 ($1,216) and BL-1007 ($2,646), up from just one. A director approving $1,200 wheel orders is a poor use of his time, so set limits that match real risk.",
     "2. 25 x 1.5 = 37.5, minus 18 = 19.5, so about 20 sets ($741). A smaller multiplier = smaller, more frequent orders.",
     "3. No. 1550 is above the reorder point of 1500, so BL-1002 drops out and the suggested total falls by $1,547.",
     "4. Suggested qty = 6000 x 2 - 420 = 11,580 pairs, value $27,792. It's above the $10,000 hard ceiling, so it's BLOCKED, and the sanity check says CHECK THIS FIRST. Two guardrails catch it, and nobody would even get an Approve button.",
-    "5. On hand -60 gives a suggested qty of 100 (5x the reorder point of 20), so the sanity check DOES fire. But a negative stock count is itself a data problem: add a rule 'if on hand is negative, don't order; ask Ravi to count the shelf'.",
+    "5. On hand -60 gives a suggested qty of 100 (5x the reorder point of 20), so the sanity check DOES fire. But a negative stock count is itself a data problem: add a rule 'if on hand is negative, don't order; ask Tom to count the shelf'.",
 ]
 for i, a in enumerate(answers):
     c = sc.cell(row=13 + i, column=2, value=a)
@@ -286,7 +286,7 @@ cp["A1"].font = TITLE
 cp.column_dimensions["A"].width = 34
 cp.column_dimensions["B"].width = 115
 items = [
-    ("Schedule Trigger", "Trigger Interval: Days | Days Between Triggers: 1 | Trigger at Hour: 8am | Trigger at Minute: 0\nWorkflow ... > Settings > Timezone: Asia/Kolkata"),
+    ("Schedule Trigger", "Trigger Interval: Days | Days Between Triggers: 1 | Trigger at Hour: 8am | Trigger at Minute: 0\nWorkflow ... > Settings > Timezone: America/New_York (Columbus, Ohio)"),
     ("Odoo 'Get Stock from Odoo'", "Resource: Custom Resource | Custom Resource Name: product.product | Operation: Get Many | Return All: on\nFields to Include: default_code, name, qty_available, reordering_min_qty, standard_price"),
     ("Filter 'Below Reorder Point'", "{{ $json.qty_available }}  Number: is less than  {{ $json.reordering_min_qty }}\nAND  {{ $json.reordering_min_qty }}  Number: is greater than  0"),
     ("Edit Fields: suggested_qty (Number)", "{{ $json.reordering_min_qty * 2 - $json.qty_available }}"),
@@ -294,7 +294,7 @@ items = [
     ("Google Sheets 'Find Supplier'", "Operation: Get row(s) in sheet | Sheet: Supplier Map | Filter column: SKU | Value: {{ $json.default_code }}"),
     ("AI Agent system message", "You are Stocky, BrightLeaf Supplies' procurement assistant." '\nWrite a short approval email body (max 5 sentences).\nLine 1: "Approval needed: [qty] x [product] from [supplier] ($[value])."\nThen explain in plain English why: on hand vs reorder point.\nSANITY CHECK: if the suggested quantity is more than 3 times the\nreorder point, or the order value is over $5,000, start with\n"CHECK THIS FIRST:" and say what looks unusual.\nNever say the order is placed. It is only a draft request.'),
     ("IF 'Over $2,000?'", "{{ $('Calculate Order').item.json.order_value }}  Number: is greater than  2000"),
-    ("Gmail 'Ask Mr. Kapoor' / 'Ask Priya'", "Operation: Send message and wait for response | Response Type: Approval | Type of Approval: Approve and Disapprove\nApprove label: Approve draft RFQ | Disapprove label: Reject | Option: Limit Wait Time = 1 day"),
+    ("Gmail 'Ask Mr. Harrison' / 'Ask Sarah'", "Operation: Send message and wait for response | Response Type: Approval | Type of Approval: Approve and Disapprove\nApprove label: Approve draft RFQ | Disapprove label: Reject | Option: Limit Wait Time = 1 day"),
     ("IF 'Approved?'", "{{ $json.data.approved }}  Boolean: is true"),
     ("Odoo 'Create Draft RFQ' (purchase.order)", "partner_id = {{ $('Find Supplier').item.json['Odoo Vendor ID'] }}\norigin = Stocky - approved by email"),
     ("Odoo 'Add Product Line' (purchase.order.line)", "order_id = {{ $json.id }}\nproduct_id = {{ $('Get Stock from Odoo').item.json.id }}\nproduct_qty = {{ $('Calculate Order').item.json.suggested_qty }}"),

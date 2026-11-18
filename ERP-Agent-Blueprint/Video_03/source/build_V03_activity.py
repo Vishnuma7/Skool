@@ -91,7 +91,7 @@ title(ins, "API Treasure Hunt: Video 3 Activity",
 ins.column_dimensions["A"].width = 26
 ins.column_dimensions["B"].width = 95
 rows = [
-    ("Your mission", "Priya at BrightLeaf Supplies wants to know if APIs can replace her weekly copy-and-paste checks "
+    ("Your mission", "Sarah at BrightLeaf Supplies wants to know if APIs can replace her weekly copy-and-paste checks "
                      "(weather near suppliers, exchange rates, supplier holidays). You will call three real, free APIs, "
                      "decode their answers, and prove you can read the 'receipts'."),
     ("Colour code", "YELLOW cells = you type here.  BLUE cells = formulas that calculate or check your answers (don't type in them).  "
@@ -149,21 +149,21 @@ qs = [
     ("Weather", "Which date has the MOST rain this week?", "Line up the \"time\" list with the \"precipitation_sum\" list.", ""),
     ("Weather", "How many mm of rain on that day? (number only)", "One fact per cell: just the number.", ""),
     ("Weather", "What is the highest wind speed this week (km/h)?", "Look at \"wind_speed_10m_max\".", ""),
-    ("Weather", "Stocky's suggestion: should Priya be warned?", "Formula: warns if rain is 50 mm or more, or wind is 60 km/h or more.",
-     '=IF(D8="","",IF(OR(D8>=50,D9>=60),"⚠ Yes: warn Priya","No warning needed"))'),
+    ("Weather", "Stocky's suggestion: should Sarah be warned?", "Formula: warns if rain is 50 mm or more, or wind is 60 km/h or more.",
+     '=IF(D8="","",IF(OR(D8>=50,D9>=60),"⚠ Yes: warn Sarah","No warning needed"))'),
 ]
 qs2 = [
     ("Currency", "After you pressed Enter, what web address did the browser end up on? (copy the address bar)", "Did the restaurant move house?",
      '=IF(D12="","",IF(ISNUMBER(SEARCH("frankfurter.dev",D12)),"✔ Correct: it moved to .dev","✖ Look at the address bar again"))'),
-    ("Currency", "1 USD = how many INR? (number)", "Look inside \"rates\".", ""),
     ("Currency", "1 USD = how many CNY? (number)", "Look inside \"rates\".", ""),
+    ("Currency", "1 USD = how many MXN? (number)", "Look inside \"rates\".", ""),
     ("Currency", "Did AED (UAE dirham) come back? (Yes/No)", "Count the currencies inside \"rates\".",
      '=IF(D15="","",IF(D15="No","✔ Correct: the kitchen doesn\'t stock AED","✖ Look again"))'),
 ]
 qs3 = [
-    ("Holidays", "What is the NEXT public holiday in China? (the \"name\")", "The first item in the list is the next one.", ""),
+    ("Holidays", "What is the NEXT public holiday in Mexico? (the \"name\")", "The first item in the list is the next one.", ""),
     ("Holidays", "On what date?", "Look at the \"date\" label of the first item.", ""),
-    ("Holidays", "Would this holiday affect a BL-1005 order placed today (21-day lead time)? (Yes/No)", "Is the holiday within the next 21 days?", ""),
+    ("Holidays", "Would this holiday affect a BL-1004 glove order from SafeHands placed today (10-day lead time)? (Yes/No)", "Is the holiday within the next 10 days?", ""),
 ]
 
 
@@ -184,14 +184,14 @@ for i, q in enumerate(qs):
     n += 1
 th["A11"] = "Restaurant 2 (Currency): "
 th["A11"].font = Font(bold=True)
-th["B11"] = '=HYPERLINK("https://api.frankfurter.app/latest?from=USD&to=INR,CNY,AED","https://api.frankfurter.app/latest?from=USD&to=INR,CNY,AED")'
+th["B11"] = '=HYPERLINK("https://api.frankfurter.app/latest?from=USD&to=CNY,MXN,AED","https://api.frankfurter.app/latest?from=USD&to=CNY,MXN,AED")'
 th["B11"].font = Font(color="0563C1", underline="single")
 for i, q in enumerate(qs2):
     put(12 + i, n, q)
     n += 1
-th["A16"] = "Restaurant 3 (Holidays, China): "
+th["A16"] = "Restaurant 3 (Holidays, Mexico): "
 th["A16"].font = Font(bold=True)
-th["B16"] = '=HYPERLINK("https://date.nager.at/api/v3/NextPublicHolidays/CN","https://date.nager.at/api/v3/NextPublicHolidays/CN")'
+th["B16"] = '=HYPERLINK("https://date.nager.at/api/v3/NextPublicHolidays/MX","https://date.nager.at/api/v3/NextPublicHolidays/MX")'
 th["B16"].font = Font(color="0563C1", underline="single")
 for i, q in enumerate(qs3):
     put(17 + i, n, q)
@@ -202,25 +202,34 @@ yn.add("D15")
 yn.add("D19")
 check_colours(th, "F5:F20")
 
-# Price impact calculator
-cell(th, "A22", "BrightLeaf price-impact calculator (uses YOUR live INR rate from question 8)", TITLE_FILL, bold=True)  # a title banner on an activity sheet, not inside a data table
+# Price impact calculator: what a yuan or peso move does to the DOLLAR cost of an order
+cell(th, "A22", "BrightLeaf price-impact calculator (uses YOUR live CNY and MXN rates from questions 8 and 9)", TITLE_FILL, bold=True)  # a title banner on an activity sheet, not inside a data table
 calc = [
-    ("SKU", "BL-1005 Pallet Jack Wheels (set), Global Lift Parts, Shenzhen", None),
-    ("Quantity ordered (sets)", 60, INPUT),
-    ("Unit cost (USD)", 38, GIVEN),
-    ("Order value (USD)", "=C24*C25", CALC),
-    ("Order value today (INR)", '=IF(D13="","enter Q8 first",C26*D13)', CALC),
-    ("If the rupee weakens by (%)", 1.5, INPUT),
-    ("New INR rate", '=IF(D13="","",D13*(1+C28/100))', CALC),
-    ("Extra cost in INR for the same order", '=IF(D13="","",C26*C29-C27)', CALC),
+    ("Item", "BL-1005 Pallet Jack Wheels (set), Global Lift Parts, Shenzhen (bills in CNY)",
+     "BL-1004 Industrial Safety Gloves (pair), SafeHands Co., Monterrey (bills in MXN)", None),
+    ("Quantity ordered", 60, 780, INPUT),
+    ("Unit cost today (USD)", 38, 2.40, GIVEN),
+    ("Order value today (USD)", "=C24*C25", "=D24*D25", CALC),
+    ("Your live rate: 1 USD = ? (from Q8 / Q9)", '=IF($D$13="","enter Q8 first",$D$13)', '=IF($D$14="","enter Q9 first",$D$14)', CALC),
+    ("Supplier's invoice in its own currency", '=IF(ISNUMBER(C27),C26*C27,"")', '=IF(ISNUMBER(D27),D26*D27,"")', CALC),
+    ("If the supplier's currency STRENGTHENS by (%)", 3, 2, INPUT),
+    ("New rate (fewer yuan / pesos per dollar)", '=IF(ISNUMBER(C27),C27/(1+C29/100),"")', '=IF(ISNUMBER(D27),D27/(1+D29/100),"")', CALC),
+    ("Same invoice, new cost in USD", '=IF(ISNUMBER(C30),C28/C30,"")', '=IF(ISNUMBER(D30),D28/D30,"")', CALC),
+    ("Extra cost in USD, nobody changed the price", '=IF(ISNUMBER(C31),C31-C26,"")', '=IF(ISNUMBER(D31),D31-D26,"")', CALC),
 ]
-for i, (lab, val, fill) in enumerate(calc, start=23):
+for i, (lab, v1, v2, fill) in enumerate(calc, start=23):
     cell(th, f"B{i}", lab, GIVEN, bold=True)
-    c = cell(th, f"C{i}", val, fill)
-    if i in (26,):
-        c.number_format = '"$"#,##0.00'
-    if i in (27, 29, 30):
-        c.number_format = '#,##0.00'
+    for col, val in (("C", v1), ("D", v2)):
+        c = cell(th, f"{col}{i}", val, fill if fill else GIVEN)
+        if i in (25, 26, 31, 32):
+            c.number_format = '"$"#,##0.00'
+        if i in (27, 30):
+            c.number_format = '0.0000'
+        if i == 28:
+            c.number_format = '#,##0.00'
+th["B33"] = ("Test day (17 Nov 2026): 1 USD = 6.6661 CNY and 18.4639 MXN. A month earlier (16 Oct) it was 6.6862 CNY and 18.3835 MXN. "
+             "Small moves, but on every import order they add up.")
+th["B33"].font = Font(italic=True, color="595959")
 
 # ---------------------------------------------------------------- Decode JSON
 dj = wb.create_sheet("Decode_JSON", 2)
@@ -271,7 +280,7 @@ for i in range(7):
     cell(dj, f"G{r}", f'=IF(D{r}="","",IF(D{r}=Lists!H{k},"✔","✖ check"))', CALC)
     cell(dj, f"H{r}", f'=IF(E{r}="","",IF(E{r}=Lists!I{k},"✔","✖ check"))', CALC)
     cell(dj, f"I{r}",
-         f'=IF(OR(D{r}="",E{r}=""),"",IF(OR(D{r}>=50,E{r}>=60),"HIGH: warn Priya",'
+         f'=IF(OR(D{r}="",E{r}=""),"",IF(OR(D{r}>=50,E{r}>=60),"HIGH: warn Sarah",'
          f'IF(OR(D{r}>=20,E{r}>=40),"MEDIUM: keep an eye","LOW")))', CALC)
     dj[f"C{r}"].number_format = "@"   # store the date exactly as the JSON writes it
 check_colours(dj, "F17:H23")
@@ -286,7 +295,7 @@ dj["B27"] = "Questions (answer in yellow):"
 dj["B27"].font = Font(bold=True)
 qrows = [
     ("Which unit is wind speed in?", "km/h"),
-    ("On which date should Stocky warn Priya first? (yyyy-mm-dd)", "2026-09-16"),
+    ("On which date should Stocky warn Sarah first? (yyyy-mm-dd)", "2026-09-16"),
 ]
 for i, (q, a) in enumerate(qrows, start=28):
     cell(dj, f"B{i}", q, GIVEN, wrap=False)
@@ -301,8 +310,8 @@ title(sc, "Status codes: read the receipt", "Pick the meaning for each code from
 header(sc, 4, ["Code", "Where you might meet it at BrightLeaf", "Meaning (choose)", "Check"], [8, 60, 62, 18])
 codes = [
     (200, "Stocky asks Open-Meteo for Shenzhen's forecast and gets it", 0),
-    (404, "Priya types .../v1/forecst (missing an 'a')", 6),
-    (401, "Stocky uses an Odoo API key that Priya cancelled last week", 4),
+    (404, "Sarah types .../v1/forecst (missing an 'a')", 6),
+    (401, "Stocky uses an Odoo API key that Sarah cancelled last week", 4),
     (429, "A test workflow asks the currency API 2,000 times in one minute", 7),
     (500, "The supplier portal is down for maintenance", 8),
     (400, "Asking Open-Meteo for daily=banana", 3),
@@ -325,17 +334,17 @@ cell(sc, "C15", '=COUNTIF(D5:D13,"✔*")', CALC, bold=True)
 
 # ---------------------------------------------------------------- GET or POST
 gp = wb.create_sheet("GET_or_POST", 4)
-title(gp, "GET (asking) or POST (submitting)?", "Asking never changes anything. Submitting creates or changes something, so important POSTs need Priya's approval.")
-header(gp, 4, ["#", "What Stocky does", "GET or POST?", "Check", "Needs Priya's approval? (your view)"], [5, 70, 14, 16, 34])
+title(gp, "GET (asking) or POST (submitting)?", "Asking never changes anything. Submitting creates or changes something, so important POSTs need Sarah's approval.")
+header(gp, 4, ["#", "What Stocky does", "GET or POST?", "Check", "Needs Sarah's approval? (your view)"], [5, 70, 14, 16, 34])
 tasks = [
     ("Read the on-hand quantity of BL-1004 Industrial Safety Gloves", "GET"),
     ("Create a draft purchase order for 1,820 corrugated boxes (BL-1002) from PackRight Industries", "POST"),
-    ("Check this week's rainfall forecast in Chennai", "GET"),
+    ("Check this week's rainfall forecast in Monterrey", "GET"),
     ("Look up today's USD to CNY exchange rate", "GET"),
     ("Send a delivery reminder email to Global Lift Parts", "POST"),
     ("List all products below their reorder point", "GET"),
     ("Add a new row to the Stock Log in Google Sheets", "POST"),
-    ("Fetch the next public holidays in the UAE", "GET"),
+    ("Fetch the next public holidays in Mexico", "GET"),
     ("Change the reorder point of BL-1006 Packing Tape from 1,000 to 1,200", "POST"),
     ("Read the lead time of Gulf Lubricants' hydraulic oil (BL-1007)", "GET"),
 ]
@@ -364,8 +373,8 @@ header(ms, 4, ["Supplier", "City", "Latitude", "Longitude", "Currency code", "Co
        [24, 14, 11, 11, 11, 11, 22, 22, 22, 40])
 examples = [
     ("Global Lift Parts", "Shenzhen", 22.54, 114.06, "CNY", "CN", "Typhoon rain delaying BL-1005 wheels (21-day lead time)"),
-    ("Gulf Lubricants", "Dubai", 25.20, 55.27, "AED", "AE", "Sandstorm wind; Eid holidays"),
-    ("SafeHands Co.", "Chennai", 13.08, 80.27, "INR", "IN", "Monsoon flooding in Oct–Dec"),
+    ("Gulf Lubricants", "Dubai", 25.20, 55.27, "AED", "AE", "Sandstorm wind; Eid and UAE National Day (2–3 Dec). Holiday link comes back empty: keep a written list"),
+    ("SafeHands Co.", "Monterrey", 25.69, -100.32, "MXN", "MX", "Hurricane-season rain (Jun–Nov); peso moves on BL-1004 gloves; Christmas closures"),
 ]
 for r in range(5, 13):
     ex = examples[r - 5] if r - 5 < len(examples) else None
@@ -376,11 +385,11 @@ for r in range(5, 13):
          f'=IF(OR(C{r}="",D{r}=""),"",HYPERLINK("https://api.open-meteo.com/v1/forecast?latitude="&C{r}&"&longitude="&D{r}'
          f'&"&daily=precipitation_sum,wind_speed_10m_max&timezone=auto","Weather: "&B{r}))', CALC)
     cell(ms, f"H{r}",
-         f'=IF(E{r}="","",HYPERLINK("https://api.frankfurter.app/latest?from=USD&to="&E{r},"USD to "&E{r}))', CALC)
+         f'=IF(E{r}="","",HYPERLINK("https://api.frankfurter.dev/v1/latest?from=USD&to="&E{r},"USD to "&E{r}))', CALC)
     cell(ms, f"I{r}",
          f'=IF(F{r}="","",HYPERLINK("https://date.nager.at/api/v3/NextPublicHolidays/"&F{r},"Holidays: "&F{r}))', CALC)
-ms["A14"] = ("Notes: currency codes are 3 letters (INR, CNY, AED, EUR, GBP, JPY...). Country codes are 2 letters (IN, CN, AE, DE, US...). "
-             "If a currency doesn't come back (like AED), the API's kitchen doesn't stock it. That's a finding, not a failure!")
+ms["A14"] = ("Notes: currency codes are 3 letters (CNY, MXN, AED, EUR, CAD, JPY...). Country codes are 2 letters (US, MX, CN, AE, CA...). "
+             "If a currency (like AED) or a holiday list (like AE) doesn't come back, the API's kitchen doesn't stock it. That's a finding, not a failure!")
 ms.row_dimensions[14].height = 30
 
 lists.sheet_state = "hidden"

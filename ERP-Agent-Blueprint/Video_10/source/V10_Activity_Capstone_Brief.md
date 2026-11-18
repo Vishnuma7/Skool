@@ -118,12 +118,12 @@ ________________________________________________________________
 | Question | Answer |
 |---|---|
 | Agent name | Stocky – Late Shipment Chaser |
-| Company | BrightLeaf Supplies, industrial & packaging distributor, Pune; ~60 staff |
-| Who uses it | Priya Sharma, Procurement & Inventory Manager |
-| Who receives output | Suppliers (follow-up emails, after Priya approves); Mr. Kapoor sees it in the Monday Report |
+| Company | BrightLeaf Supplies, industrial & packaging distributor, Columbus, Ohio; ~60 staff |
+| Who uses it | Sarah Mitchell, Procurement & Inventory Manager |
+| Who receives output | Suppliers (follow-up emails, after Sarah approves); Mr. Harrison sees it in the Monday Report |
 
 ### B2. The problem in one sentence
-"Every week, I spend about 3 hours checking which purchase orders are late and writing chaser emails to suppliers, and when I miss one, Ravi's warehouse runs short on things like pallet jack wheels."
+"Every week, I spend about 3 hours checking which purchase orders are late and writing chaser emails to suppliers, and when I miss one, Tom's warehouse runs short on things like pallet jack wheels."
 
 ### B3. Use case
 - ☑ Late shipment chaser
@@ -131,26 +131,26 @@ ________________________________________________________________
 ### B4. The design
 | Part | Answer |
 |---|---|
-| Trigger | Schedule Trigger, every weekday at 8:00 am (Asia/Kolkata) |
+| Trigger | Schedule Trigger, every weekday at 8:00 am (America/New_York) |
 | Tool 1: ERP | Odoo Purchase: confirmed purchase orders with Receipt Date in the past and status "not fully received" |
 | Tool 2: Database | Google Sheet "BrightLeaf – Stocky Database": reads "Suppliers" (contact email, risk score), appends to "Decision Log" |
 | Tool 3: Outside API | Nager.Date holidays: don't send a chaser on the supplier's public holiday |
 | The brain | Claude (same credential as Video 5) |
-| Rules | 1) Only chase orders 2+ days past the receipt date. 2) Never chase the same PO twice within 3 days (check the Decision Log). 3) Tone: polite, short, ask for a new ship date and tracking number. 4) Never promise payment terms or change quantities. 5) If a PO is 10+ days late, flag it for Priya to call instead of emailing. |
-| Human approval | Gmail "Send and Wait for Response": Priya sees each draft and clicks Approve / Reject |
+| Rules | 1) Only chase orders 2+ days past the receipt date. 2) Never chase the same PO twice within 3 days (check the Decision Log). 3) Tone: polite, short, ask for a new ship date and tracking number. 4) Never promise payment terms or change quantities. 5) If a PO is 10+ days late, flag it for Sarah to call instead of emailing. |
+| Human approval | Gmail "Send and Wait for Response": Sarah sees each draft and clicks Approve / Reject |
 | Log | Timestamp, PO number, Supplier, Days late, Action (Chaser sent / Rejected / Call flagged), Approved By, Risk Score, Notes |
-| Output / report | Approved emails go to suppliers; a count of late POs and chasers is added to Mr. Kapoor's Monday Report |
-| Error alert | "Stocky – Error Alerts" emails Priya |
+| Output / report | Approved emails go to suppliers; a count of late POs and chasers is added to Mr. Harrison's Monday Report |
+| Error alert | "Stocky – Error Alerts" emails Sarah |
 
 ### B5. System prompt (example)
 ```
 You are Stocky, BrightLeaf Supplies' shipment follow-up assistant.
-You help Priya Sharma (Procurement Manager) chase late purchase orders.
+You help Sarah Mitchell (Procurement Manager) chase late purchase orders.
 You receive: a list of late purchase orders (PO number, supplier, product,
 quantity, promised receipt date, days late) and the supplier contact list.
 Rules:
 - Draft one short, polite email per PO asking for a new ship date and
-  tracking number. Maximum 90 words. Sign as "Priya Sharma, BrightLeaf".
+  tracking number. Maximum 90 words. Sign as "Sarah Mitchell, BrightLeaf".
 - Never promise payment, discounts or changes to quantity or price.
 - If a PO is 10 or more days late, do NOT draft an email. Instead write:
   "CALL RECOMMENDED: <supplier>, <PO>, <days> days late."
@@ -175,8 +175,8 @@ Output: for each PO, the PO number, the email subject, and the email body.
 | 1 | Normal | PO P00027 (32 pallet jack wheel sets) 3 days late | Polite chaser draft to Global Lift Parts | Correct draft, 74 words | ✔ |
 | 2 | Normal | PO P00028 (1,820 shipping boxes) 1 day late | No action (under 2 days) | No action | ✔ |
 | 3 | Normal | Two late POs from PackRight | Two separate drafts | Two drafts | ✔ |
-| 4 | Normal | Priya approves the draft | Email sent + Decision Log row "Chaser sent" | Both happened | ✔ |
-| 5 | Normal | Priya rejects the draft | No email; log row "Rejected" with reason | Both happened | ✔ |
+| 4 | Normal | Sarah approves the draft | Email sent + Decision Log row "Chaser sent" | Both happened | ✔ |
+| 5 | Normal | Sarah rejects the draft | No email; log row "Rejected" with reason | Both happened | ✔ |
 | 6 | Tricky | Same PO chased yesterday | Skip (rule 2) | Drafted again | ✘ → fixed by adding the Decision Log lookup; re-test ✔ |
 | 7 | Tricky | Supplier has no email in "Suppliers" | Says contact missing | "Contact email missing for Gulf Lubricants" | ✔ |
 | 8 | Tricky | Today is a public holiday in China | No chaser to Shenzhen suppliers today | Skipped | ✔ |
@@ -193,10 +193,10 @@ Output: for each PO, the PO number, the email subject, and the email body.
 | Hourly cost | $20 |
 | Yearly value | (3 − 0.5) × 20 × 48 = $2,400 |
 | Extra monthly tool cost | about $2 (same n8n plan, ~22 extra runs) |
-| Non-money benefit | Late POs chased within 1 day instead of ~5; fewer surprises for Ravi |
+| Non-money benefit | Late POs chased within 1 day instead of ~5; fewer surprises for Tom |
 
 ### B9. Loom script (example)
-| Time | What Priya shows and says |
+| Time | What Sarah shows and says |
 |---|---|
 | 0:00–0:20 | "I used to spend 3 hours a week chasing late POs. Here's Stocky's Late Shipment Chaser." |
 | 0:20–1:20 | n8n canvas → test run → Gmail approval draft for P00027 → click Approve → supplier email sent → new row in the Decision Log |

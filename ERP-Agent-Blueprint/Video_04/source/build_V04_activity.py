@@ -78,9 +78,9 @@ PRODUCTS = [  # SKU, name, unit, cost, ROP, lead, supplier, on hand (canonical)
     ("BL-1010", "Forklift Battery Water Kit", "kit", 19.75, 20, 12, "SUP-004", 26),
 ]
 SUPPLIERS = [
-    ("SUP-001", "Apex Fasteners", "Pune", "IN", "INR", 18.52, 73.86, "orders@apexfasteners.example", "TRUE"),
-    ("SUP-002", "PackRight Industries", "Mumbai", "IN", "INR", 19.08, 72.88, "sales@packright.example", "TRUE"),
-    ("SUP-003", "SafeHands Co.", "Chennai", "IN", "INR", 13.08, 80.27, "supply@safehands.example", "TRUE"),
+    ("SUP-001", "Apex Fasteners", "Columbus", "US", "USD", 39.96, -83.00, "orders@apexfasteners.example", "TRUE"),
+    ("SUP-002", "PackRight Industries", "Chicago", "US", "USD", 41.88, -87.63, "sales@packright.example", "TRUE"),
+    ("SUP-003", "SafeHands Co.", "Monterrey", "MX", "MXN", 25.69, -100.32, "supply@safehands.example", "TRUE"),
     ("SUP-004", "Global Lift Parts", "Shenzhen", "CN", "CNY", 22.54, 114.06, "export@globallift.example", "TRUE"),
     ("SUP-005", "Gulf Lubricants", "Dubai", "AE", "AED", 25.20, 55.27, "trade@gulflube.example", "TRUE"),
     ("SUP-006", "Shenzhen BrightTech", "Shenzhen", "CN", "CNY", 22.54, 114.06, "b2b@brighttech.example", "TRUE"),
@@ -109,8 +109,8 @@ cols = {
     "B": ("Supplier_IDs", [s[0] for s in SUPPLIERS]),
     "C": ("Problem types", PROBLEM_TYPES),
     "D": ("Yes/No", ["Yes", "No"]),
-    "E": ("Country", ["IN", "CN", "AE"]),
-    "F": ("Currency", ["INR", "CNY", "AED"]),
+    "E": ("Country", ["US", "MX", "CN", "AE"]),
+    "F": ("Currency", ["USD", "MXN", "CNY", "AED"]),
     "G": ("Active", ["TRUE", "FALSE"]),
     "H": ("Data types", ["ID", "Text", "Number", "Date", "True/False"]),
 }
@@ -182,7 +182,7 @@ me["A1"] = "BRIGHTLEAF SUPPLIES – STOCK REPORT (Nov) – DO NOT EDIT!!"
 me["A1"].font = Font(bold=True, size=14)
 me["A1"].alignment = Alignment(horizontal="center")
 me.merge_cells("A1:H1")
-me["A2"] = "Prepared by Ravi / updated by Priya / numbers as of last count"
+me["A2"] = "Prepared by Tom / updated by Sarah / numbers as of last count"
 me["A2"].alignment = Alignment(horizontal="center")
 me.merge_cells("A2:H2")
 heads = ["Item Code", "Product", "Supplier", "Qty", "Reorder Lvl", "Last Count Date", "Cost", "Remarks"]
@@ -203,9 +203,9 @@ messy = [
     (None, "Industrial Safety Gloves (pair)", "Safe Hands Co", "420 pairs", 600, "16/11/2026", 2.4, None),
     ("BL-1005", "Pallet Jack Wheels (set)", "Global Lift Parts, Shenzhen", "18 - urgent!!", 25, "16.11.2026", "USD 38", "3 jacks waiting"),
     ("BL-1010", "Forklift Battery Water Kit", None, 26, 20, "16/11/2026", 19.75, None),
-    ("BL-1007", "Hydraulic Oil 20L", "Gulf Lubricants", "31 (check w/ Ravi)", 40, "16/11/2026", 54, None),
+    ("BL-1007", "Hydraulic Oil 20L", "Gulf Lubricants", "31 (check w/ Tom)", 40, "16/11/2026", 54, None),
     ("BL-1008", "LED Warehouse Light 150W", "Shenzhen BrightTech", "34 nos", 30, "13/11/2026", 72, None),
-    ("TOTAL", None, None, "lots", None, None, None, "see Ravi's email"),
+    ("TOTAL", None, None, "lots", None, None, None, "see Tom's email"),
 ]
 for i, row in enumerate(messy, start=5):
     for j, v in enumerate(row, start=1):
@@ -227,7 +227,7 @@ title(ps, "Problem Spotter: label every crime in the messy export",
 header(ps, 4, ["#", "Where (Messy_Export)", "What you see", "Check", "Problem type (choose)", "How would you fix it?"],
        [5, 22, 46, 16, 36, 60])
 spots = [
-    ("Rows 1–2", "Big banner lines: 'BRIGHTLEAF SUPPLIES – STOCK REPORT…' and 'Prepared by Ravi…'", 0),
+    ("Rows 1–2", "Big banner lines: 'BRIGHTLEAF SUPPLIES – STOCK REPORT…' and 'Prepared by Tom…'", 0),
     ("C5:C7", "'Apex Fasteners' stretched across three rows", 1),
     ("D5", "145 boxes", 2),
     ("Row 7", "BL-1001 Steel Hex Bolts appears again", 4),
@@ -238,7 +238,7 @@ spots = [
     ("Column F", "16/11/2026 · Nov 16 · 2026-11-16 · 16-Nov-26 · 16.11.2026", 8),
     ("D11 and D13", "Bright red cells with no explanation", 9),
     ("G5 and G13", "$12.50 · USD 38", 10),
-    ("Row 17", "TOTAL … lots … see Ravi's email", 11),
+    ("Row 17", "TOTAL … lots … see Tom's email", 11),
 ]
 for i, (where, what, k) in enumerate(spots, start=5):
     cell(ps, f"A{i}", i - 4, GIVEN)
@@ -260,7 +260,7 @@ cs = wb.create_sheet("Clean_Stock_Log", 3)
 labels = ["Log_ID", "Log_Date", "SKU", "Product_Name", "Qty_On_Hand", "Unit", "Reorder_Point", "Status",
           "Suggested_Order_Qty", "Supplier_ID", "Supplier_Name", "Note", "Duplicate?", "Check"]
 header(cs, 1, labels, [10, 12, 10, 32, 12, 8, 13, 10, 13, 12, 22, 30, 11, 26])
-notes = {"BL-1005": "urgent per Ravi; 3 jacks waiting", "BL-1006": "estimate, please recount",
+notes = {"BL-1005": "urgent per Tom; 3 jacks waiting", "BL-1006": "estimate, please recount",
          "BL-1003": "21 cartons x 12 + 8 loose"}
 for idx, p in enumerate(PRODUCTS):
     r = idx + 2
@@ -326,8 +326,8 @@ for i, s in enumerate(SUPPLIERS, start=2):
             val = (v == "TRUE") if j == 8 else v
             cell(su, ref, val, GIVEN)
     cell(su, f"J{i}", f'=IF(COUNTBLANK(A{i}:I{i})=0,"✔ Complete","✖ Missing "&COUNTBLANK(A{i}:I{i})&" field(s)")', CALC)
-dv_list(su, "=Lists!$E$2:$E$4", ["D2:D50"])
-dv_list(su, "=Lists!$F$2:$F$4", ["E2:E50"])
+dv_list(su, "=Lists!$E$2:$E$5", ["D2:D50"])
+dv_list(su, "=Lists!$F$2:$F$5", ["E2:E50"])
 check_colours(su, "J2:J7")
 su["A9"] = "Why do SUP-004 and SUP-006 share a city but have different IDs? Write your answer →"
 su["A9"].font = Font(italic=True)

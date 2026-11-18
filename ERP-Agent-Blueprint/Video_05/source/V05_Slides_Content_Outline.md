@@ -10,9 +10,9 @@
 - **Suggested picture:** An empty office desk with a laptop, a name plate reading "Stocky (Intern)", a brain icon on a sticky note, and a small key ring. Caption: "Day one: desk, brain, keys."
 
 ### Slide 2: Monday 8:10 at BrightLeaf
-- Priya: 3 suppliers to chase, Mr. Kapoor's report due at 11:00, pallet jack wheels (BL-1005) almost out
+- Sarah: 3 suppliers to chase, Mr. Harrison's report due at 11:00, pallet jack wheels (BL-1005) almost out
 - Videos 1-4 = understanding. Video 5 = building starts
-- **Suggested picture:** Illustrated Priya at her desk with a coffee, a spreadsheet, and three speech bubbles: "Report by 11!" (Mr. Kapoor), "Wheels nearly gone!" (Ravi), "Supplier hasn't replied" (inbox).
+- **Suggested picture:** Illustrated Sarah at her desk with a coffee, a spreadsheet, and three speech bubbles: "Report by 11!" (Mr. Harrison), "Wheels nearly gone!" (Tom), "Supplier hasn't replied" (inbox).
 
 ### Slide 3: What You'll Set Up Today
 - The desk: **n8n** (workflow builder)
@@ -29,7 +29,7 @@
 
 ### Slide 5: The Recipe Card
 - A workflow = a recipe card: step 1, step 2, step 3, read left to right
-- **Suggested picture:** A kitchen recipe card titled "Monday Stock Check" with three steps ("Doorbell rings at 8:00", "Read stock from Odoo", "Email low items to Ravi"), each step drawn as a Lego brick.
+- **Suggested picture:** A kitchen recipe card titled "Monday Stock Check" with three steps ("Doorbell rings at 8:00", "Read stock from Odoo", "Email low items to Tom"), each step drawn as a Lego brick.
 
 ### Slide 6: The Four Words of n8n
 - **Trigger** = the doorbell that starts the recipe
@@ -44,7 +44,7 @@
 
 ### Slide 8: Pause & Think
 - Think of one task you do every week. What rings the doorbell? What are the first two steps?
-- Example: Every Monday 8:00 → read stock from the ERP → email low items to Ravi
+- Example: Every Monday 8:00 → read stock from the ERP → email low items to Tom
 - **Suggested picture:** Big yellow "Pause & Think" banner with a blank three-box recipe card for the viewer to imagine filling in.
 
 ### Slide 9: The Key on the Noticeboard
@@ -94,7 +94,7 @@
 - Odoo: Settings → (Activate the developer mode) → Users & Companies → Users → your user → Account Security → New API Key
 - n8n "Odoo API" credential = 4 lines of an address: Site URL · Username · API Key · Database Name
 - Top 3 errors: extra text after `.odoo.com`, database-name typo, password instead of API key
-- **Suggested picture:** An envelope addressed in four lines (`https://brightleaf-demo.odoo.com` / `priya@...` / `••••••••` / `brightleaf-demo`) next to a green "Connection tested successfully" stamp.
+- **Suggested picture:** An envelope addressed in four lines (`https://brightleaf-demo.odoo.com` / `sarah@...` / `••••••••` / `brightleaf-demo`) next to a green "Connection tested successfully" stamp.
 
 ### Slide 17: Recap + Your Activity
 - 1) n8n = recipe card: trigger, nodes, connections, executions

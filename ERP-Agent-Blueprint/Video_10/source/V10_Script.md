@@ -4,7 +4,7 @@
 **Learning objectives:**
 - Give your agent its own least-privilege Odoo user ("Stocky Bot") with only Inventory and Purchase rights, and its own API key.
 - Protect, rotate and never share API keys; set AI spending limits and estimate your monthly running cost.
-- Test in a copy of your database first, and build an n8n Error Trigger workflow that emails Priya when anything fails.
+- Test in a copy of your database first, and build an n8n Error Trigger workflow that emails Sarah when anything fails.
 - Go live with confidence: activate workflows, duplicate before every edit, and run a 10-minute weekly maintenance check.
 - Measure ROI (hours saved × hourly cost), write a one-page pitch for your boss, and plan, build and share your capstone agent.
 
@@ -22,17 +22,17 @@
 
 ## [ON CAMERA] Intro (00:00–02:00)
 
-Ten weeks ago, Priya Sharma spent twelve hours every week copying numbers out of Odoo, chasing suppliers by email and building a Monday report by hand.
+Ten weeks ago, Sarah Mitchell spent twelve hours every week copying numbers out of Odoo, chasing suppliers by email and building a Monday report by hand.
 
-Look at her now. Stocky answers her questions in plain English. Every morning it checks stock and drafts purchase orders, but only after she approves. It watches the weather in Shenzhen, the yuan, the dirham and the holidays in Dubai. It writes every decision in a log. And at 7 am on Monday, Mr. Kapoor's report lands in his inbox before Priya has even reached the office.
+Look at her now. Stocky answers her questions in plain English. Every morning it checks stock and drafts purchase orders, but only after she approves. It watches the weather in Shenzhen, the yuan, the peso, the dirham and the holidays in Dubai. It writes every decision in a log. And at 7 am on Monday, Mr. Harrison's report lands in his inbox before Sarah has even reached the office.
 
-So here's the question Mr. Kapoor asked her last Friday. And your boss will ask you the same thing.
+So here's the question Mr. Harrison asked her last Friday. And your boss will ask you the same thing.
 
-"This is impressive, Priya. But is it safe? What if it orders 10,000 boxes by mistake? What if someone steals the password? What does it cost? And what happens when it breaks at 2 am?"
+"This is impressive, Sarah. But is it safe? What if it orders 10,000 boxes by mistake? What if someone steals the password? What does it cost? And what happens when it breaks at 2 am?"
 
 Those are great questions. They're the difference between a cool demo and a tool a real company trusts with real money.
 
-So in this final video, we make Stocky safe to run for real. We give it its own limited key card, we protect the keys, we cap the costs, we test before we touch anything live, and we set up an alarm that emails Priya the moment something fails. Then we measure the return on investment, with real numbers, and I'll show you how to pitch it to your boss on one page.
+So in this final video, we make Stocky safe to run for real. We give it its own limited key card, we protect the keys, we cap the costs, we test before we touch anything live, and we set up an alarm that emails Sarah the moment something fails. Then we measure the return on investment, with real numbers, and I'll show you how to pitch it to your boss on one page.
 
 And then, the best part. Your capstone. You're going to build your own agent, for your own company, and share it with the community. Let's finish this strong.
 
@@ -40,7 +40,7 @@ And then, the best part. Your capstone. You're going to build your own agent, fo
 
 **SHOW:** Odoo, logged in as admin. Top-right shows "Mitchell Admin" or your admin name. n8n credential "Odoo – BrightLeaf" currently uses the admin login.
 
-**SAY:** Here's a confession. Until now, Stocky has been logging into Odoo with Priya's administrator account. That was fine for learning. For going live, it's like giving the new intern the master key to every room in the building, including the finance office and the CEO's safe. Remember our analogy: an API key is a hotel key card. It should open only the doors it needs.
+**SAY:** Here's a confession. Until now, Stocky has been logging into Odoo with Sarah's administrator account. That was fine for learning. For going live, it's like giving the new intern the master key to every room in the building, including the finance office and the CEO's safe. Remember our analogy: an API key is a hotel key card. It should open only the doors it needs.
 
 **ON-SCREEN TEXT:** Least privilege = give the agent ONLY the access it needs to do its job. Nothing more.
 
@@ -48,7 +48,7 @@ And then, the best part. Your capstone. You're going to build your own agent, fo
 
 **SHOW:** **Settings → Users & Companies → Users → New**. Name: `Stocky Bot`. Email/Login: `stocky.bot@brightleaf.example`.
 
-**SAY:** I go to Settings, Users and Companies, Users, and click New. Name: Stocky Bot. Login: stocky dot bot at brightleaf. Naming it "Bot" matters. When anyone looks at an RFQ in six months and sees "Created by Stocky Bot", they instantly know a machine made it, not Priya.
+**SAY:** I go to Settings, Users and Companies, Users, and click New. Name: Stocky Bot. Login: stocky dot bot at brightleaf. Naming it "Bot" matters. When anyone looks at an RFQ in six months and sees "Created by Stocky Bot", they instantly know a machine made it, not Sarah.
 
 **SHOW:** **Access Rights** tab. Inventory = **User**. Purchase = **User**. Sales = (blank). Accounting / Invoicing = (blank). Employees = (blank). Administration = (blank). Click **Save**.
 
@@ -62,7 +62,7 @@ And then, the best part. Your capstone. You're going to build your own agent, fo
 
 **SHOW:** **Purchase → Configuration → Settings** → tick **Purchase Order Approval** → Minimum amount: `5,000` → **Save**.
 
-**SAY:** One more safety net while we're here. In Purchase, Configuration, Settings, I tick "Purchase Order Approval" and set the minimum to 5,000 dollars. Now any order above that needs a Purchase manager to approve it inside Odoo, on top of Priya's email approval. Two locks on the same door. That answers Mr. Kapoor's "10,000 boxes" question.
+**SAY:** One more safety net while we're here. In Purchase, Configuration, Settings, I tick "Purchase Order Approval" and set the minimum to 5,000 dollars. Now any order above that needs a Purchase manager to approve it inside Odoo, on top of Sarah's email approval. Two locks on the same door. That answers Mr. Harrison's "10,000 boxes" question.
 
 **SHOW:** Private window → log in as `stocky.bot@brightleaf.example` → avatar top right → **My Profile** (or **My Preferences**) → **Account Security** tab → **New API Key** → confirm password → Description: `n8n-Stocky-2026-11` → **Generate Key** → copy.
 
@@ -107,11 +107,11 @@ And then, the best part. Your capstone. You're going to build your own agent, fo
 | Daily Reorder Check | 30 | $0.03 | $0.90 |
 | Supplier Risk Check | 30 | $0.03 | $0.90 |
 | Monday Report | 4 | $0.08 | $0.32 |
-| Chat questions (Priya + Ravi) | 150 | $0.02 | $3.00 |
+| Chat questions (Sarah + Tom) | 150 | $0.02 | $3.00 |
 | Error alerts (no AI) | 5 | $0.00 | $0.00 |
 | **Total** | **219 runs** | | **$5.12** |
 
-**SAY:** So what does Stocky cost per month? Here's the estimator from your activity file. Daily reorder check, thirty runs. Risk check, thirty. Monday report, four. About a hundred and fifty chat questions from Priya and Ravi. That's around 220 runs a month. AI cost: about five dollars. Add n8n Cloud's starter plan, roughly twenty to twenty-five dollars a month at the time of recording, and Google Sheets and Gmail are free. Call it thirty-two dollars a month, all in. Prices change, so always check the pricing pages, but the order of magnitude is: less than a team lunch.
+**SAY:** So what does Stocky cost per month? Here's the estimator from your activity file. Daily reorder check, thirty runs. Risk check, thirty. Monday report, four. About a hundred and fifty chat questions from Sarah and Tom. That's around 220 runs a month. AI cost: about five dollars. Add n8n Cloud's starter plan, roughly twenty to twenty-five dollars a month at the time of recording, and Google Sheets and Gmail are free. Call it thirty-two dollars a month, all in. Prices change, so always check the pricing pages, but the order of magnitude is: less than a team lunch.
 
 > PAUSE & THINK: How many times a month would YOUR agent run? Count the triggers: daily, weekly, and questions people ask. Write the number down before you open the estimator.
 
@@ -143,9 +143,9 @@ Every single one of those is something we fix in this video. None of them is har
 
 **SHOW:** n8n → **Overview → Create Workflow** → name `Stocky – Error Alerts` → **Add first step** → search `Error Trigger` → add it.
 
-**SAY:** Now the smoke alarm. Things will fail sometimes. The Odoo trial expires, a password changes, Google is having a bad day. That's normal. What's not okay is finding out from Mr. Kapoor on Monday that the report never came. So I create a new workflow called "Stocky – Error Alerts" and add an Error Trigger. This doorbell rings whenever any other workflow fails.
+**SAY:** Now the smoke alarm. Things will fail sometimes. The Odoo trial expires, a password changes, Google is having a bad day. That's normal. What's not okay is finding out from Mr. Harrison on Monday that the report never came. So I create a new workflow called "Stocky – Error Alerts" and add an Error Trigger. This doorbell rings whenever any other workflow fails.
 
-**SHOW:** Add **Gmail** → Send. To: `priya@brightleaf.example`. Subject: `ALERT: Stocky failed – {{ $json.workflow.name }}`. Email Type: HTML. Message:
+**SHOW:** Add **Gmail** → Send. To: `sarah@brightleaf.example`. Subject: `ALERT: Stocky failed – {{ $json.workflow.name }}`. Email Type: HTML. Message:
 
 ```
 <p><b>Stocky hit a problem.</b></p>
@@ -157,7 +157,7 @@ Time: {{ $now.toFormat('dd LLL yyyy HH:mm') }}</p>
 <p>Nothing was ordered in this run. Check the step above, fix, and re-run.</p>
 ```
 
-**SAY:** Then a Gmail node to Priya. The subject says "ALERT: Stocky failed", plus the workflow name. The message tells her which step failed, the error message, the time, and a link straight to that run in n8n. Plain English, one click to investigate.
+**SAY:** Then a Gmail node to Sarah. The subject says "ALERT: Stocky failed", plus the workflow name. The message tells her which step failed, the error message, the time, and a link straight to that run in n8n. Plain English, one click to investigate.
 
 **SHOW:** Save. Then open **"Stocky – Daily Reorder Check"** → **…** menu → **Settings** → **Error Workflow** = `Stocky – Error Alerts` → **Save**. Repeat for Chat, Supplier Risk Check and Monday Report.
 
@@ -165,7 +165,7 @@ Time: {{ $now.toFormat('dd LLL yyyy HH:mm') }}</p>
 
 **SHOW:** Test copy of Daily Reorder Check on the TEST credential with a deliberately wrong API key; Schedule Trigger temporarily set to every 1 minute; activate; wait. Gmail: "ALERT: Stocky failed – Stocky – Daily Reorder Check (TEST)" … "Step that failed: Get Products. Error: Access Denied". Then deactivate and fix the key.
 
-**SAY:** Let's prove it works. One detail: the Error Trigger only fires for automatic runs, not when you click "Test". So on my test copy, I break the key on purpose, set the schedule to every minute, and activate it. A minute later, Priya's inbox: "ALERT: Stocky failed. Step that failed: Get Products. Error: Access Denied." Perfect. I switch it off and fix the key. Now Priya hears about problems before anyone else does.
+**SAY:** Let's prove it works. One detail: the Error Trigger only fires for automatic runs, not when you click "Test". So on my test copy, I break the key on purpose, set the schedule to every minute, and activate it. A minute later, Sarah's inbox: "ALERT: Stocky failed. Step that failed: Get Products. Error: Access Denied." Perfect. I switch it off and fix the key. Now Sarah hears about problems before anyone else does.
 
 ## [SCREEN RECORDING] Step 4: Go Live: Activate, Version, Maintain (13:30–16:00)
 
@@ -183,7 +183,7 @@ Time: {{ $now.toFormat('dd LLL yyyy HH:mm') }}</p>
 
 **SHOW:** **Overview → Executions** tab → filter **Status: Error** → shows 0 errors this week.
 
-**SAY:** Last piece: maintenance. An agent isn't "set and forget". It's more like a car. A quick check every week keeps it running for years. Every Friday, Priya spends ten minutes. First, the Executions tab, filter by Error. Zero this week. Good.
+**SAY:** Last piece: maintenance. An agent isn't "set and forget". It's more like a car. A quick check every week keeps it running for years. Every Friday, Sarah spends ten minutes. First, the Executions tab, filter by Error. Zero this week. Good.
 
 **SHOW:** The "Weekly Maintenance" sheet of the activity file:
 
@@ -198,7 +198,7 @@ Time: {{ $now.toFormat('dd LLL yyyy HH:mm') }}</p>
 | 7 | Rejected suggestions: should a rule change? | Decision Log, Action = Rejected |
 | 8 | Key rotation due? | Calendar reminder (every 90 days) |
 
-**SAY:** Then the rest of the checklist. Did the Monday report arrive, and do the numbers match the dashboard? Skim the Decision Log. Ask Stocky three questions and check the answers in Odoo. Look at the AI spend and the n8n usage. And my favourite: look at what Priya rejected this week. Every rejection is a lesson. If she keeps rejecting packing tape orders because a delivery is already coming, that's a rule to add to the prompt. That's how Stocky gets smarter every month.
+**SAY:** Then the rest of the checklist. Did the Monday report arrive, and do the numbers match the dashboard? Skim the Decision Log. Ask Stocky three questions and check the answers in Odoo. Look at the AI spend and the n8n usage. And my favourite: look at what Sarah rejected this week. Every rejection is a lesson. If she keeps rejecting packing tape orders because a delivery is already coming, that's a rule to add to the prompt. That's how Stocky gets smarter every month.
 
 ## [ON CAMERA] Measuring ROI + Getting Your Boss's Buy-In (16:00–18:00)
 
@@ -206,13 +206,13 @@ Let's talk about the question every boss eventually asks: "Was it worth it?"
 
 ROI, return on investment, sounds like a finance word, but for us it's simple maths. Hours saved, times the hourly cost of the person, compared to what the tools cost.
 
-Let's do Priya. Before Stocky, she spent about twelve hours a week on this work. Copying stock numbers, chasing reorders, building the Monday report. Now she spends about two hours: approving RFQs, reading the report, doing the Friday check. That's ten hours saved every week.
+Let's do Sarah. Before Stocky, she spent about twelve hours a week on this work. Copying stock numbers, chasing reorders, building the Monday report. Now she spends about two hours: approving RFQs, reading the report, doing the Friday check. That's ten hours saved every week.
 
-Let's say Priya's fully loaded cost to BrightLeaf, salary plus benefits, is about twenty dollars an hour. Use your own number. Ten hours times twenty dollars is two hundred dollars a week. Over forty-eight working weeks, that's nine thousand six hundred dollars a year.
+Let's say Sarah's fully loaded cost to BrightLeaf, salary plus benefits, is about twenty dollars an hour. Use your own number. Ten hours times twenty dollars is two hundred dollars a week. Over forty-eight working weeks, that's nine thousand six hundred dollars a year.
 
 And the cost? About thirty-two dollars a month, so three hundred and eighty-four dollars a year. That's a return of about twenty-five times. Stocky pays for itself in the very first week.
 
-And we haven't even counted the bigger wins: stock-outs avoided, duplicate orders stopped by the log, and Priya using those ten hours to negotiate better prices with suppliers.
+And we haven't even counted the bigger wins: stock-outs avoided, duplicate orders stopped by the log, and Sarah using those ten hours to negotiate better prices with suppliers.
 
 Now, how do you get your boss to say yes? One page. Not a forty-slide deck. Your activity file has a template. Five short sections. The problem, in hours and pain. What the agent does, in three bullets. The proof: four weeks of your Decision Log and one real Monday report. The cost and the safety nets: least privilege, approvals, spending limit, error alerts. And the ask: "Let me run this for three months, and I'll report the hours saved every month."
 
@@ -232,7 +232,7 @@ Bosses don't buy AI. They buy hours back, fewer mistakes and less risk. Speak th
 
 **SHOW:** Sheet "ROI_Calculator": inputs in yellow: Hours per week before = 12, after = 2, hourly cost = $20, working weeks = 48, monthly tool cost = $32. Outputs in green: Hours saved per year = 480, Value per year = $9,600, Cost per year = $384, Net benefit = $9,216, ROI multiple = 25x, Payback = under 1 week.
 
-**SAY:** And the ROI calculator. Yellow cells are yours to change. Priya's numbers are in already: twelve hours before, two after, twenty dollars an hour, forty-eight weeks, thirty-two dollars a month. Out come the green numbers: 480 hours saved a year, nine thousand six hundred dollars of value, a net benefit of over nine thousand dollars, and a payback time of less than a week. Put in your own numbers, and you have the heart of your one-page pitch.
+**SAY:** And the ROI calculator. Yellow cells are yours to change. Sarah's numbers are in already: twelve hours before, two after, twenty dollars an hour, forty-eight weeks, thirty-two dollars a month. Out come the green numbers: 480 hours saved a year, nine thousand six hundred dollars of value, a net benefit of over nine thousand dollars, and a payback time of less than a week. Put in your own numbers, and you have the heart of your one-page pitch.
 
 ## [ON CAMERA] Your Capstone Project (19:30–21:30)
 
@@ -260,9 +260,9 @@ Don't wait for perfect. A small agent that works and is shared beats a perfect a
 
 **SAY:** Here's the capstone brief. Part A is your template. It walks you through every decision: the problem in one sentence, the trigger, the tools, the rules, where the human signs off, what gets logged, and how you'll measure success. And a test table with ten rows for your ten questions.
 
-**SHOW:** Part B: BrightLeaf example filled in ("Stocky – Late Shipment Chaser": trigger daily 8 am; tools Odoo Purchase, Gmail, Decision Log; rule "if receipt date passed by 2+ days, draft a polite follow-up"; approval: Priya approves each email).
+**SHOW:** Part B: BrightLeaf example filled in ("Stocky – Late Shipment Chaser": trigger daily 8 am; tools Odoo Purchase, Gmail, Decision Log; rule "if receipt date passed by 2+ days, draft a polite follow-up"; approval: Sarah approves each email).
 
-**SAY:** Part B is a complete example from BrightLeaf: Priya's next agent, a late shipment chaser. Every morning at 8, it finds purchase orders whose receipt date has passed by two or more days, drafts a polite follow-up email to the supplier, and waits for Priya to approve before sending. Use it as a model when you get stuck.
+**SAY:** Part B is a complete example from BrightLeaf: Sarah's next agent, a late shipment chaser. Every morning at 8, it finds purchase orders whose receipt date has passed by two or more days, drafts a polite follow-up email to the supplier, and waits for Sarah to approve before sending. Use it as a model when you get stuck.
 
 **SHOW:** loom.com → **New video → Record a video** → Screen + Camera → select the n8n tab → record 20 seconds → stop → copy share link. Then the Skool community → **Write something** → category **Capstone** → title `Capstone: Late Shipment Chaser for BrightLeaf` → paste Loom link + 3 lines.
 
@@ -288,11 +288,11 @@ In Video 5, you set up n8n and gave your agent a brain, with credentials stored 
 
 In Video 6, Stocky read the ERP for the first time and answered "What's running low?"
 
-In Video 7, Stocky took action, drafting RFQs, but only with Priya's signature.
+In Video 7, Stocky took action, drafting RFQs, but only with Sarah's signature.
 
 In Video 8, Stocky looked beyond the ERP: weather, currency and holidays, turned into a supplier risk score.
 
-In Video 9, Stocky got a memory and started writing Mr. Kapoor's Monday report.
+In Video 9, Stocky got a memory and started writing Mr. Harrison's Monday report.
 
 And today, you made it safe, measurable and ready for the real world.
 
@@ -306,7 +306,7 @@ When you started this course, you were a supply chain professional who was a bit
 
 That's rare. Most people in our industry are still talking about AI. You've built with it.
 
-Priya got ten hours a week back. What will you do with yours?
+Sarah got ten hours a week back. What will you do with yours?
 
 Congratulations. Truly. You've finished The ERP Agent Blueprint.
 

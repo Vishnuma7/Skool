@@ -48,20 +48,20 @@ lines = [
     ("", None),
     ("WHAT THIS FILE IS", SUB),
     ("Stocky has been running for 4 weeks (19 Oct to 15 Nov 2026). Every decision it made is in the sheet 'Decision_Log'.", None),
-    ("Today's stock levels from Odoo are in 'Products'. You will turn this raw log into the numbers Mr. Kapoor sees every Monday.", None),
+    ("Today's stock levels from Odoo are in 'Products'. You will turn this raw log into the numbers Mr. Harrison sees every Monday.", None),
     ("Yellow cells = you type something. Green cells = formulas (already done, or you finish them). Don't worry, you can't break anything here.", None),
     ("", None),
     ("TASKS", SUB),
-    ("Task 1 (5 min): Open 'Decision_Log'. Read 5 rows. For each row, could you explain the decision to Mr. Kapoor from the Notes column alone?", None),
+    ("Task 1 (5 min): Open 'Decision_Log'. Read 5 rows. For each row, could you explain the decision to Mr. Harrison from the Notes column alone?", None),
     ("Task 2 (5 min): Add ONE new row at the bottom (row 28, the first yellow row) as if Stocky just wrote it: 16 Nov 2026 07:15, BL-1007, stock 31... Use the yellow example row in the Instructions below. Watch the Dashboard numbers change.", None),
     ("Task 3 (10 min): Go to 'Dashboard'. The KPI formulas in column C are done for you. Click each one and read it in plain English (e.g. COUNTIF = 'count the rows where...').", None),
     ("               Then finish the 3 yellow formulas in the weekly table (cells marked 'YOUR TURN'). Hint: copy the formula from the cell on the left and change the word in quotes.", None),
     ("Task 4 (5 min): Look at the chart on the Dashboard. Which week had the most risk alerts? Which week had the most money ordered?", None),
-    ("Task 5 (5 min): Go to 'Kapoor_Questions' and answer the 3 questions using the log and the Dashboard. Check yourself with the answer key at the bottom.", None),
+    ("Task 5 (5 min): Go to 'Harrison_Questions' and answer the 3 questions using the log and the Dashboard. Check yourself with the answer key at the bottom.", None),
     ("Task 6 (10 min): NOW TRY IT WITH YOUR COMPANY. Go to 'Your_Company' and design your own Decision Log columns and Monday Report sections.", None),
     ("", None),
     ("EXAMPLE ROW FOR TASK 2", SUB),
-    ("LOG-0027 | 2026-11-16 07:15 | BL-1007 | Hydraulic Oil 20L | 31 | RFQ created | Priya Sharma | 5.1 | 49 | (leave Order Value: it is a formula) | Below reorder point 40. RFQ P00030 for 49 drums from Gulf Lubricants.", None),
+    ("LOG-0027 | 2026-11-16 07:15 | BL-1007 | Hydraulic Oil 20L | 31 | RFQ created | Sarah Mitchell | 5.1 | 49 | (leave Order Value: it is a formula) | Below reorder point 40. RFQ P00030 for 49 drums from Gulf Lubricants.", None),
     ("", None),
     ("COPY-PASTE EXPRESSIONS FOR n8n (from the video)", SUB),
     ("Timestamp:          {{ $now.toFormat('yyyy-MM-dd HH:mm') }}", None),
@@ -86,15 +86,15 @@ for i, (text, font) in enumerate(lines, start=1):
 
 # ---------------------------------------------------------------- Products
 products = [
-    ("BL-1001", "Steel Hex Bolts M10 (box of 100)", 12.50, 80, 7, "Apex Fasteners (Pune)", 145),
-    ("BL-1002", "Corrugated Shipping Box 18x12x10", 0.85, 1500, 5, "PackRight Industries (Mumbai)", 1180),
-    ("BL-1003", "Stretch Wrap Film 500mm", 9.20, 200, 6, "PackRight Industries (Mumbai)", 260),
-    ("BL-1004", "Industrial Safety Gloves (pair)", 2.40, 600, 10, "SafeHands Co. (Chennai)", 420),
+    ("BL-1001", "Steel Hex Bolts M10 (box of 100)", 12.50, 80, 7, "Apex Fasteners (Columbus)", 145),
+    ("BL-1002", "Corrugated Shipping Box 18x12x10", 0.85, 1500, 5, "PackRight Industries (Chicago)", 1180),
+    ("BL-1003", "Stretch Wrap Film 500mm", 9.20, 200, 6, "PackRight Industries (Chicago)", 260),
+    ("BL-1004", "Industrial Safety Gloves (pair)", 2.40, 600, 10, "SafeHands Co. (Monterrey)", 420),
     ("BL-1005", "Pallet Jack Wheels (set)", 38.00, 25, 21, "Global Lift Parts (Shenzhen)", 18),
-    ("BL-1006", "Packing Tape 48mm (roll)", 1.10, 1000, 5, "PackRight Industries (Mumbai)", 1850),
+    ("BL-1006", "Packing Tape 48mm (roll)", 1.10, 1000, 5, "PackRight Industries (Chicago)", 1850),
     ("BL-1007", "Hydraulic Oil 20L", 54.00, 40, 14, "Gulf Lubricants (Dubai)", 31),
     ("BL-1008", "LED Warehouse Light 150W", 72.00, 30, 28, "Shenzhen BrightTech (Shenzhen)", 34),
-    ("BL-1009", "Nylon Cable Ties (pack of 500)", 6.30, 150, 7, "Apex Fasteners (Pune)", 410),
+    ("BL-1009", "Nylon Cable Ties (pack of 500)", 6.30, 150, 7, "Apex Fasteners (Columbus)", 410),
     ("BL-1010", "Forklift Battery Water Kit", 19.75, 20, 12, "Global Lift Parts (Shenzhen)", 26),
 ]
 wp = wb.create_sheet("Products")
@@ -120,7 +120,7 @@ wp.freeze_panes = "A2"
 # ---------------------------------------------------------------- Decision log
 name = {p[0]: p[1] for p in products}
 cost = {p[0]: p[2] for p in products}
-P = "Priya Sharma"
+P = "Sarah Mitchell"
 rows = [
     # date, time, sku, stock, action, approved, risk, qty, note   (RFQ qty = reorder point x 2 - on hand)
     ("2026-10-19", "07:05", "BL-1006", 980, "RFQ created", P, 2.3, 1020, "Below reorder point 1000. RFQ P00012 for 1,020 rolls from PackRight."),
@@ -129,16 +129,16 @@ rows = [
     ("2026-10-21", "07:30", "BL-1008", 41, "Risk alert", "Auto", 6.4, 0, "Shenzhen BrightTech risk above 6: heavy rain forecast in Shenzhen, CNY up 1.2%."),
     ("2026-10-22", "07:05", "BL-1004", 640, "Hold", "Auto", 4.6, 0, "Just above reorder point 600. SafeHands lead time 10 days. Watching daily."),
     ("2026-10-23", "07:05", "BL-1010", 19, "RFQ created", P, 5.9, 21, "Below reorder point 20. RFQ P00014 for 21 kits from Global Lift Parts."),
-    ("2026-10-24", "07:05", "BL-1009", 148, "Rejected", P, 4.0, 0, "Rejected: Ravi counted 450 packs on the shelf. Odoo count corrected."),
+    ("2026-10-24", "07:05", "BL-1009", 148, "Rejected", P, 4.0, 0, "Rejected: Tom counted 450 packs on the shelf. Odoo count corrected."),
     ("2026-10-26", "07:05", "BL-1007", 39, "Rejected", P, 5.4, 0, "Rejected: 60 drums arriving 28 Oct on earlier PO P00009."),
     ("2026-10-27", "07:05", "BL-1001", 79, "RFQ created", P, 4.0, 81, "Below reorder point 80. RFQ P00016 for 81 boxes from Apex Fasteners."),
-    ("2026-10-28", "07:30", "BL-1005", 24, "Risk alert", "Auto", 7.6, 0, "Global Lift Parts risk 7.6: rain in Shenzhen + CNY up 2.1% vs INR."),
+    ("2026-10-28", "07:30", "BL-1005", 24, "Risk alert", "Auto", 7.6, 0, "Global Lift Parts risk 7.6: rain in Shenzhen + CNY up 2.1% vs USD."),
     ("2026-10-28", "09:40", "BL-1005", 24, "Hold", P, 7.6, 0, "Waiting for Global Lift ship date before ordering."),
     ("2026-10-29", "07:05", "BL-1003", 198, "RFQ created", P, 3.0, 202, "Below reorder point 200. RFQ P00017 for 202 rolls from PackRight."),
     ("2026-10-30", "07:05", "BL-1002", 1480, "Rejected", P, 2.4, 0, "Rejected: 1,580 boxes arriving Monday on P00011."),
     ("2026-10-31", "07:30", "BL-1008", 38, "Risk alert", "Auto", 7.1, 0, "Shenzhen BrightTech risk 7.1: public holiday next week + 28-day lead time."),
-    ("2026-11-02", "07:05", "BL-1006", 995, "Rejected", P, 2.2, 0, "Rejected: 1,020 rolls (P00012) received, not yet booked in Odoo by Ravi."),
-    ("2026-11-03", "07:30", "BL-1004", 605, "Risk alert", "Auto", 6.8, 0, "SafeHands risk 6.8: heavy rain warning in Chennai (85 mm forecast)."),
+    ("2026-11-02", "07:05", "BL-1006", 995, "Rejected", P, 2.2, 0, "Rejected: 1,020 rolls (P00012) received, not yet booked in Odoo by Tom."),
+    ("2026-11-03", "07:30", "BL-1004", 605, "Risk alert", "Auto", 6.8, 0, "SafeHands risk 6.8: heavy rain warning in Monterrey (85 mm forecast)."),
     ("2026-11-04", "07:05", "BL-1010", 21, "Hold", P, 5.9, 0, "Delivery of P00014 expected Friday. No new order needed."),
     ("2026-11-06", "07:30", "BL-1007", 52, "Risk alert", "Auto", 5.3, 0, "Gulf Lubricants risk 5.3: 42°C heat in Dubai; AED stable."),
     ("2026-11-06", "09:15", "BL-1005", 21, "Hold", P, 7.4, 0, "Still waiting for Global Lift ship date. Asked for revised quote."),
@@ -147,8 +147,8 @@ rows = [
     ("2026-11-10", "07:05", "BL-1008", 35, "Hold", P, 7.8, 0, "Only 5 above reorder point 30 with a 28-day lead time. Waiting for revised quote ($72 to $68 per unit)."),
     ("2026-11-11", "07:05", "BL-1005", 18, "RFQ created", P, 7.2, 32, "Below reorder point 25. RFQ P00027 for 32 sets from Global Lift. Ship date requested."),
     ("2026-11-12", "07:05", "BL-1002", 1180, "RFQ created", P, 2.3, 1820, "Below reorder point 1500. RFQ P00028 for 1,820 boxes from PackRight."),
-    ("2026-11-13", "07:05", "BL-1004", 420, "RFQ created", P, 4.6, 780, "Below reorder point 600. RFQ P00029 for 780 pairs from SafeHands (rain in Chennai noted)."),
-    ("2026-11-13", "07:05", "BL-1007", 31, "Hold", P, 5.1, 0, "Below reorder point 40. Suggested 49 drums; Priya asked Gulf Lubricants for an 80-drum volume price."),
+    ("2026-11-13", "07:05", "BL-1004", 420, "RFQ created", P, 4.6, 780, "Below reorder point 600. RFQ P00029 for 780 pairs from SafeHands (rain in Monterrey noted)."),
+    ("2026-11-13", "07:05", "BL-1007", 31, "Hold", P, 5.1, 0, "Below reorder point 40. Suggested 49 drums; Sarah asked Gulf Lubricants for an 80-drum volume price."),
 ]
 wl = wb.create_sheet("Decision_Log")
 header(wl, 1, ["Log ID", "Timestamp", "SKU", "Product", "Stock On Hand", "Action", "Approved By", "Risk Score",
@@ -201,7 +201,7 @@ kpis = [
     ("Total value of RFQs (USD)", f'=SUMIFS({L}!J2:J200,{L}!F2:F200,"RFQ created")', "$#,##0"),
     ("Average supplier risk score on RFQs", f'=AVERAGEIFS({L}!H2:H200,{L}!F2:F200,"RFQ created")', "0.0"),
     ("Approval rate (RFQs ÷ (RFQs + Rejected))", "=C10/(C10+C11)", "0%"),
-    ("RFQs approved by Priya Sharma", f'=COUNTIFS({L}!F2:F200,"RFQ created",{L}!G2:G200,"Priya Sharma")', "0"),
+    ("RFQs approved by Sarah Mitchell", f'=COUNTIFS({L}!F2:F200,"RFQ created",{L}!G2:G200,"Sarah Mitchell")', "0"),
 ]
 r = 4
 for label, formula, fmt in kpis:
@@ -282,14 +282,14 @@ ch2.legend = None
 ch2.height, ch2.width = 8, 16
 wd.add_chart(ch2, "I21")
 
-# ---------------------------------------------------------------- Kapoor questions
-wk = wb.create_sheet("Kapoor_Questions")
+# ---------------------------------------------------------------- Harrison questions
+wk = wb.create_sheet("Harrison_Questions")
 wk.column_dimensions["A"].width = 4
 wk.column_dimensions["B"].width = 70
 wk.column_dimensions["C"].width = 60
-wk["B1"] = "Answer Mr. Kapoor's questions from the log (like Stocky would)"
+wk["B1"] = "Answer Mr. Harrison's questions from the log (like Stocky would)"
 wk["B1"].font = TITLE
-header(wk, 3, ["#", "Mr. Kapoor asks...", "Your answer (type here)"])
+header(wk, 3, ["#", "Mr. Harrison asks...", "Your answer (type here)"])
 qs = [
     "On 9 November we ordered stretch wrap. How many rolls, what was the stock that day, who approved it, and why?",
     "Over the 4 weeks, how many RFQs did Stocky create, and what was their total value in USD?",
@@ -305,7 +305,7 @@ for i, q in enumerate(qs, start=1):
 wk["B9"] = "ANSWER KEY (try first, then scroll down)"
 wk["B9"].font = SUB
 keys = [
-    "1) 250 rolls (RFQ P00026). Stock was 150 vs reorder point 200. Approved by Priya Sharma at 10:14. Reason: below reorder point and demand up 18%. Supplier risk 3.1/10 (low). (250 = reorder point 200 x 2 - 150 on hand.)",
+    "1) 250 rolls (RFQ P00026). Stock was 150 vs reorder point 200. Approved by Sarah Mitchell at 10:14. Reason: below reorder point and demand up 18%. Supplier risk 3.1/10 (low). (250 = reorder point 200 x 2 - 150 on hand.)",
     "2) 9 RFQs (see Dashboard 'RFQs created'), total value $12,685.65 (Dashboard 'Total value of RFQs').",
     "3) BL-1008 LED Warehouse Light 150W, followed by BL-1005 Pallet Jack Wheels (BL-1008 has 4 risk/hold entries, BL-1005 has 3; both come from Shenzhen suppliers). Recommendation: LED lights are only 5 above the reorder point with a 28-day lead time, so decide this week whether to order early (even at $72 if the $68 quote doesn't come), and get a confirmed ship date for RFQ P00027 from Global Lift Parts.",
 ]
@@ -328,7 +328,7 @@ header(wy, 4, ["", "Decision Log column", "BrightLeaf example", "Your company's 
 cols = [
     ("Log ID", "LOG-0001"), ("Timestamp", "2026-11-09 10:14"), ("Item / SKU", "BL-1003"),
     ("Item name", "Stretch Wrap Film 500mm"), ("Key number at that moment", "Stock On Hand = 150"),
-    ("Action", "RFQ created / Rejected / Hold / Risk alert"), ("Approved By", "Priya Sharma or Auto"),
+    ("Action", "RFQ created / Rejected / Hold / Risk alert"), ("Approved By", "Sarah Mitchell or Auto"),
     ("Risk / priority score", "3.1 out of 10"), ("Notes (for a human)", "Below reorder point 200. Ordered 250 rolls."),
     ("(add your own)", ""),
 ]
@@ -341,8 +341,8 @@ for i, (c1, c2) in enumerate(cols, start=5):
 r0 = 17
 header(wy, r0, ["", "Monday Report question", "BrightLeaf example", "Your company's version"])
 rep = [
-    ("Who reads it?", "Mr. Kapoor, Operations Director (on his phone)"),
-    ("When should it arrive?", "Every Monday 7:00 am, Asia/Kolkata"),
+    ("Who reads it?", "Mr. Harrison, Operations Director (on his phone)"),
+    ("When should it arrive?", "Every Monday 7:00 am, America/New_York (Columbus time)"),
     ("Headline: the one thing that matters", "Top risk this week"),
     ("Key number 1", "Stock health %"),
     ("Key number 2", "Money tied up in stock (USD)"),

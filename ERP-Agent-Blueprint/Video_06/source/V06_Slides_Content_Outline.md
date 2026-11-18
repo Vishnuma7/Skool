@@ -10,7 +10,7 @@
 - **Suggested picture:** The Stocky robot standing in front of an open filing cabinet (Odoo), holding a clipboard with "What's running low?" written on it.
 
 ### Slide 2: 40 Minutes vs 10 Seconds
-- Priya's morning: export from Odoo → open last week's Excel → VLOOKUP → colour red rows → email Ravi ≈ 40 min/day (3+ hours/week)
+- Sarah's morning: export from Odoo → open last week's Excel → VLOOKUP → colour red rows → email Tom ≈ 40 min/day (3+ hours/week)
 - With Stocky: type "What's running low?" ≈ 10 seconds
 - **Suggested picture:** Before/after split. Left: a five-step manual chain with a clock showing 40 min. Right: one chat bubble and a stopwatch showing 10 sec.
 
@@ -57,7 +57,7 @@
 - Running low = on hand ≤ reorder point
 - Watch list = above reorder point by 15% or less
 - Read-only: can't create, change or delete
-- **Suggested picture:** A supply chain manager (Priya) writing rules on a whiteboard, with two highlighted in red: "Never guess" and "Say I don't know".
+- **Suggested picture:** A supply chain manager (Sarah) writing rules on a whiteboard, with two highlighted in red: "Never guess" and "Say I don't know".
 
 ### Slide 11: Output Format
 - One-line answer first
@@ -75,7 +75,7 @@
 ### Slide 13: Supplier & Lead Time + Memory
 - "Which supplier provides BL-1005 and what's the lead time?" → Global Lift Parts, 21 days, $38.00/set, MOQ 10
 - Follow-up "And what about the hydraulic oil?" → Gulf Lubricants, 14 days (memory at work)
-- **Suggested picture:** A world map with arrows from Shenzhen (21 days) and Dubai (14 days) to Pune, each arrow labelled with supplier and lead time.
+- **Suggested picture:** A world map with arrows from Shenzhen (21 days) and Dubai (14 days) to Columbus, Ohio, each arrow labelled with supplier and lead time.
 
 ### Slide 14: Pause & Think
 - Which low item would you order FIRST? Compare gap with lead time
@@ -89,7 +89,7 @@
 - **Suggested picture:** A circular loop diagram with four stations (brain, hand, magnifying glass, speech bubble) and a small screenshot of the n8n Logs panel beside it.
 
 ### Slide 16: The Confident Intern (Hallucination)
-- Rohan: "Tuesday, sir." The LED lights had a 28-day lead time
+- Jake: "Tuesday, sir." The LED lights had a 28-day lead time
 - AI produces the most likely-sounding words; without data it can still sound sure
 - In supply chain, a confident wrong answer is worse than no answer
 - **Suggested picture:** A cartoon intern giving a thumbs-up and saying "Tuesday!" while, in the background, a calendar shows the shipment still at the factory in Shenzhen.
