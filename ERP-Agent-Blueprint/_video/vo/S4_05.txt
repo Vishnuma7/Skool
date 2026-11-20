@@ -1,0 +1,1 @@
+Does your company use SAP, Oracle, Microsoft Dynamics or NetSuite instead of Odoo? No problem. The ideas are identical. We use Odoo because it's free and you can't break anything in a test system. Once you understand how Stocky talks to Odoo, you'll know exactly what questions to ask your IT team about your own ERP.

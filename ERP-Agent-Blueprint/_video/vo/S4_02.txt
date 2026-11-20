@@ -1,0 +1,1 @@
+In video two, we'll tour an ERP and set up your own free copy of Odoo, loaded with BrightLeaf's ten products. Video three explains APIs, the way software talks to software, using a restaurant. Video four makes databases friendly, using something you already know: Excel. In video five, we set up your no-code toolkit.

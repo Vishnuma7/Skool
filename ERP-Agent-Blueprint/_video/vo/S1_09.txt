@@ -1,0 +1,1 @@
+Now watch. Sarah clicks Approve. And over in Odoo, under Purchase, Requests for Quotation, there they are. Four draft requests, one for each supplier, already filled in with the right products and quantities.

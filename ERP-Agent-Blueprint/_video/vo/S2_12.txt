@@ -1,0 +1,1 @@
+So the difference is this. The automation follows a fixed recipe. The agent gets a goal, a set of tools and some rules, and it decides which tools to use and in what order to reach the goal. That's why it could spot the risk on the pallet jack wheels. Nobody wrote a rule saying "if Shenzhen plus rain plus holiday, then warn". It worked that out.

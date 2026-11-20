@@ -1,0 +1,1 @@
+So how did that happen? This is what's behind the curtain. It's a tool called n8n, and every box you see is one step. There's no code here. You build this by dragging boxes onto the screen and filling in forms.

@@ -1,0 +1,1 @@
+And one honest note. Agents are not always the right answer. If a task is the same every single time, with a clear rule, a plain automation is cheaper, faster and more predictable. Use an agent when the task needs a bit of judgement: reading messy information, weighing up several factors, explaining a decision. We'll practise telling them apart in your activity.

@@ -1,0 +1,1 @@
+Part three: the tools. These are the doors we open for the intern. Odoo, so it can read stock. A weather service. An exchange rate service. A holiday calendar. Email. The agent can only use the tools you give it. If you don't give it access to purchase orders, it simply can't create one. That's how you keep it safe.

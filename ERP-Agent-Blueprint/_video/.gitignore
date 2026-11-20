@@ -1,0 +1,8 @@
+.env
+node_modules/
+work/
+whisper.cpp/
+out/
+public/oncam
+public/vo
+vo/*.mp3

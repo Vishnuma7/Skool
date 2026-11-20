@@ -1,0 +1,1 @@
+First, a chatbot. This is Claude, one of the AI assistants we'll use in this course. ChatGPT works the same way. I'll ask it: how many steel hex bolts do we have in stock at BrightLeaf right now, and should I reorder?

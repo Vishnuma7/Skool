@@ -1,0 +1,1 @@
+And here's your toolkit. Odoo is our ERP. It's free to try and runs in your browser. n8n is where we build the recipe. Claude or ChatGPT is the brain. Google Sheets is the memory. Gmail sends the alerts. Every tool here has a free tier or a free trial. You won't need to install anything on your computer.

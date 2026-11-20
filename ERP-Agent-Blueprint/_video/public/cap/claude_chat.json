@@ -1,0 +1,32 @@
+{
+ "duration": 21.562,
+ "events": [
+  {
+   "t": 0.837,
+   "type": "click",
+   "label": "input"
+  },
+  {
+   "t": 1.238,
+   "type": "typeStart"
+  },
+  {
+   "t": 8.347,
+   "type": "typeEnd"
+  },
+  {
+   "t": 9.057,
+   "type": "send",
+   "x": 1410,
+   "y": 555.09375
+  },
+  {
+   "t": 9.79,
+   "type": "answerStart"
+  },
+  {
+   "t": 20.36,
+   "type": "answerEnd"
+  }
+ ]
+}

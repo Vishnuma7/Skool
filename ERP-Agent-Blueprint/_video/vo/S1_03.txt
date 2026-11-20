@@ -1,0 +1,1 @@
+Stocky looked inside BrightLeaf's ERP and checked all ten products. It found four that have dropped below their reorder point. For each one, it tells Sarah how many are on hand, what the reorder point is, who the supplier is, how much to order and roughly what it costs.

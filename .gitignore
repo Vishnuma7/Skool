@@ -3,3 +3,16 @@
 __pycache__/
 *.pyc
 ~$*
+
+# Video files (kept local only)
+*.mp4
+*.mov
+*.MOV
+*.m4v
+*.mkv
+*.webm
+*.avi
+*.hevc
+ERP-Agent-Blueprint/Video_*/Recording/
+# Local tool binaries
+ERP-Agent-Blueprint/_video/bin/

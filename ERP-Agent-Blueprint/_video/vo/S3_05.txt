@@ -1,0 +1,1 @@
+Part four: memory. Out of the box, an AI brain forgets everything the moment a conversation ends. So we give Stocky a notebook, which for us is this Google Sheet. It writes down what it decided and why. Next week, it can look back and say, "I flagged the pallet jack wheels last week too. This is becoming a pattern."

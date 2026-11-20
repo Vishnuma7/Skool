@@ -1,0 +1,1143 @@
+WEBVTT
+
+00:00:00.250 --> 00:00:01.962
+Let me start with a simple question.
+
+00:00:02.002 --> 00:00:05.542
+How much time do you think a Procurement
+Manager spends every week just
+
+00:00:05.582 --> 00:00:09.500
+moving the data around, opening an
+ERP, copying numbers into Excel,
+
+00:00:09.604 --> 00:00:12.961
+checking stock levels, following
+up with suppliers and preparing the
+
+00:00:13.001 --> 00:00:14.672
+same reports again and again?
+
+00:00:14.712 --> 00:00:18.541
+Let's say it's around 12 hours
+a week, that's 576 hours a year.
+
+00:00:18.581 --> 00:00:21.969
+Think about that for a moment, that's
+almost three and a half months of
+
+00:00:22.009 --> 00:00:24.955
+working time spent on tasks
+that are mostly repetitive.
+
+00:00:25.100 --> 00:00:28.540
+Now, throughout this course, we are
+going to follow someone called Sarah
+
+00:00:28.580 --> 00:00:31.947
+Mitchell. Sarah manages procurement
+and inventory at a company called
+
+00:00:31.987 --> 00:00:32.951
+BrightLeaf Supplies.
+
+00:00:32.991 --> 00:00:36.691
+It's a distributor of industrial
+and packaging supplies based in
+
+00:00:36.731 --> 00:00:40.657
+Columbus, Ohio. Sarah is fictional,
+but the situation probably is not
+
+00:00:40.697 --> 00:00:43.981
+unfamiliar to you. In fact, some
+of you watching this might be doing
+
+00:00:44.021 --> 00:00:45.639
+exactly the same things every week.
+
+00:00:45.679 --> 00:00:47.446
+And that's what we are going to change.
+
+00:00:47.486 --> 00:00:51.506
+Over the next 10 videos, we are
+going to build an AI agent that can
+
+00:00:51.546 --> 00:00:55.176
+connect to an ERP, check the
+inventory, look at external information
+
+00:00:55.216 --> 00:00:59.019
+like weather and exchange rates,
+record its decision and even prepare
+
+00:00:59.059 --> 00:01:01.938
+purchase requests. We are going
+to call this agent Stocky.
+
+00:01:02.010 --> 00:01:05.230
+And the interesting part, we are
+going to build it without writing a
+
+00:01:05.270 --> 00:01:06.324
+single line of code.
+
+00:01:06.364 --> 00:01:09.484
+Before we get into the actual building,
+I want you to understand three
+
+00:01:09.524 --> 00:01:13.030
+things. First, what's the difference
+between a chatbot, a normal
+
+00:01:13.070 --> 00:01:14.610
+automation, and an AI agent?
+
+00:01:14.671 --> 00:01:17.332
+Second, what actually goes
+into making an AI agent?
+
+00:01:17.372 --> 00:01:20.472
+And finally, how are we going to
+build the whole thing throughout this
+
+00:01:20.512 --> 00:01:23.723
+course? And don't worry if you are
+not from a technical background,
+
+00:01:23.763 --> 00:01:26.956
+you don't need to know the programming
+to follow along, you already
+
+00:01:26.996 --> 00:01:29.518
+understand your business
+processes, that's important part.
+
+00:01:29.558 --> 00:01:33.132
+I will introduce the technical
+concepts as we go, using examples from
+
+00:01:33.172 --> 00:01:34.702
+everyday supply chain operations.
+
+00:01:34.804 --> 00:01:37.824
+So, rather than spending too much
+time talking about what we are going
+
+00:01:37.864 --> 00:01:41.666
+to build, let me show you the finished
+version first, let's meet Stocky.
+
+00:01:42.747 --> 00:01:44.767
+It's Monday, seven in the morning.
+
+00:01:44.807 --> 00:01:48.067
+Sarah hasn't even had her coffee
+yet, and there's already an email
+
+00:01:48.107 --> 00:01:50.547
+waiting for her. It's from Stocky.
+
+00:01:50.587 --> 00:01:53.603
+Let's open it. This is the
+whole course in one email.
+
+00:01:54.079 --> 00:01:58.279
+Stocky looked inside BrightLeaf's
+ERP and checked all ten products.
+
+00:01:58.319 --> 00:02:01.719
+It found four that have dropped
+below their reorder point.
+
+00:02:01.759 --> 00:02:05.779
+For each one, it tells Sarah how
+many are on hand, what the reorder
+
+00:02:05.819 --> 00:02:10.299
+point is, who the supplier is, how
+much to order and roughly what it
+
+00:02:10.339 --> 00:02:14.041
+costs. But look at number
+three, the pallet jack wheels.
+
+00:02:14.081 --> 00:02:16.261
+Stocky didn't just say "you're low".
+
+00:02:16.301 --> 00:02:19.721
+It noticed that the supplier is in
+Shenzhen, it checked the weather
+
+00:02:19.761 --> 00:02:23.781
+there and saw heavy storms hit Shenzhen
+over the weekend, it checked the
+
+00:02:23.821 --> 00:02:27.221
+calendar and saw Thanksgiving next
+week, when freight bookings slow
+
+00:02:27.261 --> 00:02:31.361
+right down, and it knows the lead
+time is already twenty-one days.
+
+00:02:31.401 --> 00:02:34.041
+So it says: order this one today.
+
+00:02:34.081 --> 00:02:35.241
+That's not a report.
+
+00:02:35.281 --> 00:02:37.271
+That's a colleague giving you advice.
+
+00:02:37.539 --> 00:02:39.659
+And at the bottom, two buttons.
+
+00:02:39.699 --> 00:02:44.359
+Approve. Decline. Stocky has prepared
+the purchase requests, but it will
+
+00:02:44.399 --> 00:02:47.639
+not send anything until Sarah says yes.
+
+00:02:47.679 --> 00:02:48.879
+Hold on to that idea.
+
+00:02:48.919 --> 00:02:51.209
+It's important, and we'll come back to it.
+
+00:02:51.349 --> 00:02:52.929
+So how did that happen?
+
+00:02:52.969 --> 00:02:54.889
+This is what's behind the curtain.
+
+00:02:54.929 --> 00:02:59.829
+It's a tool called n8n, and
+every box you see is one step.
+
+00:02:59.869 --> 00:03:01.309
+There's no code here.
+
+00:03:01.349 --> 00:03:05.159
+You build this by dragging boxes
+onto the screen and filling in forms.
+
+00:03:05.559 --> 00:03:10.259
+Left to right: a timer that says
+"every Monday at six fifty-five AM,
+
+00:03:10.299 --> 00:03:15.179
+start". Then a box that pulls stock
+levels from the ERP, which for
+
+00:03:15.219 --> 00:03:17.939
+BrightLeaf is a system called Odoo.
+
+00:03:17.979 --> 00:03:22.179
+The big box in the middle is
+the agent, the part that thinks.
+
+00:03:22.219 --> 00:03:26.619
+These three check the weather,
+exchange rates and public holidays.
+
+00:03:26.659 --> 00:03:29.519
+This one writes every
+decision into a Google Sheet.
+
+00:03:29.559 --> 00:03:32.897
+And the last one emails Sarah
+and waits for her click.
+
+00:03:33.217 --> 00:03:34.757
+Here's that record.
+
+00:03:34.797 --> 00:03:38.877
+Every Monday, every product Stocky
+flagged, what it suggested and who
+
+00:03:38.917 --> 00:03:40.877
+approved it. When Mr.
+
+00:03:40.917 --> 00:03:45.337
+Harrison, BrightLeaf's operations
+director, asks "why did we order those
+
+00:03:45.377 --> 00:03:48.097
+wheels early?", Sarah
+doesn't have to remember.
+
+00:03:48.137 --> 00:03:50.327
+It's written down. Now watch.
+
+00:03:50.367 --> 00:03:51.767
+Sarah clicks Approve.
+
+00:03:51.807 --> 00:03:56.107
+And over in Odoo, under Purchase,
+Requests for Quotation, there they
+
+00:03:56.147 --> 00:04:00.407
+are. Four draft requests, one for
+each supplier, already filled in with
+
+00:04:00.447 --> 00:04:02.277
+the right products and quantities.
+
+00:04:02.645 --> 00:04:06.845
+What used to take Sarah most of her
+Monday morning took ninety seconds.
+
+00:04:06.885 --> 00:04:10.765
+And here's the part I want you to
+hear: you are going to build this.
+
+00:04:10.805 --> 00:04:12.585
+Not watch me build it.
+
+00:04:12.625 --> 00:04:14.425
+One piece per video.
+
+00:04:14.465 --> 00:04:17.955
+By video nine, your Stocky
+sends this exact email.
+
+00:04:18.750 --> 00:04:21.055
+Now, let's go back to Sarah for a moment.
+
+00:04:21.095 --> 00:04:23.096
+We have just seen what Stocky can do.
+
+00:04:23.136 --> 00:04:26.814
+But what did Sarah's Monday actually
+look like before she had it?
+
+00:04:26.854 --> 00:04:29.604
+She comes into work at
+around 8.30 in the morning.
+
+00:04:29.738 --> 00:04:34.038
+First, she opens Odoo, checks the
+inventory report, and exports the data
+
+00:04:34.078 --> 00:04:37.679
+into Excel. Then she opens the
+last week spreadsheet, updates the
+
+00:04:37.719 --> 00:04:41.704
+numbers, check the formulas, and
+fixes whatever happens to the broken
+
+00:04:41.794 --> 00:04:45.830
+that week. After that, she goes to
+the product, identifies what's below
+
+00:04:45.870 --> 00:04:48.901
+the reorder point, and starts
+following up with the suppliers about
+
+00:04:48.941 --> 00:04:50.091
+their delivery timelines.
+
+00:04:50.450 --> 00:04:54.410
+Remember, she's doing all of this
+while also preparing the weekly report
+
+00:04:54.450 --> 00:04:56.710
+for her operations director, Mr.
+
+00:04:56.750 --> 00:04:59.961
+Harrison. By around 11, she's
+finally ready to send the report.
+
+00:05:00.001 --> 00:05:04.115
+But then, Tom, the warehouse lead,
+walks in and tell her something
+
+00:05:04.305 --> 00:05:07.299
+unexpected. Sarah, we're
+out of stretch wrap.
+
+00:05:07.876 --> 00:05:09.677
+The Dubai order can't ship.
+
+00:05:11.283 --> 00:05:13.159
+Now, here's the interesting part.
+
+00:05:13.199 --> 00:05:15.966
+The stretch wrap was actually
+in her inventory report.
+
+00:05:16.006 --> 00:05:19.631
+The stock was low, it was highlighted
+in red, but it was somewhere
+
+00:05:19.671 --> 00:05:24.282
+around row 41 in a 60 rows per
+sheet, and she simply missed it while
+
+00:05:24.322 --> 00:05:27.226
+working through everything else,
+and that's something worth thinking
+
+00:05:27.266 --> 00:05:29.336
+about. Sarah is not bad at her job.
+
+00:05:29.376 --> 00:05:31.236
+She's actually doing
+a lot of things right.
+
+00:05:31.276 --> 00:05:35.286
+The problem is that she's spending
+so much time collecting information,
+
+00:05:35.556 --> 00:05:39.128
+updating spreadsheets and checking
+numbers that she has less time to
+
+00:05:39.168 --> 00:05:40.560
+actually analyze what's happening.
+
+00:05:40.600 --> 00:05:42.634
+And that's where an AI agent can help.
+
+00:05:42.674 --> 00:05:46.663
+We are not trying to replace Sarah
+or take away her decision making.
+
+00:05:46.703 --> 00:05:50.743
+We are trying to remove some of the
+repetitive work so she can focus on
+
+00:05:50.783 --> 00:05:53.073
+the things that actually
+need her attention.
+
+00:05:53.471 --> 00:05:56.791
+That's the idea behind Stocky and
+that's what we will be building
+
+00:05:56.831 --> 00:05:57.821
+throughout this course.
+
+00:05:58.633 --> 00:06:02.753
+Okay. Three words get thrown around
+like they mean the same thing:
+
+00:06:02.793 --> 00:06:05.533
+chatbot, automation and agent.
+
+00:06:05.573 --> 00:06:08.943
+They don't. Let me show you the
+difference with a real test.
+
+00:06:09.391 --> 00:06:13.411
+First, a chatbot. This is Claude,
+one of the AI assistants we'll use in
+
+00:06:13.451 --> 00:06:16.871
+this course. ChatGPT works the same way.
+
+00:06:16.911 --> 00:06:21.211
+I'll ask it: how many steel hex bolts
+do we have in stock at BrightLeaf
+
+00:06:21.251 --> 00:06:22.961
+right now, and should I reorder?
+
+00:06:23.413 --> 00:06:24.653
+And look at the answer.
+
+00:06:24.693 --> 00:06:28.673
+It's polite, it's smart, and it
+says: I don't have access to your
+
+00:06:28.713 --> 00:06:32.323
+inventory system, please share
+your stock level and reorder point.
+
+00:06:32.595 --> 00:06:36.495
+That's a chatbot. A brilliant brain,
+sitting in a room with no windows
+
+00:06:36.535 --> 00:06:40.455
+and no doors. It can only think
+about what you type into it.
+
+00:06:40.495 --> 00:06:41.875
+It can't open Odoo.
+
+00:06:41.915 --> 00:06:43.395
+It can't send an email.
+
+00:06:43.435 --> 00:06:45.065
+It talks. That's all.
+
+00:06:45.585 --> 00:06:46.945
+Second, automation.
+
+00:06:46.985 --> 00:06:50.285
+A workflow, or automation,
+is like a recipe card.
+
+00:06:50.325 --> 00:06:54.175
+Step one, step two, step three,
+always in the same order.
+
+00:06:54.447 --> 00:06:58.407
+This little one says: every
+morning, read the stock from Odoo.
+
+00:06:58.447 --> 00:07:01.747
+Then this box, called
+an IF, checks one rule.
+
+00:07:01.787 --> 00:07:05.027
+Is the quantity on hand
+smaller than the reorder point?
+
+00:07:05.067 --> 00:07:06.787
+If yes, send an email.
+
+00:07:06.827 --> 00:07:11.489
+If no, do nothing. Useful, and
+lots of companies have one.
+
+00:07:11.529 --> 00:07:15.609
+But it follows the rule exactly,
+even when the rule is wrong.
+
+00:07:15.649 --> 00:07:19.489
+If the pallet jack wheels are at
+twenty-six, one above the reorder point
+
+00:07:19.529 --> 00:07:23.929
+of twenty-five, it stays quiet, even
+though the supplier is in Shenzhen,
+
+00:07:23.969 --> 00:07:26.689
+it's raining and there's a holiday coming.
+
+00:07:26.729 --> 00:07:29.529
+It can't think "hmm, this one is risky".
+
+00:07:29.569 --> 00:07:31.509
+It doesn't know what "risky" means.
+
+00:07:31.549 --> 00:07:33.095
+It only knows the recipe.
+
+00:07:33.455 --> 00:07:34.995
+And third, the agent.
+
+00:07:35.035 --> 00:07:36.525
+Let's open Stocky's brain.
+
+00:07:36.801 --> 00:07:40.721
+The best way to think about an
+AI agent is a smart new intern.
+
+00:07:40.761 --> 00:07:44.941
+A good intern can read, think, use
+the tools you give them and take
+
+00:07:44.981 --> 00:07:49.281
+action. But they need clear
+instructions, and they need supervision,
+
+00:07:49.321 --> 00:07:50.891
+especially in their first few weeks.
+
+00:07:51.251 --> 00:07:52.931
+Here are Stocky's instructions.
+
+00:07:52.971 --> 00:07:58.091
+In plain English. "You are Stocky,
+BrightLeaf Supplies' inventory and
+
+00:07:58.131 --> 00:07:59.631
+procurement assistant.
+
+00:07:59.671 --> 00:08:02.711
+Check every product
+against its reorder point.
+
+00:08:02.751 --> 00:08:07.991
+For suppliers outside the US, consider
+weather, currency and holidays.
+
+00:08:08.031 --> 00:08:11.631
+Never send a purchase order
+without Sarah's approval.
+
+00:08:11.671 --> 00:08:13.761
+Explain your reasoning in plain English."
+
+00:08:13.985 --> 00:08:16.825
+And underneath, the tools
+it's allowed to use.
+
+00:08:16.865 --> 00:08:18.625
+It can look things up in Odoo.
+
+00:08:18.665 --> 00:08:20.165
+It can check the weather.
+
+00:08:20.205 --> 00:08:22.905
+It can check exchange rates and holidays.
+
+00:08:22.945 --> 00:08:24.335
+It can write to the log.
+
+00:08:24.631 --> 00:08:26.271
+So the difference is this.
+
+00:08:26.311 --> 00:08:28.771
+The automation follows a fixed recipe.
+
+00:08:28.811 --> 00:08:33.091
+The agent gets a goal, a set of
+tools and some rules, and it decides
+
+00:08:33.131 --> 00:08:36.471
+which tools to use and in
+what order to reach the goal.
+
+00:08:36.511 --> 00:08:39.871
+That's why it could spot the
+risk on the pallet jack wheels.
+
+00:08:39.911 --> 00:08:43.611
+Nobody wrote a rule saying "if
+Shenzhen plus rain plus holiday,
+
+00:08:43.651 --> 00:08:45.593
+then warn". It worked that out.
+
+00:08:45.913 --> 00:08:47.133
+Here's the summary.
+
+00:08:47.173 --> 00:08:50.033
+A chatbot talks. An automation follows.
+
+00:08:50.073 --> 00:08:51.983
+An agent reasons and acts.
+
+00:08:52.239 --> 00:08:54.199
+And one honest note.
+
+00:08:54.239 --> 00:08:56.779
+Agents are not always the right answer.
+
+00:08:56.819 --> 00:09:01.219
+If a task is the same every single
+time, with a clear rule, a plain
+
+00:09:01.259 --> 00:09:04.799
+automation is cheaper,
+faster and more predictable.
+
+00:09:04.839 --> 00:09:08.879
+Use an agent when the task needs
+a bit of judgement: reading messy
+
+00:09:08.919 --> 00:09:12.819
+information, weighing up several
+factors, explaining a decision.
+
+00:09:12.859 --> 00:09:15.469
+We'll practise telling them
+apart in your activity.
+
+00:09:16.158 --> 00:09:18.048
+All right, let's try something.
+
+00:09:18.096 --> 00:09:21.491
+Now that we have looked at chatbots,
+automations, and AI agents,
+
+00:09:21.531 --> 00:09:25.126
+I want to see if you can identify
+where each one actually makes sense.
+
+00:09:25.166 --> 00:09:27.346
+I'll give three situation from BrightLeaf.
+
+00:09:27.481 --> 00:09:30.878
+Think about each one and decide
+whether you would use a chatbot,
+
+00:09:30.918 --> 00:09:33.248
+a simple automation, or an AI agent.
+
+00:09:33.571 --> 00:09:34.741
+Here's the first one.
+
+00:09:34.917 --> 00:09:38.797
+Every night, BrightLeaf need to copy
+the previous day's sales order from
+
+00:09:38.837 --> 00:09:40.493
+Odoo into a Google Sheet.
+
+00:09:40.533 --> 00:09:44.666
+Second situation, someone needs to
+go through 40 supplier emails and
+
+00:09:44.706 --> 00:09:48.066
+identify which shipments are delayed
+and figure out how those delays
+
+00:09:48.106 --> 00:09:50.196
+could affect the next week's inventory.
+
+00:09:50.236 --> 00:09:54.551
+And a third one, Sarah needs help
+rewriting an email to a supplier who's
+
+00:09:54.591 --> 00:09:55.933
+already late with the delivery.
+
+00:09:55.973 --> 00:09:58.789
+She wants the email to
+sound polite but also firm.
+
+00:09:58.830 --> 00:10:01.100
+Take a moment and think
+about your answers.
+
+00:10:01.150 --> 00:10:02.674
+You can pause this video here.
+
+00:10:02.714 --> 00:10:04.144
+I'll give you a few seconds.
+
+00:10:11.068 --> 00:10:12.478
+Let's go through them.
+
+00:10:12.548 --> 00:10:16.199
+For the first one, copying sales
+orders every night, I'd use a simple
+
+00:10:16.239 --> 00:10:19.568
+automation. It's the same task,
+following up the same steps every single
+
+00:10:19.608 --> 00:10:22.892
+day. There's no real need for an
+AI agent to make a decision here.
+
+00:10:22.932 --> 00:10:25.942
+For the second one, I
+would use an AI agent.
+
+00:10:26.052 --> 00:10:29.864
+Why? Because supplier emails are
+not always written in the same way.
+
+00:10:29.990 --> 00:10:33.180
+Some suppliers might
+explicitly say there's a delay.
+
+00:10:33.346 --> 00:10:35.893
+Other might mention a problem
+without directly saying it.
+
+00:10:35.933 --> 00:10:39.285
+We need something that can understand
+those messages, connect the
+
+00:10:39.325 --> 00:10:42.652
+information with inventory levels,
+and work out what could be the impact
+
+00:10:42.692 --> 00:10:45.084
+be. That's where an agent makes sense.
+
+00:10:45.150 --> 00:10:47.590
+And the third one, that's a chatbot.
+
+00:10:47.779 --> 00:10:49.992
+Sarah just needs help rewriting an email.
+
+00:10:50.032 --> 00:10:54.314
+She can open a Claude or ChatGPT,
+explain what she wants, and get a
+
+00:10:54.354 --> 00:10:58.118
+draft back. No complicated
+workflow or ERP integration needed.
+
+00:10:58.158 --> 00:11:01.818
+So the important thing here is
+that you don't need an AI agent for
+
+00:11:01.858 --> 00:11:04.659
+everything. Sometimes a
+simple automation is enough.
+
+00:11:04.902 --> 00:11:06.650
+Sometimes a chatbot does the job.
+
+00:11:06.690 --> 00:11:10.040
+The real skill is knowing which
+one to use for which problem.
+
+00:11:10.120 --> 00:11:13.860
+And that's exactly what you will
+practice in this activity that comes
+
+00:11:13.900 --> 00:11:15.010
+with this video.
+
+00:11:16.113 --> 00:11:19.853
+Every agent you'll ever build,
+including Stocky, has the same five
+
+00:11:19.893 --> 00:11:22.663
+parts. Let's go through
+them using our intern.
+
+00:11:23.039 --> 00:11:25.079
+Part one: the brain.
+
+00:11:25.119 --> 00:11:29.239
+That's the AI model, things
+like Claude or ChatGPT.
+
+00:11:29.279 --> 00:11:32.099
+You'll hear people call this an "LLM".
+
+00:11:32.139 --> 00:11:36.219
+It just means the type of AI
+that reads and writes language.
+
+00:11:36.259 --> 00:11:38.459
+Think of it as the intern's brain.
+
+00:11:38.499 --> 00:11:41.379
+It reads, it reasons, it writes.
+
+00:11:41.419 --> 00:11:45.429
+On its own, as we saw, it's
+stuck in a room with no doors.
+
+00:11:45.749 --> 00:11:47.849
+Part two: the instructions.
+
+00:11:47.889 --> 00:11:50.649
+This is the briefing you
+give the intern on day one.
+
+00:11:50.689 --> 00:11:54.249
+Who you are, what your job
+is, what you must never do.
+
+00:11:54.289 --> 00:11:57.309
+The clearer this is, the
+better the agent behaves.
+
+00:11:57.349 --> 00:11:59.719
+Vague instructions give
+you a vague intern.
+
+00:12:00.043 --> 00:12:01.863
+Part three: the tools.
+
+00:12:01.903 --> 00:12:04.383
+These are the doors we
+open for the intern.
+
+00:12:04.423 --> 00:12:06.483
+Odoo, so it can read stock.
+
+00:12:06.523 --> 00:12:09.483
+A weather service. An
+exchange rate service.
+
+00:12:09.523 --> 00:12:10.983
+A holiday calendar.
+
+00:12:11.023 --> 00:12:14.743
+Email. The agent can only
+use the tools you give it.
+
+00:12:14.783 --> 00:12:18.323
+If you don't give it access to
+purchase orders, it simply can't create
+
+00:12:18.363 --> 00:12:20.673
+one. That's how you keep it safe.
+
+00:12:20.965 --> 00:12:26.025
+Part four: memory. Out of the box,
+an AI brain forgets everything the
+
+00:12:26.065 --> 00:12:27.845
+moment a conversation ends.
+
+00:12:27.885 --> 00:12:32.045
+So we give Stocky a notebook,
+which for us is this Google Sheet.
+
+00:12:32.085 --> 00:12:34.725
+It writes down what it decided and why.
+
+00:12:34.765 --> 00:12:38.825
+Next week, it can look back and say,
+"I flagged the pallet jack wheels
+
+00:12:38.865 --> 00:12:41.835
+last week too. This is
+becoming a pattern."
+
+00:12:42.155 --> 00:12:46.075
+And part five, the one people
+forget: the human supervisor.
+
+00:12:46.115 --> 00:12:50.475
+That's you. In this course, Stocky
+never spends BrightLeaf's money
+
+00:12:50.515 --> 00:12:51.955
+without a human click.
+
+00:12:51.995 --> 00:12:55.195
+It's like the manager's signature
+before the check goes out.
+
+00:12:55.235 --> 00:12:57.485
+The agent prepares, the human approves.
+
+00:12:59.153 --> 00:13:02.783
+Here's the road we'll travel together,
+one piece of Stocky at a time.
+
+00:13:03.055 --> 00:13:07.535
+In video two, we'll tour an ERP and
+set up your own free copy of Odoo,
+
+00:13:07.575 --> 00:13:10.075
+loaded with BrightLeaf's ten products.
+
+00:13:10.115 --> 00:13:14.415
+Video three explains APIs, the
+way software talks to software,
+
+00:13:14.455 --> 00:13:16.315
+using a restaurant.
+
+00:13:16.355 --> 00:13:20.415
+Video four makes databases friendly,
+using something you already know:
+
+00:13:20.455 --> 00:13:23.825
+Excel. In video five, we
+set up your no-code toolkit.
+
+00:13:24.377 --> 00:13:26.137
+Then the building starts.
+
+00:13:26.177 --> 00:13:31.637
+Video six: Stocky reads the ERP
+and answers "what's running low?".
+
+00:13:31.677 --> 00:13:36.757
+Video seven: Stocky drafts purchase
+orders, but only with your approval.
+
+00:13:36.797 --> 00:13:41.397
+Video eight: Stocky looks beyond
+the ERP at weather, currency and
+
+00:13:41.437 --> 00:13:44.537
+holidays. Video nine: memory and Mr.
+
+00:13:44.577 --> 00:13:46.337
+Harrison's Monday report.
+
+00:13:46.377 --> 00:13:50.797
+And video ten: going live safely,
+plus your capstone, where you build a
+
+00:13:50.837 --> 00:13:52.431
+Stocky for your own company.
+
+00:13:52.771 --> 00:13:54.191
+And here's your toolkit.
+
+00:13:54.231 --> 00:13:58.771
+Odoo is our ERP. It's free to
+try and runs in your browser.
+
+00:13:58.811 --> 00:14:01.531
+n8n is where we build the recipe.
+
+00:14:01.571 --> 00:14:04.011
+Claude or ChatGPT is the brain.
+
+00:14:04.051 --> 00:14:05.811
+Google Sheets is the memory.
+
+00:14:05.851 --> 00:14:07.571
+Gmail sends the alerts.
+
+00:14:07.611 --> 00:14:11.011
+Every tool here has a
+free tier or a free trial.
+
+00:14:11.051 --> 00:14:13.481
+You won't need to install
+anything on your computer.
+
+00:14:13.817 --> 00:14:18.417
+Does your company use SAP, Oracle,
+Microsoft Dynamics or NetSuite
+
+00:14:18.457 --> 00:14:20.717
+instead of Odoo? No problem.
+
+00:14:20.757 --> 00:14:22.537
+The ideas are identical.
+
+00:14:22.577 --> 00:14:26.077
+We use Odoo because it's free and
+you can't break anything in a test
+
+00:14:26.117 --> 00:14:30.297
+system. Once you understand how
+Stocky talks to Odoo, you'll know
+
+00:14:30.337 --> 00:14:33.547
+exactly what questions to ask
+your IT team about your own ERP.
+
+00:14:34.435 --> 00:14:37.565
+All right, we have covered
+quite a bit in this first video.
+
+00:14:37.633 --> 00:14:41.219
+Before we wrap up, let's quickly go
+to the three main things I want you
+
+00:14:41.259 --> 00:14:44.722
+to take away. First, understand
+the difference between the three.
+
+00:14:44.768 --> 00:14:48.709
+A chatbot responds to you, and
+automation follows predefined steps,
+
+00:14:48.749 --> 00:14:52.252
+and then AI agents can reason through
+your task, use different tools,
+
+00:14:52.292 --> 00:14:54.102
+and take actions towards a goal.
+
+00:14:54.289 --> 00:14:57.043
+Second, remember the five
+parts of an AI agent.
+
+00:14:57.083 --> 00:15:01.994
+The brain, instructions, tools,
+memory and a human supervisor.
+
+00:15:02.228 --> 00:15:05.908
+These are the building blocks
+we'll use when creating Stocky.
+
+00:15:05.971 --> 00:15:09.313
+And third, remember why we are
+building this in the first place.
+
+00:15:09.353 --> 00:15:13.333
+The goal is not to replace someone
+like Sarah, it's to reduce the
+
+00:15:13.373 --> 00:15:17.213
+repetitive work she's doing every
+week and give her more time to focus
+
+00:15:17.253 --> 00:15:18.643
+on actual decisions.
+
+00:15:18.717 --> 00:15:23.007
+Now, before moving to the next video,
+I want you to complete two small
+
+00:15:23.077 --> 00:15:26.869
+activities. First, download the
+Excel workbook called V01 Activity:
+
+00:15:26.909 --> 00:15:29.696
+Agent or Not? It has two parts.
+
+00:15:29.736 --> 00:15:33.125
+In the first part, you will
+get 20 supply chain tasks.
+
+00:15:33.165 --> 00:15:37.079
+Your job is to classify them as a
+chatbot task, an automation task,
+
+00:15:37.147 --> 00:15:40.738
+an agent task, or something that
+doesn't need automation at all.
+
+00:15:40.778 --> 00:15:42.568
+The workbook will check your answers.
+
+00:15:42.711 --> 00:15:44.851
+The second part is an automation wishlist.
+
+00:15:44.903 --> 00:15:48.043
+Here, you will list the repetitive
+tasks you're currently handling in
+
+00:15:48.083 --> 00:15:51.550
+your own work. The workbook will
+help you calculate how many hours you
+
+00:15:51.590 --> 00:15:53.824
+are spending on those
+activities every year.
+
+00:15:53.864 --> 00:15:57.329
+Keep that list, we will use it again
+when we get to the capstone project
+
+00:15:57.369 --> 00:16:01.339
+in video ten. And there is also a
+quick 10 question quiz to test what
+
+00:16:01.379 --> 00:16:04.359
+you have learned. Now in the next
+video, we are going to get a little
+
+00:16:04.399 --> 00:16:08.830
+more practical. We'll explore what
+an ERP actually looks like from a
+
+00:16:08.870 --> 00:16:10.580
+supply chain professional's perspective.
+
+00:16:10.830 --> 00:16:14.418
+I'll walk you through Odoo, help
+you set up your own free account,
+
+00:16:14.482 --> 00:16:16.980
+and load BrightLeaf's
+ten products into it.
+
+00:16:17.020 --> 00:16:20.340
+By the end of that video, you'll
+have your own ERP environment to work
+
+00:16:20.380 --> 00:16:24.492
+with, and from there, we'll start
+building Stocky one step at a time.
+
+00:16:24.532 --> 00:16:25.902
+I'll see you in the next video.

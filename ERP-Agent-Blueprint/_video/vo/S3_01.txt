@@ -1,0 +1,1 @@
+Every agent you'll ever build, including Stocky, has the same five parts. Let's go through them using our intern.

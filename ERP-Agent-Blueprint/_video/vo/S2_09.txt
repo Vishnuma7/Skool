@@ -1,0 +1,1 @@
+The best way to think about an AI agent is a smart new intern. A good intern can read, think, use the tools you give them and take action. But they need clear instructions, and they need supervision, especially in their first few weeks.

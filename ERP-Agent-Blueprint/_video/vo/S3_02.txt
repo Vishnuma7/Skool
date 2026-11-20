@@ -1,0 +1,1 @@
+Part one: the brain. That's the AI model, things like Claude or ChatGPT. You'll hear people call this an "LLM". It just means the type of AI that reads and writes language. Think of it as the intern's brain. It reads, it reasons, it writes. On its own, as we saw, it's stuck in a room with no doors.

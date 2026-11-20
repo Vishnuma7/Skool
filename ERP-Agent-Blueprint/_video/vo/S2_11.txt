@@ -1,0 +1,1 @@
+And underneath, the tools it's allowed to use. It can look things up in Odoo. It can check the weather. It can check exchange rates and holidays. It can write to the log.
