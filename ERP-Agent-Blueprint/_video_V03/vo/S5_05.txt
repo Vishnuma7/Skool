@@ -1,0 +1,1 @@
+In the BrightLeaf Odoo trial, I open the Settings app and scroll to the bottom. There's a link called "Activate the developer mode". Don't be put off by the name. It just shows a few extra options. Click it, and the page reloads.

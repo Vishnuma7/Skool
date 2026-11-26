@@ -1,0 +1,1 @@
+Read the order with me. The endpoint is "latest", meaning the latest rates. The order details: "from" equals USD, the US dollar, and "to" equals CNY, MXN and AED. Chinese yuan, Mexican peso and UAE dirham, the three foreign currencies BrightLeaf's suppliers bill in. Enter.

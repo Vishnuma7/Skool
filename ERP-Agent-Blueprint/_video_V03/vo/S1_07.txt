@@ -1,0 +1,1 @@
+The order you give is called a request. What comes back to your table is the response. Simple.

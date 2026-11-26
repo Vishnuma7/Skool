@@ -1,0 +1,175 @@
+Generate ONE audio file per block, named exactly as the [label] (e.g. S1_01.wav). Put them in _video_V03/vo/fish/.
+
+[S1_01]
+Let's start with a picture. Imagine you walk into a restaurant. You're hungry, you know what you want, but you don't walk into the kitchen. You don't open the fridge, you don't touch the chef's knives, and you definitely don't cook. Why? Because the kitchen isn't yours. It's busy, it's organised in its own way, and if every customer walked in, it would be chaos.
+
+[S1_02]
+So instead, you talk to the waiter. You say, "One chicken burrito, please, not too spicy." The waiter takes your order to the kitchen, the kitchen prepares exactly that, and the waiter brings it back to your table.
+
+[S1_03]
+That waiter is an API. API stands for Application Programming Interface, but you can forget that phrase right now. Just remember: an API is the waiter between you and somebody else's kitchen.
+
+[S1_04]
+Now let's swap in BrightLeaf. The kitchen is Odoo, the ERP you set up in the last video. The customer is Stocky, the AI agent we're going to build. Stocky never logs into Odoo like Sarah does. It doesn't click menus. It sends an order to Odoo's waiter: "Please bring me the on-hand quantity for SKU BL-1005, the pallet jack wheels." And the waiter comes back with: "Eighteen sets."
+
+[S1_05]
+Here's why companies love this. The kitchen stays safe. Odoo decides what the waiter is allowed to bring out. Sarah's customer list stays private, the accounting stays locked, and Stocky gets only what it needs.
+
+[S1_06]
+Three more words and you've got the whole vocabulary.
+
+[S1_07]
+The order you give is called a request. What comes back to your table is the response. Simple.
+
+[S1_08]
+And every restaurant has a menu. You can't order sushi in a pizza place. APIs are the same. Each API has a list of things it can do, and each item on that list has its own address. That address is called an endpoint. One endpoint might be "today's weather forecast". Another might be "latest exchange rates". Think of an endpoint as one dish on the menu.
+
+[S1_09]
+This is what a real order looks like. Don't panic, we'll take it apart.
+
+[S1_10]
+The blue part, api dot open-meteo dot com, is the restaurant's address. Which building are we walking into?
+
+[S1_11]
+The green part, slash v1 slash forecast, is the endpoint. Which dish do we want? The forecast.
+
+[S1_12]
+The orange part, everything after the question mark, is our order details. Latitude 22.54 and longitude 114.06, that's Shenzhen. Then which bits of the forecast we want: rainfall and wind. The question mark means "here come my order details", and each ampersand, that little "and" sign, means "and also". It's exactly like saying, "One chicken burrito, not too spicy, and extra guacamole."
+
+[S2_01]
+Okay, this is the moment. I've opened a brand-new browser tab, the same browser you use for email. I'm pasting in the web address from the screen. You'll find it in your activity file too, so you don't have to type it.
+
+[S2_02]
+Notice what we're NOT doing. We're not signing up. We're not downloading anything. Open-Meteo is a free weather service that lets anyone ask for a forecast. No key card needed. I press Enter.
+
+[S2_03]
+And there it is. The waiter is back at our table. This is a real response, from a real weather service, about the real city of Shenzhen, and it took less than a second.
+
+[S2_04]
+I know what you're thinking. "This looks like computer gibberish." Give me sixty seconds. It's actually a shopping list.
+
+[S2_05]
+This format is called JSON. Say it like the name "Jason". And the easiest way to think about JSON is as a labelled shopping list. Every line has a label on the left, in quotes, then a colon, then the value on the right.
+
+[S2_06]
+So here: label "latitude", value 22.53. Label "timezone", value "Asia/Shanghai". It's the same as a shopping list that says "Milk: 2 litres. Eggs: 12."
+
+[S2_07]
+Notice the latitude came back as 22.53, not exactly the 22.54 we asked for. That's the weather service saying, "my nearest weather grid point is here." Close enough for a city.
+
+[S2_08]
+Now this bit is really helpful. "Daily units." It tells us rainfall is measured in millimetres, and wind speed in kilometres per hour. A good API always tells you its units. Hold on to that idea, because in the next video, on databases, mixed-up units are going to be our enemy number one.
+
+[S2_09]
+Here's the actual forecast. Square brackets mean "a list of several items", like a column in Excel.
+
+[S2_10]
+"Time" is a list of seven dates. On the day I recorded this, it started with the 22nd of November and went to the 28th.
+
+[S2_11]
+"Precipitation sum" is a list of seven rainfall numbers: 0, 0.1, then 48.4, then mostly zeros.
+
+[S2_12]
+"Wind speed max" is seven wind numbers: 16.8, 20.9, 20.7, and so on.
+
+[S2_13]
+The trick is to read them like columns that line up. The first date goes with the first rain number and the first wind number. So the 22nd: no rain, wind up to 16.8 kilometres an hour. But look at the 24th: 48.4 millimetres of rain. That's a seriously wet day, exactly the kind of number that should make Sarah call Global Lift Parts and ask whether her pallet jack wheels are still on schedule. And if the wind went above 60 or 70, you'd also want to ask whether the port is running.
+
+[S2_14]
+Now watch how easy it is to change the order. Gulf Lubricants, who supply our hydraulic oil, BL-1007, are in Dubai. Dubai is latitude 25.20, longitude 55.27. I change just those two numbers and press Enter.
+
+[S2_15]
+New response. The timezone now says "Asia/Dubai", and the rainfall is mostly zeros. No surprise there. I changed the order details, and the waiter brought back a different dish. That is literally all Stocky does when it checks five supplier cities. Same request, five different sets of order details.
+
+[S3_01]
+Let's try a second restaurant. This one is called Frankfurter, and it serves exchange rates. It's free and needs no key card either.
+
+[S3_02]
+Read the order with me. The endpoint is "latest", meaning the latest rates. The order details: "from" equals USD, the US dollar, and "to" equals CNY, MXN and AED. Chinese yuan, Mexican peso and UAE dirham, the three foreign currencies BrightLeaf's suppliers bill in. Enter.
+
+[S3_03]
+First, a little surprise. Look at the address bar. It changed by itself. We typed frankfurter dot app, and now it says frankfurter dot dev, slash v1. The restaurant moved to a new building and left a forwarding note on the old door. Your browser read the note and walked over automatically. APIs do move house sometimes, and good ones leave a forwarding address.
+
+[S3_04]
+Now the shopping list. "Amount": 1. "Base": USD. "Date": the 20th of November. Then "rates", with a smaller list inside it: CNY 6.68, MXN 19.07. A list inside a list, like a shopping list with a "Dairy" section that has its own items.
+
+[S3_05]
+So on test day, one dollar bought 6.68 yuan and 19.07 pesos. Your numbers will be different, and that's the point. It's live.
+
+[S3_06]
+Let's make that real for Sarah. Global Lift Parts bills in yuan. Sixty sets of pallet jack wheels at thirty-eight dollars is two thousand two hundred and eighty dollars, which at 6.68 is an invoice of about fifteen thousand two hundred yuan. Now say the yuan gets three percent stronger, and a dollar only buys about 6.48 yuan. That same yuan invoice now costs about two thousand three hundred and fifty dollars. Sixty-eight dollars more, without anyone changing the price. Same story for SafeHands gloves in pesos. Stocky can spot that the moment it happens.
+
+[S3_07]
+Now, did you notice something missing? We asked for three currencies. We got two. Where's the dirham?
+
+[S3_08]
+Great lesson. Frankfurter gets its numbers from the European Central Bank, and that kitchen doesn't stock the dirham. The waiter didn't crash or argue. It just brought what the kitchen had.
+
+[S3_09]
+Luckily the dirham is pegged to the dollar at about 3.67, so it barely moves. But the habit matters: always check that what came back matches what you asked for. We'll teach Stocky to notice missing items too.
+
+[S4_01]
+Every time the waiter comes back, he also hands you a little receipt with a number on it. This number is called a status code, and it tells you how the order went, before you even look at the plate.
+
+[S4_02]
+You don't need to memorise hundreds. Four will cover almost everything you'll meet.
+
+[S4_03]
+200, OK. Your order went perfectly, here's your food. Both our calls today came back with a 200.
+
+[S4_04]
+401, wrong key card. You tried to open a door your card doesn't open. The API is saying, "I don't know who you are." Usually it means your API key is missing, mistyped or cancelled.
+
+[S4_05]
+404, wrong address. Not Found. You asked for a dish that isn't on the menu, or you walked to the wrong table. Nine times out of ten, it's a typo in the web address.
+
+[S4_06]
+429, too many orders. You're ordering too fast. Free APIs often say, "Please slow down, you've asked me a thousand times this minute." The fix is simple. Wait and try again, or ask less often.
+
+[S4_07]
+Here's a shortcut. Anything starting with a 2 is good news. Anything starting with a 4 means something was wrong with your order. Anything starting with a 5, like 500, means the kitchen itself had a problem, and it's not your fault. Wait a few minutes and try again.
+
+[S4_08]
+Now let's break something on purpose. You can't break anything here, I promise.
+
+[S4_09]
+I'm going to misspell "forecast". I'll take out the "a". Enter.
+
+[S4_10]
+Look at that. "Reason: Not Found. Error: true." That's our 404 receipt. We asked for a dish called "forecst", and there's no such dish on the menu. One missing letter. This is the single most common beginner error, and now you've seen it. You'll recognise it forever.
+
+[S4_11]
+Let's fix that and try a different mistake. This time the dish is right, but I'll ask for a silly order detail. Instead of rainfall, I'll ask for "banana".
+
+[S4_12]
+The restaurant exists, the dish exists, but the order doesn't make sense. The waiter says, "I can't give you a daily banana." That's a 400, "bad request", another 4-something, so it's on our side. And look how helpful it is. It tells us exactly which word it didn't understand. When something goes wrong, read the message. It usually tells you what to fix.
+
+[S4_13]
+And we're back to a 200. Everything fixed in two seconds.
+
+[S5_01]
+The weather and currency APIs serve anyone. But Odoo holds BrightLeaf's stock, costs and customers. You don't want the whole world asking that waiter for things.
+
+[S5_02]
+So private APIs ask for an API key, and an API key is like a hotel room key card. It opens your room, maybe the gym. Not other guests' rooms, not the manager's office. Lose it, and reception cancels it and gives you a new one. Your passport doesn't change. Just the card.
+
+[S5_03]
+An API key works the same way. It opens only what it's allowed to, it belongs to a specific user, and it can be cancelled any time without changing your password.
+
+[S5_04]
+Let me show you where Odoo keeps these key cards. We won't create one today; we'll do that when we connect Stocky. I just want you to know where reception is.
+
+[S5_05]
+In the BrightLeaf Odoo trial, I open the Settings app and scroll to the bottom. There's a link called "Activate the developer mode". Don't be put off by the name. It just shows a few extra options. Click it, and the page reloads.
+
+[S5_06]
+Now I click my profile picture in the top right corner, then "My Preferences". In some versions it's called "My Profile". Then the tab called "Security".
+
+[S5_07]
+And here it is. "API Keys", with a button called "Create API Key". When we create one later, Odoo will show the key exactly once, a long string of letters and numbers, and we'll paste it straight into a safe place. Odoo never shows it again.
+
+[S5_08]
+Notice something important. This key belongs to a user. When Stocky uses Sarah's key, Odoo treats Stocky like Sarah, with the same permissions. That's why, when we go live, we'll give Stocky its own user with only the access it needs. Its own key card, not the manager's master key.
+
+[S5_09]
+Three key card rules. One: never paste a key into an email, a WhatsApp chat or a shared document. Two: give each tool its own key, so cancelling one doesn't break the others. Three: if a key might have leaked, delete it here and make a new one. Ten seconds, and nothing else breaks.

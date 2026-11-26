@@ -1,0 +1,1 @@
+Notice the latitude came back as 22.53, not exactly the 22.54 we asked for. That's the weather service saying, "my nearest weather grid point is here." Close enough for a city.

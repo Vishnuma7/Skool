@@ -1,0 +1,1 @@
+Here's the actual forecast. Square brackets mean "a list of several items", like a column in Excel.

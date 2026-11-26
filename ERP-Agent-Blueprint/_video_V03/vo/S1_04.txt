@@ -1,0 +1,1 @@
+Now let's swap in BrightLeaf. The kitchen is Odoo, the ERP you set up in the last video. The customer is Stocky, the AI agent we're going to build. Stocky never logs into Odoo like Sarah does. It doesn't click menus. It sends an order to Odoo's waiter: "Please bring me the on-hand quantity for SKU BL-1005, the pallet jack wheels." And the waiter comes back with: "Eighteen sets."

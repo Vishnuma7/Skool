@@ -1,0 +1,1 @@
+Now the shopping list. "Amount": 1. "Base": USD. "Date": the 20th of November. Then "rates", with a smaller list inside it: CNY 6.68, MXN 19.07. A list inside a list, like a shopping list with a "Dairy" section that has its own items.

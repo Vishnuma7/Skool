@@ -1,0 +1,1 @@
+429, too many orders. You're ordering too fast. Free APIs often say, "Please slow down, you've asked me a thousand times this minute." The fix is simple. Wait and try again, or ask less often.

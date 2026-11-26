@@ -1,0 +1,9 @@
+Music (Pixabay Content License - free for commercial use, no attribution required):
+bed_edu.mp3  "Corporate Business" by AtlasAudio  https://pixabay.com/music/corporate-corporate-business-635581/  (looped)
+Alternatives in work/audio_dl: "Education" (AtlasAudio) https://pixabay.com/music/corporate-education-518078/ , "Corporate Uplifting" (AtlasAudio) https://pixabay.com/music/corporate-corporate-uplifting-635583/
+
+SFX (Pixabay Content License):
+whoosh  "Clean Whoosh" DRAGON-STUDIO  https://pixabay.com/sound-effects/film-special-effects-clean-whoosh-382726/
+pop     "Clean Minimal Pop" DRAGON-STUDIO https://pixabay.com/sound-effects/clean-minimal-pop-467466/
+click   "Mouse Click" Universfield       https://pixabay.com/sound-effects/film-special-effects-mouse-click-351398/
+ding    "New Notification 059" Universfield https://pixabay.com/sound-effects/technology-new-notification-059-494262/

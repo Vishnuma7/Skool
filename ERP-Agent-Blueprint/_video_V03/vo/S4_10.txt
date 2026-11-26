@@ -1,0 +1,1 @@
+Look at that. "Reason: Not Found. Error: true." That's our 404 receipt. We asked for a dish called "forecst", and there's no such dish on the menu. One missing letter. This is the single most common beginner error, and now you've seen it. You'll recognise it forever.
