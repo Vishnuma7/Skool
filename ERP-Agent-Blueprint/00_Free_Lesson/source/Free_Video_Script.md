@@ -1,10 +1,14 @@
 # Free Lesson: How AI Agents Connect to Your ERP (and Give You Back 12 Hours a Week)
-**Course:** The ERP Agent Blueprint (free preview lesson) | **Length:** 10 min | **Level:** Beginner
+**Course:** The ERP Agent Blueprint (free preview lesson) | **Length:** about 10 min | **Level:** Beginner
 **Learning objectives:**
 - Tell the difference between a chatbot, an automation and an AI agent
 - Understand the "3 doors" an agent uses to reach business data: the ERP, an API and a database
 - Spot 3–4 supply chain tasks an agent could take off your plate this month
 - See a finished agent ("Stocky") check stock and draft a purchase order for approval
+
+**Conversion goal:** the viewer finishes the video wanting to build Stocky and clicks the upgrade link. One action only: upgrade. It is asked twice, always in the same words, **"Upgrade to the Agentic SCM paid tier and build Stocky yourself"**: once straight after the demo (peak desire) and once at the very end. The ERP Agent Blueprint is the reason to upgrade; live sessions, templates and new courses only back it up. No price and no dates are spoken, so the video stays evergreen. There is no single upgrade link (each member's upgrade link is personal), so the video always sends people to the same place: **The ERP Agent Blueprint in the Classroom**, where they unlock it.
+
+**Short teaser:** the ~1-minute teaser has its own script (Intro_Short_Script). Record its on-camera lines right after this video, in the same setup; its demo clips are reused from this recording.
 
 **Before recording, prepare:**
 - The finished Stocky workflow in n8n, already tested, with the chat window open
@@ -12,13 +16,15 @@
 - Gmail inbox showing the Stocky approval email ready to arrive
 - A browser tab with this Open-Meteo link ready: `https://api.open-meteo.com/v1/forecast?latitude=22.54&longitude=114.06&current=temperature_2m,precipitation`
 - The Google Sheet "Stocky Decision Log" with 5 or 6 sample rows
-- A simple course-tour slide (10 video titles) or the Skool classroom page for the paid course
+- A "journey" slide with 4 milestones, and a "What's in the paid tier" slide (see the last screen section)
+- In Skool, check that The ERP Agent Blueprint sits in the Classroom right next to this free lesson and is locked to the paid tier, and note the exact button name a free member sees on it (the script says "unlock")
+- On the Stocky demo, zoom in on the chat reply, the Approve email and the Odoo draft: the short teaser reuses these clips in vertical 9:16
 
 **Resources for this video:** Free_Activity_ERP_Time_Drain_Calculator.xlsx, Free_Activity_Agent_Opportunity_Worksheet.docx
 
 ---
 
-## [ON CAMERA] Hook + Your Question for This Video (00:00–01:00)
+## [ON CAMERA] Hook + Who I Am (00:00–01:15)
 
 Meet Sarah. She's the Procurement and Inventory Manager at a distributor called BrightLeaf Supplies.
 
@@ -28,118 +34,115 @@ Twelve hours. That's a day and a half, every single week, spent being a human co
 
 Now picture this instead. It's Tuesday morning. Before Sarah even opens her laptop, her phone buzzes: *"Packing gloves will run out in 6 days. I've drafted an order with SafeHands Co. Approve?"* She taps yes. Done.
 
-That's not science fiction. That's an AI agent connected to an ERP. And by the end of these ten minutes, you'll see one do exactly that.
+That's not science fiction. That's an AI agent connected to an ERP. And in about six minutes, you'll watch one do exactly that, live.
 
-But first, a question to think about while you watch. **Count how many times this week you copied a number out of your ERP into Excel or an email.** Just a rough number. Keep it in your head. I'll ask you for it at the end.
+Quick intro. I'm Adithyan, co-founder of Experidium. We build AI agents for procurement, inventory and demand planning. And one rule guides everything we build: the agent prepares the work, a person approves it. That's exactly what you'll see today.
 
-## [ON CAMERA] Chatbot vs Automation vs AI Agent (01:00–02:15)
+I built this lesson because the question you voted for most in this community was: *how do I actually connect AI to my ERP?* So let's answer it.
 
-So what actually *is* an AI agent? People mix up three things, so let's clear it up.
+Here's your one job while you watch: **count how many times this week you copied a number out of your ERP into Excel or an email.** Keep that number in your head. It's about to become very expensive.
 
-A **chatbot** answers questions. You ask ChatGPT "what's a reorder point?" and it explains. Helpful. But it can't see *your* stock.
+## [ON CAMERA] Chatbot vs Automation vs AI Agent (01:15–02:15)
 
-An **automation** is a recipe card. Step one, step two, step three, the same way every time. Great for boring, fixed jobs. But it can't think. If something unusual happens, it just follows the recipe anyway.
+So what actually *is* an AI agent? People mix up three things.
 
-An **AI agent** is different. Think of it as **a smart new intern**. The intern can read your reports, think about what they mean, use tools like the ERP or email, and take action. But, like any new intern, it needs clear instructions and a manager to sign off on anything important.
+A **chatbot** answers questions. You ask ChatGPT "what's a reorder point?" and it explains. But it can't see *your* stock.
 
-The brain inside that intern is a model like Claude or ChatGPT. The hands are the tools we connect it to.
+An **automation** is a recipe card. Same steps, same order, every time. Great for fixed jobs. But it can't think. If something unusual happens, it follows the recipe anyway.
 
-And here's the thing: an intern locked in an empty room is useless. The magic only happens when you give it access to your data. Which brings us to the three doors.
+An **AI agent** is **a smart new intern**. It reads your reports, thinks about what they mean, uses tools like your ERP and email, and takes action. And like any new intern, it asks the manager before doing anything important.
 
-## [SCREEN RECORDING] The 3 Doors: ERP, API, Database (02:15–03:45)
+The brain is a model like Claude or ChatGPT. The hands are the tools we connect it to. But an intern locked in an empty room is useless. The magic happens when you give it access to your data. Which brings us to the three doors.
+
+## [SCREEN RECORDING] The 3 Doors: ERP, API, Database (02:15–03:30)
 
 **SHOW:** A simple diagram: a robot "Stocky" in the middle, three doors around it labelled ERP, API, DATABASE.
 **SAY:** Every agent that does real supply chain work walks through one of three doors.
 
 **SHOW:** Odoo, Inventory > Products, the BrightLeaf product list with On Hand quantities.
-**SAY:** Door number one is your **ERP**. Think of it as the company's central filing cabinet plus the rulebook. Stock levels, purchase orders, suppliers: it all lives here. This is Odoo, a free ERP we use in the course, but SAP, Oracle and NetSuite are the same idea.
+**SAY:** Door one is your **ERP**: the company's central filing cabinet plus the rulebook. Stock levels, purchase orders, suppliers, it all lives here. This is Odoo, a free ERP we use in the course, but SAP, Oracle and NetSuite work the same way.
 
 **SHOW:** The browser tab with the Open-Meteo link. The page shows a short block of text with temperature and precipitation for Shenzhen.
-**SAY:** Door number two is an **API**. An API is like a waiter in a restaurant. You don't walk into the kitchen. You give your order to the waiter, and the waiter brings back exactly what you asked for. Here, I just asked a free weather service, "What's the weather in Shenzhen right now?" That's where two of BrightLeaf's suppliers are. No code. I just opened a link.
+**SAY:** Door two is an **API**. An API is a waiter. You don't walk into the kitchen; you give your order, and the waiter brings back exactly what you asked for. I just asked a free weather service, "What's the weather in Shenzhen right now?", where two of BrightLeaf's suppliers are. No code. I opened a link.
 **ON-SCREEN TEXT:** API = a waiter. You order, it brings back exactly what you asked for.
 
 **SHOW:** The Google Sheet "Stocky Decision Log": columns Date, SKU, Action, Approved By.
-**SAY:** Door number three is a **database**. Think of it as a super-organised Excel workbook. Tables are sheets, rows are records, columns are fields. This is where the agent writes down what it did, so there's always a paper trail. And yes, for beginners, a Google Sheet works perfectly as your first database.
+**SAY:** Door three is a **database**: a super-organised Excel workbook. This is where the agent writes down everything it did, so there's always a paper trail. And for beginners, a Google Sheet works perfectly.
 
-> PAUSE & THINK: Pause the video. Which of the three doors holds the data you copy most often: your ERP, an outside website or service, or a spreadsheet? Most people say the ERP. Let's see if that's you.
+> PAUSE & THINK: Which door holds the data you copy most often: your ERP, an outside website, or a spreadsheet? Most people say the ERP.
 
-## [ON CAMERA] 4 Agent Jobs That Give Sarah Her Week Back (03:45–05:00)
+## [ON CAMERA] What Those 12 Hours Are Really Costing (03:30–04:45)
 
-Let's get practical. Remember Sarah's twelve hours? Here's where they go, and what an agent does with them.
+Let's get practical. Here's where Sarah's twelve hours go, and what an agent does with each.
 
-**One: the daily stock check.** Before: Sarah exports stock from the ERP and compares it to reorder points in Excel. About four hours a week. After: the agent checks every morning and messages her only what's running low. Close to zero.
+**The daily stock check.** Four hours a week of exporting and comparing in Excel. The agent does it every morning and messages her only what's running low. Close to zero.
 
-**Two: drafting purchase orders.** Before: three hours a week typing up orders. After: the agent drafts them, Sarah reviews and approves. Thirty minutes.
+**Drafting purchase orders.** Three hours a week. The agent drafts them; Sarah approves. Thirty minutes.
 
-**Three: supplier risk.** Before: two hours a week checking news, weather and exchange rates for suppliers in Shenzhen and Dubai. After: the agent checks those outside sources and warns her in plain English. Five minutes.
+**Supplier risk.** Two hours a week checking news, weather and exchange rates for suppliers in Shenzhen and Dubai. The agent checks and warns her in plain English. Five minutes.
 
-**Four: the Monday report for Mr. Harrison, her director.** Before: three hours every Monday morning. After: it lands in his inbox automatically. Ten minutes to review.
+**The Monday report.** Three hours every Monday. Now it lands in her director's inbox automatically. Ten minutes to review.
 
-Twelve hours down to under one. And notice: Sarah still approves every order. The agent prepares the check; the manager signs it.
+Twelve hours down to under one. Now do the math with me. Twelve hours a week, at even thirty dollars an hour, is **over eighteen thousand dollars a year** of skilled time spent copy-pasting. In one role. At one company.
 
-## [SCREEN RECORDING] Sneak Peek: Meet Stocky (05:00–06:30)
+And Sarah still approves every order. The agent prepares the check; the manager signs it.
+
+## [SCREEN RECORDING] Meet Stocky, Live (04:45–06:30)
 
 **SHOW:** The n8n workflow canvas: a chat trigger, an AI Agent node, an Odoo node, a Gmail node, a Google Sheets node.
-**SAY:** This is Stocky, BrightLeaf's inventory and procurement agent. It's the exact agent you build in the paid course. Each box is one step, like a Lego block. No code anywhere.
+**SAY:** This is Stocky, BrightLeaf's inventory and procurement agent. Each box is one step, like a Lego block. No code anywhere. And this is the exact agent you build, step by step, in The ERP Agent Blueprint.
 
 **SHOW:** Open the chat window. Type: "What's running low and who should I order from?" Press Enter.
 **SAY:** Let me ask it the question Sarah asks every single morning.
 
 **SHOW:** The Odoo node lights up green, then the AI Agent node. The reply appears: 4 products below reorder point (Corrugated Shipping Boxes, Industrial Safety Gloves, Pallet Jack Wheels, Hydraulic Oil), each with its supplier and a suggested quantity.
-**SAY:** Watch. It went into Odoo, read the live stock, compared it with the reorder points, and came back in plain English. Four products are low. Safety gloves from SafeHands Co. in Monterrey, Mexico, pallet jack wheels from Global Lift Parts in Shenzhen, and so on. It even suggests how many to order.
+**SAY:** Watch. It went into Odoo, read the live stock, compared it with the reorder points, and answered in plain English. Four products are low. Safety gloves from SafeHands Co. in Monterrey, pallet jack wheels from Global Lift Parts in Shenzhen, and so on. It even suggests how many to order.
 
 **SHOW:** Type: "Draft the PO for the gloves." Then switch to Gmail: an email "Stocky: approve PO for 780 pairs of Industrial Safety Gloves from SafeHands Co.?" with Approve / Reject buttons.
-**SAY:** Now the important bit. It doesn't just go and buy things. It drafts the purchase order and sends Sarah an email asking for approval. Nothing happens until she clicks Approve.
+**SAY:** Now the important bit. It doesn't go and buy things. It drafts the purchase order and emails Sarah for approval. Nothing happens until she clicks Approve.
 
 **SHOW:** Click Approve. Switch to Odoo, Purchase > Requests for Quotation: a new draft for SafeHands Co. Then the Google Sheet with a new row added.
-**SAY:** One click, and the draft is in Odoo, and the decision is logged in the database. That whole thing took about thirty seconds. It used to take Sarah half her morning.
-**ON-SCREEN TEXT:** You build this in The ERP Agent Blueprint. No code.
+**SAY:** One click. The draft is in Odoo, and the decision is logged. Thirty seconds. It used to take Sarah half her morning.
 
-> PAUSE & THINK: If you had Stocky at your company tomorrow, what is the FIRST question you would ask it? Type it in the comments below this video.
+**SHOW:** Cut back to the full n8n canvas, all nodes green.
+**SAY:** What you just watched is the finish line. The ERP Agent Blueprint is the route to it: I take you from an empty screen to this exact agent, one step at a time, with no code. You could try to piece it together from random videos for the next three months, or you can follow one clear path and have it working in a few weeks.
+**SAY:** If you already know you want this: **upgrade to the Agentic SCM paid tier and build Stocky yourself.** It's in the Classroom, right next to this lesson: open The ERP Agent Blueprint and unlock it. If you're not sure yet, give me two more minutes and I'll show you the path.
+**ON-SCREEN TEXT:** Upgrade to the Agentic SCM paid tier and build Stocky yourself → Classroom → The ERP Agent Blueprint
 
-## [SCREEN RECORDING] What's Inside The ERP Agent Blueprint (06:30–08:15)
+## [SCREEN RECORDING] Your Path From Zero to Stocky + What You Get (06:30–08:15)
 
-**SHOW:** The course title slide: "The ERP Agent Blueprint: 10 videos, 4 hours, no code".
-**SAY:** So, how do you go from where you are today to building Stocky yourself? That's exactly what The ERP Agent Blueprint is. Ten videos, about four hours, step by step. Here's the path.
+**SHOW:** The "journey" slide. Four milestones appear one by one on a path, ending with Stocky.
+**SAY:** Here's the change. Today, you copy numbers out of your ERP by hand. By the end of The ERP Agent Blueprint, you've built an agent that reads your stock, drafts purchase orders and waits for your approval. Here's the path, step by step.
+**SAY:** In the **first three videos**, you have your own free ERP running, loaded with real products, and you've called a live API from your browser.
+**SAY:** By **video 5**, you've set up your no-code toolkit and your AI brain, and built your first working workflow.
+**SAY:** By **video 7**, your agent reads your ERP, answers "what's running low?", and drafts purchase orders, only with your approval.
+**SAY:** And by **video 10**, it scores supplier risk with weather and currency data, logs every decision, writes the Monday report on its own, and you've taken it live, safely.
+**ON-SCREEN TEXT:** Videos 1–3: your own ERP + live API · Video 5: your first workflow · Video 7: Stocky reads & drafts POs · Video 10: risk scores, reports, live
 
-**SHOW:** The 10 titles appear one by one as each is mentioned.
-**SAY:**
-Video 1, **Why Your ERP Needs an AI Agent**: you'll see the full Stocky demo and map your journey.
-Video 2, **ERP Demystified**: you set up your own free Odoo and load BrightLeaf's products.
-Video 3, **APIs Explained Like You're Ordering at a Restaurant**: you call a live API from your browser in minutes.
-Video 4, **Databases Without Fear**: you turn a messy spreadsheet into a clean home for your agent's data.
-Video 5, **Your No-Code Toolkit**: you set up n8n and your AI brain, and build your first workflow.
-Video 6, **Your First Agent**: Stocky reads the ERP and answers "What's running low?"
-Video 7, **Agents That Take Action**: Stocky drafts purchase orders, but only with your approval.
-Video 8, **Seeing Beyond the ERP**: weather, currency and holiday data become a supplier risk score.
-Video 9, **Memory and Reports**: Stocky logs every decision and sends the Monday report on its own.
-Video 10, **Going Live Safely**: security, testing, costs, and your capstone project.
+**SHOW:** The "What's in the paid tier" slide: The ERP Agent Blueprint large at the top; below it, smaller: Weekly Live, Support, Templates, New Courses.
+**SAY:** The Blueprint is the main reason to upgrade. Every step is on screen, with an activity file to practise on, so you're never guessing what to click.
+**SAY:** And you won't be building alone. When you get stuck, bring it to our **weekly live sessions**. Copy our **workflow templates** instead of starting from blank. And **every new course we release** comes with your membership. The ERP Agent Blueprint is the first. It's not the last.
+**ON-SCREEN TEXT:** The ERP Agent Blueprint, plus: weekly live sessions · support · templates · every new course
 
-**SHOW:** A slide with three icons: Quiz, Activity file, Guide.
-**SAY:** Every video comes with a short quiz to lock in what you learned, a hands-on activity file in Excel or Word, and step-by-step guides. And every tool we use has a free tier or free trial.
-**ON-SCREEN TEXT:** 10 videos · 10 quizzes · hands-on activity files · step-by-step guides · zero code
+## [ON CAMERA] Yes, You Can Build This (08:15–09:00)
 
-## [ON CAMERA] "But I'm Not Technical..." (08:15–09:00)
+If part of you is thinking, *"this looks great, but it's not for someone like me"*, this was built for exactly you.
 
-Now, you might be thinking a few things. Let me answer them.
+The Blueprint was made for supply chain people, not programmers. If you can use Excel, you can build Stocky. Every technical word gets an everyday example, like the waiter and the filing cabinet. And you practise on a free ERP, so you can't break anything at work.
 
-"I don't have a tech background." Good. This course was built for you. If you can use Excel, you can do this. Every technical word gets an everyday analogy, just like the waiter and the filing cabinet.
+What you learn isn't tied to Odoo either. SAP, Oracle, NetSuite: an agent reaches them through the same three doors you saw today.
 
-"I don't have time." It's four hours, split into short videos. That's less than what Sarah used to lose every two days.
+And it fits into a normal week: short videos, about four hours in total. Less time than Sarah used to lose in two days.
 
-"My company uses SAP, not Odoo." The ideas transfer completely. Filing cabinet, waiter, workbook: every ERP works the same way. Odoo is just the free practice kitchen where you can't break anything.
+## [ON CAMERA] Outro + Your Next Step (09:00–10:15)
 
-## [ON CAMERA] Outro + Your Next Step (09:00–10:00)
+So, the number I asked you to keep in your head: **how many times did you copy a number out of your ERP this week?** Put it in the comments. I read every one.
 
-So, remember the question from the start? **How many times this week did you copy a number out of your ERP into Excel or an email?** Drop that number in the comments. I read every one.
+Now picture next month. That number is close to zero, because you built the agent that does it for you. And you're the person at your company who knows how to do it.
 
-Three things to take away. One: an AI agent is a smart intern that can read, think and act. Two: it reaches your data through three doors: the ERP, APIs and databases. Three: you stay in charge, because the agent asks before it acts.
+That's what The ERP Agent Blueprint gets you. **Upgrade to the Agentic SCM paid tier and build Stocky yourself.** Open The ERP Agent Blueprint in the Classroom, right next to this lesson, and unlock it.
 
-Your free homework: download the **ERP Time Drain Calculator** and the **Find Your First AI Agent** worksheet below this video. In fifteen minutes you'll know what your copy-pasting costs you each year. Post your number and your agent's one-line job description in the community.
-
-Want to build Stocky? Upgrade to the Agentic SCM paid tier for just **$49**. It unlocks The ERP Agent Blueprint and all the other paid content in the community. Only **$49**. The link is right here: **[LINK]**.
-
-See you inside. Let's give you your week back.
+You've copied enough numbers. Now build the agent that does it for you. I'll see you inside.
 
 ---
 
@@ -152,12 +155,10 @@ You voted, and "Connecting AI agents with ERP systems, APIs and databases" won b
 In this video:
 - Chatbot vs automation vs AI agent (the "smart intern" explained)
 - The 3 doors every agent uses: your ERP, APIs and databases
-- 4 supply chain jobs an agent can take off your plate, with real before/after hours
-- A sneak peek at "Stocky", an agent that checks stock in Odoo and drafts a purchase order for your approval
+- What 12 hours a week of copy-paste really costs (spoiler: over $18,000 a year)
+- A live demo of "Stocky", an agent that checks stock in Odoo and drafts a purchase order for your approval
 
-**Your free homework (15 minutes):**
-1. Download the **ERP Time Drain Calculator** (attached) and see what copy-pasting costs you each year.
-2. Fill in the **Find Your First AI Agent** worksheet.
-3. Comment below with: (a) how many times you copied ERP numbers this week, and (b) your agent's one-sentence job description.
+**Upgrade to the Agentic SCM paid tier and build Stocky yourself:** open **The ERP Agent Blueprint** in the Classroom and unlock it.
+The ERP Agent Blueprint takes you from copying ERP numbers by hand to your own agent that reads stock, drafts purchase orders and waits for your approval. Step by step, no code, and it works with whatever ERP you use at work. Your membership also includes weekly live sessions, support, workflow templates, and every new course we release. Cancel anytime.
 
-**Want to build Stocky yourself?** The ERP Agent Blueprint walks you through it step by step: 10 videos, 4 hours, quizzes, activity files and guides. No coding. Works with whatever ERP you use at work. Upgrade to the Agentic SCM paid tier for **just $49** to unlock it, plus all the other paid content in the community: **[LINK]**
+**Free tools (optional):** the **ERP Time Drain Calculator** shows what copy-pasting costs you each year, and the **Find Your First AI Agent** worksheet helps you pick your first agent. Both are attached.

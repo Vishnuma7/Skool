@@ -18,20 +18,27 @@ from reportlab.lib.fonts import addMapping
 from reportlab.platypus import (KeepTogether, Paragraph, SimpleDocTemplate, Spacer, Table,
                                 TableStyle)
 
-FONT_DIR = "/System/Library/Fonts/Supplemental/"
-pdfmetrics.registerFont(TTFont("Arial", FONT_DIR + "Arial.ttf"))
-pdfmetrics.registerFont(TTFont("Arial-Bold", FONT_DIR + "Arial Bold.ttf"))
-pdfmetrics.registerFont(TTFont("Arial-Italic", FONT_DIR + "Arial Italic.ttf"))
-pdfmetrics.registerFont(TTFont("Arial-BoldItalic", FONT_DIR + "Arial Bold Italic.ttf"))
-pdfmetrics.registerFont(TTFont("ArialUni", FONT_DIR + "Arial Unicode.ttf"))
+if sys.platform == "win32":  # Windows font files; Segoe UI Symbol covers arrows, ☐, ≈ …
+    _W = "C:/Windows/Fonts/"
+    FONTS = {"regular": _W + "arial.ttf", "bold": _W + "arialbd.ttf", "italic": _W + "ariali.ttf",
+             "bolditalic": _W + "arialbi.ttf", "unicode": _W + "seguisym.ttf"}
+else:  # macOS
+    _M = "/System/Library/Fonts/Supplemental/"
+    FONTS = {"regular": _M + "Arial.ttf", "bold": _M + "Arial Bold.ttf", "italic": _M + "Arial Italic.ttf",
+             "bolditalic": _M + "Arial Bold Italic.ttf", "unicode": _M + "Arial Unicode.ttf"}
+pdfmetrics.registerFont(TTFont("Arial", FONTS["regular"]))
+pdfmetrics.registerFont(TTFont("Arial-Bold", FONTS["bold"]))
+pdfmetrics.registerFont(TTFont("Arial-Italic", FONTS["italic"]))
+pdfmetrics.registerFont(TTFont("Arial-BoldItalic", FONTS["bolditalic"]))
+pdfmetrics.registerFont(TTFont("ArialUni", FONTS["unicode"]))
 addMapping("Arial", 0, 0, "Arial")
 addMapping("Arial", 1, 0, "Arial-Bold")
 addMapping("Arial", 0, 1, "Arial-Italic")
 addMapping("Arial", 1, 1, "Arial-BoldItalic")
 
-ARIAL_CHARS = set(FTFont(FONT_DIR + "Arial Bold.ttf").getBestCmap()) & set(
-    FTFont(FONT_DIR + "Arial.ttf").getBestCmap())
-UNI_CHARS = set(FTFont(FONT_DIR + "Arial Unicode.ttf").getBestCmap())
+ARIAL_CHARS = set(FTFont(FONTS["bold"]).getBestCmap()) & set(
+    FTFont(FONTS["regular"]).getBestCmap())
+UNI_CHARS = set(FTFont(FONTS["unicode"]).getBestCmap())
 
 NAVY = colors.HexColor("#1F2A44")
 CAMERA_FILL = colors.HexColor("#FDE9C9")
