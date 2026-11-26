@@ -1,0 +1,1 @@
+This format is called JSON. Say it like the name "Jason". And the easiest way to think about JSON is as a labelled shopping list. Every line has a label on the left, in quotes, then a colon, then the value on the right.

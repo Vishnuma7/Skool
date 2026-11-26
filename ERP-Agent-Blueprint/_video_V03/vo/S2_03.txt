@@ -1,0 +1,1 @@
+And there it is. The waiter is back at our table. This is a real response, from a real weather service, about the real city of Shenzhen, and it took less than a second.

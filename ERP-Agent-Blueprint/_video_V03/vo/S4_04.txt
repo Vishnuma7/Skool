@@ -1,0 +1,1 @@
+401, wrong key card. You tried to open a door your card doesn't open. The API is saying, "I don't know who you are." Usually it means your API key is missing, mistyped or cancelled.

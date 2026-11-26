@@ -1,0 +1,41 @@
+{
+ "capturedAt": "2026-11-22T14:57:49.655Z",
+ "pages": {
+  "api_meteo_raw": {
+   "requested": "https://api.open-meteo.com/v1/forecast?latitude=22.54&longitude=114.06&daily=precipitation_sum,wind_speed_10m_max&timezone=auto",
+   "final": "https://api.open-meteo.com/v1/forecast?latitude=22.54&longitude=114.06&daily=precipitation_sum,wind_speed_10m_max&timezone=auto",
+   "status": 200,
+   "body": "{\"latitude\":22.530754,\"longitude\":114.08714,\"generationtime_ms\":0.05173683166503906,\"utc_offset_seconds\":28800,\"timezone\":\"Asia/Shanghai\",\"timezone_abbreviation\":\"GMT+8\",\"elevation\":8.0,\"daily_units\":{\"time\":\"iso8601\",\"precipitation_sum\":\"mm\",\"wind_speed_10m_max\":\"km/h\"},\"daily\":{\"time\":[\"2026-11-22\",\"2026-11-23\",\"2026-11-24\",\"2026-11-25\",\"2026-11-26\",\"2026-11-27\",\"2026-11-28\"],\"precipitation_sum\":[0.00,0.10,48.40,0.00,0.00,0.30,0.00],\"wind_speed_10m_max\":[16.8,20.9,20.7,15.6,8.5,10.3,12.5]}}"
+  },
+  "api_meteo_sz": {
+   "requested": "https://api.open-meteo.com/v1/forecast?latitude=22.54&longitude=114.06&daily=precipitation_sum,wind_speed_10m_max&timezone=auto",
+   "final": "https://api.open-meteo.com/v1/forecast?latitude=22.54&longitude=114.06&daily=precipitation_sum,wind_speed_10m_max&timezone=auto",
+   "status": 200,
+   "body": "{\n  \"latitude\": 22.530754,\n  \"longitude\": 114.08714,\n  \"generationtime_ms\": 0.0537633895874023,\n  \"utc_offset_seconds\": 28800,\n  \"timezone\": \"Asia/Shanghai\",\n  \"timezone_abbreviation\": \"GMT+8\",\n  \"elevation\": 8,\n  \"daily_units\": {\n    \"time\": \"iso8601\",\n    \"precipitation_sum\": \"mm\",\n    \"wind_speed_10m_max\": \"km/h\"\n  },\n  \"daily\": {\n    \"time\": [\n      \"2026-11-22\",\n      \"2026-11-23\",\n      \"2026-11-24\",\n      \"2026-11-25\",\n      \"2026-11-26\",\n      \"2026-11-27\",\n      \"2026-11-28\"\n    ],\n    \"precipitation_sum\": [0, 0.1, 48.4, 0, 0, 0.3, 0],\n    \"wind_speed_10m_max\": [16.8, 20.9, 20.7, 15.6, 8.5, 10.3, 12.5]\n  }\n}\n"
+  },
+  "api_meteo_dubai": {
+   "requested": "https://api.open-meteo.com/v1/forecast?latitude=25.20&longitude=55.27&daily=precipitation_sum,wind_speed_10m_max&timezone=auto",
+   "final": "https://api.open-meteo.com/v1/forecast?latitude=25.20&longitude=55.27&daily=precipitation_sum,wind_speed_10m_max&timezone=auto",
+   "status": 200,
+   "body": "{\n  \"latitude\": 25.219162,\n  \"longitude\": 55.260906,\n  \"generationtime_ms\": 0.0796318054199219,\n  \"utc_offset_seconds\": 14400,\n  \"timezone\": \"Asia/Dubai\",\n  \"timezone_abbreviation\": \"GMT+4\",\n  \"elevation\": 0,\n  \"daily_units\": {\n    \"time\": \"iso8601\",\n    \"precipitation_sum\": \"mm\",\n    \"wind_speed_10m_max\": \"km/h\"\n  },\n  \"daily\": {\n    \"time\": [\n      \"2026-11-22\",\n      \"2026-11-23\",\n      \"2026-11-24\",\n      \"2026-11-25\",\n      \"2026-11-26\",\n      \"2026-11-27\",\n      \"2026-11-28\"\n    ],\n    \"precipitation_sum\": [0, 0, 0, 0, 0, 0, 0],\n    \"wind_speed_10m_max\": [16.1, 16.9, 13.7, 11.7, 13.8, 10, 9.9]\n  }\n}\n"
+  },
+  "api_fx": {
+   "requested": "https://api.frankfurter.app/latest?from=USD&to=CNY,MXN,AED",
+   "final": "https://api.frankfurter.dev/v1/latest?from=USD&to=CNY,MXN,AED",
+   "status": 200,
+   "body": "{\n  \"amount\": 1,\n  \"base\": \"USD\",\n  \"date\": \"2026-11-20\",\n  \"rates\": {\n    \"CNY\": 6.6777,\n    \"MXN\": 19.0673\n  }\n}\n"
+  },
+  "api_err404": {
+   "requested": "https://api.open-meteo.com/v1/forecst?latitude=22.54&longitude=114.06&daily=precipitation_sum,wind_speed_10m_max&timezone=auto",
+   "final": "https://api.open-meteo.com/v1/forecst?latitude=22.54&longitude=114.06&daily=precipitation_sum,wind_speed_10m_max&timezone=auto",
+   "status": 404,
+   "body": "{\n  \"error\": true,\n  \"reason\": \"Not Found\"\n}\n"
+  },
+  "api_err400": {
+   "requested": "https://api.open-meteo.com/v1/forecast?latitude=22.54&longitude=114.06&daily=banana,wind_speed_10m_max&timezone=auto",
+   "final": "https://api.open-meteo.com/v1/forecast?latitude=22.54&longitude=114.06&daily=banana,wind_speed_10m_max&timezone=auto",
+   "status": 400,
+   "body": "{\n  \"error\": true,\n  \"reason\": \"Invalid value: Cannot initialize ForecastVariableDaily from invalid String value banana\"\n}\n"
+  }
+ }
+}

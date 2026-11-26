@@ -1,0 +1,1 @@
+"Wind speed max" is seven wind numbers: 16.8, 20.9, 20.7, and so on.

@@ -1,0 +1,1 @@
+And here it is. "API Keys", with a button called "Create API Key". When we create one later, Odoo will show the key exactly once, a long string of letters and numbers, and we'll paste it straight into a safe place. Odoo never shows it again.

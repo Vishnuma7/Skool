@@ -1,0 +1,1334 @@
+WEBVTT
+
+00:00:00.100 --> 00:00:03.920
+Think about the last time you needed
+an exchange rate or a shipment
+
+00:00:03.960 --> 00:00:05.053
+update for a report.
+
+00:00:05.093 --> 00:00:08.993
+You probably opened a website,
+found the number, and copied it into
+
+00:00:09.033 --> 00:00:12.706
+Excel. It's a small task, but it
+adds up when you are doing it every
+
+00:00:12.746 --> 00:00:17.123
+week. In her BrightLeaf example, Sarah
+checks the dollar against Chinese
+
+00:00:17.163 --> 00:00:20.899
+yuan and Mexican peso before
+approving import orders.
+
+00:00:20.939 --> 00:00:25.174
+She also checks the weather in
+Shenzhen, where two of her suppliers are
+
+00:00:25.214 --> 00:00:28.577
+based. Over a month, she
+does 31 of these checks.
+
+00:00:28.617 --> 00:00:32.608
+At 4 or 5 minutes each, that's
+more than 2 hours spent looking up
+
+00:00:32.798 --> 00:00:34.378
+information and copying it across.
+
+00:00:34.607 --> 00:00:38.387
+An API gives us a way to get the
+information directly from the system
+
+00:00:38.427 --> 00:00:42.658
+that holds it. That's how Stocky
+will connect to Odoo and check things
+
+00:00:42.698 --> 00:00:47.105
+outside the ERP. Today, you will
+try two APIs yourself, straight from
+
+00:00:47.145 --> 00:00:50.901
+your browser. You won't need to install
+anything, sign in, or write code
+
+00:00:50.941 --> 00:00:52.033
+for these examples.
+
+00:00:52.073 --> 00:00:55.521
+We will start with a restaurant
+example to explain how it works.
+
+00:00:55.561 --> 00:00:59.197
+Then we will check the weather in
+Shenzhen and ask for exchange rates
+
+00:00:59.237 --> 00:01:01.343
+for the yuan, peso and dirham.
+
+00:01:01.383 --> 00:01:05.014
+I will show you how to read the
+responses, even if the format looks
+
+00:01:05.064 --> 00:01:05.969
+unfamiliar at first.
+
+00:01:06.009 --> 00:01:09.692
+We will also look at asking for
+information versus submitting something,
+
+00:01:09.732 --> 00:01:13.187
+the numbers that tell you whether
+a request worked, and API keys.
+
+00:01:13.227 --> 00:01:14.707
+Let's start with the restaurant.
+
+00:01:15.733 --> 00:01:17.573
+Let's start with a picture.
+
+00:01:17.613 --> 00:01:19.193
+Imagine you walk into a restaurant.
+
+00:01:19.233 --> 00:01:22.633
+You're hungry, you know what you
+want, but you don't walk into the
+
+00:01:22.673 --> 00:01:26.533
+kitchen. You don't open the fridge,
+you don't touch the chef's knives,
+
+00:01:26.573 --> 00:01:28.633
+and you definitely don't cook.
+
+00:01:28.673 --> 00:01:31.573
+Why? Because the kitchen isn't yours.
+
+00:01:31.613 --> 00:01:35.813
+It's busy, it's organised in its own
+way, and if every customer walked
+
+00:01:35.853 --> 00:01:37.289
+in, it would be chaos.
+
+00:01:37.608 --> 00:01:39.648
+So instead, you talk to the waiter.
+
+00:01:39.688 --> 00:01:43.388
+You say, "One chicken burrito,
+please, not too spicy."
+
+00:01:43.428 --> 00:01:46.968
+The waiter takes your order to the
+kitchen, the kitchen prepares exactly
+
+00:01:47.008 --> 00:01:49.618
+that, and the waiter brings
+it back to your table.
+
+00:01:49.991 --> 00:01:52.091
+That waiter is an API.
+
+00:01:52.131 --> 00:01:56.011
+API stands for Application Programming
+Interface, but you can forget
+
+00:01:56.051 --> 00:01:57.571
+that phrase right now.
+
+00:01:57.611 --> 00:02:01.751
+Just remember: an API is the waiter
+between you and somebody else's
+
+00:02:01.791 --> 00:02:04.267
+kitchen. Now let's swap in BrightLeaf.
+
+00:02:04.307 --> 00:02:07.867
+The kitchen is Odoo, the ERP
+you set up in the last video.
+
+00:02:07.907 --> 00:02:11.507
+The customer is Stocky, the
+AI agent we're going to build.
+
+00:02:11.547 --> 00:02:14.127
+Stocky never logs into
+Odoo like Sarah does.
+
+00:02:14.167 --> 00:02:15.907
+It doesn't click menus.
+
+00:02:15.947 --> 00:02:19.647
+It sends an order to Odoo's waiter:
+"Please bring me the on-hand
+
+00:02:19.687 --> 00:02:24.467
+quantity for SKU BL-1005,
+the pallet jack wheels."
+
+00:02:24.507 --> 00:02:27.237
+And the waiter comes back
+with: "Eighteen sets."
+
+00:02:27.454 --> 00:02:29.334
+Here's why companies love this.
+
+00:02:29.374 --> 00:02:30.794
+The kitchen stays safe.
+
+00:02:30.834 --> 00:02:33.914
+Odoo decides what the waiter
+is allowed to bring out.
+
+00:02:33.954 --> 00:02:37.554
+Sarah's customer list stays private,
+the accounting stays locked,
+
+00:02:37.594 --> 00:02:39.679
+and Stocky gets only what it needs.
+
+00:02:40.019 --> 00:02:42.489
+Three more words and you've
+got the whole vocabulary.
+
+00:02:42.806 --> 00:02:45.106
+The order you give is called a request.
+
+00:02:45.146 --> 00:02:47.226
+What comes back to your
+table is the response.
+
+00:02:47.266 --> 00:02:50.367
+Simple. And every restaurant has a menu.
+
+00:02:50.407 --> 00:02:53.167
+You can't order sushi in a pizza place.
+
+00:02:53.207 --> 00:02:57.887
+APIs are the same. Each API has a
+list of things it can do, and each
+
+00:02:57.927 --> 00:03:00.607
+item on that list has its own address.
+
+00:03:00.647 --> 00:03:03.067
+That address is called an endpoint.
+
+00:03:03.107 --> 00:03:06.287
+One endpoint might be
+"today's weather forecast".
+
+00:03:06.327 --> 00:03:08.987
+Another might be "latest exchange rates".
+
+00:03:09.027 --> 00:03:11.777
+Think of an endpoint as
+one dish on the menu.
+
+00:03:11.979 --> 00:03:14.099
+This is what a real order looks like.
+
+00:03:14.139 --> 00:03:16.129
+Don't panic, we'll take it apart.
+
+00:03:16.341 --> 00:03:21.701
+The blue part, api dot open-meteo
+dot com, is the restaurant's address.
+
+00:03:21.741 --> 00:03:23.451
+Which building are we walking into?
+
+00:03:23.729 --> 00:03:28.329
+The green part, slash v1 slash
+forecast, is the endpoint.
+
+00:03:28.369 --> 00:03:29.389
+Which dish do we want?
+
+00:03:29.429 --> 00:03:33.825
+The forecast. The orange part,
+everything after the question mark,
+
+00:03:33.865 --> 00:03:35.805
+is our order details.
+
+00:03:35.845 --> 00:03:41.405
+Latitude 22.54 and
+longitude 114.06, that's
+
+00:03:41.445 --> 00:03:47.005
+Shenzhen. Then which bits of the
+forecast we want: rainfall and wind.
+
+00:03:47.045 --> 00:03:50.865
+The question mark means "here
+come my order details", and each
+
+00:03:50.905 --> 00:03:54.885
+ampersand, that little "and"
+sign, means "and also".
+
+00:03:54.925 --> 00:03:58.865
+It's exactly like saying, "One
+chicken burrito, not too spicy,
+
+00:03:58.905 --> 00:04:00.055
+and extra guacamole."
+
+00:04:01.167 --> 00:04:04.893
+Let's go back to Sarah and
+see where this could help her.
+
+00:04:04.933 --> 00:04:09.316
+Last September, BrightLeaf ordered
+60 sets of pallet jack wheels,
+
+00:04:09.356 --> 00:04:13.117
+BL-1005, from Global
+Lift Parts in Shenzhen.
+
+00:04:13.228 --> 00:04:17.176
+They were $38 a set,
+with a 21-day lead time.
+
+00:04:17.216 --> 00:04:20.812
+Tom's team in Columbus needed them
+because three of their five pallet
+
+00:04:20.852 --> 00:04:22.376
+jacks had worn out wheels.
+
+00:04:22.416 --> 00:04:25.229
+On a Tuesday, a rainstorm
+hit southern China.
+
+00:04:25.269 --> 00:04:29.102
+The port slowed down for three days,
+the container missed its vessel,
+
+00:04:29.142 --> 00:04:31.222
+and the wheels arrived nine days late.
+
+00:04:31.262 --> 00:04:34.982
+A weather warning had been available
+on Sunday, but Sarah did not hear
+
+00:04:35.022 --> 00:04:38.246
+about the delay until a supplier
+emailed the following Monday.
+
+00:04:38.286 --> 00:04:42.476
+She was handling everything else,
+and nobody was checking Shenzhen's
+
+00:04:42.516 --> 00:04:43.636
+weather every morning.
+
+00:04:43.833 --> 00:04:47.999
+For those 9 days, Tom's team worked
+with two pallet jacks instead of
+
+00:04:48.039 --> 00:04:51.989
+five. That meant overtime, a late
+customer shipment, and a difficult
+
+00:04:52.199 --> 00:04:53.039
+conversation with Mr.
+
+00:04:53.079 --> 00:04:56.993
+Harrison. Now imagine Stocky
+checking a weather API each morning.
+
+00:04:57.105 --> 00:05:02.125
+On Sunday, it could flag heavy rain
+expected in Shenzhen from Tuesday to
+
+00:05:02.165 --> 00:05:05.950
+Thursday and tell Sarah that two
+open orders might be affected.
+
+00:05:05.990 --> 00:05:10.500
+She could follow up with the supplier
+before the disruption and discuss
+
+00:05:10.540 --> 00:05:14.353
+options with Tom. The weather would
+still happen, but she have time to
+
+00:05:14.393 --> 00:05:18.040
+prepare. Let's try that weather API
+now so you can see the information
+
+00:05:18.080 --> 00:05:18.920
+for yourself.
+
+00:05:19.800 --> 00:05:21.660
+Okay, this is the moment.
+
+00:05:21.700 --> 00:05:26.260
+I've opened a brand-new browser tab,
+the same browser you use for email.
+
+00:05:26.300 --> 00:05:28.780
+I'm pasting in the web
+address from the screen.
+
+00:05:28.820 --> 00:05:32.410
+You'll find it in your activity file
+too, so you don't have to type it.
+
+00:05:32.727 --> 00:05:34.087
+Notice what we're NOT doing.
+
+00:05:34.127 --> 00:05:35.267
+We're not signing up.
+
+00:05:35.307 --> 00:05:37.367
+We're not downloading anything.
+
+00:05:37.407 --> 00:05:40.947
+Open-Meteo is a free weather
+service that lets anyone ask for a
+
+00:05:40.987 --> 00:05:42.687
+forecast. No key card needed.
+
+00:05:42.727 --> 00:05:45.462
+I press Enter. And there it is.
+
+00:05:45.502 --> 00:05:47.622
+The waiter is back at our table.
+
+00:05:47.662 --> 00:05:51.422
+This is a real response, from a
+real weather service, about the real
+
+00:05:51.462 --> 00:05:54.252
+city of Shenzhen, and it
+took less than a second.
+
+00:05:54.504 --> 00:05:55.864
+I know what you're thinking.
+
+00:05:55.904 --> 00:05:58.344
+"This looks like computer gibberish."
+
+00:05:58.384 --> 00:05:59.764
+Give me sixty seconds.
+
+00:05:59.804 --> 00:06:01.494
+It's actually a shopping list.
+
+00:06:01.764 --> 00:06:03.964
+This format is called JSON.
+
+00:06:04.004 --> 00:06:05.984
+Say it like the name "Jason".
+
+00:06:06.024 --> 00:06:10.404
+And the easiest way to think about
+JSON is as a labelled shopping list.
+
+00:06:10.444 --> 00:06:14.404
+Every line has a label on the left,
+in quotes, then a colon, then the
+
+00:06:14.444 --> 00:06:15.474
+value on the right.
+
+00:06:15.688 --> 00:06:20.208
+So here: label "latitude", value 22.53.
+
+00:06:20.248 --> 00:06:24.308
+Label "timezone", value "Asia/Shanghai".
+
+00:06:24.348 --> 00:06:28.668
+It's the same as a shopping
+list that says "Milk: 2 litres.
+
+00:06:28.708 --> 00:06:34.954
+Eggs: 12." Notice the latitude
+came back as 22.53, not exactly the
+
+00:06:34.994 --> 00:06:37.454
+22.54 we asked for.
+
+00:06:37.494 --> 00:06:41.094
+That's the weather service saying,
+"my nearest weather grid point is
+
+00:06:41.134 --> 00:06:43.052
+here." Close enough for a city.
+
+00:06:43.352 --> 00:06:45.472
+Now this bit is really helpful.
+
+00:06:45.512 --> 00:06:49.372
+"Daily units." It tells us rainfall
+is measured in millimetres,
+
+00:06:49.412 --> 00:06:52.092
+and wind speed in kilometres per hour.
+
+00:06:52.132 --> 00:06:55.072
+A good API always tells you its units.
+
+00:06:55.112 --> 00:06:59.292
+Hold on to that idea, because
+in the next video, on databases,
+
+00:06:59.332 --> 00:07:02.422
+mixed-up units are going
+to be our enemy number one.
+
+00:07:02.603 --> 00:07:04.623
+Here's the actual forecast.
+
+00:07:04.663 --> 00:07:08.515
+Square brackets mean "a list of
+several items", like a column in Excel.
+
+00:07:08.895 --> 00:07:11.075
+"Time" is a list of seven dates.
+
+00:07:11.115 --> 00:07:15.455
+On the day I recorded this, it
+started with the 22nd of November and
+
+00:07:15.495 --> 00:07:19.737
+went to the 28th. "Precipitation
+sum" is a list of seven rainfall
+
+00:07:19.777 --> 00:07:25.067
+numbers: 0, 0.1, then
+48.4, then mostly zeros.
+
+00:07:25.611 --> 00:07:31.991
+"Wind speed max" is seven wind
+numbers: 16.8, 20.9, 20.7, and
+
+00:07:32.031 --> 00:07:35.918
+so on. The trick is to read
+them like columns that line up.
+
+00:07:35.958 --> 00:07:39.438
+The first date goes with the first
+rain number and the first wind
+
+00:07:39.478 --> 00:07:45.338
+number. So the 22nd: no rain, wind
+up to 16.8 kilometres an hour.
+
+00:07:45.378 --> 00:07:49.938
+But look at the 24th:
+48.4 millimetres of rain.
+
+00:07:49.978 --> 00:07:53.918
+That's a seriously wet day, exactly
+the kind of number that should make
+
+00:07:53.958 --> 00:07:57.998
+Sarah call Global Lift Parts and ask
+whether her pallet jack wheels are
+
+00:07:58.038 --> 00:08:02.818
+still on schedule. And if the wind
+went above 60 or 70, you'd also want
+
+00:08:02.858 --> 00:08:04.748
+to ask whether the port is running.
+
+00:08:05.009 --> 00:08:08.009
+Now watch how easy it
+is to change the order.
+
+00:08:08.049 --> 00:08:14.269
+Gulf Lubricants, who supply our
+hydraulic oil, BL-1007, are in Dubai.
+
+00:08:14.309 --> 00:08:20.249
+Dubai is latitude 25.20, longitude 55.27.
+
+00:08:20.289 --> 00:08:23.319
+I change just those two
+numbers and press Enter.
+
+00:08:23.595 --> 00:08:28.555
+New response. The timezone now says
+"Asia/Dubai", and the rainfall is
+
+00:08:28.595 --> 00:08:31.055
+mostly zeros. No surprise there.
+
+00:08:31.095 --> 00:08:34.275
+I changed the order details, and
+the waiter brought back a different
+
+00:08:34.315 --> 00:08:38.635
+dish. That is literally all Stocky
+does when it checks five supplier
+
+00:08:38.675 --> 00:08:42.665
+cities. Same request, five
+different sets of order details.
+
+00:08:44.220 --> 00:08:45.940
+Let's try a second restaurant.
+
+00:08:45.980 --> 00:08:49.420
+This one is called Frankfurter,
+and it serves exchange rates.
+
+00:08:49.460 --> 00:08:51.890
+It's free and needs no key card either.
+
+00:08:52.187 --> 00:08:53.687
+Read the order with me.
+
+00:08:53.727 --> 00:08:57.627
+The endpoint is "latest",
+meaning the latest rates.
+
+00:08:57.667 --> 00:09:03.507
+The order details: "from" equals
+USD, the US dollar, and "to" equals
+
+00:09:03.547 --> 00:09:09.627
+CNY, MXN and AED. Chinese
+yuan, Mexican peso and UAE
+
+00:09:09.667 --> 00:09:14.427
+dirham, the three foreign currencies
+BrightLeaf's suppliers bill in.
+
+00:09:14.467 --> 00:09:17.218
+Enter. First, a little surprise.
+
+00:09:17.258 --> 00:09:18.898
+Look at the address bar.
+
+00:09:18.938 --> 00:09:20.538
+It changed by itself.
+
+00:09:20.578 --> 00:09:23.918
+We typed frankfurter dot app, and
+now it says frankfurter dot dev,
+
+00:09:23.958 --> 00:09:29.918
+slash v1. The restaurant moved to a
+new building and left a forwarding
+
+00:09:29.958 --> 00:09:31.498
+note on the old door.
+
+00:09:31.538 --> 00:09:35.058
+Your browser read the note
+and walked over automatically.
+
+00:09:35.098 --> 00:09:38.928
+APIs do move house sometimes, and
+good ones leave a forwarding address.
+
+00:09:39.311 --> 00:09:41.051
+Now the shopping list.
+
+00:09:41.091 --> 00:09:43.931
+"Amount": 1. "Base": USD.
+
+00:09:43.971 --> 00:09:46.211
+"Date": the 20th of November.
+
+00:09:46.251 --> 00:09:51.951
+Then "rates", with a smaller
+list inside it: CNY 6.68, MXN
+
+00:09:51.991 --> 00:09:56.971
+19.07. A list inside a list, like a
+shopping list with a "Dairy" section
+
+00:09:57.011 --> 00:09:58.461
+that has its own items.
+
+00:09:58.695 --> 00:10:04.715
+So on test day, one dollar
+bought 6.68 yuan and 19.07 pesos.
+
+00:10:04.755 --> 00:10:07.235
+Your numbers will be different,
+and that's the point.
+
+00:10:07.275 --> 00:10:10.477
+It's live. Let's make that real for Sarah.
+
+00:10:10.517 --> 00:10:12.917
+Global Lift Parts bills in yuan.
+
+00:10:12.957 --> 00:10:17.500
+Sixty sets of pallet jack wheels at
+thirty-eight dollars is two thousand
+
+00:10:17.540 --> 00:10:22.317
+two hundred and eighty dollars,
+which at 6.68 is an invoice of about
+
+00:10:22.357 --> 00:10:24.657
+fifteen thousand two hundred yuan.
+
+00:10:24.697 --> 00:10:28.757
+Now say the yuan gets three percent
+stronger, and a dollar only buys
+
+00:10:28.797 --> 00:10:35.206
+about 6.48 yuan. That same yuan
+invoice now costs about two thousand
+
+00:10:35.246 --> 00:10:37.028
+three hundred and fifty dollars.
+
+00:10:37.068 --> 00:10:41.237
+Sixty-eight dollars more, without
+anyone changing the price.
+
+00:10:41.277 --> 00:10:44.497
+Same story for SafeHands gloves in pesos.
+
+00:10:44.537 --> 00:10:47.047
+Stocky can spot that
+the moment it happens.
+
+00:10:47.414 --> 00:10:49.694
+Now, did you notice something missing?
+
+00:10:49.734 --> 00:10:51.274
+We asked for three currencies.
+
+00:10:51.314 --> 00:10:53.382
+We got two. Where's the dirham?
+
+00:10:53.822 --> 00:10:57.622
+Great lesson. Frankfurter gets its
+numbers from the European Central
+
+00:10:57.662 --> 00:11:00.782
+Bank, and that kitchen
+doesn't stock the dirham.
+
+00:11:00.822 --> 00:11:02.902
+The waiter didn't crash or argue.
+
+00:11:02.942 --> 00:11:04.752
+It just brought what the kitchen had.
+
+00:11:05.146 --> 00:11:09.666
+Luckily the dirham is pegged to the
+dollar at about 3.67, so it barely
+
+00:11:09.706 --> 00:11:14.346
+moves. But the habit matters: always
+check that what came back matches
+
+00:11:14.386 --> 00:11:15.826
+what you asked for.
+
+00:11:15.866 --> 00:11:18.476
+We'll teach Stocky to
+notice missing items too.
+
+00:11:19.117 --> 00:11:23.614
+So far, we have asked for information:
+a weather forecast and some
+
+00:11:23.654 --> 00:11:26.676
+exchange rates. We haven't
+changed anything in those systems.
+
+00:11:26.716 --> 00:11:29.083
+Those browser calls are
+called GET requests.
+
+00:11:29.123 --> 00:11:33.030
+Think of GET as asking the waiter
+to bring you some information.
+
+00:11:33.233 --> 00:11:35.226
+POST is used to submit something.
+
+00:11:35.266 --> 00:11:38.793
+In our restaurant example, that's
+handing over an order slip for the
+
+00:11:38.833 --> 00:11:44.148
+kitchen to act on. At BrightLeaf,
+checking how many boxes of BL-1002 are
+
+00:11:44.188 --> 00:11:45.928
+in stock is reading information.
+
+00:11:45.968 --> 00:11:50.924
+Creating a purchase order for 1820
+boxes from PackRight Industries is
+
+00:11:50.964 --> 00:11:54.014
+taking an action. A new
+record would exist in Odoo.
+
+00:11:54.128 --> 00:11:58.094
+There are other methods for updates
+and deletions, and the exact method
+
+00:11:58.134 --> 00:11:59.313
+depends upon the API.
+
+00:11:59.353 --> 00:12:03.530
+The distinction to remember is
+reading information versus submitting
+
+00:12:03.570 --> 00:12:05.001
+something that could change it.
+
+00:12:05.041 --> 00:12:07.312
+That matters when we give Stocky tools.
+
+00:12:07.352 --> 00:12:11.368
+It can check information on its own,
+but important changes need Sarah's
+
+00:12:11.408 --> 00:12:14.246
+approval first. Let's
+practise with four tasks.
+
+00:12:14.286 --> 00:12:18.796
+For each one, decide whether we are
+reading information or submitting
+
+00:12:18.866 --> 00:12:22.264
+something. First, checking
+a supplier's lead time.
+
+00:12:22.304 --> 00:12:26.481
+Second, updating the reorder
+point for BL-1004 to 700.
+
+00:12:26.521 --> 00:12:30.232
+Third, sending a delivery
+reminder email to SafeHands Co.
+
+00:12:30.272 --> 00:12:33.442
+And fourth, reading this
+week's sales orders.
+
+00:12:33.482 --> 00:12:36.319
+Pause here and think through your answers.
+
+00:12:44.067 --> 00:12:48.268
+Alright. Checking the lead time and
+reading sales orders are requests
+
+00:12:48.308 --> 00:12:50.804
+for information, like our GET examples.
+
+00:12:50.967 --> 00:12:53.906
+Changing the reorder point and
+sending the email are actions.
+
+00:12:53.946 --> 00:12:57.347
+They belong on the submitting side,
+where we need to think about the
+
+00:12:57.387 --> 00:12:58.825
+permission and approval.
+
+00:12:58.865 --> 00:13:02.065
+Keep that distinction in mind
+when we start building Stocky.
+
+00:13:03.120 --> 00:13:06.240
+Every time the waiter comes back,
+he also hands you a little receipt
+
+00:13:06.280 --> 00:13:07.780
+with a number on it.
+
+00:13:07.820 --> 00:13:11.040
+This number is called a status
+code, and it tells you how the order
+
+00:13:11.080 --> 00:13:13.037
+went, before you even look at the plate.
+
+00:13:13.297 --> 00:13:15.197
+You don't need to memorise hundreds.
+
+00:13:15.237 --> 00:13:17.527
+Four will cover almost
+everything you'll meet.
+
+00:13:17.997 --> 00:13:21.817
+200, OK. Your order went
+perfectly, here's your food.
+
+00:13:21.857 --> 00:13:24.327
+Both our calls today came back with a 200.
+
+00:13:25.153 --> 00:13:27.633
+401, wrong key card.
+
+00:13:27.673 --> 00:13:30.793
+You tried to open a door
+your card doesn't open.
+
+00:13:30.833 --> 00:13:34.113
+The API is saying, "I
+don't know who you are."
+
+00:13:34.153 --> 00:13:37.983
+Usually it means your API key is
+missing, mistyped or cancelled.
+
+00:13:38.828 --> 00:13:40.668
+404, wrong address.
+
+00:13:40.708 --> 00:13:44.908
+Not Found. You asked for a dish that
+isn't on the menu, or you walked to
+
+00:13:44.948 --> 00:13:49.158
+the wrong table. Nine times out of
+ten, it's a typo in the web address.
+
+00:13:50.217 --> 00:13:52.137
+429, too many orders.
+
+00:13:52.177 --> 00:13:54.097
+You're ordering too fast.
+
+00:13:54.137 --> 00:13:58.257
+Free APIs often say, "Please slow
+down, you've asked me a thousand times
+
+00:13:58.297 --> 00:14:00.677
+this minute." The fix is simple.
+
+00:14:00.717 --> 00:14:03.313
+Wait and try again, or ask less often.
+
+00:14:03.613 --> 00:14:07.353
+Here's a shortcut. Anything
+starting with a 2 is good news.
+
+00:14:07.393 --> 00:14:10.993
+Anything starting with a 4 means
+something was wrong with your order.
+
+00:14:11.033 --> 00:14:15.333
+Anything starting with a 5, like
+500, means the kitchen itself had a
+
+00:14:15.373 --> 00:14:17.453
+problem, and it's not your fault.
+
+00:14:17.493 --> 00:14:19.323
+Wait a few minutes and try again.
+
+00:14:19.567 --> 00:14:21.547
+Now let's break something on purpose.
+
+00:14:21.587 --> 00:14:23.637
+You can't break anything here, I promise.
+
+00:14:23.822 --> 00:14:25.722
+I'm going to misspell "forecast".
+
+00:14:25.762 --> 00:14:27.302
+I'll take out the "a".
+
+00:14:27.342 --> 00:14:29.164
+Enter. Look at that.
+
+00:14:29.204 --> 00:14:30.684
+"Reason: Not Found.
+
+00:14:30.724 --> 00:14:34.444
+Error: true." That's our 404 receipt.
+
+00:14:34.484 --> 00:14:38.144
+We asked for a dish called "forecst",
+and there's no such dish on the
+
+00:14:38.184 --> 00:14:40.464
+menu. One missing letter.
+
+00:14:40.504 --> 00:14:44.364
+This is the single most common
+beginner error, and now you've seen it.
+
+00:14:44.404 --> 00:14:45.914
+You'll recognise it forever.
+
+00:14:46.182 --> 00:14:48.682
+Let's fix that and try
+a different mistake.
+
+00:14:48.722 --> 00:14:52.622
+This time the dish is right, but
+I'll ask for a silly order detail.
+
+00:14:52.662 --> 00:14:54.992
+Instead of rainfall,
+I'll ask for "banana".
+
+00:14:55.219 --> 00:14:58.839
+The restaurant exists, the dish
+exists, but the order doesn't make
+
+00:14:58.879 --> 00:15:02.719
+sense. The waiter says, "I
+can't give you a daily banana."
+
+00:15:02.759 --> 00:15:07.999
+That's a 400, "bad request", another
+4-something, so it's on our side.
+
+00:15:08.039 --> 00:15:09.559
+And look how helpful it is.
+
+00:15:09.599 --> 00:15:12.559
+It tells us exactly which
+word it didn't understand.
+
+00:15:12.599 --> 00:15:14.959
+When something goes
+wrong, read the message.
+
+00:15:14.999 --> 00:15:16.809
+It usually tells you what to fix.
+
+00:15:16.963 --> 00:15:18.943
+And we're back to a 200.
+
+00:15:18.983 --> 00:15:20.633
+Everything fixed in two seconds.
+
+00:15:22.320 --> 00:15:24.840
+The weather and currency
+APIs serve anyone.
+
+00:15:24.880 --> 00:15:28.560
+But Odoo holds BrightLeaf's
+stock, costs and customers.
+
+00:15:28.600 --> 00:15:31.390
+You don't want the whole world
+asking that waiter for things.
+
+00:15:31.637 --> 00:15:36.617
+So private APIs ask for an API key,
+and an API key is like a hotel room
+
+00:15:36.657 --> 00:15:40.137
+key card. It opens your
+room, maybe the gym.
+
+00:15:40.177 --> 00:15:43.497
+Not other guests' rooms,
+not the manager's office.
+
+00:15:43.537 --> 00:15:47.137
+Lose it, and reception cancels
+it and gives you a new one.
+
+00:15:47.177 --> 00:15:48.837
+Your passport doesn't change.
+
+00:15:48.877 --> 00:15:52.004
+Just the card. An API
+key works the same way.
+
+00:15:52.044 --> 00:15:56.164
+It opens only what it's allowed
+to, it belongs to a specific user,
+
+00:15:56.204 --> 00:15:59.334
+and it can be cancelled any time
+without changing your password.
+
+00:15:59.627 --> 00:16:02.287
+Let me show you where Odoo
+keeps these key cards.
+
+00:16:02.327 --> 00:16:05.947
+We won't create one today; we'll
+do that when we connect Stocky.
+
+00:16:05.987 --> 00:16:08.157
+I just want you to know
+where reception is.
+
+00:16:08.346 --> 00:16:12.186
+In the BrightLeaf Odoo trial, I open
+the Settings app and scroll to the
+
+00:16:12.226 --> 00:16:16.246
+bottom. There's a link called
+"Activate the developer mode".
+
+00:16:16.286 --> 00:16:17.806
+Don't be put off by the name.
+
+00:16:17.846 --> 00:16:20.226
+It just shows a few extra options.
+
+00:16:20.266 --> 00:16:21.956
+Click it, and the page reloads.
+
+00:16:22.326 --> 00:16:25.786
+Now I click my profile picture
+in the top right corner, then "My
+
+00:16:25.826 --> 00:16:29.386
+Preferences". In some versions
+it's called "My Profile".
+
+00:16:29.426 --> 00:16:31.236
+Then the tab called "Security".
+
+00:16:31.552 --> 00:16:36.892
+And here it is. "API Keys", with
+a button called "Create API Key".
+
+00:16:36.932 --> 00:16:40.732
+When we create one later, Odoo
+will show the key exactly once,
+
+00:16:40.772 --> 00:16:44.732
+a long string of letters and numbers,
+and we'll paste it straight into a
+
+00:16:44.772 --> 00:16:47.702
+safe place. Odoo never shows it again.
+
+00:16:48.092 --> 00:16:49.552
+Notice something important.
+
+00:16:49.592 --> 00:16:51.592
+This key belongs to a user.
+
+00:16:51.632 --> 00:16:55.932
+When Stocky uses Sarah's key, Odoo
+treats Stocky like Sarah, with the
+
+00:16:55.972 --> 00:17:00.532
+same permissions. That's why, when
+we go live, we'll give Stocky its own
+
+00:17:00.572 --> 00:17:03.012
+user with only the access it needs.
+
+00:17:03.052 --> 00:17:06.322
+Its own key card, not
+the manager's master key.
+
+00:17:06.656 --> 00:17:08.416
+Three key card rules.
+
+00:17:08.456 --> 00:17:12.816
+One: never paste a key into an
+email, a WhatsApp chat or a shared
+
+00:17:12.856 --> 00:17:17.876
+document. Two: give each tool its
+own key, so cancelling one doesn't
+
+00:17:17.916 --> 00:17:22.656
+break the others. Three: if a key
+might have leaked, delete it here and
+
+00:17:22.696 --> 00:17:26.166
+make a new one. Ten seconds,
+and nothing else breaks.
+
+00:17:26.933 --> 00:17:30.573
+Before we finish, there are four
+things I'd like you to check whenever
+
+00:17:30.613 --> 00:17:33.337
+you use an API. First, check the address.
+
+00:17:33.377 --> 00:17:36.909
+We saw how one missing
+letter gave us a 404.
+
+00:17:36.949 --> 00:17:41.074
+A space, a missing character or the
+wrong separator can stop a request
+
+00:17:41.114 --> 00:17:44.460
+from working. Read the address
+carefully before trying again.
+
+00:17:44.500 --> 00:17:46.177
+Second, check the units.
+
+00:17:46.217 --> 00:17:49.209
+Our weather response used
+millimetres for rainfall.
+
+00:17:49.249 --> 00:17:51.234
+Another API might use inches.
+
+00:17:51.274 --> 00:17:54.594
+The number only makes sense when
+you know what it is measuring.
+
+00:17:54.733 --> 00:17:58.663
+Third, check that you have received
+everything you have asked for.
+
+00:17:58.722 --> 00:18:02.357
+We asked for three currencies, but
+the dirham was not in the response.
+
+00:18:02.397 --> 00:18:06.224
+Getting an answer doesn't
+automatically mean every item is there.
+
+00:18:06.264 --> 00:18:08.821
+That's something we will
+want Stocky to check too.
+
+00:18:09.033 --> 00:18:11.398
+Fourth, be careful with API keys.
+
+00:18:11.438 --> 00:18:14.744
+Keep them out of team
+chats and shared documents.
+
+00:18:14.784 --> 00:18:18.173
+Remember, a key can give someone
+access to company information.
+
+00:18:18.213 --> 00:18:21.717
+If it may have been exposed,
+cancel it and create a new one.
+
+00:18:22.033 --> 00:18:25.953
+We have now made two API calls, read
+the responses, and worked through
+
+00:18:25.993 --> 00:18:30.062
+errors on purpose. When we connect
+Stocky later, you will be able to
+
+00:18:30.102 --> 00:18:34.008
+recognise those same requests,
+responses and errors in the workflow.
+
+00:18:34.200 --> 00:18:38.611
+All right, you have now used two APIs
+yourself and seen what comes back
+
+00:18:38.651 --> 00:18:40.804
+when a request works or goes wrong.
+
+00:18:40.844 --> 00:18:43.284
+Let's go over the three
+main things to remember.
+
+00:18:43.467 --> 00:18:47.495
+First, think of an API as a waiter
+between Stocky and another system.
+
+00:18:47.535 --> 00:18:52.176
+Stocky sends a request to an endpoint,
+includes the details it needs as
+
+00:18:52.216 --> 00:18:54.386
+parameters, and gets a response back.
+
+00:18:54.567 --> 00:18:57.355
+Second, the response often comes as JSON.
+
+00:18:57.395 --> 00:19:01.169
+Think of the labelled shopping list:
+a label and its value, with lists
+
+00:19:01.209 --> 00:19:04.258
+you can read alongside each
+other like Excel columns.
+
+00:19:04.298 --> 00:19:06.883
+The status code tells
+you how the request went.
+
+00:19:06.923 --> 00:19:11.657
+200 means OK. 401 means
+an authentication problem.
+
+00:19:11.697 --> 00:19:13.373
+404 means not found.
+
+00:19:13.413 --> 00:19:16.255
+429 means you are asking too often.
+
+00:19:16.433 --> 00:19:19.713
+And third, remember the difference
+between reading information and
+
+00:19:19.753 --> 00:19:23.707
+taking action. GET and POST
+introduced us to that distinction.
+
+00:19:23.747 --> 00:19:28.258
+Important changes need Sarah's
+approval, and private systems like Odoo
+
+00:19:28.298 --> 00:19:30.498
+need an API key that controls access.
+
+00:19:30.574 --> 00:19:35.150
+Your activity is the workbook called
+"V03 Activity, API Treasure Hunt".
+
+00:19:35.190 --> 00:19:39.493
+You will try weather, currency
+and Mexico public holiday APIs,
+
+00:19:39.533 --> 00:19:41.093
+then record what you find.
+
+00:19:41.133 --> 00:19:44.952
+We will also turn a stormy-week
+weather response into a table,
+
+00:19:44.992 --> 00:19:49.648
+match status codes to their meanings,
+and practise sorting GET and POST
+
+00:19:49.688 --> 00:19:53.596
+tasks. The last tab builds weather
+and currency links for your own
+
+00:19:53.706 --> 00:19:57.339
+suppliers. Allow about 30 minutes
+for the activity, then take the
+
+00:19:57.379 --> 00:20:02.372
+ten-question quiz. In video 4,
+"Databases Without Fear: Your Data's
+
+00:20:02.412 --> 00:20:05.939
+Home", we will look at where Stocky
+stores what it found and why it made
+
+00:20:05.979 --> 00:20:10.147
+a decision. We will use Google
+Sheets as its memory and clean up a
+
+00:20:10.187 --> 00:20:14.577
+BrightLeaf export, including merged
+cells, duplicates and values like
+
+00:20:14.617 --> 00:20:16.853
+"approx 300". I'll see you there.
