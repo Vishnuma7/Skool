@@ -1,0 +1,1 @@
+I'll make the headers bold, then View, Freeze, one row. Now when the list gets long, the headers stay on screen.

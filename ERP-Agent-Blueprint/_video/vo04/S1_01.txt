@@ -1,0 +1,1 @@
+Let's start somewhere familiar, your BrightLeaf Odoo from Video 2. I'm in Inventory, Products, and I'm switching from the picture cards to the list view, the icon with the little lines on the top right.

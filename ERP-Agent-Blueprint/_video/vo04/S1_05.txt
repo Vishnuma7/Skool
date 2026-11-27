@@ -1,0 +1,1 @@
+A table is like one sheet in a workbook. Odoo has a table for products, a table for suppliers, a table for purchase orders.

@@ -1,0 +1,1 @@
+Sales works the same way, but in the other direction. Quotations become Sales Orders.

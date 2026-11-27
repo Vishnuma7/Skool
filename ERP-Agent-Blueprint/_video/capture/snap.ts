@@ -1,6 +1,6 @@
 import fs from 'fs';
 import {Page} from 'playwright-core';
-export const OUT = 'public/cap';
+export const OUT = process.env.CAP_OUT ?? 'public/cap';
 fs.mkdirSync(OUT, {recursive: true});
 
 const HIDE: Record<string, string> = {
@@ -22,6 +22,7 @@ export const shot = async (page: Page, name: string, targets: Record<string, str
   await page.screenshot({path: `${OUT}/${name}.png`});
   const rects: Record<string, Rect | null> = {};
   for (const [label, t] of Object.entries(targets)) {
+    if (t.startsWith('r:')) { rects[label] = await page.evaluate(t.slice(2)) as Rect | null; continue; }
     rects[label] = await page.evaluate(`(() => {
       const el = ${t.startsWith('js:') ? t.slice(3) : `document.querySelector(${JSON.stringify(t)})`};
       if (!el) return null; const r = el.getBoundingClientRect(); return {x: r.x, y: r.y, w: r.width, h: r.height};

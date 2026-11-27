@@ -1,0 +1,1 @@
+Our products exist, but the shelves are empty. Let's give BrightLeaf some starting stock. Go to Inventory, Operations, Physical Inventory. This is the screen you'd use after a stock count.

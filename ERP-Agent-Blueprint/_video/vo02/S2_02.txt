@@ -1,0 +1,1 @@
+You'll notice a couple of extras. Invoicing appeared because sales and purchases eventually turn into invoices. Discuss is Odoo's internal chat. We won't need them, so ignore them.

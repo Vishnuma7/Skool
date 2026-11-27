@@ -4,6 +4,10 @@ import {Main} from './Main';
 import {CaptionSamples, SAMPLE_FRAMES} from './CaptionSamples';
 import {FPS, H, W} from './theme';
 import {layout, TOTAL_FRAMES} from './timeline';
+import {Main02} from './v02/Main';
+import {Main04, Main04Full} from './v04/Main';
+import {layout as layout04, fullLayout as fullLayout04, FULL_TOTAL as TOTAL04} from './v04/timeline';
+import {layout as layout02, TOTAL_FRAMES as TOTAL02} from './v02/timeline';
 
 export const Root: React.FC = () => (
   <>
@@ -12,5 +16,16 @@ export const Root: React.FC = () => (
     {layout().map(({seg, dur}) => (
       <Composition key={seg.id} id={`seg-${seg.id}`} component={Main} durationInFrames={dur} fps={FPS} width={W} height={H} defaultProps={{only: seg.id}} />
     ))}
+    <Composition id="V02" component={Main02} durationInFrames={TOTAL02} fps={FPS} width={W} height={H} defaultProps={{}} />
+    {layout02().map(({seg, dur}) => (
+      <Composition key={`v02-${seg.id}`} id={`v02-${seg.id}`} component={Main02} durationInFrames={dur} fps={FPS} width={W} height={H} defaultProps={{only: seg.id}} />
+    ))}
+      <Composition id="V04" component={Main04Full} durationInFrames={TOTAL04} fps={FPS} width={W} height={H} defaultProps={{}} />
+      {fullLayout04().filter((x) => x.seg.kind !== 'screen').map(({seg, dur}) => (
+        <Composition key={`v04full-${seg.id}`} id={`v04f-${seg.id}`} component={Main04Full} durationInFrames={dur} fps={FPS} width={W} height={H} defaultProps={{only: seg.id}} />
+      ))}
+      {layout04().map(({seg, dur}) => (
+        <Composition key={`v04-${seg.id}`} id={`v04-${seg.id}`} component={Main04} durationInFrames={dur} fps={FPS} width={W} height={H} defaultProps={{only: seg.id}} />
+      ))}
   </>
 );

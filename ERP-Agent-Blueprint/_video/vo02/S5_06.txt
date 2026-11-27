@@ -1,0 +1,1 @@
+Min quantity: twenty-five. That's BrightLeaf's reorder point for the wheels. Max quantity: fifty. That's how high we want to refill to. At BrightLeaf, the Max is simply double the reorder point.

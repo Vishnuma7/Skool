@@ -1,0 +1,1 @@
+Here's why this matters. These drawers talk to each other. When Sarah confirms a purchase order, Inventory automatically expects a receipt. When a salesperson confirms an order, Inventory automatically prepares a delivery. One action, every department updated.

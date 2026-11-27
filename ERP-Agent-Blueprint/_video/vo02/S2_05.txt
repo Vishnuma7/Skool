@@ -1,0 +1,1 @@
+Along the top, you'll see the same pattern in nearly every Odoo app. Operations, where the day-to-day work happens. Products, your catalogue. Reporting, where you get numbers out. And Configuration, the rulebook settings. Remember that pattern. Once you know it in one app, you know it in all of them.

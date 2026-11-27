@@ -1,0 +1,1 @@
+Second table: the Stock Log. This is where Stocky will write down every stock check it does. I click the plus sign at the bottom, rename the tab "Stock underscore Log", and add the headers: log ID, log date, SKU, quantity on hand, unit, reorder point, status, supplier ID, logged by, and note. Bold and freeze.

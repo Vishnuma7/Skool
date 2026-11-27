@@ -1,0 +1,1255 @@
+WEBVTT
+
+00:00:00.129 --> 00:00:02.299
+Let me start with a situation
+you might recognize.
+
+00:00:02.449 --> 00:00:06.449
+A customer calls BrightLeaf and asks,
+"Do you have 200 rolls of stretch
+
+00:00:06.489 --> 00:00:08.129
+wrap I can collect tomorrow?"
+
+00:00:08.169 --> 00:00:11.530
+It sounds simple, but you need a
+reliable stock number before you can
+
+00:00:11.570 --> 00:00:13.502
+answer. Sales has a spreadsheet.
+
+00:00:13.703 --> 00:00:15.842
+The warehouse team checks
+what's on the shelf.
+
+00:00:15.882 --> 00:00:18.392
+Procurement has purchase
+orders sitting in email.
+
+00:00:19.123 --> 00:00:22.572
+Someone has to bring that information
+together while the customer waits.
+
+00:00:22.612 --> 00:00:25.412
+If you have worked in supply
+chain, you have probably dealt with
+
+00:00:25.452 --> 00:00:29.280
+something like that An ERP gives
+those teams one shared system to work
+
+00:00:29.320 --> 00:00:31.754
+from and that's where we
+need to start with Stocky.
+
+00:00:31.794 --> 00:00:35.163
+If the stock number in the system is
+wrong, Stocky could give Sarah the
+
+00:00:35.203 --> 00:00:37.942
+wrong advice even if the
+answer sounds convincing.
+
+00:00:38.071 --> 00:00:41.939
+So in this video, I will walk you
+through Odoo the ERP we will use
+
+00:00:41.979 --> 00:00:42.812
+throughout the course.
+
+00:00:42.852 --> 00:00:46.582
+We will set up your own trial, look
+around the different apps and get
+
+00:00:46.652 --> 00:00:49.870
+comfortable with three terms,
+module, record and field.
+
+00:00:49.914 --> 00:00:53.532
+Then we will add BrightLeaf's 10
+products, their starting stock and
+
+00:00:53.572 --> 00:00:54.667
+their reorder points.
+
+00:00:54.707 --> 00:00:57.215
+That's the information
+Stocky will work with later.
+
+00:00:57.255 --> 00:01:00.692
+You will have your own test system
+to practice in so you can explore
+
+00:01:00.732 --> 00:01:02.806
+without affecting
+anything at your company.
+
+00:01:02.846 --> 00:01:06.275
+And if you have never used an ERP
+before don't worry, we will go through
+
+00:01:06.315 --> 00:01:08.729
+the setup together one step at a time.
+
+00:01:08.769 --> 00:01:11.179
+Let's go, get your Odoo account ready.
+
+00:01:12.100 --> 00:01:13.335
+We're on odoo dot com.
+
+00:01:13.375 --> 00:01:17.285
+Odoo is an ERP used by millions of
+businesses, and the good news for us
+
+00:01:17.325 --> 00:01:19.763
+is that it runs entirely in your browser.
+
+00:01:20.375 --> 00:01:21.813
+Nothing to install.
+
+00:01:23.014 --> 00:01:25.364
+First, let me explain the word.
+
+00:01:25.977 --> 00:01:29.849
+ERP stands for Enterprise Resource
+Planning, which is a terrible name,
+
+00:01:29.889 --> 00:01:34.424
+so forget it. Here's what it really
+is: the company's central filing
+
+00:01:34.464 --> 00:01:36.114
+cabinet plus its rulebook.
+
+00:01:36.727 --> 00:01:40.674
+Every department keeps its records
+in one place, and the system enforces
+
+00:01:40.714 --> 00:01:45.287
+the rules. When the warehouse
+receives fifty boxes, the stock number
+
+00:01:45.327 --> 00:01:47.289
+goes up for everyone, instantly.
+
+00:01:47.902 --> 00:01:50.252
+No emailing spreadsheets around.
+
+00:01:51.448 --> 00:01:53.061
+Let's create our own.
+
+00:01:53.673 --> 00:01:55.898
+Click "Start now It's free".
+
+00:01:57.106 --> 00:01:59.231
+Odoo asks which apps we want.
+
+00:01:59.844 --> 00:02:03.281
+Think of each app as a department's
+drawer in the filing cabinet.
+
+00:02:03.894 --> 00:02:08.219
+For supply chain, we need three:
+Inventory, for what's on the shelf.
+
+00:02:08.831 --> 00:02:11.281
+Purchase, for buying from suppliers.
+
+00:02:11.894 --> 00:02:14.444
+And Sales, for selling to customers.
+
+00:02:15.056 --> 00:02:17.144
+Tick those three and nothing else.
+
+00:02:17.756 --> 00:02:21.116
+Odoo will quietly add Contacts
+as well, because both sales and
+
+00:02:21.156 --> 00:02:23.794
+purchasing need a list of
+companies to deal with.
+
+00:02:24.988 --> 00:02:26.151
+Click Continue.
+
+00:02:27.358 --> 00:02:28.883
+Now the sign-up form.
+
+00:02:29.496 --> 00:02:33.108
+I'm filling it in as Sarah, but
+you use your own name and email.
+
+00:02:33.721 --> 00:02:37.518
+For company name, type "BrightLeaf
+Supplies", so your screen matches
+
+00:02:37.558 --> 00:02:39.283
+mine for the rest of the course.
+
+00:02:39.896 --> 00:02:42.071
+Pick your country and click Start now.
+
+00:02:43.264 --> 00:02:45.689
+Odoo is now building your database.
+
+00:02:46.302 --> 00:02:47.877
+This takes about a minute.
+
+00:02:49.066 --> 00:02:53.704
+And we're in. Before we do anything
+else, look at the address bar.
+
+00:02:54.316 --> 00:02:56.491
+This web address is your Odoo's home.
+
+00:02:57.104 --> 00:02:59.364
+Mine is brightleaf-supplies
+dot odoo dot com.
+
+00:02:59.404 --> 00:03:01.079
+Yours will be a bit different.
+
+00:03:01.691 --> 00:03:06.066
+And the first part, before dot odoo
+dot com, is your database name.
+
+00:03:07.252 --> 00:03:09.390
+Write both of these down right now.
+
+00:03:10.002 --> 00:03:12.800
+There's a box for them on the Setup
+Checklist sheet in your activity
+
+00:03:12.840 --> 00:03:17.712
+workbook. In video six, when we
+connect Stocky to Odoo, these are the
+
+00:03:17.752 --> 00:03:19.752
+first two things it asks for.
+
+00:03:20.950 --> 00:03:25.238
+Odoo also sends you an email to confirm
+your account and set a password.
+
+00:03:25.850 --> 00:03:28.525
+Do that now, so you can
+log back in tomorrow.
+
+00:03:29.728 --> 00:03:31.216
+One more thing to know.
+
+00:03:31.828 --> 00:03:34.328
+The free trial lasts fifteen days.
+
+00:03:34.941 --> 00:03:38.503
+That's plenty for this course,
+but if it runs out, don't panic.
+
+00:03:39.116 --> 00:03:42.676
+You can start a fresh trial with a
+new email, and because we're going to
+
+00:03:42.716 --> 00:03:46.176
+load our products from an Excel
+file, you'll be back to exactly this
+
+00:03:46.216 --> 00:03:48.053
+point in about five minutes.
+
+00:03:49.258 --> 00:03:54.643
+Last setup step. BrightLeaf buys
+from suppliers in the US, Mexico,
+
+00:03:54.683 --> 00:03:58.656
+China and Dubai, and in this course
+we'll keep all our prices in US
+
+00:03:58.696 --> 00:04:03.468
+dollars. Go to the Settings app,
+type "currency" in the search box,
+
+00:04:03.508 --> 00:04:06.071
+and check that the main currency is USD.
+
+00:04:06.683 --> 00:04:09.783
+If it isn't, set it to USD and click Save.
+
+00:04:10.972 --> 00:04:14.822
+If your Odoo won't let you change it,
+or you can't find it, don't worry.
+
+00:04:15.435 --> 00:04:17.385
+Just treat the numbers as dollars.
+
+00:04:17.997 --> 00:04:20.347
+Nothing in the course
+depends on the symbol.
+
+00:04:22.900 --> 00:04:26.873
+This is the home screen, and every
+icon here is what ERP people call a
+
+00:04:26.913 --> 00:04:32.025
+module. A module is just one department's
+drawer in the filing cabinet.
+
+00:04:32.638 --> 00:04:36.363
+Same cabinet, same data
+underneath, different drawers.
+
+00:04:37.558 --> 00:04:39.621
+You'll notice a couple of extras.
+
+00:04:40.233 --> 00:04:43.656
+Invoicing appeared because sales
+and purchases eventually turn into
+
+00:04:43.696 --> 00:04:47.683
+invoices. Discuss is Odoo's internal chat.
+
+00:04:48.296 --> 00:04:50.421
+We won't need them, so ignore them.
+
+00:04:51.616 --> 00:04:55.141
+Let's open the three drawers that
+matter to a supply chain pro.
+
+00:04:56.338 --> 00:05:01.151
+First, Inventory. This is
+Tom's world, the warehouse.
+
+00:05:01.763 --> 00:05:05.785
+These cards are the two directions
+goods move: Receipts, things coming
+
+00:05:05.826 --> 00:05:10.038
+in from suppliers, and Delivery
+Orders, things going out to customers.
+
+00:05:11.236 --> 00:05:14.911
+Along the top, you'll see the same
+pattern in nearly every Odoo app.
+
+00:05:15.524 --> 00:05:18.374
+Operations, where the
+day-to-day work happens.
+
+00:05:18.986 --> 00:05:20.849
+Products, your catalogue.
+
+00:05:21.461 --> 00:05:23.849
+Reporting, where you get numbers out.
+
+00:05:24.461 --> 00:05:27.336
+And Configuration, the rulebook settings.
+
+00:05:27.949 --> 00:05:29.436
+Remember that pattern.
+
+00:05:30.049 --> 00:05:33.011
+Once you know it in one app,
+you know it in all of them.
+
+00:05:34.198 --> 00:05:38.173
+Next, Purchase. This is Sarah's drawer.
+
+00:05:38.786 --> 00:05:43.198
+The first thing you see is "Requests
+for Quotation", or RFQ for short.
+
+00:05:43.811 --> 00:05:48.486
+In Odoo, every purchase starts
+life as an RFQ, basically a draft.
+
+00:05:49.098 --> 00:05:52.846
+When the supplier agrees and Sarah
+confirms it, the same record becomes
+
+00:05:52.886 --> 00:05:56.861
+a Purchase Order. Same folder, new status.
+
+00:05:57.473 --> 00:06:01.708
+Keep that in mind, because in video
+seven, Stocky will create these RFQs
+
+00:06:01.748 --> 00:06:03.273
+for Sarah to approve.
+
+00:06:04.480 --> 00:06:07.630
+Sales works the same way,
+but in the other direction.
+
+00:06:08.243 --> 00:06:10.393
+Quotations become Sales Orders.
+
+00:06:11.578 --> 00:06:13.816
+And Contacts is the shared address book.
+
+00:06:14.428 --> 00:06:19.341
+Customers, suppliers, even your own
+company live here, all in one list.
+
+00:06:19.953 --> 00:06:23.541
+Notice there's no separate
+"supplier list" and "customer list".
+
+00:06:24.153 --> 00:06:26.191
+A company is just a contact.
+
+00:06:26.803 --> 00:06:30.303
+Whether it's a supplier or a customer
+depends on what you do with it.
+
+00:06:31.492 --> 00:06:33.142
+Here's why this matters.
+
+00:06:33.755 --> 00:06:35.742
+These drawers talk to each other.
+
+00:06:36.355 --> 00:06:40.364
+When Sarah confirms a purchase order,
+Inventory automatically expects a
+
+00:06:40.405 --> 00:06:45.452
+receipt. When a salesperson confirms
+an order, Inventory automatically
+
+00:06:45.492 --> 00:06:46.692
+prepares a delivery.
+
+00:06:47.305 --> 00:06:49.930
+One action, every department updated.
+
+00:06:51.118 --> 00:06:55.128
+That's also why an agent is so much
+more powerful connected to an ERP
+
+00:06:55.168 --> 00:06:57.031
+than to a pile of spreadsheets.
+
+00:06:57.643 --> 00:07:00.581
+Stocky reads one place
+and sees the whole truth.
+
+00:07:10.170 --> 00:07:13.501
+Now that you have seen the different
+apps, let's go over those three
+
+00:07:13.541 --> 00:07:15.924
+terms, module, record, and fields.
+
+00:07:15.964 --> 00:07:20.433
+You will hear them in Odoo, SAP,
+Oracle, and Microsoft Dynamics.
+
+00:07:20.473 --> 00:07:23.279
+The screen might look different,
+but the ideas are the same.
+
+00:07:23.319 --> 00:07:25.709
+Think of the ERP as a filing cabinet.
+
+00:07:26.028 --> 00:07:29.389
+Each drawer is a module, like
+inventory, purchase or sales.
+
+00:07:29.429 --> 00:07:32.609
+It groups together the information
+and tasks for that part of the
+
+00:07:32.649 --> 00:07:35.743
+business. Inside each
+drawer, you've got folders.
+
+00:07:35.814 --> 00:07:37.316
+Each folder is a record.
+
+00:07:37.356 --> 00:07:41.267
+So one product is a record, one
+supplier is a record, a purchase order
+
+00:07:41.307 --> 00:07:42.497
+is another record.
+
+00:07:43.284 --> 00:07:47.227
+And inside each folder, there is
+a form with labeled boxes, product
+
+00:07:47.267 --> 00:07:50.390
+name, cost, supplier, reorder point.
+
+00:07:50.455 --> 00:07:52.768
+Each of those pieces of
+information is a field.
+
+00:07:52.808 --> 00:07:56.568
+If you are used to Excel, a record
+is like a row and a field is like a
+
+00:07:56.608 --> 00:07:59.637
+column. A module is more like
+a group of related sheets.
+
+00:07:59.677 --> 00:08:01.757
+This will help when we connect Stocky.
+
+00:08:02.141 --> 00:08:06.150
+Stocky will ask Odoo for specific
+information, such as the quantity on
+
+00:08:06.190 --> 00:08:07.612
+hand for a particular product.
+
+00:08:07.652 --> 00:08:10.855
+It needs to know which record
+to find and which field to read.
+
+00:08:10.895 --> 00:08:14.460
+Once you understand those terms, it's
+easier to tell the agent what you
+
+00:08:14.500 --> 00:08:16.342
+need and check what it's using.
+
+00:08:16.382 --> 00:08:19.392
+Let's create a product so
+you can see this on the form.
+
+00:08:20.367 --> 00:08:24.554
+Let's create our first record by
+hand, so you can see every field.
+
+00:08:25.167 --> 00:08:29.342
+Go to Inventory, then Products,
+then Products again, and click New.
+
+00:08:30.537 --> 00:08:32.837
+This blank form is one empty folder.
+
+00:08:33.449 --> 00:08:35.787
+Let's fill it in with
+BrightLeaf's best seller.
+
+00:08:36.987 --> 00:08:41.012
+Product name: Steel Hex Bolts
+M10, box of one hundred.
+
+00:08:41.624 --> 00:08:45.624
+Just under the name, make sure both
+"Sales" and "Purchase" are ticked.
+
+00:08:46.237 --> 00:08:49.734
+BrightLeaf buys these from a
+supplier and sells them to customers,
+
+00:08:49.774 --> 00:08:51.049
+so both are true.
+
+00:08:52.245 --> 00:08:55.455
+Now the most important field on
+this whole form, and the number one
+
+00:08:55.495 --> 00:08:58.395
+beginner mistake. Product Type.
+
+00:08:59.007 --> 00:09:01.807
+Choose "Goods", and then
+tick "Track Inventory".
+
+00:09:03.015 --> 00:09:06.062
+If you forget that tick, Odoo will
+happily let you buy and sell the
+
+00:09:06.102 --> 00:09:08.215
+product, but it will never count it.
+
+00:09:08.827 --> 00:09:10.540
+There will be no stock number.
+
+00:09:11.152 --> 00:09:14.575
+And when Stocky asks "how many bolts
+do we have?", the answer will be
+
+00:09:14.615 --> 00:09:15.840
+nothing at all.
+
+00:09:17.025 --> 00:09:20.447
+If your Odoo shows a list with
+"Storable Product" instead, choose
+
+00:09:20.487 --> 00:09:21.687
+"Storable Product".
+
+00:09:22.300 --> 00:09:23.825
+It means the same thing.
+
+00:09:25.011 --> 00:09:27.561
+Sales Price: sixteen eighty-eight.
+
+00:09:28.173 --> 00:09:29.948
+Cost: twelve fifty.
+
+00:09:30.561 --> 00:09:33.771
+That's a thirty-five percent mark-up,
+and your workbook shows you the
+
+00:09:33.811 --> 00:09:34.886
+calculation.
+
+00:09:36.093 --> 00:09:40.628
+Then the Reference field, your internal
+reference: BL dash one zero zero
+
+00:09:40.668 --> 00:09:44.730
+one. This is your SKU, your product code.
+
+00:09:45.343 --> 00:09:47.218
+Please never skip this field.
+
+00:09:47.830 --> 00:09:51.865
+Product names change, people type
+them differently, someone writes "M10
+
+00:09:51.905 --> 00:09:54.793
+bolts" and someone else
+writes "Hex Bolt M10".
+
+00:09:55.405 --> 00:09:59.618
+But BL-1001 is always BL-1001.
+
+00:10:00.230 --> 00:10:04.240
+When Stocky talks about products, it
+will use this code, so nothing gets
+
+00:10:04.280 --> 00:10:05.080
+mixed up.
+
+00:10:06.279 --> 00:10:07.841
+Now the Purchase tab.
+
+00:10:08.454 --> 00:10:10.929
+This is where we tell
+Odoo who we buy from.
+
+00:10:11.541 --> 00:10:13.566
+Click "Add a line" under Vendors.
+
+00:10:14.179 --> 00:10:15.891
+Type Apex Fasteners.
+
+00:10:16.504 --> 00:10:19.691
+It doesn't exist yet, so
+Odoo offers to create it.
+
+00:10:20.304 --> 00:10:21.404
+Click Create.
+
+00:10:22.593 --> 00:10:24.418
+Price, twelve fifty.
+
+00:10:25.030 --> 00:10:27.718
+And delivery lead time, seven days.
+
+00:10:28.330 --> 00:10:32.040
+That's how long Apex usually takes
+from order to arrival at our Columbus
+
+00:10:32.080 --> 00:10:35.755
+warehouse. Lead time is gold for an agent.
+
+00:10:36.368 --> 00:10:39.040
+It's the difference between "you're
+low" and "you're low and you have
+
+00:10:39.080 --> 00:10:40.993
+seven days before it's a problem".
+
+00:10:42.195 --> 00:10:44.720
+Save, with this little cloud icon.
+
+00:10:45.332 --> 00:10:47.645
+And there it is: our first record.
+
+00:10:48.257 --> 00:10:50.445
+One folder in the Inventory drawer.
+
+00:10:51.645 --> 00:10:53.820
+Look at these buttons across the top.
+
+00:10:54.432 --> 00:10:56.482
+Odoo calls them smart buttons.
+
+00:10:57.095 --> 00:11:00.582
+On Hand says zero, because we
+haven't received anything yet.
+
+00:11:01.195 --> 00:11:03.170
+We'll fix that in a few minutes.
+
+00:11:04.359 --> 00:11:07.396
+And here's that "drawers talk
+to each other" idea again.
+
+00:11:08.009 --> 00:11:11.506
+We created Apex Fasteners from
+inside a product, but it lives in
+
+00:11:11.546 --> 00:11:13.759
+Contacts, the shared address book.
+
+00:11:14.371 --> 00:11:19.559
+Let me add its city, Columbus, Ohio,
+and the country, United States.
+
+00:11:20.171 --> 00:11:24.484
+In video eight, Stocky uses supplier
+cities to check the local weather.
+
+00:11:25.096 --> 00:11:27.384
+So this little field will matter later.
+
+00:11:29.933 --> 00:11:32.696
+Typing one product took
+us about three minutes.
+
+00:11:33.308 --> 00:11:34.783
+BrightLeaf has ten.
+
+00:11:35.396 --> 00:11:37.996
+Your company probably has ten thousand.
+
+00:11:38.608 --> 00:11:40.821
+Nobody types those in by hand.
+
+00:11:41.433 --> 00:11:42.646
+We import them.
+
+00:11:43.847 --> 00:11:46.397
+Here's the import file
+from your resources.
+
+00:11:47.010 --> 00:11:49.847
+One row per product, one column per field.
+
+00:11:50.460 --> 00:11:54.682
+Look at the column headers: Internal
+Reference, Name, Product Type,
+
+00:11:54.722 --> 00:11:57.647
+Track Inventory, Sales Price, Cost.
+
+00:11:58.260 --> 00:12:01.947
+They are spelled exactly like the
+field labels we just saw on the form.
+
+00:12:02.560 --> 00:12:06.982
+That's on purpose. When the headers
+match, Odoo matches the columns for
+
+00:12:07.022 --> 00:12:07.572
+you.
+
+00:12:08.777 --> 00:12:13.815
+Notice BL-1001 isn't in here,
+because we just created it by hand.
+
+00:12:14.427 --> 00:12:18.100
+If we imported it again, we'd have
+two bolt records, and that's the kind
+
+00:12:18.140 --> 00:12:21.127
+of duplicate that confuses
+humans and agents alike.
+
+00:12:22.331 --> 00:12:24.794
+Back in Odoo, on the Products list.
+
+00:12:25.406 --> 00:12:29.129
+Click the little menu icon, the
+three dots next to the word Products,
+
+00:12:29.169 --> 00:12:30.569
+and choose "Import".
+
+00:12:31.757 --> 00:12:34.482
+Click Upload File and
+choose the import workbook.
+
+00:12:35.687 --> 00:12:38.262
+And this is the screen I
+want you to understand.
+
+00:12:38.875 --> 00:12:41.300
+On the left, your Excel columns.
+
+00:12:41.912 --> 00:12:45.012
+On the right, the Odoo
+field each one will go into.
+
+00:12:45.625 --> 00:12:49.022
+Odoo has matched them all automatically,
+because our headers match the
+
+00:12:49.062 --> 00:12:50.225
+field names.
+
+00:12:51.425 --> 00:12:54.885
+If one of your columns ever shows
+"To import, select a field",
+
+00:12:54.925 --> 00:12:58.198
+or it's left blank, just click the
+dropdown and pick the right field
+
+00:12:58.238 --> 00:13:02.748
+yourself. That's all mapping is:
+telling Odoo which labelled box each
+
+00:13:02.788 --> 00:13:04.188
+column belongs in.
+
+00:13:05.387 --> 00:13:08.150
+Before importing, always click Test.
+
+00:13:08.762 --> 00:13:11.387
+Test checks every row
+without saving anything.
+
+00:13:12.000 --> 00:13:15.322
+If something's wrong, like a letter
+in the price column, it tells you
+
+00:13:15.362 --> 00:13:19.300
+which row. Green banner,
+everything seems valid.
+
+00:13:20.501 --> 00:13:23.751
+Now click Import. And there we go.
+
+00:13:24.364 --> 00:13:30.299
+Ten products. BL-1001 that we typed,
+plus nine imported in about four
+
+00:13:30.339 --> 00:13:31.251
+seconds.
+
+00:13:32.447 --> 00:13:33.860
+Let's spot-check one.
+
+00:13:34.472 --> 00:13:37.847
+Pallet Jack Wheels, BL-1005.
+
+00:13:38.460 --> 00:13:42.532
+Goods, inventory tracked, cost
+thirty-eight, sales price fifty-one
+
+00:13:42.572 --> 00:13:44.885
+thirty. Perfect.
+
+00:13:46.073 --> 00:13:50.608
+Now try something. Use the search
+bar at the top of the list and type
+
+00:13:50.648 --> 00:13:56.148
+"BL-100". Every product code
+starting with BL-100 appears.
+
+00:13:56.761 --> 00:14:00.198
+That's the power of a
+clean, consistent SKU code.
+
+00:14:00.811 --> 00:14:03.198
+Stocky will search exactly like this.
+
+00:14:04.953 --> 00:14:08.573
+Before we add the stock numbers, let
+me explain why we have been careful
+
+00:14:08.613 --> 00:14:09.697
+with the product setup.
+
+00:14:09.737 --> 00:14:13.637
+A distributor I know set up an alert
+for products that fell below their
+
+00:14:13.677 --> 00:14:17.622
+reorder point. It ran for 3 months
+without flagging their biggest
+
+00:14:17.662 --> 00:14:20.989
+product. They discovered the problem
+when they could not ship a major
+
+00:14:21.029 --> 00:14:24.575
+customer order. when they check the
+setup inventory tracking had not
+
+00:14:24.615 --> 00:14:28.638
+been enabled for that product the
+ERP was not counting it so the alert
+
+00:14:28.678 --> 00:14:32.638
+had no stock figure to check that's
+an easy detail to miss you can still
+
+00:14:32.678 --> 00:14:36.422
+have the product in the system and
+use it on orders without realizing
+
+00:14:36.462 --> 00:14:39.876
+that stock is not being tracked so
+there are three things I want you to
+
+00:14:39.916 --> 00:14:43.484
+check First, make sure
+inventory tracking is enabled.
+
+00:14:43.842 --> 00:14:46.767
+Second, use a consistent
+SKU for each product.
+
+00:14:46.807 --> 00:14:50.865
+If the same item appears under
+different names or codes, it's easy to
+
+00:14:50.905 --> 00:14:52.635
+end up with duplicate records.
+
+00:14:52.690 --> 00:14:54.875
+And third, enter the supplier's lead time.
+
+00:14:54.915 --> 00:14:58.744
+You need to know how long a replacement
+order will take when the stock
+
+00:14:58.784 --> 00:14:59.867
+starts running low.
+
+00:14:59.907 --> 00:15:03.832
+All of this matters for Stocky too,
+it could give Sarah an answer that
+
+00:15:03.872 --> 00:15:07.451
+sounds convincing while working
+from the information that's wrong or
+
+00:15:07.521 --> 00:15:10.889
+incomplete. She might then make a
+purchasing decision based on it.
+
+00:15:11.339 --> 00:15:14.699
+Getting these details right now will
+help us avoid that when we start
+
+00:15:14.739 --> 00:15:15.629
+using the agent.
+
+00:15:16.567 --> 00:15:19.442
+Our products exist, but
+the shelves are empty.
+
+00:15:20.054 --> 00:15:22.429
+Let's give BrightLeaf some starting stock.
+
+00:15:23.042 --> 00:15:26.517
+Go to Inventory, Operations,
+Physical Inventory.
+
+00:15:27.129 --> 00:15:29.929
+This is the screen you'd
+use after a stock count.
+
+00:15:31.129 --> 00:15:36.041
+Click New. Product: BL-1001, the bolts.
+
+00:15:36.654 --> 00:15:40.991
+Odoo puts it on WH slash Stock,
+that's the main warehouse shelf.
+
+00:15:41.604 --> 00:15:44.654
+Counted quantity: one
+hundred and forty-five.
+
+00:15:45.266 --> 00:15:46.216
+Then Apply.
+
+00:15:47.419 --> 00:15:51.406
+Pallet jack wheels, BL-1005: eighteen.
+
+00:15:52.019 --> 00:15:53.781
+And I'll speed through the rest.
+
+00:15:54.394 --> 00:15:57.441
+All ten numbers are on the "Starting
+Stock and Reorder" sheet in your
+
+00:15:57.481 --> 00:15:59.969
+workbook, so you can copy them exactly.
+
+00:16:01.165 --> 00:16:03.377
+I've chosen these numbers on purpose.
+
+00:16:03.990 --> 00:16:06.977
+Four of our products are now
+below their reorder point.
+
+00:16:07.590 --> 00:16:12.240
+Don't fix that. Those four are
+Stocky's first job in video six.
+
+00:16:13.447 --> 00:16:16.059
+Now the rulebook part
+of our filing cabinet.
+
+00:16:16.672 --> 00:16:18.584
+Open the pallet jack wheels.
+
+00:16:19.197 --> 00:16:21.697
+Click the smart button for reorder rules.
+
+00:16:22.309 --> 00:16:25.894
+Depending on your version it says
+"Min Max" or shows a little refresh
+
+00:16:25.934 --> 00:16:28.247
+icon. Then New.
+
+00:16:29.449 --> 00:16:31.736
+Min quantity: twenty-five.
+
+00:16:32.349 --> 00:16:34.999
+That's BrightLeaf's reorder
+point for the wheels.
+
+00:16:35.611 --> 00:16:37.449
+Max quantity: fifty.
+
+00:16:38.061 --> 00:16:40.261
+That's how high we want to refill to.
+
+00:16:40.874 --> 00:16:44.361
+At BrightLeaf, the Max is
+simply double the reorder point.
+
+00:16:45.547 --> 00:16:49.382
+So the rule now reads: when wheels
+drop below twenty-five sets,
+
+00:16:49.422 --> 00:16:51.059
+top them back up to fifty.
+
+00:16:51.672 --> 00:16:56.084
+We have eighteen. So Odoo
+knows we need thirty-two more.
+
+00:16:56.697 --> 00:17:00.472
+And remember, these come from Shenzhen
+with a twenty-one-day lead time.
+
+00:17:01.084 --> 00:17:04.634
+That's exactly the kind of product
+that keeps Sarah awake at night.
+
+00:17:05.821 --> 00:17:07.783
+And here's where it pays off.
+
+00:17:08.396 --> 00:17:11.358
+Inventory, Operations, Replenishment.
+
+00:17:11.971 --> 00:17:17.146
+Odoo already shows BL-1005 with a
+suggested "To Order" of thirty-two.
+
+00:17:17.758 --> 00:17:21.756
+Don't click Order. We're leaving
+that decision for Stocky and Sarah
+
+00:17:21.796 --> 00:17:23.108
+later in the course.
+
+00:17:24.295 --> 00:17:27.995
+Add reorder rules for the other
+nine products using your workbook.
+
+00:17:28.607 --> 00:17:31.905
+Once they are in, three more
+products join the wheels below their
+
+00:17:31.945 --> 00:17:35.930
+reorder point: the shipping boxes,
+the safety gloves and the hydraulic
+
+00:17:35.970 --> 00:17:40.482
+oil. It takes about five
+minutes, and it's great practice.
+
+00:17:41.689 --> 00:17:43.939
+Last thing, and it's my favourite.
+
+00:17:44.551 --> 00:17:49.026
+Open the bolts, BL-1001,
+and click "In slash Out".
+
+00:17:49.639 --> 00:17:51.651
+This is the product's paper trail.
+
+00:17:52.264 --> 00:17:56.324
+Every time stock moves in or out,
+Odoo writes it down: the date,
+
+00:17:56.364 --> 00:17:59.039
+from where, to where,
+how many and who did it.
+
+00:18:00.235 --> 00:18:04.045
+Right now there's just one line:
+one hundred and forty-five boxes of
+
+00:18:04.085 --> 00:18:07.760
+bolts added by an inventory
+adjustment, by Sarah, today.
+
+00:18:08.372 --> 00:18:11.997
+Once BrightLeaf starts buying
+and selling, this list grows.
+
+00:18:12.610 --> 00:18:17.110
+Receipt from Apex. Delivery
+to a customer in Toronto.
+
+00:18:17.722 --> 00:18:19.610
+Every move, forever.
+
+00:18:20.797 --> 00:18:23.397
+This is the rulebook side of the ERP.
+
+00:18:24.009 --> 00:18:26.597
+Nobody can quietly change a stock number.
+
+00:18:27.209 --> 00:18:29.259
+There's always a record of what happened.
+
+00:18:29.872 --> 00:18:32.597
+And for an agent, this history is gold.
+
+00:18:33.209 --> 00:18:36.907
+It's how Stocky will one day be
+able to say, "we've used about forty
+
+00:18:36.947 --> 00:18:40.532
+boxes of bolts a week for the last
+month, so a hundred and forty-five
+
+00:18:40.572 --> 00:18:42.272
+will last under four weeks.
+
+00:18:42.884 --> 00:18:44.809
+Fine for now, but watch it."
+
+00:18:46.443 --> 00:18:49.145
+All right, we have covered
+quite a bit in this video.
+
+00:18:49.185 --> 00:18:53.130
+You have set up your own Odoo
+system, added BrightLeaf's products,
+
+00:18:53.237 --> 00:18:56.191
+entered starting stock and
+worked with Reorder rules.
+
+00:18:56.231 --> 00:18:59.430
+You have also seen how Odoo keeps
+a record of a stock movement,
+
+00:18:59.470 --> 00:19:02.020
+so you can go back and
+see what's happened.
+
+00:19:02.069 --> 00:19:05.645
+Before we finish, there are three
+things I'd like you to remember.
+
+00:19:06.413 --> 00:19:10.723
+First, an ERP gives the different
+teams a shared place to work from.
+
+00:19:10.889 --> 00:19:13.404
+Think of the filing
+cabinet and its rule book.
+
+00:19:13.444 --> 00:19:16.819
+The department have their own drawers,
+but they are all using the same
+
+00:19:16.859 --> 00:19:20.532
+system. Second, remember
+module, record and field.
+
+00:19:20.621 --> 00:19:24.561
+Those terms will come up again when
+we tell Stocky where to look and
+
+00:19:24.601 --> 00:19:28.978
+what information to And third,
+check your data, inventory tracking,
+
+00:19:29.295 --> 00:19:33.183
+consistent SKU codes and supplier
+lead times all affect how useful the
+
+00:19:33.223 --> 00:19:34.485
+agent's answer will be.
+
+00:19:34.525 --> 00:19:37.888
+To finish this lesson, you
+have got two activity files.
+
+00:19:37.928 --> 00:19:41.848
+Use the BrightLeaf Product Import
+file to load the nine products as we
+
+00:19:41.888 --> 00:19:43.118
+did in the demonstration.
+
+00:19:43.232 --> 00:19:47.512
+The Odoo setup workbook has your
+setup checklist, progress tracker and
+
+00:19:47.552 --> 00:19:50.793
+the starting stock and the reorder
+values for all 10 products.
+
+00:19:50.833 --> 00:19:53.786
+It also has a sheet called "Map my ERP".
+
+00:19:53.826 --> 00:19:55.312
+Take some time with that one.
+
+00:19:55.352 --> 00:19:58.762
+Think about your own company
+system and identify the modules,
+
+00:19:59.092 --> 00:20:00.941
+records and fields you use.
+
+00:20:00.981 --> 00:20:04.441
+That gives you a starting point for
+deciding what your own agent could
+
+00:20:04.481 --> 00:20:06.831
+read. Then take the 10 question quiz.
+
+00:20:06.988 --> 00:20:11.692
+In video 3, we will look at how
+Stocky talks to Odoo through an API.
+
+00:20:11.732 --> 00:20:15.682
+I will explain it using a restaurant
+example so you can follow along
+
+00:20:15.722 --> 00:20:16.983
+without a technical background.
+
+00:20:17.023 --> 00:20:18.433
+I will see you in the next video.

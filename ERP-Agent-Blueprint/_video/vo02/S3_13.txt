@@ -1,0 +1,1 @@
+And here's that "drawers talk to each other" idea again. We created Apex Fasteners from inside a product, but it lives in Contacts, the shared address book. Let me add its city, Columbus, Ohio, and the country, United States. In video eight, Stocky uses supplier cities to check the local weather. So this little field will matter later.

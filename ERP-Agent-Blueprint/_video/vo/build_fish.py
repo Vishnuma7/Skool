@@ -1,7 +1,7 @@
 """Generate the narration with the user's Fish Audio voice (model drama-3). Writes vo/fish/<KEY>.mp3 (skips existing)."""
 import json, os, pathlib, ssl, time, urllib.request
-ROOT = pathlib.Path(__file__).resolve().parent
-ENV = dict(l.split('=', 1) for l in (ROOT.parent / '.env').read_text().split() if '=' in l)
+ROOT = pathlib.Path(__file__).resolve().parents[1] / os.environ.get('VO_DIR', 'vo')
+ENV = dict(l.split('=', 1) for l in (pathlib.Path(__file__).resolve().parents[1] / '.env').read_text().split() if '=' in l)
 CTX = ssl.create_default_context(cafile='/etc/ssl/cert.pem')
 OUT = ROOT / 'fish'; OUT.mkdir(exist_ok=True)
 data = json.loads((ROOT / 'timings.json').read_text())

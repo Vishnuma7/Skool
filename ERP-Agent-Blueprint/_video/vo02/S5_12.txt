@@ -1,0 +1,1 @@
+This is the rulebook side of the ERP. Nobody can quietly change a stock number. There's always a record of what happened. And for an agent, this history is gold. It's how Stocky will one day be able to say, "we've used about forty boxes of bolts a week for the last month, so a hundred and forty-five will last under four weeks. Fine for now, but watch it."

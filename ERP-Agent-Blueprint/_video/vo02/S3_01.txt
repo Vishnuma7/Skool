@@ -1,0 +1,1 @@
+Let's create our first record by hand, so you can see every field. Go to Inventory, then Products, then Products again, and click New.

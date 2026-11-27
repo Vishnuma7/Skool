@@ -1,0 +1,1 @@
+Fix two: merged cells. The supplier column looks tidy, but only the top cell of a merge actually holds the name. The rows underneath are empty, so if you sort or filter, products lose their supplier. Format, Merge cells, Unmerge. See the blanks? I copy each name down. Every row now knows its own supplier.

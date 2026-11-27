@@ -1,0 +1,1 @@
+Merged title rows. Supplier names merged across several rows. Quantities like "145 boxes", "approx 1,850" and "18 - urgent!!". "BL 1002" with a space next to "BL-1002" with a dash. A blank SKU. Dates in five different formats. Red cells only Tom understands. And a TOTAL row that just says "lots". A human can muddle through. An agent will stumble on every one. Let's fix them.

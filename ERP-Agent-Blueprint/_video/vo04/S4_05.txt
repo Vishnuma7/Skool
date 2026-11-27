@@ -1,0 +1,1 @@
+Fix three: inconsistent IDs. To a computer, "BL 1002" and "BL-1002" are as different as "apple" and "banana". Edit, Find and replace, "BL space" with "BL dash", Replace all. Then Data, Data cleanup, Trim whitespace, to remove invisible spaces, the number one reason a VLOOKUP says "not found" when you can see the value right there.

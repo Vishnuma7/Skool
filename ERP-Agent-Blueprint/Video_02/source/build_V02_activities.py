@@ -74,12 +74,12 @@ def sales_price(cost):
 imp = Workbook()
 ws = imp.active
 ws.title = "Products"
-cols = ["Internal Reference", "Name", "Product Type", "Track Inventory", "Can be Sold",
-        "Can be Purchased", "Sales Price", "Cost", "Product Category"]
+cols = ["Internal Reference", "Name", "Product Type", "Track Inventory", "Sales",
+        "Purchase", "Sales Price", "Cost", "Product Category"]
 header(ws, 1, cols, [18, 40, 14, 16, 13, 17, 12, 10, 18])
 for r, p in enumerate(PRODUCTS[1:], start=2):  # BL-1001 is created by hand in the video
     sku, name, cost = p[0], p[1], p[2]
-    vals = [sku, name, "Goods", "True", "True", "True", sales_price(cost), float(cost), "All"]
+    vals = [sku, name, "Goods", "True", "True", "True", sales_price(cost), float(cost), "Goods"]
     for c, v in enumerate(vals, start=1):
         cell = ws.cell(row=r, column=c, value=v)
         cell.border = BORDER
@@ -91,7 +91,7 @@ rm = imp.create_sheet("Read_Me")
 title(rm, "How to use this import file", "Values only, no formulas, so Odoo can read every cell.")
 notes = [
     "1. Do NOT rename the column headers. They match Odoo's field labels, so Odoo maps them automatically.",
-    "2. In Odoo: Inventory > Products > Products > gear icon > Import records > Upload File > choose this file.",
+    "2. In Odoo: Inventory > Products > Products > the ⋮ menu next to 'Products' > Import > Upload File > choose this file.",
     "3. If Odoo asks which sheet to use, choose 'Products'.",
     "4. Click Test first. When you see 'Everything seems valid', click Import.",
     "5. BL-1001 is NOT in this file because we create it by hand in the video. If you skipped that step, add a row:",
@@ -172,10 +172,10 @@ STEPS = [
     ("Product", "Create BL-1001 by hand: Goods + Track Inventory, Sales Price 16.88, Cost 12.50, Internal Reference BL-1001", "Inventory > Products > Products > New"),
     ("Product", "Add vendor Apex Fasteners, price 12.50, lead time 7 days", "Product form > Purchase tab > Add a line"),
     ("Contacts", "Add City 'Columbus', State 'Ohio' and Country 'United States' to Apex Fasteners", "Contacts > Apex Fasteners"),
-    ("Import", "Import BL-1002 to BL-1010 from the import file (Test first!)", "Inventory > Products > Products > gear icon > Import records"),
+    ("Import", "Import BL-1002 to BL-1010 from the import file (Test first!)", "Inventory > Products > Products > ⋮ menu next to 'Products' > Import"),
     ("Import", "Spot-check BL-1005: Goods, tracked, Cost 38.00, Sales Price 51.30", "Products list > BL-1005"),
     ("Stock", "Enter starting stock for all 10 products (see Starting_Stock_Reorder)", "Inventory > Operations > Physical Inventory > New > Counted Quantity > Apply"),
-    ("Rules", "Create the reorder rule for BL-1005: Min 25, Max 50", "Product > Min / Max smart button > New"),
+    ("Rules", "Create the reorder rule for BL-1005: Min 25, Max 50", "Product > Min / Max smart button (or the refresh icon) > New"),
     ("Rules", "Create reorder rules for the other 9 products", "Inventory > Operations > Replenishment > New"),
     ("Check", "Confirm Replenishment shows BL-1005 'To Order' = 32 (don't click Order)", "Inventory > Operations > Replenishment"),
     ("Check", "Open the paper trail for BL-1001", "Product > In / Out smart button"),
@@ -278,7 +278,7 @@ PLACES = ["Top of product form", "General Information tab", "Purchase tab", "On 
           "Min / Max smart button", "In / Out smart button", "Contacts app", "Purchase app"]
 FIELDS = [
     ("Internal Reference (SKU) of a product", "General Information tab"),
-    ("Can be Purchased tick box", "Top of product form"),
+    ("Purchase tick box (older versions: Can be Purchased)", "Top of product form"),
     ("Cost of a product", "General Information tab"),
     ("Track Inventory tick box", "General Information tab"),
     ("Vendor and vendor price", "Purchase tab"),

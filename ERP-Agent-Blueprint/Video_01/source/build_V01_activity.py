@@ -69,7 +69,7 @@ TASKS = [
      "Happens once, big money, needs human sign-off. Don't automate the manager's signature."),
     ("When a sales order over USD 5,000 is confirmed, post a message in the sales team's Slack channel.", "Automation",
      "Clear trigger, clear rule, fixed message."),
-    ("Answer the warehouse team's questions like 'Do we have enough stretch wrap for Friday's Dubai order?' using live Odoo data.", "AI Agent",
+    ("Answer the warehouse team's questions like 'Do we have enough stretch wrap for Friday's Toronto order?' using live Odoo data.", "AI Agent",
      "Questions arrive in any wording; the agent must understand them and look up live data with a tool."),
     ("Summarise a 30-page supplier contract you paste in, so you can read the key points quickly.", "Chatbot",
      "You provide the text and read the answer yourself. A chatbot is enough."),

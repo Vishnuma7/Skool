@@ -1,0 +1,280 @@
+1
+00:00:01,100 --> 00:00:05,725
+Now the fun part. This is
+BrightLeaf's real-world stock sheet.
+
+2
+00:00:06,338 --> 00:00:10,023
+It started as an Odoo export three
+years ago and has been passed between
+
+3
+00:00:10,063 --> 00:00:14,550
+five people since. You might
+recognise some of these crimes.
+
+4
+00:00:15,734 --> 00:00:20,897
+Merged title rows. Supplier
+names merged across several rows.
+
+5
+00:00:21,509 --> 00:00:27,757
+Quantities like "145 boxes",
+"approx 1,850" and "18
+
+6
+00:00:27,797 --> 00:00:34,309
+urgent!!". "BL 1002" with a space
+next to "BL-1002" with a dash.
+
+7
+00:00:34,922 --> 00:00:39,384
+A blank SKU. Dates in
+five different formats.
+
+8
+00:00:39,997 --> 00:00:42,384
+Red cells only Tom understands.
+
+9
+00:00:42,997 --> 00:00:45,409
+And a TOTAL row that just says "lots".
+
+10
+00:00:46,021 --> 00:00:47,722
+A human can muddle through.
+
+11
+00:00:48,334 --> 00:00:50,334
+An agent will stumble on every one.
+
+12
+00:00:50,947 --> 00:00:52,084
+Let's fix them.
+
+13
+00:00:53,264 --> 00:00:57,337
+Fix one: I delete the top three
+rows: the merged title, the "prepared
+
+14
+00:00:57,377 --> 00:00:59,064
+by" line and the blank row.
+
+15
+00:00:59,677 --> 00:01:01,527
+Now row 1 is the headers.
+
+16
+00:01:02,690 --> 00:01:04,803
+Fix two: merged cells.
+
+17
+00:01:05,415 --> 00:01:08,738
+The supplier column looks tidy,
+but only the top cell of a merge
+
+18
+00:01:08,778 --> 00:01:10,203
+actually holds the name.
+
+19
+00:01:10,815 --> 00:01:14,613
+The rows underneath are empty, so
+if you sort or filter, products lose
+
+20
+00:01:14,653 --> 00:01:19,228
+their supplier. Format,
+Merge cells, Unmerge.
+
+21
+00:01:19,840 --> 00:01:23,440
+See the blanks? I copy each name down.
+
+22
+00:01:24,053 --> 00:01:26,365
+Every row now knows its own supplier.
+
+23
+00:01:27,548 --> 00:01:30,161
+Fix three: inconsistent IDs.
+
+24
+00:01:30,773 --> 00:01:36,708
+To a computer, "BL 1002" and "BL-1002"
+are as different as "apple" and
+
+25
+00:01:36,748 --> 00:01:42,483
+"banana". Edit, Find and replace,
+"BL space" with "BL dash", Replace
+
+26
+00:01:42,523 --> 00:01:47,821
+all. Then Data, Data cleanup, Trim
+whitespace, to remove invisible
+
+27
+00:01:47,861 --> 00:01:51,346
+spaces, the number one reason a
+VLOOKUP says "not found" when you can
+
+28
+00:01:51,386 --> 00:01:52,936
+see the value right there.
+
+29
+00:01:54,110 --> 00:01:55,860
+Fix four: duplicates.
+
+30
+00:01:56,473 --> 00:02:00,923
+Data, Data cleanup, Remove
+duplicates, data has a header row.
+
+31
+00:02:01,535 --> 00:02:03,635
+The duplicate hex bolts disappear.
+
+32
+00:02:04,248 --> 00:02:08,208
+The two corrugated box rows had
+different date formats, so I delete one
+
+33
+00:02:08,248 --> 00:02:14,120
+by hand. Before this, a stock total
+would have counted 2,360 boxes
+
+34
+00:02:14,160 --> 00:02:20,008
+instead of 1,180, which is above
+the reorder point of 1,500, so the
+
+35
+00:02:20,048 --> 00:02:22,285
+reorder alert would never have fired.
+
+36
+00:02:23,456 --> 00:02:25,856
+Fix five: one fact per cell.
+
+37
+00:02:26,469 --> 00:02:29,381
+I insert a Unit column
+and split every quantity.
+
+38
+00:02:29,993 --> 00:02:34,618
+"145 boxes" becomes 145 and "box".
+
+39
+00:02:35,231 --> 00:02:41,254
+"approx 1,850" becomes 1,850,
+with "estimate, recount" in the
+
+40
+00:02:41,294 --> 00:02:47,679
+remarks. And our stretch wrap: "21
+cartons, 12 rolls each, plus 8 loose"
+
+41
+00:02:47,719 --> 00:02:51,993
+becomes 260 rolls, because
+the reorder point is in rolls.
+
+42
+00:02:52,606 --> 00:02:54,591
+Not a stock-out. The
+
+43
+00:02:54,631 --> 00:02:56,904
+eighteen-hundred-dollar
+cell, fixed in five
+
+44
+00:02:56,944 --> 00:02:57,868
+seconds.
+
+45
+00:02:59,042 --> 00:03:01,255
+Fix six: the blank ID.
+
+46
+00:03:01,867 --> 00:03:04,155
+The safety gloves have no SKU.
+
+47
+00:03:04,767 --> 00:03:07,717
+The product list says BL-1004.
+
+48
+00:03:08,330 --> 00:03:11,480
+A row without an ID is a
+parcel without a label.
+
+49
+00:03:12,644 --> 00:03:16,479
+Fix seven: the red cells meant
+"urgent", so I write that in the remarks
+
+50
+00:03:16,519 --> 00:03:17,832
+and reset the colour.
+
+51
+00:03:18,444 --> 00:03:20,182
+And the TOTAL row goes.
+
+52
+00:03:20,794 --> 00:03:24,854
+Totals belong in reports, not data
+tables, or the agent counts them as a
+
+53
+00:03:24,894 --> 00:03:25,657
+product.
+
+54
+00:03:26,822 --> 00:03:32,285
+Before and after. Messy: seventeen
+rows and two red "urgent" cells.
+
+55
+00:03:32,897 --> 00:03:37,770
+Clean: ten rows, one per product,
+and four need reordering: boxes,
+
+56
+00:03:37,810 --> 00:03:40,522
+gloves, wheels and hydraulic oil.
+
+57
+00:03:41,135 --> 00:03:45,235
+Two surprises. The packing
+tape coloured red for "urgent"?
+
+58
+00:03:45,847 --> 00:03:50,447
+1,850 rolls against a
+reorder point of 1,000.
+
+59
+00:03:51,060 --> 00:03:56,457
+Fine. And the hydraulic oil nobody
+flagged is at 31 drums against 40,
+
+60
+00:03:56,497 --> 00:03:59,110
+with a 14-day lead time from Dubai.
+
+61
+00:03:59,722 --> 00:04:03,195
+That's a real emergency, and the
+messy sheet was hiding it under "check
+
+62
+00:04:03,235 --> 00:04:04,060
+with Tom".

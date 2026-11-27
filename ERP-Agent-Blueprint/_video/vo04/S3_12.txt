@@ -1,0 +1,1 @@
+This is what makes it a real database. The name lives in one place only. If PackRight renames itself tomorrow, Sarah changes it once, and every stock log row updates instantly. In database language, this ID connection is called a relationship. You've just built one.

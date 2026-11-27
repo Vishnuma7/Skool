@@ -1,0 +1,262 @@
+1
+00:00:01,100 --> 00:00:03,125
+Let's build Stocky's first table.
+
+2
+00:00:03,738 --> 00:00:05,925
+One table for one kind of thing.
+
+3
+00:00:06,538 --> 00:00:09,838
+This table is about
+suppliers, and only suppliers.
+
+4
+00:00:10,450 --> 00:00:13,725
+I double-click the tab at the
+bottom and rename it "Suppliers".
+
+5
+00:00:14,894 --> 00:00:17,932
+Now the headers, the
+column names, in row 1.
+
+6
+00:00:18,544 --> 00:00:24,404
+Supplier ID, supplier name, city,
+country code, currency, latitude,
+
+7
+00:00:24,444 --> 00:00:27,507
+longitude, contact email, and active.
+
+8
+00:00:28,688 --> 00:00:31,325
+Notice two things about
+how I'm writing them.
+
+9
+00:00:31,938 --> 00:00:34,426
+First, there's exactly one header row.
+
+10
+00:00:35,038 --> 00:00:39,498
+No title above it, no "BrightLeaf
+supplier list, updated by Sarah" in a
+
+11
+00:00:39,538 --> 00:00:44,451
+merged banner. Row 1 is headers,
+and data starts in row 2.
+
+12
+00:00:45,063 --> 00:00:47,613
+Agents and automation tools expect that.
+
+13
+00:00:48,794 --> 00:00:52,529
+Second, I'm using underscores
+instead of spaces, like "Supplier
+
+14
+00:00:52,569 --> 00:00:57,479
+underscore ID". Spaces in headers
+work in Sheets, but they cause small
+
+15
+00:00:57,519 --> 00:00:59,869
+annoyances in automation tools later.
+
+16
+00:01:00,482 --> 00:01:02,144
+Underscores never do.
+
+17
+00:01:02,756 --> 00:01:05,631
+It's a two-second habit
+that saves real headaches.
+
+18
+00:01:06,812 --> 00:01:10,824
+I'll make the headers bold,
+then View, Freeze, one row.
+
+19
+00:01:11,437 --> 00:01:14,699
+Now when the list gets long,
+the headers stay on screen.
+
+20
+00:01:15,878 --> 00:01:21,653
+Now the data. Supplier
+ID first, SUP dash 001.
+
+21
+00:01:22,265 --> 00:01:24,603
+Apex Fasteners, Columbus.
+
+22
+00:01:25,215 --> 00:01:30,090
+SUP-002, PackRight Industries, Chicago.
+
+23
+00:01:30,703 --> 00:01:35,053
+All the way to SUP-006,
+Shenzhen BrightTech.
+
+24
+00:01:36,224 --> 00:01:37,824
+See the ID pattern?
+
+25
+00:01:38,437 --> 00:01:41,621
+Three letters that tell you what
+kind of thing it is, a dash,
+
+26
+00:01:41,661 --> 00:01:43,624
+and a number with leading zeros.
+
+27
+00:01:44,236 --> 00:01:48,274
+SUP for suppliers, and in a
+minute LOG for stock log entries.
+
+28
+00:01:48,887 --> 00:01:54,334
+When you see "SUP-004" in an email,
+you instantly know it's a supplier,
+
+29
+00:01:54,374 --> 00:01:55,399
+not a product.
+
+30
+00:01:56,570 --> 00:01:59,383
+Now look at the latitude
+and longitude columns.
+
+31
+00:01:59,995 --> 00:02:01,683
+Recognise those numbers?
+
+32
+00:02:02,295 --> 00:02:08,693
+22.54 and 114.06. That's
+Shenzhen, the exact
+
+33
+00:02:08,732 --> 00:02:11,733
+numbers we sent to the
+weather API in the last video.
+
+34
+00:02:12,345 --> 00:02:14,170
+This is where it all connects.
+
+35
+00:02:14,783 --> 00:02:18,718
+Later, Stocky will read this table,
+take each supplier's latitude and
+
+36
+00:02:18,758 --> 00:02:21,483
+longitude, and build
+its own weather request.
+
+37
+00:02:22,095 --> 00:02:25,408
+Same with the currency column:
+it feeds the currency API.
+
+38
+00:02:26,020 --> 00:02:28,783
+Your database becomes
+the agent's to-do list.
+
+39
+00:02:34,948 --> 00:02:36,823
+Because they're different companies.
+
+40
+00:02:37,436 --> 00:02:41,496
+Same city, same weather, but different
+contracts, different products,
+
+41
+00:02:41,536 --> 00:02:43,036
+different people to call.
+
+42
+00:02:43,648 --> 00:02:46,848
+The ID identifies the
+supplier, not the city.
+
+43
+00:02:48,022 --> 00:02:50,797
+Here's a trick that prevents
+mess before it happens.
+
+44
+00:02:51,410 --> 00:02:55,470
+I select the country code column,
+then Data, Data validation,
+
+45
+00:02:55,510 --> 00:03:00,807
+Add rule. For criteria, I choose
+"Dropdown", and I type the allowed
+
+46
+00:03:00,847 --> 00:03:04,772
+values: US, MX, CN, AE.
+
+47
+00:03:05,385 --> 00:03:06,072
+Done.
+
+48
+00:03:07,240 --> 00:03:11,975
+Now nobody can type "Mexico" in one
+row, "MEX" in another and "mx" in a
+
+49
+00:03:12,015 --> 00:03:14,740
+third. They pick from the list.
+
+50
+00:03:15,353 --> 00:03:18,265
+A dropdown is a tiny
+guard dog for your data.
+
+51
+00:03:18,878 --> 00:03:24,740
+I'll do the same for the currency
+column: USD, MXN, CNY, AED.
+
+52
+00:03:25,906 --> 00:03:28,844
+Last one. The "Active" column.
+
+53
+00:03:29,456 --> 00:03:32,344
+I select it and click Insert, Checkbox.
+
+54
+00:03:32,956 --> 00:03:34,806
+TRUE becomes a ticked box.
+
+55
+00:03:35,419 --> 00:03:39,056
+If BrightLeaf stops buying from
+a supplier, Sarah unticks it.
+
+56
+00:03:39,669 --> 00:03:42,991
+We don't delete the row, because old
+purchase orders still point to that
+
+57
+00:03:43,031 --> 00:03:47,519
+ID. We just mark it inactive,
+and Stocky will skip it.

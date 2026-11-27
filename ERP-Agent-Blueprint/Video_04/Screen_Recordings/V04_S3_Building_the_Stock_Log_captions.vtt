@@ -1,0 +1,222 @@
+WEBVTT
+
+00:00:01.100 --> 00:00:03.175
+Second table: the Stock Log.
+
+00:00:03.788 --> 00:00:07.100
+This is where Stocky will write
+down every stock check it does.
+
+00:00:07.713 --> 00:00:11.185
+I click the plus sign at the bottom,
+rename the tab "Stock underscore
+
+00:00:11.225 --> 00:00:16.998
+Log", and add the headers: log ID,
+log date, SKU, quantity on hand,
+
+00:00:17.038 --> 00:00:22.662
+unit, reorder point, status,
+supplier ID, logged by, and note.
+
+00:00:23.275 --> 00:00:24.613
+Bold and freeze.
+
+00:00:25.790 --> 00:00:28.340
+A log is like a ship's logbook or a diary.
+
+00:00:28.952 --> 00:00:31.027
+You never rub out yesterday's entry.
+
+00:00:31.640 --> 00:00:33.615
+Every check gets a brand-new row.
+
+00:00:34.228 --> 00:00:38.363
+That way, three months from now,
+Sarah can ask, "How fast were we
+
+00:00:38.402 --> 00:00:40.738
+burning through safety gloves in October?"
+
+00:00:40.777 --> 00:00:42.853
+and the answer is sitting right there.
+
+00:00:44.024 --> 00:00:45.699
+Let me add three entries.
+
+00:00:46.311 --> 00:00:53.011
+LOG-0001, today's date,
+BL-1005, the pallet jack wheels.
+
+00:00:53.624 --> 00:00:57.336
+Quantity: 18. Unit: set.
+
+00:00:57.949 --> 00:01:04.236
+Reorder point: 25. Supplier: SUP-004.
+
+00:01:04.849 --> 00:01:09.359
+Logged by Sarah. And in the note
+column: "3 pallet jacks waiting for
+
+00:01:09.399 --> 00:01:10.337
+wheels."
+
+00:01:11.498 --> 00:01:14.073
+Now pay close attention
+to the quantity cell.
+
+00:01:14.685 --> 00:01:17.761
+I typed "18". Just the number.
+
+00:01:18.373 --> 00:01:22.448
+Not "18 sets". Not "18 urgent!".
+
+00:01:23.060 --> 00:01:24.861
+The unit has its own column.
+
+00:01:25.473 --> 00:01:27.185
+The comment has its own column.
+
+00:01:27.798 --> 00:01:31.823
+This is the most important rule in
+this whole video: one fact per cell.
+
+00:01:32.996 --> 00:01:36.171
+Why? Because "18" is a number.
+
+00:01:36.783 --> 00:01:40.808
+You can add it, compare it,
+and ask "is it below 25?".
+
+00:01:41.421 --> 00:01:43.256
+But "18 sets urgent!"
+
+00:01:43.296 --> 00:01:47.868
+is just text. A formula can't do
+maths with it, and an agent has to
+
+00:01:47.908 --> 00:01:49.121
+guess what you meant.
+
+00:01:50.294 --> 00:01:52.219
+That brings us to data types.
+
+00:01:52.831 --> 00:01:55.119
+Every column holds one type of thing.
+
+00:01:55.731 --> 00:01:57.431
+Quantity holds numbers.
+
+00:01:58.044 --> 00:02:02.144
+Names hold text. Active
+holds true or false.
+
+00:02:02.756 --> 00:02:06.319
+And dates hold real dates, not
+text that looks like a date.
+
+00:02:07.496 --> 00:02:12.206
+I select the date column, then
+Format, Number, Custom date and time,
+
+00:02:12.246 --> 00:02:13.709
+and pick year-month-day.
+
+00:02:14.321 --> 00:02:20.094
+Why? Because "03/04" 04 means
+the 3rd of April in Mexico, where
+
+00:02:20.134 --> 00:02:23.471
+SafeHands is, and March
+the 4th here in the US.
+
+00:02:24.084 --> 00:02:29.856
+2026-11-16 can't be misread by
+anyone, human or machine, and it sorts
+
+00:02:29.896 --> 00:02:30.734
+correctly.
+
+00:02:31.898 --> 00:02:34.236
+Now let's make the table do some work.
+
+00:02:34.848 --> 00:02:39.908
+In the status column I type: equals
+IF, open bracket, D2 less than or
+
+00:02:39.948 --> 00:02:45.196
+equal to F2, comma, "REORDER" in
+quotes, comma, "OK" in quotes,
+
+00:02:45.236 --> 00:02:49.546
+close bracket. In English: if
+quantity on hand is at or below the
+
+00:02:49.586 --> 00:02:53.273
+reorder point, say
+REORDER, otherwise say OK.
+
+00:02:54.452 --> 00:03:00.190
+I drag it down. Pallet jack
+wheels, 18 against 25: REORDER.
+
+00:03:00.802 --> 00:03:06.865
+Corrugated boxes, 1,180
+against 1,500: REORDER.
+
+00:03:07.477 --> 00:03:11.552
+Hex bolts, 145 against 80: OK.
+
+00:03:12.734 --> 00:03:16.357
+That formula only works because
+quantity and reorder point are clean
+
+00:03:16.397 --> 00:03:20.834
+numbers. If D2 said "18
+sets", this would break.
+
+00:03:21.447 --> 00:03:24.359
+Clean data is what makes
+the smart stuff possible.
+
+00:03:25.520 --> 00:03:28.833
+One last bit of magic, for
+my fellow Excel lovers.
+
+00:03:29.445 --> 00:03:33.020
+The stock log only stores the
+supplier ID, not the name.
+
+00:03:33.633 --> 00:03:36.270
+But I can look up the name
+from the Suppliers table.
+
+00:03:36.883 --> 00:03:42.205
+In K2: equals XLOOKUP, H2, then
+the Suppliers ID column, then the
+
+00:03:42.245 --> 00:03:43.795
+Suppliers name column.
+
+00:03:44.408 --> 00:03:47.070
+Drag down. There they are.
+
+00:03:48.242 --> 00:03:50.642
+This is what makes it a real database.
+
+00:03:51.255 --> 00:03:53.267
+The name lives in one place only.
+
+00:03:53.880 --> 00:03:58.015
+If PackRight renames itself tomorrow,
+Sarah changes it once, and every
+
+00:03:58.055 --> 00:04:00.117
+stock log row updates instantly.
+
+00:04:00.730 --> 00:04:04.855
+In database language, this ID
+connection is called a relationship.
+
+00:04:05.467 --> 00:04:06.780
+You've just built one.

@@ -1,0 +1,1 @@
+Here's a trick that prevents mess before it happens. I select the country code column, then Data, Data validation, Add rule. For criteria, I choose "Dropdown", and I type the allowed values: US, MX, CN, AE. Done.

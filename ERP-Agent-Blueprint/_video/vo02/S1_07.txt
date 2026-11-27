@@ -1,0 +1,1 @@
+Odoo is now building your database. This takes about a minute.

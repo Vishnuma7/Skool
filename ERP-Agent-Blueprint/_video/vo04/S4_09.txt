@@ -1,0 +1,1 @@
+Fix seven: the red cells meant "urgent", so I write that in the remarks and reset the colour. And the TOTAL row goes. Totals belong in reports, not data tables, or the agent counts them as a product.

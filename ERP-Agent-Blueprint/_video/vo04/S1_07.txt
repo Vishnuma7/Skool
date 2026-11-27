@@ -1,0 +1,1 @@
+A column is one field, one type of information that every record has. Product name. Cost. Lead time.

@@ -1,0 +1,1 @@
+This is the home screen, and every icon here is what ERP people call a module. A module is just one department's drawer in the filing cabinet. Same cabinet, same data underneath, different drawers.

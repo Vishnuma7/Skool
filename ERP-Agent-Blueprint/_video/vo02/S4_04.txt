@@ -1,0 +1,1 @@
+Back in Odoo, on the Products list. Click the little menu icon, the three dots next to the word Products, and choose "Import".

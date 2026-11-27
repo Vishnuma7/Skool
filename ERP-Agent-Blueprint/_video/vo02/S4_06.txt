@@ -1,0 +1,1 @@
+And this is the screen I want you to understand. On the left, your Excel columns. On the right, the Odoo field each one will go into. Odoo has matched them all automatically, because our headers match the field names.

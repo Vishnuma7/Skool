@@ -1,0 +1,160 @@
+WEBVTT
+
+00:00:01.100 --> 00:00:04.963
+Let's start somewhere familiar,
+your BrightLeaf Odoo from Video 2.
+
+00:00:05.575 --> 00:00:09.098
+I'm in Inventory, Products, and I'm
+switching from the picture cards to
+
+00:00:09.138 --> 00:00:12.675
+the list view, the icon with the
+little lines on the top right.
+
+00:00:13.838 --> 00:00:16.976
+Look at this. Rows and columns.
+
+00:00:17.588 --> 00:00:19.426
+Each row is one product.
+
+00:00:20.038 --> 00:00:23.161
+Each column is one piece of
+information about that product: the
+
+00:00:23.200 --> 00:00:28.263
+reference, the name, the sales price,
+the cost, the quantity on hand.
+
+00:00:29.432 --> 00:00:33.957
+Guess what? Underneath, Odoo
+stores this in a database.
+
+00:00:34.570 --> 00:00:38.717
+And a database, at the level we need,
+is simply a super-organised Excel
+
+00:00:38.757 --> 00:00:39.595
+workbook.
+
+00:00:40.778 --> 00:00:43.178
+Four words, and you know
+all of them already.
+
+00:00:44.348 --> 00:00:46.848
+A table is like one sheet in a workbook.
+
+00:00:47.460 --> 00:00:51.283
+Odoo has a table for products, a
+table for suppliers, a table for
+
+00:00:51.323 --> 00:00:52.548
+purchase orders.
+
+00:00:53.726 --> 00:00:56.301
+A row is one record, one thing.
+
+00:00:56.914 --> 00:00:59.776
+One product. One supplier.
+
+00:01:00.389 --> 00:01:01.676
+One stock count.
+
+00:01:02.840 --> 00:01:07.090
+A column is one field, one type of
+information that every record has.
+
+00:01:07.703 --> 00:01:10.240
+Product name. Cost.
+
+00:01:10.852 --> 00:01:11.953
+Lead time.
+
+00:01:13.130 --> 00:01:16.290
+And the database is the whole
+workbook holding all of those tables
+
+00:01:16.330 --> 00:01:17.043
+together.
+
+00:01:18.212 --> 00:01:20.837
+Now here's something
+most people never notice.
+
+00:01:21.450 --> 00:01:23.524
+I'll open the pallet jack wheels.
+
+00:01:24.137 --> 00:01:26.237
+Look at the very end of the web address.
+
+00:01:26.849 --> 00:01:30.997
+There's a number. That number is
+Odoo's own internal ID for this
+
+00:01:31.037 --> 00:01:33.912
+product. It never changes.
+
+00:01:34.524 --> 00:01:38.422
+You can rename the product, change
+the price, change the supplier,
+
+00:01:38.462 --> 00:01:40.200
+and that number stays the same.
+
+00:01:40.812 --> 00:01:44.434
+Hold on to that idea, because unique
+IDs are going to save us in a few
+
+00:01:44.474 --> 00:01:45.212
+minutes.
+
+00:01:46.382 --> 00:01:49.667
+So why are we using Google Sheets
+as Stocky's database instead of
+
+00:01:49.707 --> 00:01:52.845
+something fancy? Three reasons.
+
+00:01:54.008 --> 00:01:57.083
+One, it's free and you
+already know how to use it.
+
+00:01:57.696 --> 00:02:02.355
+Two, it lives online, so our
+automation tool, n8n, can reach it from
+
+00:02:02.396 --> 00:02:06.243
+anywhere, whereas an Excel file
+sitting on your laptop is locked inside
+
+00:02:06.283 --> 00:02:10.768
+your laptop. And three, you can
+open it and see exactly what Stocky
+
+00:02:10.808 --> 00:02:14.258
+wrote. Nothing is hidden in a black box.
+
+00:02:15.434 --> 00:02:18.257
+There's an app called Airtable that
+does the same job with a few more
+
+00:02:18.297 --> 00:02:20.734
+features, and it's a fine alternative.
+
+00:02:21.347 --> 00:02:24.109
+But for learning, Google
+Sheets is perfect.
+
+00:02:25.292 --> 00:02:29.052
+My shortcut: I just typed "sheets
+dot new" in the address bar,
+
+00:02:29.092 --> 00:02:31.067
+and a blank sheet opened instantly.
+
+00:02:31.680 --> 00:02:35.065
+I'll click the title "Untitled
+spreadsheet" and rename it "BrightLeaf
+
+00:02:35.105 --> 00:02:36.430
+Stocky Database".

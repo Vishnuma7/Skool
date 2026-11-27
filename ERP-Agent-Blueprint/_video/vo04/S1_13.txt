@@ -1,0 +1,1 @@
+My shortcut: I just typed "sheets dot new" in the address bar, and a blank sheet opened instantly. I'll click the title "Untitled spreadsheet" and rename it "BrightLeaf Stocky Database".

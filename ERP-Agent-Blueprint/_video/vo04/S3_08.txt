@@ -1,0 +1,1 @@
+Now let's make the table do some work. In the status column I type: equals IF, open bracket, D2 less than or equal to F2, comma, "REORDER" in quotes, comma, "OK" in quotes, close bracket. In English: if quantity on hand is at or below the reorder point, say REORDER, otherwise say OK.

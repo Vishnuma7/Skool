@@ -5,10 +5,10 @@ import {C, FPS, INTER} from '../theme';
 import {pop} from '../lib/anim';
 
 type W = {w: string; t: number; e: number};
-const WORDS: W[] = (capwords as [string, number, number][]).map(([w, t, e]) => ({w: w.replace(/["“”]/g, ''), t, e}));
 const MAX = 22;
-/** Chunks of ≤ MAX chars, never across sentence ends or long pauses (computed once). */
-const CHUNKS: W[][] = (() => {
+/** Chunks of ≤ MAX chars, never across sentence ends or long pauses. */
+const chunk = (raw: [string, number, number][]): W[][] => {
+  const WORDS: W[] = raw.map(([w, t, e]) => ({w: w.replace(/["“”]/g, ''), t, e}));
   const out: W[][] = [];
   let cur: W[] = [];
   for (const w of WORDS) {
@@ -19,12 +19,16 @@ const CHUNKS: W[][] = (() => {
   }
   if (cur.length) out.push(cur);
   return out;
-})();
-const STARTS = CHUNKS.map((c) => c[0].t);
+};
+const DEFAULT = chunk(capwords as [string, number, number][]);
+const cache = new WeakMap<object, W[][]>();
 
 /** Style B (approved): bold word-pop, smaller, in the bottom caption band only. `offset` = global seconds at frame 0. */
-export const BurnedCaptions: React.FC<{offset?: number}> = ({offset = 0}) => {
+export const BurnedCaptions: React.FC<{offset?: number; words?: [string, number, number][]}> = ({offset = 0, words}) => {
   const f = useCurrentFrame();
+  let CHUNKS = DEFAULT;
+  if (words) { CHUNKS = cache.get(words) ?? chunk(words); cache.set(words, CHUNKS); }
+  const STARTS = CHUNKS.map((c) => c[0].t);
   const g = offset + f / FPS;
   // binary search for the active chunk
   let lo = 0, hi = STARTS.length - 1, i = -1;

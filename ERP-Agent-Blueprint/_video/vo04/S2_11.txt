@@ -1,0 +1,1 @@
+Now nobody can type "Mexico" in one row, "MEX" in another and "mx" in a third. They pick from the list. A dropdown is a tiny guard dog for your data. I'll do the same for the currency column: USD, MXN, CNY, AED.

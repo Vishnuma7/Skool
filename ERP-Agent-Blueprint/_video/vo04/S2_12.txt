@@ -1,0 +1,1 @@
+Last one. The "Active" column. I select it and click Insert, Checkbox. TRUE becomes a ticked box. If BrightLeaf stops buying from a supplier, Sarah unticks it. We don't delete the row, because old purchase orders still point to that ID. We just mark it inactive, and Stocky will skip it.

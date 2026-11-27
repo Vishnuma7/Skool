@@ -1,0 +1,1 @@
+If your Odoo shows a list with "Storable Product" instead, choose "Storable Product". It means the same thing.

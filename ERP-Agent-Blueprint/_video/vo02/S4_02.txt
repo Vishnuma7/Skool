@@ -1,0 +1,1 @@
+Here's the import file from your resources. One row per product, one column per field. Look at the column headers: Internal Reference, Name, Product Type, Track Inventory, Sales Price, Cost. They are spelled exactly like the field labels we just saw on the form. That's on purpose. When the headers match, Odoo matches the columns for you.

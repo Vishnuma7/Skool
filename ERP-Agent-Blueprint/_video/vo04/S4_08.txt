@@ -1,0 +1,1 @@
+Fix six: the blank ID. The safety gloves have no SKU. The product list says BL-1004. A row without an ID is a parcel without a label.

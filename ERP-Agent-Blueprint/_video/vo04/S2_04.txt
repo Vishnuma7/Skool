@@ -1,0 +1,1 @@
+Second, I'm using underscores instead of spaces, like "Supplier underscore ID". Spaces in headers work in Sheets, but they cause small annoyances in automation tools later. Underscores never do. It's a two-second habit that saves real headaches.

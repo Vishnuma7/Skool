@@ -1,0 +1,1 @@
+See the ID pattern? Three letters that tell you what kind of thing it is, a dash, and a number with leading zeros. SUP for suppliers, and in a minute LOG for stock log entries. When you see "SUP-004" in an email, you instantly know it's a supplier, not a product.

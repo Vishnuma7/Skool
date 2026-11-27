@@ -1,0 +1,1 @@
+I select the date column, then Format, Number, Custom date and time, and pick year-month-day. Why? Because "03/04" means the 3rd of April in Mexico, where SafeHands is, and March the 4th here in the US. 2026-11-16 can't be misread by anyone, human or machine, and it sorts correctly.

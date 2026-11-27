@@ -1,0 +1,1 @@
+Guess what? Underneath, Odoo stores this in a database. And a database, at the level we need, is simply a super-organised Excel workbook.

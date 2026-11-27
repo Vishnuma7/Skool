@@ -1,0 +1,1 @@
+There's an app called Airtable that does the same job with a few more features, and it's a fine alternative. But for learning, Google Sheets is perfect.

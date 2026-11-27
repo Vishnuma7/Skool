@@ -1,0 +1,1 @@
+And we're in. Before we do anything else, look at the address bar. This web address is your Odoo's home. Mine is brightleaf-supplies dot odoo dot com. Yours will be a bit different. And the first part, before dot odoo dot com, is your database name.

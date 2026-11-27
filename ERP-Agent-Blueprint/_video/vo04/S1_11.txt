@@ -1,0 +1,1 @@
+One, it's free and you already know how to use it. Two, it lives online, so our automation tool, n8n, can reach it from anywhere, whereas an Excel file sitting on your laptop is locked inside your laptop. And three, you can open it and see exactly what Stocky wrote. Nothing is hidden in a black box.

@@ -1,0 +1,1 @@
+Odoo also sends you an email to confirm your account and set a password. Do that now, so you can log back in tomorrow.

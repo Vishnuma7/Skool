@@ -4,13 +4,21 @@ Usage: python -I vo/build_vo.py [--only S1_04]"""
 import asyncio, json, re, sys, pathlib, subprocess
 import edge_tts
 
-ROOT = pathlib.Path(__file__).resolve().parent
-SRC = ROOT.parents[1] / "Video_01/source/V01_Screen_Recording_Prompts.md"
-FFPROBE = str(ROOT.parent / "bin/ffprobe")
+VID = next((a.split("=")[1] for a in sys.argv if a.startswith("--video=")), "01")
+ROOT = pathlib.Path(__file__).resolve().parent if VID == "01" else pathlib.Path(__file__).resolve().parents[1] / f"vo{VID}"
+ROOT.mkdir(exist_ok=True)
+SRC = pathlib.Path(__file__).resolve().parents[2] / f"Video_{VID}/source/V{VID}_Screen_Recording_Prompts.md"
+FFPROBE = str(pathlib.Path(__file__).resolve().parents[1] / "bin/ffprobe")
 VOICE, RATE = "en-GB-RyanNeural", "+0%"
 
 # Corrections (see production notes): make the China-holiday claim true.
-FIXES = [(
+FIXES = [
+    ('Delivery to a customer in Dubai.', 'Delivery to a customer in Toronto.'),
+    ('make sure both "Can be Sold" and "Can be Purchased" are ticked.', 'make sure both "Sales" and "Purchase" are ticked.'),
+    ('Then Internal Reference: BL dash one zero zero one.', 'Then the Reference field, your internal reference: BL dash one zero zero one.'),
+    ('Click the little gear icon next to the word Products, and choose "Import records".', 'Click the little menu icon, the three dots next to the word Products, and choose "Import".'),
+    ('Location: WH slash Stock, that\'s the main warehouse shelf.', 'Odoo puts it on WH slash Stock, that\'s the main warehouse shelf.'),
+    (
     'it checked the weather there and saw heavy rain coming, it checked the calendar and saw a public holiday in China next week,',
     'it checked the weather there and saw heavy storms hit Shenzhen over the weekend, it checked the calendar and saw Thanksgiving next week, when freight bookings slow right down,'),
     # A lone "You." between sentences sounded like a glitch in review (4:33) -> removed.
@@ -40,7 +48,7 @@ async def synth(key, text):
     return {"text": text, "duration": round(dur, 3), "words": words}
 
 async def main():
-    only = sys.argv[2] if len(sys.argv) > 2 and sys.argv[1] == "--only" else None
+    only = sys.argv[sys.argv.index("--only") + 1] if "--only" in sys.argv else None
     tj = ROOT / "timings.json"
     data = json.loads(tj.read_text()) if tj.exists() else {}
     for k, t in paragraphs().items():
@@ -49,7 +57,9 @@ async def main():
         print(k, data[k]["duration"])
     tj.write_text(json.dumps(data, indent=1))
     fish = "\n\n".join(f"[{k}]\n{v['text']}" for k, v in sorted(data.items()))
-    (ROOT.parents[1] / "Video_01/Edit").mkdir(exist_ok=True)
-    (ROOT.parents[1] / "Video_01/Edit/VO_for_FishAudio.txt").write_text(
-        "Generate ONE audio file per block, named exactly as the [label] (e.g. S1_01.wav). Put them in _video/vo/fish/.\n\n" + fish)
+    edit = pathlib.Path(__file__).resolve().parents[2] / f"Video_{VID}/Edit"
+    edit.mkdir(exist_ok=True)
+    fishdir = "_video/vo/fish/" if VID == "01" else f"_video/vo{VID}/fish/"
+    (edit / "VO_for_FishAudio.txt").write_text(
+        f"Generate ONE audio file per block, named exactly as the [label] (e.g. S1_01.wav). Put them in {fishdir}.\n\n" + fish)
 asyncio.run(main())

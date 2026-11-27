@@ -1,0 +1,1 @@
+A row is one record, one thing. One product. One supplier. One stock count.

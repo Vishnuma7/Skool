@@ -1,0 +1,1 @@
+Then the Reference field, your internal reference: BL dash one zero zero one. This is your SKU, your product code. Please never skip this field. Product names change, people type them differently, someone writes "M10 bolts" and someone else writes "Hex Bolt M10". But BL-1001 is always BL-1001. When Stocky talks about products, it will use this code, so nothing gets mixed up.

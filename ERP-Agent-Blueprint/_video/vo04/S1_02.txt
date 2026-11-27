@@ -1,0 +1,1 @@
+Look at this. Rows and columns. Each row is one product. Each column is one piece of information about that product: the reference, the name, the sales price, the cost, the quantity on hand.

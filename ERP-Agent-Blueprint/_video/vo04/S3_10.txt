@@ -1,0 +1,1 @@
+That formula only works because quantity and reorder point are clean numbers. If D2 said "18 sets", this would break. Clean data is what makes the smart stuff possible.

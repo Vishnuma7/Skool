@@ -1,0 +1,1 @@
+One last bit of magic, for my fellow Excel lovers. The stock log only stores the supplier ID, not the name. But I can look up the name from the Suppliers table. In K2: equals XLOOKUP, H2, then the Suppliers ID column, then the Suppliers name column. Drag down. There they are.

@@ -1,0 +1,1 @@
+Notice two things about how I'm writing them. First, there's exactly one header row. No title above it, no "BrightLeaf supplier list, updated by Sarah" in a merged banner. Row 1 is headers, and data starts in row 2. Agents and automation tools expect that.

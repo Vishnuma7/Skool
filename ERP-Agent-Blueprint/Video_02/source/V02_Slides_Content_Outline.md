@@ -82,7 +82,7 @@
 
 ### Slide 13: Importing Nine Products in Four Seconds
 - Headers match Odoo field labels > automatic mapping
-- Gear icon > Import records > Upload File > **Test** > Import
+- ⋮ menu next to Products > Import > Upload File > **Test** > Import
 - BL-1001 isn't in the file: no duplicates
 - **Suggested visual:** Screenshot of the Odoo import mapping screen (File Column > Odoo Field) with the green "Everything seems valid" banner.
 

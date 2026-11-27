@@ -1,14 +1,15 @@
 """Align whisper word timings onto the exact script text of each VO paragraph (difflib), so cues/captions use the
 script's words ('Stocky', 'Claude or ChatGPT', 'twenty-one') with the real voice timing."""
-import json, re, difflib, pathlib
+import os, json, re, difflib, pathlib
 ROOT = pathlib.Path(__file__).resolve().parent
+VO = os.environ.get('VO_DIR', 'vo')
 NUM = {'one': '1', 'two': '2', 'three': '3', 'four': '4', 'five': '5', 'six': '6', 'seven': '7', 'eight': '8', 'nine': '9', 'ten': '10',
        'ninety': '90', 'twentyone': '21', 'sixfiftyfive': '655', 'stokke': 'stocky', 'stoky': 'stocky', 'cloud': 'claude', 'arp': 'erp'}
 def norm(w):
     w = re.sub(r'[^a-z0-9]', '', w.lower())
     w = NUM.get(w, w)
     return w[:-1] if len(w) > 3 and w.endswith('s') else w
-data = json.loads((ROOT / 'vo/timings.json').read_text())
+data = json.loads((ROOT / VO / 'timings.json').read_text())
 for key, v in data.items():
     toks = v['text'].split()
     # whisper words, split on '/' and hyphen-joined numbers
@@ -33,4 +34,4 @@ for key, v in data.items():
     matched = len(known)
     v['words'] = [{'w': t, 't': round(times[i][0], 3), 'd': round(times[i][1], 3)} for i, t in enumerate(toks)]
     print(f'{key}: {matched}/{len(toks)} words matched')
-(ROOT / 'vo/timings.json').write_text(json.dumps(data, indent=1))
+(ROOT / VO / 'timings.json').write_text(json.dumps(data, indent=1))

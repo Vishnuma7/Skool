@@ -22,7 +22,7 @@ export const TABS: Record<string, Tab> = {
 /** Seconds → frame helpers bound to the section's current frame. */
 export const useT = () => useCurrentFrame() / FPS;
 
-export const BrowserFrame: React.FC<{tabs: string[]; active: string; children: React.ReactNode; enter?: number}> = ({tabs, active, children, enter = 0}) => {
+export const BrowserFrame: React.FC<{tabs: string[]; active: string; children: React.ReactNode; enter?: number; url?: React.ReactNode; titles?: Record<string, string>}> = ({tabs, active, children, enter = 0, url, titles}) => {
   const f = useCurrentFrame();
   const p = pop(f, enter * FPS, 20);
   const tab = TABS[active];
@@ -42,7 +42,7 @@ export const BrowserFrame: React.FC<{tabs: string[]; active: string; children: R
               {t.logo ? <Logo name={t.logo} w={18} /> : (
                 <div style={{width: 18, height: 18, borderRadius: 5, background: t.color, color: C.white, fontSize: 12, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>{t.letter}</div>
               )}
-              <span style={{overflow: 'hidden', textOverflow: 'ellipsis'}}>{t.title}</span>
+              <span style={{overflow: "hidden", textOverflow: "ellipsis"}}>{titles?.[id] ?? t.title}</span>
             </div>
           );
         })}
@@ -50,7 +50,7 @@ export const BrowserFrame: React.FC<{tabs: string[]; active: string; children: R
       <div style={{height: 46, display: 'flex', alignItems: 'center', gap: 14, padding: '0 18px', borderBottom: '1px solid #E5E7EB'}}>
         <div style={{display: 'flex', gap: 14, color: '#9CA3AF', fontSize: 20}}>‹ › ↻</div>
         <div style={{flex: 1, height: 30, borderRadius: 15, background: '#F1F5F9', display: 'flex', alignItems: 'center', padding: '0 16px', fontSize: 15, color: '#475569'}}>
-          🔒&nbsp;&nbsp;{tab.url}
+          🔒&nbsp;&nbsp;{url ?? tab.url}
         </div>
       </div>
       <div style={{position: 'relative', width: FRAME.w, height: PAGE_H, overflow: 'hidden'}}>
@@ -67,8 +67,8 @@ export const tabPoint = (tabs: string[], id: string) => {
 };
 
 /** A real capture (3840x2160 png) filling the page. */
-export const Shot: React.FC<{name: string; opacity?: number}> = ({name, opacity = 1}) => (
-  <Img src={staticFile(`cap/${name}.png`)} style={{position: 'absolute', left: 0, top: 0, width: 1920, height: 1080, opacity}} />
+export const Shot: React.FC<{name: string; opacity?: number; dir?: string}> = ({name, opacity = 1, dir = 'cap'}) => (
+  <Img src={staticFile(`${dir}/${name}.png`)} style={{position: 'absolute', left: 0, top: 0, width: 1920, height: 1080, opacity}} />
 );
 
 export type Rect = {x: number; y: number; w: number; h: number};
@@ -139,8 +139,8 @@ export const Overlay: React.FC<{children: React.ReactNode}> = ({children}) => (
 );
 
 /** Readable close-up of a region of a real capture (crops the 4K screenshot, so text stays sharp). Stage-positioned. */
-export const Magnify: React.FC<{name: string; r: Rect | null | undefined; a: number; b: number; left: number; top: number; width: number; pad?: number}> = ({
-  name, r, a, b, left, top, width, pad = 14,
+export const Magnify: React.FC<{name: string; r: Rect | null | undefined; a: number; b: number; left: number; top: number; width: number; pad?: number; dir?: string}> = ({
+  name, r, a, b, left, top, width, pad = 14, dir = 'cap',
 }) => {
   const f = useCurrentFrame();
   const t = f / FPS;
@@ -152,7 +152,7 @@ export const Magnify: React.FC<{name: string; r: Rect | null | undefined; a: num
   return (
     <div style={{position: 'absolute', left, top, width, height: rh * sc, borderRadius: 18, overflow: 'hidden', background: C.white,
       boxShadow: `0 0 0 6px ${C.hi}, 0 24px 60px rgba(2,6,23,0.45)`, opacity: Math.min(p, out), transform: `scale(${0.9 + 0.1 * p})`, transformOrigin: 'center'}}>
-      <Img src={staticFile(`cap/${name}.png`)} style={{position: 'absolute', width: 1920 * sc, height: 1080 * sc, left: -(r.x - pad) * sc, top: -(r.y - pad) * sc}} />
+      <Img src={staticFile(`${dir}/${name}.png`)} style={{position: 'absolute', width: 1920 * sc, height: 1080 * sc, left: -(r.x - pad) * sc, top: -(r.y - pad) * sc}} />
     </div>
   );
 };

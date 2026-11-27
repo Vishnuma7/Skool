@@ -34,7 +34,7 @@ Choose the best answer for each question. The answer key with explanations is at
 **5. In the Stocky demo, why did Stocky tell Sarah to order the pallet jack wheels (BL-1005) "today"?**
 - A. Because they are the most expensive product
 - B. Because Mr. Harrison asked for it
-- C. Because the supplier is in Shenzhen, heavy rain and a public holiday were coming, and the lead time is already 21 days
+- C. Because the supplier is in Shenzhen, storms had hit Shenzhen, US Thanksgiving was coming (slow freight bookings), and the lead time is already 21 days
 - D. Because the stock was at zero
 
 **6. What does "LLM" mean in this course, in plain terms?**
@@ -77,7 +77,7 @@ Choose the best answer for each question. The answer key with explanations is at
 
 **4. C.** The five parts are brain, instructions, tools, memory and a human supervisor. A printer is not one of them.
 
-**5. C.** Stocky combined several signals: an overseas supplier, a weather risk, a holiday and a long lead time. That's judgement a fixed IF-rule can't make.
+**5. C.** Stocky combined several signals: an overseas supplier, storms in Shenzhen, Thanksgiving slowing freight and a long lead time. That's judgement a fixed IF-rule can't make.
 
 **6. A.** LLM stands for large language model. In our analogy, it's the intern's brain. On its own it can only think and write; tools let it act.
 

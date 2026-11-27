@@ -1,0 +1,1 @@
+If you forget that tick, Odoo will happily let you buy and sell the product, but it will never count it. There will be no stock number. And when Stocky asks "how many bolts do we have?", the answer will be nothing at all.

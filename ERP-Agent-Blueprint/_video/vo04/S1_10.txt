@@ -1,0 +1,1 @@
+So why are we using Google Sheets as Stocky's database instead of something fancy? Three reasons.

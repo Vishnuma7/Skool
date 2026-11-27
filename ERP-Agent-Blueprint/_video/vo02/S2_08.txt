@@ -1,0 +1,1 @@
+And Contacts is the shared address book. Customers, suppliers, even your own company live here, all in one list. Notice there's no separate "supplier list" and "customer list". A company is just a contact. Whether it's a supplier or a customer depends on what you do with it.

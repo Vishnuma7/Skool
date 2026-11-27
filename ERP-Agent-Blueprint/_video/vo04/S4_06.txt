@@ -1,0 +1,1 @@
+Fix four: duplicates. Data, Data cleanup, Remove duplicates, data has a header row. The duplicate hex bolts disappear. The two corrugated box rows had different date formats, so I delete one by hand. Before this, a stock total would have counted 2,360 boxes instead of 1,180, which is above the reorder point of 1,500, so the reorder alert would never have fired.

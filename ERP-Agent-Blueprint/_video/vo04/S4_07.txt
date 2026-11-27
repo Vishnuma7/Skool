@@ -1,0 +1,1 @@
+Fix five: one fact per cell. I insert a Unit column and split every quantity. "145 boxes" becomes 145 and "box". "approx 1,850" becomes 1,850, with "estimate, recount" in the remarks. And our stretch wrap: "21 cartons, 12 rolls each, plus 8 loose" becomes 260 rolls, because the reorder point is in rolls. Not a stock-out. The eighteen-hundred-dollar cell, fixed in five seconds.

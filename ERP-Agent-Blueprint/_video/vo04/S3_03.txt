@@ -1,0 +1,1 @@
+Let me add three entries. LOG-0001, today's date, BL-1005, the pallet jack wheels. Quantity: 18. Unit: set. Reorder point: 25. Supplier: SUP-004. Logged by Sarah. And in the note column: "3 pallet jacks waiting for wheels."

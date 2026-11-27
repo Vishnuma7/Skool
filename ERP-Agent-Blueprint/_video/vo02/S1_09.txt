@@ -1,0 +1,1 @@
+Write both of these down right now. There's a box for them on the Setup Checklist sheet in your activity workbook. In video six, when we connect Stocky to Odoo, these are the first two things it asks for.

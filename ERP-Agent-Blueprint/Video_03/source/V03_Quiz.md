@@ -31,10 +31,10 @@ Choose the best answer for each question. The answer key with explanations is at
 - C. A labelled shopping list: a label on the left, a value on the right
 - D. A type of Excel chart
 
-**5. The Open-Meteo response contains `"time": ["2026-11-17","2026-11-18","2026-11-19"]` and `"precipitation_sum": [0.1, 0.4, 1.4]`. How much rain is forecast on 19 November?**
-- A. 0.1 mm
-- B. 0.4 mm
-- C. 1.4 mm
+**5. The Open-Meteo response contains `"time": ["2026-11-22","2026-11-23","2026-11-24"]` and `"precipitation_sum": [0, 0.1, 48.4]`. How much rain is forecast on 24 November?**
+- A. 0 mm
+- B. 0.1 mm
+- C. 48.4 mm
 - D. You can't tell from this response
 
 **6. True or False: Typing an API's web address into your browser and pressing Enter is a GET request, and it does not change anything in the system you asked.**
@@ -77,7 +77,7 @@ Choose the best answer for each question. The answer key with explanations is at
 
 **4. C. A labelled shopping list.** JSON is just labels and values, such as `"timezone": "Asia/Shanghai"`. Lists in square brackets line up like Excel columns.
 
-**5. C. 1.4 mm.** The lists line up like columns: the third date (19 November) goes with the third rain number (1.4 mm). That's light drizzle, nothing to worry about.
+**5. C. 48.4 mm.** The lists line up like columns: the third date (24 November) goes with the third rain number (48.4 mm). That's a seriously wet day, worth a call to Global Lift Parts.
 
 **6. A. True.** Pasting an address into the browser is "asking" (GET). Asking about the weather never changes the weather, and it never changes the API's data either.
 

@@ -50,8 +50,8 @@ const sideAmount = (t: number, gs: Graphic[]) =>
 export const SIDE_RECT = {x: 1196, y: 150, w: 640, h: 780};
 export const GRAPHIC_AREA = {x: 96, y: 110, w: 1020, h: 860};
 
-export const OnCamSegment: React.FC<{clip: number; from: number; to: number; keeps: [number, number][]; graphics: Graphic[]; punch?: number; hideAt?: number}> = ({
-  clip, from, to, keeps, graphics, punch = 1, hideAt,
+export const OnCamSegment: React.FC<{clip: number; from: number; to: number; keeps: [number, number][]; graphics: Graphic[]; punch?: number; hideAt?: number; srcDir?: string}> = ({
+  clip, from, to, keeps, graphics, punch = 1, hideAt, srcDir = 'oncam',
 }) => {
   const frame = useCurrentFrame();
   const t = segToClip(keeps, frame / FPS);
@@ -87,7 +87,7 @@ export const OnCamSegment: React.FC<{clip: number; from: number; to: number; kee
         {pieces.map((p, i) => (
           <Sequence key={i} from={p.f0} durationInFrames={Math.max(1, p.f1 - p.f0)} layout="none">
             <OffthreadVideo
-              src={staticFile(`oncam/${clip}.mp4`)}
+              src={staticFile(`${srcDir}/${clip}.mp4`)}
               startFrom={Math.round(p.a * FPS)}
               style={{
                 position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 18%',

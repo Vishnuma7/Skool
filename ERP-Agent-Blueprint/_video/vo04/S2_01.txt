@@ -1,0 +1,1 @@
+Let's build Stocky's first table. One table for one kind of thing. This table is about suppliers, and only suppliers. I double-click the tab at the bottom and rename it "Suppliers".

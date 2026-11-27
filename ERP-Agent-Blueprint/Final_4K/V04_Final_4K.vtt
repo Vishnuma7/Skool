@@ -1,0 +1,1379 @@
+WEBVTT
+
+00:00:00.300 --> 00:00:02.840
+Let me start with something
+that happened at BrightLeaf.
+
+00:00:03.101 --> 00:00:06.914
+Last month they ordered 200 rolls
+of stretch wrap they didn't actually
+
+00:00:06.954 --> 00:00:11.573
+need. That's about $1,840 worth
+of film sitting in the Columbus
+
+00:00:11.613 --> 00:00:15.320
+warehouse. And the strange thing
+is, the spreadsheet looked perfectly
+
+00:00:15.360 --> 00:00:19.901
+reasonable. The stock sheet showed
+21 rolls of stretch wrap, SKU
+
+00:00:19.941 --> 00:00:24.730
+BL-1003. The reorder point was 200,
+so the system flagged it as low and
+
+00:00:24.770 --> 00:00:26.197
+a purchase order went out.
+
+00:00:26.237 --> 00:00:27.507
+But there was a problem.
+
+00:00:27.633 --> 00:00:31.265
+The warehouse team had not counted
+individual rolls, they had counted
+
+00:00:31.305 --> 00:00:35.940
+cartons. Each carton had 12 rolls
+and there were 8 loose rolls as well.
+
+00:00:35.980 --> 00:00:41.302
+So the actual stock was not 21
+rolls, it was 21 cartons of 12 plus 8
+
+00:00:41.342 --> 00:00:44.242
+loose rolls. That's 260 rolls in total.
+
+00:00:44.282 --> 00:00:48.229
+They had plenty of stock, the number
+in the sheet was not exactly wrong.
+
+00:00:48.399 --> 00:00:49.649
+The unit was missing.
+
+00:00:49.867 --> 00:00:54.097
+Now, think about what happens when
+an AI agent reads data like this.
+
+00:00:54.167 --> 00:00:57.287
+It does not stop and ask
+someone what the number means.
+
+00:00:57.327 --> 00:01:00.827
+It might read that sheet every
+hour and raise a purchase order in
+
+00:01:00.867 --> 00:01:04.268
+seconds. So if the data is messy,
+the agent can make the wrong decision
+
+00:01:04.308 --> 00:01:06.338
+very confidently and very quickly.
+
+00:01:06.600 --> 00:01:10.638
+That's why we are spending a whole
+video on databases and data quality.
+
+00:01:10.678 --> 00:01:13.882
+And the good news is, this is
+not as technical as it sounds.
+
+00:01:13.922 --> 00:01:17.432
+If you have worked with Excel, you
+already understand most of the basic
+
+00:01:17.482 --> 00:01:20.739
+ideas. We will use Google Sheets
+to build two tables for Stocky:
+
+00:01:20.779 --> 00:01:23.289
+One for suppliers and
+one for the Stock Log.
+
+00:01:23.421 --> 00:01:27.514
+I'll also show you five simple
+rules that make data much easier and
+
+00:01:27.554 --> 00:01:29.251
+safer for an agent to work with.
+
+00:01:29.333 --> 00:01:33.053
+Then, we will take one of BrightLeaf's
+messy stock exports and clean it
+
+00:01:33.093 --> 00:01:37.808
+up together. It has merged cells,
+duplicate entries, mixed units,
+
+00:01:38.018 --> 00:01:40.468
+and even quantities
+like approximately 300.
+
+00:01:40.650 --> 00:01:43.200
+We will fix those issues step by step.
+
+00:01:43.381 --> 00:01:47.941
+No coding, no SQL, and nothing to
+install, just a kind of spreadsheet
+
+00:01:47.981 --> 00:01:50.631
+work many of you have
+probably dealt with before.
+
+00:01:50.802 --> 00:01:53.032
+Alright, let's open the filing cabinet.
+
+00:01:54.053 --> 00:01:58.513
+Let's start somewhere familiar,
+your BrightLeaf Odoo from Video 2.
+
+00:01:58.553 --> 00:02:02.533
+I'm in Inventory, Products, and I'm
+switching from the picture cards to
+
+00:02:02.573 --> 00:02:06.083
+the list view, the icon with the
+little lines on the top right.
+
+00:02:06.407 --> 00:02:08.787
+Look at this. Rows and columns.
+
+00:02:08.827 --> 00:02:10.547
+Each row is one product.
+
+00:02:10.587 --> 00:02:14.327
+Each column is one piece of
+information about that product: the
+
+00:02:14.367 --> 00:02:18.513
+reference, the name, the sales price,
+the cost, the quantity on hand.
+
+00:02:18.853 --> 00:02:22.453
+Guess what? Underneath, Odoo
+stores this in a database.
+
+00:02:22.493 --> 00:02:26.513
+And a database, at the level we need,
+is simply a super-organised Excel
+
+00:02:26.553 --> 00:02:30.117
+workbook. Four words, and
+you know all of them already.
+
+00:02:30.393 --> 00:02:33.093
+A table is like one sheet in a workbook.
+
+00:02:33.133 --> 00:02:36.933
+Odoo has a table for products, a
+table for suppliers, a table for
+
+00:02:36.973 --> 00:02:40.627
+purchase orders. A row
+is one record, one thing.
+
+00:02:40.667 --> 00:02:42.667
+One product. One supplier.
+
+00:02:42.707 --> 00:02:47.321
+One stock count. A column is one
+field, one type of information that
+
+00:02:47.361 --> 00:02:50.061
+every record has. Product name.
+
+00:02:50.101 --> 00:02:54.115
+Cost. Lead time. And the database
+is the whole workbook holding all of
+
+00:02:54.155 --> 00:02:55.305
+those tables together.
+
+00:02:55.541 --> 00:02:58.061
+Now here's something
+most people never notice.
+
+00:02:58.101 --> 00:02:59.961
+I'll open the pallet jack wheels.
+
+00:03:00.001 --> 00:03:01.921
+Look at the very end of the web address.
+
+00:03:01.961 --> 00:03:06.121
+There's a number. That number is
+Odoo's own internal ID for this
+
+00:03:06.161 --> 00:03:08.481
+product. It never changes.
+
+00:03:08.521 --> 00:03:12.281
+You can rename the product, change
+the price, change the supplier,
+
+00:03:12.321 --> 00:03:14.341
+and that number stays the same.
+
+00:03:14.381 --> 00:03:18.241
+Hold on to that idea, because unique
+IDs are going to save us in a few
+
+00:03:18.281 --> 00:03:22.363
+minutes. So why are we using Google
+Sheets as Stocky's database instead
+
+00:03:22.403 --> 00:03:23.263
+of something fancy?
+
+00:03:23.303 --> 00:03:28.157
+Three reasons. One, it's free and
+you already know how to use it.
+
+00:03:28.197 --> 00:03:33.477
+Two, it lives online, so our
+automation tool, n8n, can reach it from
+
+00:03:33.517 --> 00:03:37.317
+anywhere, whereas an Excel file
+sitting on your laptop is locked inside
+
+00:03:37.357 --> 00:03:41.837
+your laptop. And three, you can
+open it and see exactly what Stocky
+
+00:03:41.877 --> 00:03:44.407
+wrote. Nothing is hidden in a black box.
+
+00:03:44.699 --> 00:03:48.439
+There's an app called Airtable that
+does the same job with a few more
+
+00:03:48.479 --> 00:03:50.779
+features, and it's a fine alternative.
+
+00:03:50.819 --> 00:03:53.289
+But for learning, Google
+Sheets is perfect.
+
+00:03:53.681 --> 00:03:57.241
+My shortcut: I just typed "sheets
+dot new" in the address bar,
+
+00:03:57.281 --> 00:03:59.521
+and a blank sheet opened instantly.
+
+00:03:59.561 --> 00:04:03.641
+I'll click the title "Untitled
+spreadsheet" and rename it "BrightLeaf
+
+00:04:03.681 --> 00:04:04.831
+Stocky Database".
+
+00:04:05.700 --> 00:04:09.100
+Before we start building our tables,
+there's one important thing I want
+
+00:04:09.140 --> 00:04:11.982
+to explain. Why do we need unique IDs?
+
+00:04:12.022 --> 00:04:14.082
+Let me give an example from BrightLeaf.
+
+00:04:14.277 --> 00:04:17.107
+Mr. Harrison once asked
+Sarah a simple question.
+
+00:04:17.569 --> 00:04:20.371
+How much are we spending
+with PackRight Industries?
+
+00:04:21.021 --> 00:04:24.162
+I want to see if we can
+negotiate a volume discount.
+
+00:04:26.133 --> 00:04:30.253
+Sarah went into the purchase history,
+exported the data to excel and
+
+00:04:30.293 --> 00:04:31.979
+searched for PackRight Industries.
+
+00:04:32.019 --> 00:04:36.359
+The results showed that they accounted
+for about 18% of Brightleaf's
+
+00:04:36.399 --> 00:04:39.844
+packaging spend. That did not look
+like enough to negotiate a meaningful
+
+00:04:39.884 --> 00:04:42.430
+discount. So Mr. Harrison
+dropped the idea.
+
+00:04:42.647 --> 00:04:45.553
+But six months later,
+Sarah discovered something.
+
+00:04:45.593 --> 00:04:48.643
+PackRight was actually listed
+three different ways in the system.
+
+00:04:48.767 --> 00:04:51.962
+There was PackRight
+Industries, Pack Right Ind.
+
+00:04:52.002 --> 00:04:55.899
+with the space and PACKRIGHT
+(Chicago) in capital letters.
+
+00:04:55.939 --> 00:04:59.327
+They were all the same suppliers,
+but because the names were different,
+
+00:04:59.367 --> 00:05:02.317
+the spreadsheet treated them
+as three separate companies.
+
+00:05:02.407 --> 00:05:07.087
+Once Sarah combined those records,
+PackRight actually represented 41% of
+
+00:05:07.127 --> 00:05:08.225
+the packaging spend.
+
+00:05:08.265 --> 00:05:09.495
+That's a big difference.
+
+00:05:10.005 --> 00:05:13.215
+BrightLeaf had much more negotiating
+power than they realised.
+
+00:05:13.400 --> 00:05:16.410
+And this is why relying on
+names can cause problems.
+
+00:05:16.792 --> 00:05:20.981
+People type names differently,
+companies changes their name and
+
+00:05:21.211 --> 00:05:24.343
+sometimes two completely different
+businesses have very similar name.
+
+00:05:24.383 --> 00:05:26.213
+A unique ID solve that problem.
+
+00:05:26.253 --> 00:05:30.413
+Think of it like a passport number,
+loads of people can be called Sarah
+
+00:05:30.453 --> 00:05:33.786
+Mitchell but each person has
+a different passport number.
+
+00:05:33.891 --> 00:05:38.331
+So in your database PackRight
+gets one ID: SUP-002.
+
+00:05:38.584 --> 00:05:42.203
+Every purchase order or stock records
+that refers to PackRight uses that
+
+00:05:42.243 --> 00:05:46.532
+same ID. The name might change or be
+entered differently somewhere else,
+
+00:05:46.572 --> 00:05:50.503
+but the ID stays the same and this
+is especially important when an AI
+
+00:05:50.543 --> 00:05:52.153
+agent is working with your data.
+
+00:05:52.302 --> 00:05:55.821
+We don't want it guessing which
+supplier a record refers to.
+
+00:05:55.861 --> 00:06:00.021
+Give a record a clear unique ID and
+the agent has something reliable to
+
+00:06:00.061 --> 00:06:00.751
+work with.
+
+00:06:01.673 --> 00:06:04.073
+Let's build Stocky's first table.
+
+00:06:04.113 --> 00:06:06.473
+One table for one kind of thing.
+
+00:06:06.513 --> 00:06:10.053
+This table is about
+suppliers, and only suppliers.
+
+00:06:10.093 --> 00:06:13.403
+I double-click the tab at the
+bottom and rename it "Suppliers".
+
+00:06:14.003 --> 00:06:17.163
+Now the headers, the
+column names, in row 1.
+
+00:06:17.203 --> 00:06:22.323
+Supplier ID, supplier name, city,
+country code, currency, latitude,
+
+00:06:22.363 --> 00:06:25.013
+longitude, contact email, and active.
+
+00:06:25.337 --> 00:06:27.837
+Notice two things about
+how I'm writing them.
+
+00:06:27.877 --> 00:06:30.477
+First, there's exactly one header row.
+
+00:06:30.517 --> 00:06:34.657
+No title above it, no "BrightLeaf
+supplier list, updated by Sarah" in a
+
+00:06:34.697 --> 00:06:39.597
+merged banner. Row 1 is headers,
+and data starts in row 2.
+
+00:06:39.637 --> 00:06:41.947
+Agents and automation tools expect that.
+
+00:06:42.415 --> 00:06:46.775
+Second, I'm using underscores
+instead of spaces, like "Supplier
+
+00:06:46.815 --> 00:06:51.455
+underscore ID". Spaces in headers
+work in Sheets, but they cause small
+
+00:06:51.495 --> 00:06:54.055
+annoyances in automation tools later.
+
+00:06:54.095 --> 00:06:55.855
+Underscores never do.
+
+00:06:55.895 --> 00:06:58.745
+It's a two-second habit
+that saves real headaches.
+
+00:06:58.977 --> 00:07:03.117
+I'll make the headers bold,
+then View, Freeze, one row.
+
+00:07:03.157 --> 00:07:06.067
+Now when the list gets long,
+the headers stay on screen.
+
+00:07:06.331 --> 00:07:11.871
+Now the data. Supplier
+ID first, SUP dash 001.
+
+00:07:11.911 --> 00:07:14.111
+Apex Fasteners, Columbus.
+
+00:07:14.151 --> 00:07:18.251
+SUP-002, PackRight Industries, Chicago.
+
+00:07:18.291 --> 00:07:22.121
+All the way to SUP-006,
+Shenzhen BrightTech.
+
+00:07:22.729 --> 00:07:24.229
+See the ID pattern?
+
+00:07:24.269 --> 00:07:27.449
+Three letters that tell you what
+kind of thing it is, a dash,
+
+00:07:27.489 --> 00:07:29.649
+and a number with leading zeros.
+
+00:07:29.689 --> 00:07:34.729
+SUP for suppliers, and in a
+minute LOG for stock log entries.
+
+00:07:34.769 --> 00:07:40.009
+When you see "SUP-004" in an email,
+you instantly know it's a supplier,
+
+00:07:40.049 --> 00:07:44.011
+not a product. Now look at the
+latitude and longitude columns.
+
+00:07:44.051 --> 00:07:45.831
+Recognise those numbers?
+
+00:07:45.871 --> 00:07:52.251
+22.54 and 114.06. That's
+Shenzhen, the exact numbers we
+
+00:07:52.291 --> 00:07:54.931
+sent to the weather API in the last video.
+
+00:07:54.971 --> 00:07:57.071
+This is where it all connects.
+
+00:07:57.111 --> 00:08:01.131
+Later, Stocky will read this table,
+take each supplier's latitude and
+
+00:08:01.171 --> 00:08:04.331
+longitude, and build
+its own weather request.
+
+00:08:04.371 --> 00:08:08.351
+Same with the currency column:
+it feeds the currency API.
+
+00:08:08.391 --> 00:08:10.881
+Your database becomes
+the agent's to-do list.
+
+00:08:11.241 --> 00:08:15.581
+Pause and think. Same city and
+coordinates, but different supplier IDs.
+
+00:08:15.621 --> 00:08:16.071
+Why?
+
+00:08:21.411 --> 00:08:23.051
+Because they're different companies.
+
+00:08:23.091 --> 00:08:27.331
+Same city, same weather, but different
+contracts, different products,
+
+00:08:27.371 --> 00:08:28.831
+different people to call.
+
+00:08:28.871 --> 00:08:31.761
+The ID identifies the
+supplier, not the city.
+
+00:08:32.037 --> 00:08:34.977
+Here's a trick that prevents
+mess before it happens.
+
+00:08:35.017 --> 00:08:39.637
+I select the country code column,
+then Data, Data validation,
+
+00:08:39.677 --> 00:08:44.277
+Add rule. For criteria, I choose
+"Dropdown", and I type the allowed
+
+00:08:44.317 --> 00:08:48.477
+values: US, MX, CN, AE.
+
+00:08:48.517 --> 00:08:53.723
+Done. Now nobody can type "Mexico"
+in one row, "MEX" in another and "mx"
+
+00:08:53.763 --> 00:08:56.443
+in a third. They pick from the list.
+
+00:08:56.483 --> 00:08:59.703
+A dropdown is a tiny
+guard dog for your data.
+
+00:08:59.743 --> 00:09:04.993
+I'll do the same for the currency
+column: USD, MXN, CNY, AED.
+
+00:09:05.689 --> 00:09:07.749
+Last one. The "Active" column.
+
+00:09:07.789 --> 00:09:10.869
+I select it and click Insert, Checkbox.
+
+00:09:10.909 --> 00:09:12.729
+TRUE becomes a ticked box.
+
+00:09:12.769 --> 00:09:16.429
+If BrightLeaf stops buying from
+a supplier, Sarah unticks it.
+
+00:09:16.469 --> 00:09:20.009
+We don't delete the row, because old
+purchase orders still point to that
+
+00:09:20.049 --> 00:09:23.799
+ID. We just mark it inactive,
+and Stocky will skip it.
+
+00:09:25.667 --> 00:09:27.787
+Second table: the Stock Log.
+
+00:09:27.827 --> 00:09:31.487
+This is where Stocky will write
+down every stock check it does.
+
+00:09:31.527 --> 00:09:35.987
+I click the plus sign at the bottom,
+rename the tab "Stock underscore
+
+00:09:36.027 --> 00:09:42.127
+Log", and add the headers: log
+ID, log date, SKU, quantity on
+
+00:09:42.167 --> 00:09:48.007
+hand, unit, reorder point,
+status, supplier ID, logged by,
+
+00:09:48.047 --> 00:09:50.677
+and note. Bold and freeze.
+
+00:09:51.089 --> 00:09:54.049
+A log is like a ship's logbook or a diary.
+
+00:09:54.089 --> 00:09:56.369
+You never rub out yesterday's entry.
+
+00:09:56.409 --> 00:09:58.569
+Every check gets a brand-new row.
+
+00:09:58.609 --> 00:10:02.569
+That way, three months from now,
+Sarah can ask, "How fast were we
+
+00:10:02.609 --> 00:10:04.749
+burning through safety gloves in October?"
+
+00:10:04.789 --> 00:10:06.579
+and the answer is sitting right there.
+
+00:10:06.827 --> 00:10:08.707
+Let me add three entries.
+
+00:10:08.747 --> 00:10:14.487
+LOG-0001, today's date,
+BL-1005, the pallet jack
+
+00:10:14.527 --> 00:10:17.347
+wheels. Quantity: 18.
+
+00:10:17.387 --> 00:10:21.447
+Unit: set. Reorder point: 25.
+
+00:10:21.487 --> 00:10:25.787
+Supplier: SUP-004. Logged by Sarah.
+
+00:10:25.827 --> 00:10:29.697
+And in the note column: "3
+pallet jacks waiting for wheels."
+
+00:10:29.937 --> 00:10:32.397
+Now pay close attention
+to the quantity cell.
+
+00:10:32.437 --> 00:10:35.357
+I typed "18". Just the number.
+
+00:10:35.397 --> 00:10:38.037
+Not "18 sets". Not "18 urgent!".
+
+00:10:38.077 --> 00:10:40.577
+urgent!". The unit has its own column.
+
+00:10:40.617 --> 00:10:42.557
+The comment has its own column.
+
+00:10:42.597 --> 00:10:46.927
+This is the most important rule in
+this whole video: one fact per cell.
+
+00:10:47.307 --> 00:10:49.447
+Why? Because "18" is a number.
+
+00:10:49.487 --> 00:10:53.927
+You can add it, compare it,
+and ask "is it below 25?".
+
+00:10:53.967 --> 00:10:55.347
+But "18 sets urgent!"
+
+00:10:55.387 --> 00:10:57.107
+urgent!" is just text.
+
+00:10:57.147 --> 00:11:00.967
+A formula can't do maths with it,
+and an agent has to guess what you
+
+00:11:01.007 --> 00:11:03.621
+meant. That brings us to data types.
+
+00:11:03.661 --> 00:11:06.081
+Every column holds one type of thing.
+
+00:11:06.121 --> 00:11:07.561
+Quantity holds numbers.
+
+00:11:07.601 --> 00:11:11.141
+Names hold text. Active
+holds true or false.
+
+00:11:11.181 --> 00:11:14.571
+And dates hold real dates, not
+text that looks like a date.
+
+00:11:14.839 --> 00:11:19.539
+I select the date column, then
+Format, Number, Custom date and time,
+
+00:11:19.579 --> 00:11:22.079
+and pick year-month-day.
+
+00:11:22.119 --> 00:11:27.479
+Why? Because "03/04" means the 3rd
+of April in Mexico, where SafeHands
+
+00:11:27.519 --> 00:11:30.039
+is, and March the 4th here in the US.
+
+00:11:30.079 --> 00:11:36.079
+2026-11-16 can't be misread by
+anyone, human or machine, and it sorts
+
+00:11:36.119 --> 00:11:39.349
+correctly. Now let's make
+the table do some work.
+
+00:11:39.389 --> 00:11:45.317
+In the status column I type: equals
+IF, open bracket, D2 less than or
+
+00:11:45.357 --> 00:11:50.827
+equal to F2, comma, "REORDER" in
+quotes, comma, "OK" in quotes,
+
+00:11:50.867 --> 00:11:55.209
+close bracket. In English: if
+quantity on hand is at or below the
+
+00:11:55.249 --> 00:11:59.511
+reorder point, say
+REORDER, otherwise say OK.
+
+00:11:59.871 --> 00:12:05.591
+I drag it down. Pallet jack
+wheels, 18 against 25: REORDER.
+
+00:12:05.631 --> 00:12:11.991
+Corrugated boxes, 1,180
+against 1,500: REORDER.
+
+00:12:12.031 --> 00:12:16.041
+Hex bolts, 145 against 80: OK.
+
+00:12:16.169 --> 00:12:20.209
+That formula only works because
+quantity and reorder point are clean
+
+00:12:20.249 --> 00:12:24.949
+numbers. If D2 said "18
+sets", this would break.
+
+00:12:24.989 --> 00:12:27.739
+Clean data is what makes
+the smart stuff possible.
+
+00:12:28.043 --> 00:12:31.283
+One last bit of magic, for
+my fellow Excel lovers.
+
+00:12:31.323 --> 00:12:34.923
+The stock log only stores the
+supplier ID, not the name.
+
+00:12:34.963 --> 00:12:37.983
+But I can look up the name
+from the Suppliers table.
+
+00:12:38.023 --> 00:12:43.983
+In K2: equals XLOOKUP, H2, then
+the Suppliers ID column, then the
+
+00:12:44.023 --> 00:12:45.603
+Suppliers name column.
+
+00:12:45.643 --> 00:12:47.421
+Drag down. There they are.
+
+00:12:47.781 --> 00:12:49.941
+This is what makes it a real database.
+
+00:12:49.981 --> 00:12:52.141
+The name lives in one place only.
+
+00:12:52.181 --> 00:12:56.321
+If PackRight renames itself tomorrow,
+Sarah changes it once, and every
+
+00:12:56.361 --> 00:12:58.821
+stock log row updates instantly.
+
+00:12:58.861 --> 00:13:02.121
+In database language, this ID
+connection is called a relationship.
+
+00:13:02.161 --> 00:13:03.927
+You've just built one.
+
+00:13:04.556 --> 00:13:07.306
+We have now built the Suppliers
+table and the stock log.
+
+00:13:07.526 --> 00:13:11.206
+Before we move on, let's step back
+and look what actually make these
+
+00:13:11.246 --> 00:13:13.365
+tables easy for an agent to work with.
+
+00:13:13.405 --> 00:13:14.926
+There are five simple rules.
+
+00:13:14.966 --> 00:13:18.126
+These are worth remembering because
+they apply to almost any business
+
+00:13:18.166 --> 00:13:21.407
+spreadsheets, not just the one
+we are building for Stocky.
+
+00:13:21.447 --> 00:13:24.320
+The first rule, one table
+for one kind of thing.
+
+00:13:24.567 --> 00:13:28.127
+Keep supplier information in the
+Suppliers table and stock checks in the
+
+00:13:28.167 --> 00:13:31.097
+stock log. Don't mix everything
+into one giant sheet.
+
+00:13:31.196 --> 00:13:34.922
+The second rule, keep just one
+header row right at the top.
+
+00:13:34.962 --> 00:13:39.111
+No big title above it, no blank
+rows and no extra notes before the
+
+00:13:39.151 --> 00:13:40.213
+actual column names.
+
+00:13:40.253 --> 00:13:42.383
+Your data should start on row 2.
+
+00:13:42.667 --> 00:13:44.717
+Third, one fact per cell.
+
+00:13:44.887 --> 00:13:50.190
+For example, don't put 18 sets
+urgent into one cell, put 18 in the
+
+00:13:50.230 --> 00:13:54.473
+quantity column, set in the unit
+column and urgent in the note column.
+
+00:13:54.647 --> 00:13:58.897
+That way both formulas and agents
+can understand what each value means.
+
+00:13:59.005 --> 00:14:01.457
+Fourth, Give every row a unique ID.
+
+00:14:01.497 --> 00:14:04.767
+As you saw with PackRight,
+names can be inconsistent.
+
+00:14:04.901 --> 00:14:11.111
+An ID like SUP-002 or LOG-0001
+gives each record a reliable
+
+00:14:11.221 --> 00:14:14.919
+reference. And fifth, Keep your
+data types and units consistent.
+
+00:14:15.133 --> 00:14:18.677
+Dates should be actual dates in one
+clear format, quantities should be
+
+00:14:18.717 --> 00:14:22.297
+number, and the units should be
+recorded separately, not left for
+
+00:14:22.337 --> 00:14:26.094
+someone to guess. That's one
+extra thing I'd add here.
+
+00:14:26.134 --> 00:14:29.994
+Avoid merged cells and don't use
+colors as the only way to communicate
+
+00:14:30.034 --> 00:14:33.828
+meaning. A red cell might mean
+urgent to you, but an agent doesn't
+
+00:14:33.968 --> 00:14:37.681
+automatically understand that, put
+the word urgent in a remark or status
+
+00:14:37.721 --> 00:14:41.972
+field instead. So, those are the
+five rules, they sound simple but
+
+00:14:42.012 --> 00:14:45.252
+following them makes a huge difference
+to how reliable your systems and
+
+00:14:45.292 --> 00:14:46.478
+agents can use the data.
+
+00:14:46.518 --> 00:14:50.678
+Now, think about the spreadsheet
+you use most often at work, which of
+
+00:14:50.718 --> 00:14:52.228
+these rules does it break?
+
+00:14:52.378 --> 00:14:55.407
+Pause the video for a moment
+and note down the biggest issue,
+
+00:14:55.447 --> 00:14:57.857
+you will get a chance to
+fix it in the activity.
+
+00:15:06.867 --> 00:15:10.827
+Now the fun part. This is
+BrightLeaf's real-world stock sheet.
+
+00:15:10.867 --> 00:15:14.787
+It started as an Odoo export three
+years ago and has been passed between
+
+00:15:14.827 --> 00:15:18.397
+five people since. You might
+recognise some of these crimes.
+
+00:15:18.813 --> 00:15:23.153
+Merged title rows. Supplier
+names merged across several rows.
+
+00:15:23.193 --> 00:15:29.103
+Quantities like "145
+boxes", "approx 1,850"
+
+00:15:29.353 --> 00:15:31.513
+and "18 urgent!!". urgent!!".
+
+00:15:31.553 --> 00:15:36.833
+"BL 1002" with a space next
+to "BL-1002" with a dash.
+
+00:15:36.873 --> 00:15:40.953
+A blank SKU. Dates in
+five different formats.
+
+00:15:40.993 --> 00:15:43.373
+Red cells only Tom understands.
+
+00:15:43.413 --> 00:15:46.453
+And a TOTAL row that just says "lots".
+
+00:15:46.493 --> 00:15:48.193
+A human can muddle through.
+
+00:15:48.233 --> 00:15:50.333
+An agent will stumble on every one.
+
+00:15:50.373 --> 00:15:55.627
+Let's fix them. Fix one: I delete
+the top three rows: the merged title,
+
+00:15:55.667 --> 00:15:58.327
+the "prepared by" line and the blank row.
+
+00:15:58.367 --> 00:16:00.017
+Now row 1 is the headers.
+
+00:16:00.509 --> 00:16:02.789
+Fix two: merged cells.
+
+00:16:02.829 --> 00:16:06.589
+The supplier column looks tidy,
+but only the top cell of a merge
+
+00:16:06.629 --> 00:16:08.229
+actually holds the name.
+
+00:16:08.269 --> 00:16:12.289
+The rows underneath are empty, so
+if you sort or filter, products lose
+
+00:16:12.329 --> 00:16:16.649
+their supplier. Format,
+Merge cells, Unmerge.
+
+00:16:16.689 --> 00:16:19.809
+See the blanks? I copy each name down.
+
+00:16:19.849 --> 00:16:21.999
+Every row now knows its own supplier.
+
+00:16:22.127 --> 00:16:24.987
+Fix three: inconsistent IDs.
+
+00:16:25.027 --> 00:16:31.107
+To a computer, "BL 1002" and
+"BL-1002" are as different as
+
+00:16:31.147 --> 00:16:32.927
+"apple" and "banana".
+
+00:16:32.967 --> 00:16:38.627
+Edit, Find and replace, "BL space"
+with "BL dash", Replace all.
+
+00:16:38.667 --> 00:16:43.967
+Then Data, Data cleanup, Trim
+whitespace, to remove invisible spaces,
+
+00:16:44.007 --> 00:16:48.347
+the number one reason a VLOOKUP says
+"not found" when you can see the
+
+00:16:48.387 --> 00:16:51.713
+value right there. Fix four: duplicates.
+
+00:16:51.753 --> 00:16:55.553
+Data, Data cleanup, Remove
+duplicates, data has a header row.
+
+00:16:55.593 --> 00:16:57.813
+The duplicate hex bolts disappear.
+
+00:16:57.853 --> 00:17:01.673
+The two corrugated box rows had
+different date formats, so I delete one
+
+00:17:01.713 --> 00:17:07.373
+by hand. Before this, a stock total
+would have counted 2,360 boxes
+
+00:17:07.413 --> 00:17:13.473
+instead of 1,180, which is above
+the reorder point of 1,500, so the
+
+00:17:13.513 --> 00:17:15.563
+reorder alert would never have fired.
+
+00:17:15.927 --> 00:17:18.427
+Fix five: one fact per cell.
+
+00:17:18.467 --> 00:17:22.707
+I insert a Unit column
+and split every quantity.
+
+00:17:22.747 --> 00:17:27.527
+"145 boxes" becomes 145 and "box".
+
+00:17:27.567 --> 00:17:33.547
+"approx 1,850" becomes 1,850, with
+
+00:17:33.587 --> 00:17:35.967
+"estimate, recount" in the remarks.
+
+00:17:36.007 --> 00:17:42.467
+And our stretch wrap: "21 cartons,
+12 rolls each, plus 8 loose" becomes
+
+00:17:42.507 --> 00:17:45.987
+260 rolls, because the
+reorder point is in rolls.
+
+00:17:46.027 --> 00:17:47.787
+Not a stock-out. The
+
+00:17:47.827 --> 00:17:50.207
+eighteen-hundred-dollar
+cell, fixed in five
+
+00:17:50.247 --> 00:17:53.385
+seconds. Fix six: the blank ID.
+
+00:17:53.425 --> 00:17:56.025
+The safety gloves have no SKU.
+
+00:17:56.065 --> 00:17:59.965
+The product list says BL-1004.
+
+00:18:00.005 --> 00:18:03.055
+A row without an ID is a
+parcel without a label.
+
+00:18:03.443 --> 00:18:07.603
+Fix seven: the red cells meant
+"urgent", so I write that in the remarks
+
+00:18:07.643 --> 00:18:09.223
+and reset the colour.
+
+00:18:09.263 --> 00:18:11.143
+And the TOTAL row goes.
+
+00:18:11.183 --> 00:18:15.157
+Totals belong in reports, not data
+tables, or the agent counts them as a
+
+00:18:15.197 --> 00:18:17.741
+product. Before and after.
+
+00:18:17.781 --> 00:18:21.141
+Messy: seventeen rows and
+two red "urgent" cells.
+
+00:18:21.181 --> 00:18:26.521
+Clean: ten rows, one per product,
+and four need reordering: boxes,
+
+00:18:26.561 --> 00:18:29.001
+gloves, wheels and hydraulic oil.
+
+00:18:29.041 --> 00:18:33.421
+Two surprises. The packing
+tape coloured red for "urgent"?
+
+00:18:33.461 --> 00:18:37.841
+1,850 rolls against a
+reorder point of 1,000.
+
+00:18:37.881 --> 00:18:43.141
+Fine. And the hydraulic oil nobody
+flagged is at 31 drums against 40,
+
+00:18:43.181 --> 00:18:45.981
+with a 14-day lead time from Dubai.
+
+00:18:46.021 --> 00:18:50.001
+That's a real emergency, and the
+messy sheet was hiding it under "check
+
+00:18:50.041 --> 00:18:50.715
+with Tom".
+
+00:18:51.567 --> 00:18:55.247
+Before we wrap up, there are three
+common mistakes I want you to avoid
+
+00:18:55.287 --> 00:18:56.817
+when you are setting up a database.
+
+00:18:57.022 --> 00:19:00.502
+The first one is cleaning your data
+once and assuming the problem is
+
+00:19:00.542 --> 00:19:04.092
+solved. If people can still
+enter dates in different formats,
+
+00:19:04.302 --> 00:19:07.892
+type any country name they want
+or mix units in the same cell,
+
+00:19:07.987 --> 00:19:09.357
+the mess will come back.
+
+00:19:09.712 --> 00:19:13.890
+That's why we added drop-downs and
+check boxes earlier, try to prevent
+
+00:19:14.140 --> 00:19:16.770
+inconsistent data at the
+point where it's entered.
+
+00:19:17.100 --> 00:19:20.470
+The second mistake is trying to
+make the database look like a
+
+00:19:20.520 --> 00:19:24.488
+presentation. I know, it's tempting
+to add merged headings, colors,
+
+00:19:24.798 --> 00:19:27.598
+logos and blank rows to
+make everything look nice.
+
+00:19:27.638 --> 00:19:29.768
+But a database is not a report.
+
+00:19:29.808 --> 00:19:33.048
+It needs to be predictable
+and easy for software to read.
+
+00:19:33.088 --> 00:19:35.908
+Keep the visual styling for
+your reports and dashboards.
+
+00:19:36.018 --> 00:19:39.898
+and third mistake is putting
+absolutely everything into one giant
+
+00:19:39.938 --> 00:19:43.851
+spreadsheet supplier details,
+product information, stock levels,
+
+00:19:43.997 --> 00:19:46.927
+purchase orders all in
+one sheet with 40 columns.
+
+00:19:47.102 --> 00:19:50.899
+That might seem convenient at first
+but it become difficult to maintain.
+
+00:19:51.092 --> 00:19:54.692
+Keep separate tables for separate
+things and connect them using unique
+
+00:19:54.732 --> 00:19:58.457
+IDs. If you avoid three mistakes
+you will already have much cleaner
+
+00:19:58.497 --> 00:20:00.427
+foundation for the agents you build later.
+
+00:20:00.567 --> 00:20:03.017
+All right, let's bring
+everything together.
+
+00:20:03.175 --> 00:20:07.145
+There are three main ideas from this
+video that I want you to remember.
+
+00:20:07.384 --> 00:20:11.194
+First, a database is not some
+mysterious technical system.
+
+00:20:11.303 --> 00:20:14.823
+At the level we have covered today,
+you can think of it as a well
+
+00:20:14.863 --> 00:20:15.883
+organized workbook.
+
+00:20:15.997 --> 00:20:20.549
+Tables are like sheets, rows are
+records and columns are fields.
+
+00:20:20.702 --> 00:20:24.152
+That's why we're using Google
+Sheet to get Stocky started.
+
+00:20:24.400 --> 00:20:28.681
+Second, every record needs a unique
+ID, names can be misspelled or
+
+00:20:28.721 --> 00:20:32.336
+entered in different ways, but an
+ID gives us one reliable way to
+
+00:20:32.376 --> 00:20:35.651
+identify a supplier, a
+product or a stock log entry.
+
+00:20:35.691 --> 00:20:38.281
+It's also how our tables
+connect to each other.
+
+00:20:38.418 --> 00:20:42.876
+and third the quality of your data
+matters keep one table for each kind
+
+00:20:42.916 --> 00:20:47.772
+of thing use one header row put one
+fact in each cell give every row a
+
+00:20:47.812 --> 00:20:52.335
+unique ID and keep your data types
+and units consistent avoid merge
+
+00:20:52.375 --> 00:20:56.146
+cells and don't rely on colors to
+communicate information now it's your
+
+00:20:56.186 --> 00:21:00.753
+turn to put this in your practice
+Download the V04 Activity: messy data
+
+00:21:00.793 --> 00:21:04.441
+makeover workbook. It includes the
+same BrightLeaf export we worked in
+
+00:21:04.481 --> 00:21:08.528
+this video. You will go through the
+messy data, identify the problems
+
+00:21:08.638 --> 00:21:10.621
+and rebuild it as a clean stock log.
+
+00:21:10.661 --> 00:21:14.549
+You will also complete the Suppliers
+table, check your formulas and use
+
+00:21:14.589 --> 00:21:17.579
+the clean data checklist to
+see how well you have done.
+
+00:21:17.800 --> 00:21:21.220
+There is a final tab where we will
+apply the same ideas to a spreadsheet
+
+00:21:21.260 --> 00:21:22.470
+from your own company.
+
+00:21:22.544 --> 00:21:25.234
+Give yourself around 30
+minutes for that activity.
+
+00:21:25.516 --> 00:21:28.914
+Once you have finished, take the 10
+question quiz to check what you have
+
+00:21:28.954 --> 00:21:32.384
+learned. And in the next video, we
+are finally going to set up the tools
+
+00:21:32.424 --> 00:21:33.760
+we will use to build Stocky.
+
+00:21:33.800 --> 00:21:37.800
+We will create your n8n account,
+set up Claude or ChatGPT as the AI
+
+00:21:37.840 --> 00:21:40.960
+brain and make sure your
+API keys are stored safely.
+
+00:21:41.000 --> 00:21:43.150
+Then we will build your
+very first workflow.
+
+00:21:43.361 --> 00:21:47.164
+All the pieces we have been discussing,
+the waiter as a shopping list
+
+00:21:47.204 --> 00:21:49.682
+and these clean tables
+will start coming together.
+
+00:21:49.722 --> 00:21:51.192
+I will see you in video 5.

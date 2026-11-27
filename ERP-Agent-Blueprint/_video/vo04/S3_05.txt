@@ -1,0 +1,1 @@
+Why? Because "18" is a number. You can add it, compare it, and ask "is it below 25?". But "18 sets - urgent!" is just text. A formula can't do maths with it, and an agent has to guess what you meant.

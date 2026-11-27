@@ -1,0 +1,1 @@
+Before importing, always click Test. Test checks every row without saving anything. If something's wrong, like a letter in the price column, it tells you which row. Green banner, everything seems valid.

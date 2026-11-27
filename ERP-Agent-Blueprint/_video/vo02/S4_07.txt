@@ -1,0 +1,1 @@
+If one of your columns ever shows "To import, select a field", or it's left blank, just click the dropdown and pick the right field yourself. That's all mapping is: telling Odoo which labelled box each column belongs in.

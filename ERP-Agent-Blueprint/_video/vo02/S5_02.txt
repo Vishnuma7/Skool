@@ -1,0 +1,1 @@
+Click New. Product: BL-1001, the bolts. Odoo puts it on WH slash Stock, that's the main warehouse shelf. Counted quantity: one hundred and forty-five. Then Apply.

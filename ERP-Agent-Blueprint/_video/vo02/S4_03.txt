@@ -1,0 +1,1 @@
+Notice BL-1001 isn't in here, because we just created it by hand. If we imported it again, we'd have two bolt records, and that's the kind of duplicate that confuses humans and agents alike.

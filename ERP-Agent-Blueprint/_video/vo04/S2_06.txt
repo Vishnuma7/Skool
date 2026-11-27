@@ -1,0 +1,1 @@
+Now the data. Supplier ID first, SUP dash 001. Apex Fasteners, Columbus. SUP-002, PackRight Industries, Chicago. All the way to SUP-006, Shenzhen BrightTech.

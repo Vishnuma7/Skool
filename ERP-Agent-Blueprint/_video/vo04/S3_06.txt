@@ -1,0 +1,1 @@
+That brings us to data types. Every column holds one type of thing. Quantity holds numbers. Names hold text. Active holds true or false. And dates hold real dates, not text that looks like a date.

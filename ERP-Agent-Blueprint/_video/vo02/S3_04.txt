@@ -1,0 +1,1 @@
+Now the most important field on this whole form, and the number one beginner mistake. Product Type. Choose "Goods", and then tick "Track Inventory".

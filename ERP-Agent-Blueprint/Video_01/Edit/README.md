@@ -4,7 +4,7 @@
 | File | What it is |
 |---|---|
 | `V01_REVIEW_1080p_TEMP-VO.mp4` | Full review cut (1080p) with the **temporary British voice** on the screen sections. Captions are a toggleable track (off by default). |
-| `V01_Final_4K.mp4` | Final 4K master (rendered after your Fish Audio swap). |
+| `../../Final_4K/V01_Final_4K.mp4` | Final 4K master, moved to the `Final_4K` folder. |
 | `V01_captions.srt` / `.vtt` | Caption files for YouTube / Vimeo (upload as subtitles; nothing is burned in). |
 | `VO_for_FishAudio.txt` | The 35 voice-over paragraphs, labelled `[S1_01]` … `[S4_05]`. |
 
