@@ -1,0 +1,1 @@
+Every time the waiter comes back, he also hands you a little receipt with a number on it. This number is called a status code, and it tells you how the order went, before you even look at the plate.

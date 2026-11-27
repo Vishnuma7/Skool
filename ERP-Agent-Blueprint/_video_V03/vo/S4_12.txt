@@ -1,0 +1,1 @@
+The restaurant exists, the dish exists, but the order doesn't make sense. The waiter says, "I can't give you a daily banana." That's a 400, "bad request", another 4-something, so it's on our side. And look how helpful it is. It tells us exactly which word it didn't understand. When something goes wrong, read the message. It usually tells you what to fix.

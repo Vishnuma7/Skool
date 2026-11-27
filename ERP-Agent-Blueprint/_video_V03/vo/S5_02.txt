@@ -1,0 +1,1 @@
+So private APIs ask for an API key, and an API key is like a hotel room key card. It opens your room, maybe the gym. Not other guests' rooms, not the manager's office. Lose it, and reception cancels it and gives you a new one. Your passport doesn't change. Just the card.

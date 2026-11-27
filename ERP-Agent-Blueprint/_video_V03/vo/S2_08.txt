@@ -1,0 +1,1 @@
+Now this bit is really helpful. "Daily units." It tells us rainfall is measured in millimetres, and wind speed in kilometres per hour. A good API always tells you its units. Hold on to that idea, because in the next video, on databases, mixed-up units are going to be our enemy number one.

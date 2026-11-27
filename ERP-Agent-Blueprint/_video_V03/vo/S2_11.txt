@@ -1,0 +1,1 @@
+"Precipitation sum" is a list of seven rainfall numbers: 0, 0.1, then 48.4, then mostly zeros.

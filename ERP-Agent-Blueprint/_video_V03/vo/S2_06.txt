@@ -1,0 +1,1 @@
+So here: label "latitude", value 22.53. Label "timezone", value "Asia/Shanghai". It's the same as a shopping list that says "Milk: 2 litres. Eggs: 12."

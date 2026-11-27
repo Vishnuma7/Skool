@@ -1,0 +1,1 @@
+Notice something important. This key belongs to a user. When Stocky uses Sarah's key, Odoo treats Stocky like Sarah, with the same permissions. That's why, when we go live, we'll give Stocky its own user with only the access it needs. Its own key card, not the manager's master key.

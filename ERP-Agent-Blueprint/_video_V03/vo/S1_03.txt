@@ -1,0 +1,1 @@
+That waiter is an API. API stands for Application Programming Interface, but you can forget that phrase right now. Just remember: an API is the waiter between you and somebody else's kitchen.

@@ -1,0 +1,1 @@
+First, a little surprise. Look at the address bar. It changed by itself. We typed frankfurter dot app, and now it says frankfurter dot dev, slash v1. The restaurant moved to a new building and left a forwarding note on the old door. Your browser read the note and walked over automatically. APIs do move house sometimes, and good ones leave a forwarding address.

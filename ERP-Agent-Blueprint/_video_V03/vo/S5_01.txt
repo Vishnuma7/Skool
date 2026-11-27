@@ -1,0 +1,1 @@
+The weather and currency APIs serve anyone. But Odoo holds BrightLeaf's stock, costs and customers. You don't want the whole world asking that waiter for things.

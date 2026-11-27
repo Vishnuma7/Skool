@@ -1,0 +1,1 @@
+And every restaurant has a menu. You can't order sushi in a pizza place. APIs are the same. Each API has a list of things it can do, and each item on that list has its own address. That address is called an endpoint. One endpoint might be "today's weather forecast". Another might be "latest exchange rates". Think of an endpoint as one dish on the menu.

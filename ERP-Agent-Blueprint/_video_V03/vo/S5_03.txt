@@ -1,0 +1,1 @@
+An API key works the same way. It opens only what it's allowed to, it belongs to a specific user, and it can be cancelled any time without changing your password.

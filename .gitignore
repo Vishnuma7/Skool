@@ -16,3 +16,5 @@ __pycache__/
 ERP-Agent-Blueprint/Video_*/Recording/
 # Local tool binaries
 ERP-Agent-Blueprint/_video/bin/
+.env
+audio_tests/
