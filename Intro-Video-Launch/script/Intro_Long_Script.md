@@ -36,7 +36,7 @@ Now picture this instead. It's Tuesday morning. Before Sarah even opens her lapt
 
 That's not science fiction. That's an AI agent connected to an ERP. And in about six minutes, you'll watch one do exactly that, live.
 
-Quick intro. I'm Adithyan, co-founder of Experidium. We build AI agents for procurement, inventory and demand planning. And one rule guides everything we build: the agent prepares the work, a person approves it. That's exactly what you'll see today.
+Quick intro. I'm Adithyan, co-founder of Agentic SCM. And I started Agentic SCM because I wanted supply chain professionals to move beyond just talking about AI... and actually build with it. Here, you learn how to create agents that connect to business systems, and take on practical tasks in Supply Chain.
 
 I built this lesson because the question you voted for most in this community was: *how do I actually connect AI to my ERP?* So let's answer it.
 
