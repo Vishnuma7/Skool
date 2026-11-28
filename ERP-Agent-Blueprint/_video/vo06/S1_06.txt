@@ -1,0 +1,1 @@
+Before we go further, let's test the skeleton. Click "Chat" and ask: "Hi Stocky, how many Pallet Jack Wheels do we have?" Look at the answer. Stocky politely says it doesn't have access to inventory data. And that's good! It has a brain and a memory, but no hands. It can't reach into Odoo yet. A brain without tools is just a chatbot. Let's give it hands.

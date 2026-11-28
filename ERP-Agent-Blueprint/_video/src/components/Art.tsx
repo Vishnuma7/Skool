@@ -54,7 +54,7 @@ export const Avatar: React.FC<AvatarProps> = ({size = 160, skin = '#C68863', hai
 );
 
 /** Realistic portrait in a circle (Unsplash-licensed photos in public/faces, see SOURCES.txt). */
-export const Face: React.FC<{name: 'sarah' | 'tom' | 'harrison' | 'intern'; size?: number; ring?: string}> = ({name, size = 160, ring = C.white}) => (
+export const Face: React.FC<{name: 'sarah' | 'tom' | 'harrison' | 'intern' | 'jake'; size?: number; ring?: string}> = ({name, size = 160, ring = C.white}) => (
   <div style={{width: size, height: size, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, boxShadow: `0 0 0 ${Math.max(3, size / 28)}px ${ring}, 0 10px 24px rgba(2,6,23,0.35)`}}>
     <Img src={staticFile(`faces/${name}.jpg`)} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
   </div>

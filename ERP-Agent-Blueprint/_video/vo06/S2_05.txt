@@ -1,0 +1,1 @@
+Tool number two is quicker. Duplicate the first one and change three things. The name: "get reorder rules". The drawer: "stock dot warehouse dot orderpoint", which Odoo may show as "Minimum Inventory Rule". And the fields: product, minimum quantity, and maximum quantity. The minimum quantity is your reorder point. Update the description to say exactly that.

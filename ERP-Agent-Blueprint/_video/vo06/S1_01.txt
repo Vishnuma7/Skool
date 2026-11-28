@@ -1,0 +1,1 @@
+Open n8n and click "Create Workflow". Name it straight away: "Stocky v1, Reads the ERP". This is the workflow you'll keep improving for the rest of the course.

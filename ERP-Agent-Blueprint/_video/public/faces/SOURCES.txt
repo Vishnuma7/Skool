@@ -3,3 +3,4 @@ sarah.jpg    https://unsplash.com/photos/woman-in-grey-blazer-business-portrait-
 tom.jpg      https://unsplash.com/photos/man-in-blue-work-uniform-F4ox6XvbDps  (Divaris Shirichena)
 harrison.jpg https://unsplash.com/photos/a-distinguished-man-in-a-suit-with-graying-hair-jSjhdXDZj_8  (Christian Buehner)
 intern.jpg   https://unsplash.com/photos/a-young-woman-with-blonde-hair-smiles-ij6JGuYzCd4  (Devin Santiago)
+jake.jpg     https://unsplash.com/photos/young-businessman-in-a-suit-smiling-confidently-OvXZDyt7rXE  (Unsplash License; used for Jake in Video 6)

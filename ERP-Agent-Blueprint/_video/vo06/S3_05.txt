@@ -1,0 +1,1 @@
+And the output format: a one-line answer first, then a table, sorted by urgency, and a source line at the end. The source line is my favourite trick. It forces Stocky to tell you which drawers it opened, so you can always check.

@@ -1,0 +1,1 @@
+And here's how you catch it: open the log. There's no purchase order data anywhere. Only supplier info. The answer can't be traced, so it can't be trusted.

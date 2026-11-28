@@ -1,0 +1,1 @@
+Step one: the brain reads the question and our job description, and decides, "To answer this, I need the supplier info." It doesn't answer yet. It asks for tools. That's the big difference between an agent and a chatbot. A chatbot answers straight away from what it already knows. An agent first decides what it needs to find out.

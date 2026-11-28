@@ -1,0 +1,44 @@
+{
+ "When chat message received": {
+  "x": 469,
+  "y": 242,
+  "w": 96,
+  "h": 96
+ },
+ "AI Agent": {
+  "x": 725,
+  "y": 242,
+  "w": 224,
+  "h": 96
+ },
+ "Anthropic Chat Model": {
+  "x": 549,
+  "y": 482,
+  "w": 80,
+  "h": 80
+ },
+ "Simple Memory": {
+  "x": 757,
+  "y": 482,
+  "w": 80,
+  "h": 80
+ },
+ "get_products_and_stock": {
+  "x": 965,
+  "y": 482,
+  "w": 80,
+  "h": 80
+ },
+ "get_reorder_rules": {
+  "x": 1189,
+  "y": 482,
+  "w": 80,
+  "h": 80
+ },
+ "get_supplier_info": {
+  "x": 1413,
+  "y": 482,
+  "w": 80,
+  "h": 80
+ }
+}

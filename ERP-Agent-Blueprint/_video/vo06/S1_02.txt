@@ -1,0 +1,1 @@
+Click "Add first step" and choose "On chat message". Last video our doorbell was a button. Today, the doorbell is a chat message. Every time someone types a question, the recipe starts. See the new "Chat" button at the bottom? That's where we'll talk to Stocky.

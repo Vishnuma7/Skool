@@ -1,0 +1,107 @@
+Generate ONE audio file per block, named exactly as the [label] (e.g. S1_01.wav). Put them in _video/vo06/fish/.
+Mr. Harrison and Jake (third-party voices) are NOT in this list.
+
+[S1_01]
+Open n8n and click "Create Workflow". Name it straight away: "Stocky v1, Reads the ERP". This is the workflow you'll keep improving for the rest of the course.
+
+[S1_02]
+Click "Add first step" and choose "On chat message". Last video our doorbell was a button. Today, the doorbell is a chat message. Every time someone types a question, the recipe starts. See the new "Chat" button at the bottom? That's where we'll talk to Stocky.
+
+[S1_03]
+Now click the plus, search "AI Agent", and add it. Look at "Source for Prompt". It already says "Connected Chat Trigger Node". Exactly right. Whatever we type in the chat becomes Stocky's task. Close the panel.
+
+[S1_04]
+Underneath the AI Agent, remember the three plugs. First, the brain. Click the plus under "Chat Model", choose "Anthropic Chat Model", pick the credential "Anthropic, BrightLeaf" we saved last time, and choose the newest Claude Sonnet model. Sonnet is a great choice for agents because it's good at deciding which tool to use.
+
+[S1_05]
+Second plug: memory. Click the plus under "Memory" and choose "Simple Memory". Why do we need this? Without memory, Stocky forgets everything after each message. You ask about BL-1005, then ask "and who supplies it?", and Stocky says, "Supplies what?" Like an intern with a goldfish brain. The "Context Window Length" is how many back-and-forth messages Stocky remembers. I'll set it to ten. That's plenty for a normal conversation.
+
+[S1_06]
+Before we go further, let's test the skeleton. Click "Chat" and ask: "Hi Stocky, how many Pallet Jack Wheels do we have?" Look at the answer. Stocky politely says it doesn't have access to inventory data. And that's good! It has a brain and a memory, but no hands. It can't reach into Odoo yet. A brain without tools is just a chatbot. Let's give it hands.
+
+[S2_01]
+Quick check in Odoo first, because an agent is only as good as the data it reads. Here's BL-1005, Pallet Jack Wheels. On hand: eighteen. The reorder rule, here in the "Min Max" button: minimum twenty-five. And on the Purchase tab, the vendor: Global Lift Parts, thirty-eight dollars a set, delivery lead time twenty-one days. Three kinds of information, in three different drawers of the filing cabinet. So we'll give Stocky three tools, one for each drawer. If one of your products is missing a reorder rule or a vendor line, add it now. Garbage in, garbage out.
+
+[S2_02]
+Back in n8n, click the plus under "Tool". Search "Odoo" and choose "Odoo Tool". This is the same Odoo waiter we met in Video 3, but now it works for the agent. Stocky can call it whenever it decides it needs data.
+
+[S2_03]
+Let's set it up line by line. First, rename the node to "get products and stock", with underscores. The name matters, because Stocky reads it to decide when to use this tool. Credential: "Odoo, BrightLeaf". Next, "Tool Description". Set it manually and describe in plain English what this tool returns: every product, with its SKU, name, quantity on hand and unit cost. This sentence is like the label on the drawer. A clear label means Stocky opens the right drawer.
+
+[S2_04]
+Resource: choose "Custom Resource". That lets us pick any drawer in Odoo. For the name, choose "product dot product". Odoo might call it "Product Variant". That's the list of products with their stock. Operation: "Get Many", because we want the whole list. Switch on "Return All". And finally, under Options, "Fields to Include". We'll pick just four fields: default code, which is Odoo's name for the SKU, name, quantity available, and standard price. Why only four? Because every extra field is more reading for Stocky, which means more tokens, more cost, and more chance of confusion. Give the intern the page they need, not the whole binder.
+
+[S2_05]
+Tool number two is quicker. Duplicate the first one and change three things. The name: "get reorder rules". The drawer: "stock dot warehouse dot orderpoint", which Odoo may show as "Minimum Inventory Rule". And the fields: product, minimum quantity, and maximum quantity. The minimum quantity is your reorder point. Update the description to say exactly that.
+
+[S2_06]
+And tool number three: "get supplier info". The drawer is "product dot supplier info", which may show as "Supplier Pricelist". The fields: the partner, which is the vendor, the product, the price, the minimum order quantity, and "delay". In Odoo, "delay" means the delivery lead time in days. That's an odd name, so we explain it in the description: "delay is the lead time in days." Without that sentence, Stocky might think "delay" means the shipment is late.
+
+[S2_07]
+Step back and look. A doorbell, an intern, a brain, a notepad, and three hands, each reaching into a different drawer. And notice: every tool only uses "Get Many". Stocky can read, but it can't change anything in Odoo. That's on purpose. Reading first, acting later, with your approval. Save it.
+
+[S3_01]
+Open the AI Agent node, go to Options, add "System Message", delete the default "You are a helpful assistant", and paste Stocky's job description. You'll find the full text in the Stocky Prompt Builder activity file, so you don't need to pause and type. Let's walk through it, because every line is there for a reason.
+
+[S3_02]
+Role and Goal: who Stocky is, who it works for, and what success means. Notice I wrote the headings in capital letters with a hash sign. That's not code. It's just a tidy way to organise text so both you and the AI can find each section.
+
+[S3_03]
+Tools: each tool, in plain English, with the Odoo field names in brackets, so Stocky can match "lead time" to the odd word "delay". And one important line: "Always use the tools to get fresh data. Never answer from memory." Stock changes every hour. Yesterday's number is a wrong number.
+
+[S3_04]
+Rules. The first two are the most important lines in the whole prompt. Only answer from tool data. And if the data isn't there, say "I don't know." Then, our business definitions: running low means at or below the reorder point, and the watch list is anything within fifteen percent above it. That's a decision a supply chain person makes, not a programmer. Change the fifteen percent to whatever your company uses.
+
+[S3_05]
+And the output format: a one-line answer first, then a table, sorted by urgency, and a source line at the end. The source line is my favourite trick. It forces Stocky to tell you which drawers it opened, so you can always check.
+
+[S3_06q]
+Pause and think. What is your company's definition of running low? Write it down as one sentence a new intern could follow without asking you a single question.
+
+[S4_01]
+Here we go. The question Sarah asks every morning. "What's running low?" Press Enter. Watch the canvas. The brain lights up, then the stock tool, then the reorder rules tool. Stocky is opening the drawers. And here's the answer. Four products running low, and one more on the watch list. Safety gloves, four hundred and twenty against six hundred. Pallet jack wheels, eighteen against twenty-five. Hydraulic oil, thirty-one against forty. And shipping boxes, one thousand one hundred and eighty against fifteen hundred.
+
+[S4_02]
+Look at the order. The boxes have the biggest gap in units, minus three hundred and twenty, but they're at the bottom. Why? Because we told Stocky to sort by percentage shortfall. Gloves are thirty percent below their reorder point, boxes only twenty-one percent. That's the rule we wrote, followed exactly. It even flagged the LED lights on the watch list. Thirty-four against thirty. And with a twenty-eight-day lead time from Shenzhen, that's exactly the one Sarah would want to know about.
+
+[S4_03]
+But don't trust it yet. Check it. Here's Odoo. Gloves, four hundred and twenty. Wheels, eighteen. The numbers match. Ten seconds instead of forty minutes.
+
+[S4_04]
+Second question: "Which supplier provides BL-1005, and what's the lead time?" Global Lift Parts. Twenty-one days. Thirty-eight dollars a set, minimum order ten sets. And without being asked, it connected the dots: eighteen on hand against a reorder point of twenty-five, and a new order takes twenty-one days, so stock could run short before it arrives. That's the kind of thinking a good intern does.
+
+[S4_05]
+Now watch the memory. I'll just say, "And what about the hydraulic oil?" I didn't say "supplier" or "lead time". But Stocky remembered what we were talking about, thanks to Simple Memory, and gave me Gulf Lubricants, fourteen days. That's the notepad at work.
+
+[S4_06q]
+Pause and think. If you were Sarah, which product would you order first, and why? Hint: compare the gap with the lead time.
+
+[S5_01]
+So far we've seen what Stocky said. Now let's see how it thought. Open the "Logs" panel at the bottom of the canvas. This is the step-by-step story of the last question. Read it from top to bottom like a diary.
+
+[S5_02]
+Step one: the brain reads the question and our job description, and decides, "To answer this, I need the supplier info." It doesn't answer yet. It asks for tools. That's the big difference between an agent and a chatbot. A chatbot answers straight away from what it already knows. An agent first decides what it needs to find out.
+
+[S5_03]
+Step two: the Odoo tool runs. Click it and you can see exactly what Odoo sent back. I'll switch to JSON view. Remember JSON from Video 3? A labelled shopping list. Partner: Global Lift Parts. Product: BL-1005, Pallet Jack Wheels. Price: thirty-eight. Minimum quantity: ten. Delay: twenty-one. Every number in Stocky's answer is right here in the shopping list. Nothing was made up.
+
+[S5_04]
+Step three: the brain reads the shopping lists and writes the answer in our format. So the pattern is always: think, use a tool, read the result, then answer. Sometimes it loops, think, tool, think, another tool, before answering. That loop is what makes it an agent.
+
+[S5_05]
+And every conversation is also saved in the Executions tab, our logbook from Video 5. If Mr. Harrison ever asks, "Where did Stocky get that number on Tuesday?", you can open the run and show him the exact data Odoo returned. That's traceability. Supply chain people love traceability.
+
+[S6_01]
+For this experiment, I'll temporarily replace Stocky's job description with a lazy one-liner: "You are a helpful inventory assistant for BrightLeaf Supplies." That's what most people write. I've saved the good version safely. Now I'll start a fresh chat.
+
+[S6_02]
+Now a question Stocky cannot answer, because it has no tool for purchase orders. "When will purchase order P zero zero zero two seven from Global Lift Parts arrive?" And look. "Expected to arrive in about three weeks, around the end of the month." It sounds great. It's completely made up. Stocky never saw that purchase order. In Video 5, our email said that order was already three days late! It took the lead time and invented a delivery date. That's Jake saying "Tuesday, sir."
+
+[S6_03]
+And here's how you catch it: open the log. There's no purchase order data anywhere. Only supplier info. The answer can't be traced, so it can't be trusted.
+
+[S6_04]
+Now let's put the real job description back, reset the chat, and ask the exact same question. "I don't know. That information isn't in the Odoo data I can see." It explains what it CAN see, gives the useful facts it has, the standard lead times, clearly labelled as defaults, not a promised date. And it tells Sarah exactly where to check: Purchase, Orders. That's the intern you want.
+
+[S6_05]
+Two more traps. A product that doesn't exist, BL-1011. Stocky says it can't find it, and tells me which SKUs it can see. And an action it isn't allowed to take: "Order fifty more pallet jack wheels." Stocky says it can only read. Good. Ordering is next video, and it will always come to you for approval first.

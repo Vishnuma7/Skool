@@ -1,0 +1,1 @@
+Step three: the brain reads the shopping lists and writes the answer in our format. So the pattern is always: think, use a tool, read the result, then answer. Sometimes it loops, think, tool, think, another tool, before answering. That loop is what makes it an agent.

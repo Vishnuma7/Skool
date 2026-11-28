@@ -1,0 +1,1 @@
+Step back and look. A doorbell, an intern, a brain, a notepad, and three hands, each reaching into a different drawer. And notice: every tool only uses "Get Many". Stocky can read, but it can't change anything in Odoo. That's on purpose. Reading first, acting later, with your approval. Save it.

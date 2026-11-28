@@ -1,0 +1,1 @@
+Tools: each tool, in plain English, with the Odoo field names in brackets, so Stocky can match "lead time" to the odd word "delay". And one important line: "Always use the tools to get fresh data. Never answer from memory." Stock changes every hour. Yesterday's number is a wrong number.

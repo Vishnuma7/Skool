@@ -7,6 +7,8 @@ import {layout, TOTAL_FRAMES} from './timeline';
 import {Main02} from './v02/Main';
 import {Main04, Main04Full} from './v04/Main';
 import {layout as layout04, fullLayout as fullLayout04, FULL_TOTAL as TOTAL04} from './v04/timeline';
+import {Main06} from './v06/Main';
+import {fullLayout as fullLayout06, FULL_TOTAL as TOTAL06} from './v06/timeline';
 import {layout as layout02, TOTAL_FRAMES as TOTAL02} from './v02/timeline';
 
 export const Root: React.FC = () => (
@@ -26,6 +28,10 @@ export const Root: React.FC = () => (
       ))}
       {layout04().map(({seg, dur}) => (
         <Composition key={`v04-${seg.id}`} id={`v04-${seg.id}`} component={Main04} durationInFrames={dur} fps={FPS} width={W} height={H} defaultProps={{only: seg.id}} />
+      ))}
+      <Composition id="V06" component={Main06} durationInFrames={TOTAL06} fps={FPS} width={W} height={H} defaultProps={{}} />
+      {fullLayout06().map(({seg, dur}) => (
+        <Composition key={`v06-${seg.id}`} id={`v06-${seg.id}`} component={Main06} durationInFrames={dur} fps={FPS} width={W} height={H} defaultProps={{only: seg.id}} />
       ))}
   </>
 );

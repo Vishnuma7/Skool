@@ -1,0 +1,1 @@
+Underneath the AI Agent, remember the three plugs. First, the brain. Click the plus under "Chat Model", choose "Anthropic Chat Model", pick the credential "Anthropic, BrightLeaf" we saved last time, and choose the newest Claude Sonnet model. Sonnet is a great choice for agents because it's good at deciding which tool to use.

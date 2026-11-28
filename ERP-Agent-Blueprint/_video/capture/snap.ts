@@ -1,6 +1,6 @@
 import fs from 'fs';
 import {Page} from 'playwright-core';
-export const OUT = process.env.CAP_OUT ?? 'public/cap';
+export const OUT = process.env.CAP_OUT ?? (process.argv[1]?.includes('v06_') ? 'public/cap06' : 'public/cap');
 fs.mkdirSync(OUT, {recursive: true});
 
 const HIDE: Record<string, string> = {

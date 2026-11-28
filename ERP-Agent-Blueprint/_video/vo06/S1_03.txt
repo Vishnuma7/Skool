@@ -1,0 +1,1 @@
+Now click the plus, search "AI Agent", and add it. Look at "Source for Prompt". It already says "Connected Chat Trigger Node". Exactly right. Whatever we type in the chat becomes Stocky's task. Close the panel.

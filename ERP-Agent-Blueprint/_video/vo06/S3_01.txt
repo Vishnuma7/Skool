@@ -1,0 +1,1 @@
+Open the AI Agent node, go to Options, add "System Message", delete the default "You are a helpful assistant", and paste Stocky's job description. You'll find the full text in the Stocky Prompt Builder activity file, so you don't need to pause and type. Let's walk through it, because every line is there for a reason.

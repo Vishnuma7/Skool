@@ -1,0 +1,1 @@
+Step two: the Odoo tool runs. Click it and you can see exactly what Odoo sent back. I'll switch to JSON view. Remember JSON from Video 3? A labelled shopping list. Partner: Global Lift Parts. Product: BL-1005, Pallet Jack Wheels. Price: thirty-eight. Minimum quantity: ten. Delay: twenty-one. Every number in Stocky's answer is right here in the shopping list. Nothing was made up.

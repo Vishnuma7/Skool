@@ -1,0 +1,1427 @@
+WEBVTT
+
+00:00:00.219 --> 00:00:04.213
+Every morning, Sarah starts with the
+same question, what's running low?
+
+00:00:04.643 --> 00:00:08.381
+It sounds like a simple question,
+but for Sarah, answering it takes
+
+00:00:08.421 --> 00:00:09.511
+around 40 minutes.
+
+00:00:10.326 --> 00:00:15.036
+She opens Odoo, exports a stock list,
+finds last week's Excel file with
+
+00:00:15.076 --> 00:00:19.283
+the reorder points, runs a VLOOKUP,
+fixes the rows that don't match,
+
+00:00:19.443 --> 00:00:22.728
+highlights the products that are
+running low and finally sends Tom a
+
+00:00:22.768 --> 00:00:26.900
+list. And by the time the list reaches
+the warehouse, another 200 boxes
+
+00:00:26.940 --> 00:00:28.465
+might already have gone out.
+
+00:00:28.505 --> 00:00:31.983
+40 minutes a day, more than 3
+hours every week just to answer one
+
+00:00:32.023 --> 00:00:35.962
+question. So what if Sarah could
+simply ask that question and get an
+
+00:00:36.002 --> 00:00:38.819
+answer in seconds. That's what
+we are going to build today.
+
+00:00:39.000 --> 00:00:41.298
+We are creating Stocky version 1.
+
+00:00:41.338 --> 00:00:45.009
+If you have been following along
+since video 1, you already know Stocky
+
+00:00:45.049 --> 00:00:48.761
+as our AI intern. So far, we have
+talked about what it should do.
+
+00:00:48.801 --> 00:00:52.851
+We have prepared the ERP, organized
+the data and set up the tools.
+
+00:00:52.891 --> 00:00:54.821
+Now we are finally connecting everything.
+
+00:00:55.000 --> 00:00:58.055
+Stocky will have a chat window
+where Sarah can ask questions,
+
+00:00:58.095 --> 00:01:01.476
+a brain powered by Claude, a little
+memory to follow the conversation,
+
+00:01:01.516 --> 00:01:05.393
+and most importantly, tools that let
+it read live information from Odoo.
+
+00:01:05.673 --> 00:01:09.850
+So Sarah can type what's running low,
+and Stocky will check the products
+
+00:01:09.890 --> 00:01:13.503
+against their reorder points and
+return the results in a clear table.
+
+00:01:13.563 --> 00:01:17.283
+But I don't want you to just watch
+an answer appear on screen and take
+
+00:01:17.323 --> 00:01:21.551
+it on trust. I will also show you
+how to open the execution log and
+
+00:01:21.591 --> 00:01:25.497
+follow what STOKI actually did, which
+tool it called, what information
+
+00:01:25.537 --> 00:01:29.127
+came back from Odoo and how it
+used the information to answer.
+
+00:01:29.245 --> 00:01:32.865
+Because in supply chain, you need
+to be able to trace a number back to
+
+00:01:32.905 --> 00:01:36.440
+its source. And there's one more
+important thing that we will cover
+
+00:01:36.480 --> 00:01:40.481
+hallucinations. That's when an
+AI give you an answer that sounds
+
+00:01:40.611 --> 00:01:43.081
+convincing but is not
+supported by the facts.
+
+00:01:43.144 --> 00:01:46.907
+We will deliberately catch Stocky
+doing that, then improve its
+
+00:01:46.947 --> 00:01:49.997
+instructions so it knows
+when to say "I don't know".
+
+00:01:50.037 --> 00:01:53.493
+If Video 5 was about setting up
+the desk and getting the keys,
+
+00:01:53.533 --> 00:01:55.902
+this is the day our intern
+finally starts work.
+
+00:01:55.942 --> 00:01:57.122
+Let's build Stocky.
+
+00:01:58.200 --> 00:02:01.125
+Open n8n and click "Create Workflow".
+
+00:02:01.738 --> 00:02:05.788
+Name it straight away:
+"Stocky v1, Reads the ERP".
+
+00:02:06.400 --> 00:02:09.813
+This is the workflow you'll keep
+improving for the rest of the course.
+
+00:02:11.010 --> 00:02:14.035
+Click "Add first step" and
+choose "On chat message".
+
+00:02:14.648 --> 00:02:16.998
+Last video our doorbell was a button.
+
+00:02:17.610 --> 00:02:20.260
+Today, the doorbell is a chat message.
+
+00:02:20.873 --> 00:02:24.385
+Every time someone types a
+question, the recipe starts.
+
+00:02:24.998 --> 00:02:27.185
+See the new "Chat" button at the bottom?
+
+00:02:27.797 --> 00:02:29.573
+That's where we'll talk to Stocky.
+
+00:02:30.780 --> 00:02:34.043
+Now click the plus, search
+"AI Agent", and add it.
+
+00:02:34.655 --> 00:02:36.293
+Look at "Source for Prompt".
+
+00:02:36.905 --> 00:02:39.668
+It already says "Connected
+Chat Trigger Node".
+
+00:02:40.280 --> 00:02:45.118
+Exactly right. Whatever we type
+in the chat becomes Stocky's task.
+
+00:02:45.730 --> 00:02:46.868
+Close the panel.
+
+00:02:48.054 --> 00:02:51.329
+Underneath the AI Agent,
+remember the three plugs.
+
+00:02:51.942 --> 00:02:57.114
+First, the brain. Click the plus
+under "Chat Model", choose "Anthropic
+
+00:02:57.154 --> 00:03:00.989
+Chat Model", pick the credential
+"Anthropic, BrightLeaf" we saved last
+
+00:03:01.029 --> 00:03:03.767
+time, and choose the
+newest Claude Sonnet model.
+
+00:03:04.379 --> 00:03:07.627
+Sonnet is a great choice for agents
+because it's good at deciding which
+
+00:03:07.667 --> 00:03:08.854
+tool to use.
+
+00:03:10.056 --> 00:03:11.631
+Second plug: memory.
+
+00:03:12.243 --> 00:03:15.218
+Click the plus under "Memory"
+and choose "Simple Memory".
+
+00:03:15.831 --> 00:03:17.269
+Why do we need this?
+
+00:03:17.881 --> 00:03:21.368
+Without memory, Stocky forgets
+everything after each message.
+
+00:03:21.981 --> 00:03:27.279
+You ask about BL-1005, then ask "and
+who supplies it?", and Stocky says,
+
+00:03:27.319 --> 00:03:31.256
+"Supplies what?" Like an
+intern with a goldfish brain.
+
+00:03:31.868 --> 00:03:35.279
+The "Context Window Length" is how
+many back-and-forth messages Stocky
+
+00:03:35.319 --> 00:03:38.156
+remembers. I'll set it to ten.
+
+00:03:38.769 --> 00:03:41.106
+That's plenty for a normal conversation.
+
+00:03:42.306 --> 00:03:45.181
+Before we go further,
+let's test the skeleton.
+
+00:03:45.794 --> 00:03:49.566
+Click "Chat" and ask: "Hi Stocky,
+how many Pallet Jack Wheels do we
+
+00:03:49.606 --> 00:03:52.194
+have?" Look at the answer.
+
+00:03:52.806 --> 00:03:56.231
+Stocky politely says it doesn't
+have access to inventory data.
+
+00:03:56.843 --> 00:04:01.381
+And that's good! It has a brain
+and a memory, but no hands.
+
+00:04:01.993 --> 00:04:03.944
+It can't reach into Odoo yet.
+
+00:04:04.556 --> 00:04:07.206
+A brain without tools is just a chatbot.
+
+00:04:07.819 --> 00:04:09.243
+Let's give it hands.
+
+00:04:11.767 --> 00:04:15.339
+Quick check in Odoo first, because
+an agent is only as good as the data
+
+00:04:15.379 --> 00:04:20.617
+it reads. Here's BL-1005,
+Pallet Jack Wheels.
+
+00:04:21.229 --> 00:04:26.202
+On hand: eighteen. The reorder
+rule, here in the "Min Max" button:
+
+00:04:26.242 --> 00:04:27.792
+minimum twenty-five.
+
+00:04:28.404 --> 00:04:32.389
+And on the Purchase tab, the vendor:
+Global Lift Parts, thirty-eight
+
+00:04:32.429 --> 00:04:35.792
+dollars a set, delivery
+lead time twenty-one days.
+
+00:04:36.404 --> 00:04:39.777
+Three kinds of information, in three
+different drawers of the filing
+
+00:04:39.817 --> 00:04:44.579
+cabinet. So we'll give Stocky
+three tools, one for each drawer.
+
+00:04:45.192 --> 00:04:48.689
+If one of your products is missing
+a reorder rule or a vendor line,
+
+00:04:48.729 --> 00:04:52.267
+add it now. Garbage in, garbage out.
+
+00:04:53.473 --> 00:04:56.335
+Back in n8n, click the plus under "Tool".
+
+00:04:56.948 --> 00:04:59.235
+Search "Odoo" and choose "Odoo Tool".
+
+00:04:59.848 --> 00:05:03.658
+This is the same Odoo waiter we met
+in Video 3, but now it works for the
+
+00:05:03.698 --> 00:05:08.248
+agent. Stocky can call it
+whenever it decides it needs data.
+
+00:05:09.451 --> 00:05:11.538
+Let's set it up line by line.
+
+00:05:12.151 --> 00:05:16.438
+First, rename the node to "get
+products and stock", with underscores.
+
+00:05:17.051 --> 00:05:20.423
+The name matters, because Stocky
+reads it to decide when to use this
+
+00:05:20.463 --> 00:05:24.326
+tool. Credential: "Odoo, BrightLeaf".
+
+00:05:24.938 --> 00:05:26.926
+Next, "Tool Description".
+
+00:05:27.538 --> 00:05:31.086
+Set it manually and describe in
+plain English what this tool returns:
+
+00:05:31.126 --> 00:05:36.001
+every product, with its SKU, name,
+quantity on hand and unit cost.
+
+00:05:36.613 --> 00:05:39.038
+This sentence is like
+the label on the drawer.
+
+00:05:39.651 --> 00:05:42.651
+A clear label means Stocky
+opens the right drawer.
+
+00:05:43.837 --> 00:05:46.487
+Resource: choose "Custom Resource".
+
+00:05:47.099 --> 00:05:49.262
+That lets us pick any drawer in Odoo.
+
+00:05:49.874 --> 00:05:52.612
+For the name, choose
+"product dot product".
+
+00:05:53.224 --> 00:05:55.374
+Odoo might call it "Product Variant".
+
+00:05:55.987 --> 00:05:58.187
+That's the list of
+products with their stock.
+
+00:05:58.799 --> 00:06:01.987
+Operation: "Get Many", because
+we want the whole list.
+
+00:06:02.599 --> 00:06:04.224
+Switch on "Return All".
+
+00:06:04.837 --> 00:06:08.237
+And finally, under Options,
+"Fields to Include".
+
+00:06:08.849 --> 00:06:12.634
+We'll pick just four fields: default
+code, which is Odoo's name for the
+
+00:06:12.674 --> 00:06:16.824
+SKU, name, quantity
+available, and standard price.
+
+00:06:17.437 --> 00:06:21.872
+Why only four? Because every extra
+field is more reading for Stocky,
+
+00:06:21.912 --> 00:06:25.849
+which means more tokens, more
+cost, and more chance of confusion.
+
+00:06:26.462 --> 00:06:29.624
+Give the intern the page they
+need, not the whole binder.
+
+00:06:30.823 --> 00:06:32.610
+Tool number two is quicker.
+
+00:06:33.223 --> 00:06:36.210
+Duplicate the first one
+and change three things.
+
+00:06:36.823 --> 00:06:39.060
+The name: "get reorder rules".
+
+00:06:39.673 --> 00:06:43.658
+The drawer: "stock dot warehouse dot
+orderpoint", which Odoo may show as
+
+00:06:43.698 --> 00:06:45.285
+"Minimum Inventory Rule".
+
+00:06:45.898 --> 00:06:50.273
+And the fields: product, minimum
+quantity, and maximum quantity.
+
+00:06:50.885 --> 00:06:53.510
+The minimum quantity
+is your reorder point.
+
+00:06:54.123 --> 00:06:56.623
+Update the description
+to say exactly that.
+
+00:06:57.817 --> 00:07:00.779
+And tool number three:
+"get supplier info".
+
+00:07:01.392 --> 00:07:05.277
+The drawer is "product dot supplier
+info", which may show as "Supplier
+
+00:07:05.317 --> 00:07:10.277
+Pricelist". The fields: the partner,
+which is the vendor, the product,
+
+00:07:10.317 --> 00:07:13.567
+the price, the minimum
+order quantity, and "delay".
+
+00:07:14.179 --> 00:07:17.629
+In Odoo, "delay" means the
+delivery lead time in days.
+
+00:07:18.242 --> 00:07:21.689
+That's an odd name, so we explain
+it in the description: "delay is the
+
+00:07:21.729 --> 00:07:23.267
+lead time in days."
+
+00:07:23.879 --> 00:07:27.389
+Without that sentence, Stocky might
+think "delay" means the shipment is
+
+00:07:27.429 --> 00:07:28.079
+late.
+
+00:07:29.275 --> 00:07:30.612
+Step back and look.
+
+00:07:31.225 --> 00:07:35.860
+A doorbell, an intern, a brain,
+a notepad, and three hands, each
+
+00:07:35.900 --> 00:07:37.937
+reaching into a different drawer.
+
+00:07:38.550 --> 00:07:41.425
+And notice: every tool
+only uses "Get Many".
+
+00:07:42.037 --> 00:07:45.275
+Stocky can read, but it can't
+change anything in Odoo.
+
+00:07:45.887 --> 00:07:51.087
+That's on purpose. Reading first,
+acting later, with your approval.
+
+00:07:51.700 --> 00:07:52.612
+Save it.
+
+00:07:54.333 --> 00:08:00.110
+So, Stocky now has a chat window, a
+brain, some memory and 3 tools that
+
+00:08:00.150 --> 00:08:01.756
+can read information from Odoo.
+
+00:08:01.796 --> 00:08:03.524
+But there is still one thing missing.
+
+00:08:03.564 --> 00:08:05.814
+It doesn't really know what its job is.
+
+00:08:06.003 --> 00:08:08.855
+Think about bringing a new person
+into your procurement team.
+
+00:08:08.895 --> 00:08:12.995
+You wouldn't just sit them down and
+say welcome, go and do the inventory
+
+00:08:13.035 --> 00:08:16.857
+stuff. You'd explain their role,
+what they are responsible for,
+
+00:08:17.047 --> 00:08:21.081
+which system they can use, and what
+they must not do, and how you expect
+
+00:08:21.121 --> 00:08:22.356
+them to report back.
+
+00:08:22.396 --> 00:08:25.366
+That's exactly what a system
+prompt does for an AI agent.
+
+00:08:25.676 --> 00:08:29.683
+It's a job description we give
+Stocky, and a good system prompt has 5
+
+00:08:29.723 --> 00:08:32.724
+parts. I call this the
+five-part prompt anatomy.
+
+00:08:32.764 --> 00:08:33.914
+Let's go through them.
+
+00:08:34.019 --> 00:08:36.161
+First is Role. Who is Stocky?
+
+00:08:36.262 --> 00:08:39.482
+We tell it that it's a inventory
+and procurement assistant for
+
+00:08:39.522 --> 00:08:42.313
+BrightLeaf Supplies working
+with Sarah and her team.
+
+00:08:42.353 --> 00:08:44.243
+That gives the agent its context.
+
+00:08:44.405 --> 00:08:47.061
+Second is Goal. What are
+we asking it to achieve?
+
+00:08:47.101 --> 00:08:50.811
+In our case, help the team
+understand stock level quickly and
+
+00:08:50.881 --> 00:08:52.878
+accurately, so products don't run out.
+
+00:08:52.918 --> 00:08:56.666
+Third is tools. We explain what
+each tool can access and when Stocky
+
+00:08:56.706 --> 00:09:00.826
+should use it. For example, if Sarah
+asks about a supplier or a delivery
+
+00:09:00.866 --> 00:09:04.913
+lead time, Stocky should know to
+use the supplier information tool.
+
+00:09:05.194 --> 00:09:09.604
+Fourth is rules. This is where your
+business knowledge really matters.
+
+00:09:09.755 --> 00:09:13.900
+What exactly does running low means
+in your company, for example in
+
+00:09:13.940 --> 00:09:17.914
+BrightLeaf, It's when the quantity
+on hand is at or below the reorder
+
+00:09:17.954 --> 00:09:20.123
+point. And what should Stocky never do?
+
+00:09:20.163 --> 00:09:22.573
+Guess a number or invent a delivery date.
+
+00:09:22.667 --> 00:09:24.404
+And fifth is output format.
+
+00:09:24.444 --> 00:09:26.253
+We decide how the answer should look.
+
+00:09:26.293 --> 00:09:30.907
+We want a short answer first then a
+table with SKU, product, quantity on
+
+00:09:30.947 --> 00:09:32.956
+hand, reorder point and the gap.
+
+00:09:32.996 --> 00:09:36.912
+We also want the result sorted by
+urgency with the source shown at the
+
+00:09:36.952 --> 00:09:40.390
+bottom. The AI doesn't automatically
+know how your company works.
+
+00:09:40.430 --> 00:09:43.734
+It doesn't know that your team calls
+the reorder point "the red line" or
+
+00:09:43.774 --> 00:09:46.857
+that Mr. Harrison prefers
+short practical updates.
+
+00:09:46.897 --> 00:09:49.387
+You know those things because
+you understand the business.
+
+00:09:49.485 --> 00:09:53.383
+So, writing a good prompt is not
+really a programming task, it's you as
+
+00:09:53.423 --> 00:09:57.322
+a manager explaining the job clearly
+enough so that a new team member
+
+00:09:57.362 --> 00:10:01.086
+could do it. And that's what we
+are going to put in Stocky now.
+
+00:10:01.933 --> 00:10:06.393
+Open the AI Agent node, go to Options,
+add "System Message", delete the
+
+00:10:06.433 --> 00:10:09.418
+default "You are a helpful
+assistant", and paste Stocky's job
+
+00:10:09.458 --> 00:10:13.381
+description. You'll find the full
+text in the Stocky Prompt Builder
+
+00:10:13.421 --> 00:10:16.496
+activity file, so you don't
+need to pause and type.
+
+00:10:17.108 --> 00:10:20.496
+Let's walk through it, because
+every line is there for a reason.
+
+00:10:21.703 --> 00:10:26.628
+Role and Goal: who Stocky is, who it
+works for, and what success means.
+
+00:10:27.241 --> 00:10:30.816
+Notice I wrote the headings in
+capital letters with a hash sign.
+
+00:10:31.428 --> 00:10:36.238
+That's not code. It's just a tidy
+way to organise text so both you and
+
+00:10:36.278 --> 00:10:38.178
+the AI can find each section.
+
+00:10:39.385 --> 00:10:43.258
+Tools: each tool, in plain English,
+with the Odoo field names in
+
+00:10:43.298 --> 00:10:47.348
+brackets, so Stocky can match "lead
+time" to the odd word "delay".
+
+00:10:47.960 --> 00:10:51.860
+And one important line: "Always
+use the tools to get fresh data.
+
+00:10:52.473 --> 00:10:54.148
+Never answer from memory."
+
+00:10:54.760 --> 00:10:56.448
+Stock changes every hour.
+
+00:10:57.060 --> 00:10:59.335
+Yesterday's number is a wrong number.
+
+00:11:00.523 --> 00:11:05.223
+Rules. The first two are the most
+important lines in the whole prompt.
+
+00:11:05.836 --> 00:11:07.823
+Only answer from tool data.
+
+00:11:08.436 --> 00:11:11.111
+And if the data isn't
+there, say "I don't know."
+
+00:11:11.723 --> 00:11:15.346
+Then, our business definitions:
+running low means at or below the
+
+00:11:15.386 --> 00:11:18.846
+reorder point, and the watch list
+is anything within fifteen percent
+
+00:11:18.886 --> 00:11:22.996
+above it. That's a decision a
+supply chain person makes, not a
+
+00:11:23.036 --> 00:11:27.711
+programmer. Change the fifteen
+percent to whatever your company uses.
+
+00:11:28.909 --> 00:11:32.807
+And the output format: a one-line
+answer first, then a table,
+
+00:11:32.847 --> 00:11:35.922
+sorted by urgency, and a
+source line at the end.
+
+00:11:36.534 --> 00:11:38.759
+The source line is my favourite trick.
+
+00:11:39.372 --> 00:11:43.057
+It forces Stocky to tell you which
+drawers it opened, so you can always
+
+00:11:43.097 --> 00:11:43.772
+check.
+
+00:11:44.959 --> 00:11:49.359
+Pause and think. What is your
+company's definition of running low?
+
+00:11:49.972 --> 00:11:53.519
+Write it down as one sentence a new
+intern could follow without asking
+
+00:11:53.559 --> 00:11:54.959
+you a single question.
+
+00:12:02.500 --> 00:12:06.550
+Here we go. The question
+Sarah asks every morning.
+
+00:12:07.163 --> 00:12:08.413
+"What's running low?"
+
+00:12:09.025 --> 00:12:11.850
+Press Enter. Watch the canvas.
+
+00:12:12.463 --> 00:12:16.575
+The brain lights up, then the stock
+tool, then the reorder rules tool.
+
+00:12:17.188 --> 00:12:19.213
+Stocky is opening the drawers.
+
+00:12:19.825 --> 00:12:21.238
+And here's the answer.
+
+00:12:21.850 --> 00:12:25.250
+Four products running low, and
+one more on the watch list.
+
+00:12:25.863 --> 00:12:29.300
+Safety gloves, four hundred
+and twenty against six hundred.
+
+00:12:29.913 --> 00:12:32.975
+Pallet jack wheels, eighteen
+against twenty-five.
+
+00:12:33.588 --> 00:12:36.300
+Hydraulic oil, thirty-one against forty.
+
+00:12:36.913 --> 00:12:40.773
+And shipping boxes, one thousand one
+hundred and eighty against fifteen
+
+00:12:40.813 --> 00:12:41.538
+hundred.
+
+00:12:42.742 --> 00:12:47.302
+Look at the order. The boxes have
+the biggest gap in units, minus three
+
+00:12:47.342 --> 00:12:49.667
+hundred and twenty, but
+they're at the bottom.
+
+00:12:50.280 --> 00:12:54.917
+Why? Because we told Stocky to
+sort by percentage shortfall.
+
+00:12:55.530 --> 00:12:59.065
+Gloves are thirty percent below
+their reorder point, boxes only
+
+00:12:59.104 --> 00:13:00.517
+twenty-one percent.
+
+00:13:01.129 --> 00:13:03.655
+That's the rule we
+wrote, followed exactly.
+
+00:13:04.267 --> 00:13:06.917
+It even flagged the LED
+lights on the watch list.
+
+00:13:07.530 --> 00:13:09.280
+Thirty-four against thirty.
+
+00:13:09.892 --> 00:13:13.202
+And with a twenty-eight-day lead time
+from Shenzhen, that's exactly the
+
+00:13:13.242 --> 00:13:15.392
+one Sarah would want to know about.
+
+00:13:16.600 --> 00:13:18.013
+But don't trust it yet.
+
+00:13:18.625 --> 00:13:21.025
+Check it. Here's Odoo.
+
+00:13:21.638 --> 00:13:23.638
+Gloves, four hundred and twenty.
+
+00:13:24.250 --> 00:13:27.775
+Wheels, eighteen. The numbers match.
+
+00:13:28.388 --> 00:13:30.738
+Ten seconds instead of forty minutes.
+
+00:13:31.930 --> 00:13:36.877
+Second question: "Which supplier
+provides BL-1005, and what's the lead
+
+00:13:36.917 --> 00:13:39.892
+time?" Global Lift Parts.
+
+00:13:40.505 --> 00:13:45.743
+Twenty-one days. Thirty-eight dollars
+a set, minimum order ten sets.
+
+00:13:46.355 --> 00:13:50.027
+And without being asked, it connected
+the dots: eighteen on hand against
+
+00:13:50.067 --> 00:13:54.203
+a reorder point of twenty-five, and
+a new order takes twenty-one days,
+
+00:13:54.243 --> 00:13:56.780
+so stock could run
+short before it arrives.
+
+00:13:57.392 --> 00:13:59.780
+That's the kind of thinking
+a good intern does.
+
+00:14:00.988 --> 00:14:02.363
+Now watch the memory.
+
+00:14:02.975 --> 00:14:05.788
+I'll just say, "And what
+about the hydraulic oil?"
+
+00:14:06.401 --> 00:14:08.863
+I didn't say "supplier" or "lead time".
+
+00:14:09.475 --> 00:14:12.486
+But Stocky remembered what we were
+talking about, thanks to Simple
+
+00:14:12.526 --> 00:14:16.063
+Memory, and gave me Gulf
+Lubricants, fourteen days.
+
+00:14:16.676 --> 00:14:18.500
+That's the notepad at work.
+
+00:14:19.702 --> 00:14:24.387
+Pause and think. If you were Sarah,
+which product would you order first,
+
+00:14:24.427 --> 00:14:28.477
+and why? Hint: compare the
+gap with the lead time.
+
+00:14:36.033 --> 00:14:38.358
+So far we've seen what Stocky said.
+
+00:14:38.971 --> 00:14:40.758
+Now let's see how it thought.
+
+00:14:41.371 --> 00:14:44.096
+Open the "Logs" panel at
+the bottom of the canvas.
+
+00:14:44.708 --> 00:14:47.621
+This is the step-by-step
+story of the last question.
+
+00:14:48.233 --> 00:14:50.496
+Read it from top to bottom like a diary.
+
+00:14:51.699 --> 00:14:55.322
+Step one: the brain reads the
+question and our job description,
+
+00:14:55.362 --> 00:14:58.899
+and decides, "To answer this,
+I need the supplier info."
+
+00:14:59.512 --> 00:15:01.049
+It doesn't answer yet.
+
+00:15:01.662 --> 00:15:05.772
+It asks for tools. That's the big
+difference between an agent and a
+
+00:15:05.812 --> 00:15:10.587
+chatbot. A chatbot answers straight
+away from what it already knows.
+
+00:15:11.199 --> 00:15:14.199
+An agent first decides
+what it needs to find out.
+
+00:15:15.405 --> 00:15:17.955
+Step two: the Odoo tool runs.
+
+00:15:18.568 --> 00:15:21.430
+Click it and you can see
+exactly what Odoo sent back.
+
+00:15:22.043 --> 00:15:23.893
+I'll switch to JSON view.
+
+00:15:24.505 --> 00:15:26.693
+Remember JSON from Video 3?
+
+00:15:27.305 --> 00:15:28.980
+A labelled shopping list.
+
+00:15:29.593 --> 00:15:31.880
+Partner: Global Lift Parts.
+
+00:15:32.493 --> 00:15:36.668
+Product: BL-1005, Pallet Jack Wheels.
+
+00:15:37.280 --> 00:15:38.993
+Price: thirty-eight.
+
+00:15:39.605 --> 00:15:41.568
+Minimum quantity: ten.
+
+00:15:42.180 --> 00:15:46.878
+Delay: twenty-one. Every number in
+Stocky's answer is right here in the
+
+00:15:46.918 --> 00:15:49.980
+shopping list. Nothing was made up.
+
+00:15:51.183 --> 00:15:54.868
+Step three: the brain reads the
+shopping lists and writes the answer in
+
+00:15:54.908 --> 00:15:59.618
+our format. So the pattern is
+always: think, use a tool, read the
+
+00:15:59.658 --> 00:16:01.346
+result, then answer.
+
+00:16:01.958 --> 00:16:07.096
+Sometimes it loops, think, tool,
+think, another tool, before answering.
+
+00:16:07.708 --> 00:16:09.883
+That loop is what makes it an agent.
+
+00:16:11.073 --> 00:16:15.058
+And every conversation is also saved
+in the Executions tab, our logbook
+
+00:16:15.098 --> 00:16:17.533
+from Video 5. If Mr.
+
+00:16:17.573 --> 00:16:21.108
+Harrison ever asks, "Where did
+Stocky get that number on Tuesday?",
+
+00:16:21.148 --> 00:16:24.573
+you can open the run and show
+him the exact data Odoo returned.
+
+00:16:25.186 --> 00:16:26.511
+That's traceability.
+
+00:16:27.123 --> 00:16:29.561
+Supply chain people love traceability.
+
+00:16:33.695 --> 00:16:37.555
+Now, I want to talk about one of the
+biggest risks when you start using
+
+00:16:37.595 --> 00:16:39.376
+AI in business. Hallucination.
+
+00:16:39.424 --> 00:16:41.394
+Let me explain it with a quick story.
+
+00:16:41.664 --> 00:16:44.600
+Imagine there is a new intern at
+BrightLeaf, let's call him Jake.
+
+00:16:44.640 --> 00:16:48.500
+Jake is smart, he is keen to learn
+and he really wants to make a good
+
+00:16:48.540 --> 00:16:50.226
+impression. One day, Mr.
+
+00:16:50.266 --> 00:16:54.775
+Harrison walks over and asks him,
+When are the LED warehouse lights from
+
+00:16:54.815 --> 00:16:56.172
+Shenzhen arriving?
+
+00:16:58.057 --> 00:16:59.371
+Jake doesn't actually know.
+
+00:16:59.411 --> 00:17:02.691
+He hasn't checked the purchase order
+and he doesn't have a confirmed
+
+00:17:02.731 --> 00:17:05.752
+delivery date. But he also
+doesn't want to disappoint Mr.
+
+00:17:05.792 --> 00:17:08.741
+Harrison. So he says, Tuesday, sir.
+
+00:17:10.947 --> 00:17:12.357
+It sounds confident.
+
+00:17:12.567 --> 00:17:16.267
+Mr. Harrison trusts the answer
+and promises a customer that the
+
+00:17:16.307 --> 00:17:17.857
+installation will happen on Wednesday.
+
+00:17:17.926 --> 00:17:19.076
+But there's a problem.
+
+00:17:19.117 --> 00:17:21.307
+The lights have not even left the factory.
+
+00:17:21.462 --> 00:17:23.772
+The supplier's lead time is 28 days.
+
+00:17:23.812 --> 00:17:25.828
+Jake was not trying to mislead anyone.
+
+00:17:25.868 --> 00:17:29.624
+He simply gave an answer that sounds
+plausible, even though he didn't
+
+00:17:29.664 --> 00:17:33.610
+have the facts. That's very similar
+to what an AI hallucination looks
+
+00:17:33.695 --> 00:17:37.931
+like. Models like Claude and ChatGPT
+generate response by predicting
+
+00:17:38.081 --> 00:17:40.154
+what words are likely to come next.
+
+00:17:40.194 --> 00:17:43.876
+Most of the time that produces useful
+answers, but when the information
+
+00:17:43.916 --> 00:17:47.969
+is not available the model can still
+produce a very convincing response.
+
+00:17:48.009 --> 00:17:52.169
+It might give you a delivery date,
+a stock quantity or even a supplier
+
+00:17:52.209 --> 00:17:56.425
+name. And it can sound just as
+confident as it does when the answer is
+
+00:17:56.465 --> 00:17:59.624
+correct. In supply chain that
+can be a serious problem.
+
+00:17:59.672 --> 00:18:03.006
+A made-up delivery date can become
+a broken promise to a customer.
+
+00:18:03.046 --> 00:18:06.804
+A made-up stock number can lead to
+a stock-out or an unnecessary rush
+
+00:18:06.844 --> 00:18:09.689
+order. So how do we reduce
+that risk with Stocky?
+
+00:18:09.729 --> 00:18:11.739
+There are three habits we want to build.
+
+00:18:11.900 --> 00:18:15.690
+First, give the agent access to the
+real information through its tools.
+
+00:18:15.889 --> 00:18:19.999
+Second, make it clear in the instruction
+that it can only answer using
+
+00:18:20.039 --> 00:18:21.919
+the data those tools return.
+
+00:18:22.123 --> 00:18:26.343
+And third, make it completely
+acceptable for Stocky to say "I don't
+
+00:18:26.383 --> 00:18:30.674
+know". An agent that admits it doesn't
+have the information is much more
+
+00:18:30.714 --> 00:18:33.253
+useful than the one that
+confidently makes something up.
+
+00:18:33.293 --> 00:18:34.663
+Let's put that to test.
+
+00:18:34.953 --> 00:18:38.293
+We will deliberately give Stocky
+a weak instruction, see what it
+
+00:18:38.333 --> 00:18:39.683
+invents, then fix it.
+
+00:18:40.633 --> 00:18:44.243
+For this experiment, I'll temporarily
+replace Stocky's job description
+
+00:18:44.283 --> 00:18:47.531
+with a lazy one-liner: "You are
+a helpful inventory assistant for
+
+00:18:47.571 --> 00:18:48.983
+BrightLeaf Supplies."
+
+00:18:49.596 --> 00:18:51.296
+That's what most people write.
+
+00:18:51.908 --> 00:18:53.871
+I've saved the good version safely.
+
+00:18:54.483 --> 00:18:56.358
+Now I'll start a fresh chat.
+
+00:18:57.547 --> 00:19:01.145
+Now a question Stocky cannot answer,
+because it has no tool for purchase
+
+00:19:01.185 --> 00:19:06.257
+orders. "When will purchase order P
+zero zero zero two seven from Global
+
+00:19:06.297 --> 00:19:07.697
+Lift Parts arrive?"
+
+00:19:08.310 --> 00:19:12.907
+And look. "Expected to arrive in
+about three weeks, around the end of
+
+00:19:12.947 --> 00:19:15.710
+the month." It sounds great.
+
+00:19:16.322 --> 00:19:17.935
+It's completely made up.
+
+00:19:18.547 --> 00:19:20.885
+Stocky never saw that purchase order.
+
+00:19:21.497 --> 00:19:25.922
+In Video 5, our email said that
+order was already three days late!
+
+00:19:26.535 --> 00:19:29.347
+It took the lead time and
+invented a delivery date.
+
+00:19:29.960 --> 00:19:32.285
+That's Jake saying "Tuesday, sir."
+
+00:19:33.469 --> 00:19:36.044
+And here's how you catch it: open the log.
+
+00:19:36.657 --> 00:19:38.894
+There's no purchase order data anywhere.
+
+00:19:39.507 --> 00:19:41.119
+Only supplier info.
+
+00:19:41.732 --> 00:19:44.732
+The answer can't be traced,
+so it can't be trusted.
+
+00:19:45.919 --> 00:19:50.167
+Now let's put the real job description
+back, reset the chat, and ask the
+
+00:19:50.207 --> 00:19:51.619
+exact same question.
+
+00:19:52.232 --> 00:19:56.669
+"I don't know. That information
+isn't in the Odoo data I can see."
+
+00:19:57.282 --> 00:20:01.317
+It explains what it CAN see, gives
+the useful facts it has, the standard
+
+00:20:01.357 --> 00:20:05.182
+lead times, clearly labelled as
+defaults, not a promised date.
+
+00:20:05.794 --> 00:20:09.807
+And it tells Sarah exactly where
+to check: Purchase, Orders.
+
+00:20:10.419 --> 00:20:12.069
+That's the intern you want.
+
+00:20:13.273 --> 00:20:18.286
+Two more traps. A product
+that doesn't exist, BL-1011.
+
+00:20:18.898 --> 00:20:23.148
+Stocky says it can't find it, and
+tells me which SKUs it can see.
+
+00:20:23.761 --> 00:20:27.033
+And an action it isn't allowed to
+take: "Order fifty more pallet jack
+
+00:20:27.073 --> 00:20:30.498
+wheels." Stocky says it can only read.
+
+00:20:31.111 --> 00:20:35.333
+Good. Ordering is next video, and
+it will always come to you for
+
+00:20:35.373 --> 00:20:36.636
+approval first.
+
+00:20:44.400 --> 00:20:46.804
+Take a moment and look
+at what you have built.
+
+00:20:46.844 --> 00:20:50.374
+Stocky can now connect to Odoo,
+read live inventory information,
+
+00:20:50.488 --> 00:20:54.034
+compare stock against the reorder
+points, look up supplier details,
+
+00:20:54.124 --> 00:20:56.054
+and answer questions in plain English.
+
+00:20:56.145 --> 00:21:00.271
+And just as importantly, it can show
+us where its answer came from and
+
+00:21:00.311 --> 00:21:02.377
+admit when it doesn't
+have enough information.
+
+00:21:02.417 --> 00:21:05.267
+We did all of that without
+writing a single line of code.
+
+00:21:05.321 --> 00:21:08.741
+Before we move on, there are three
+things I want you to remember from
+
+00:21:08.781 --> 00:21:12.830
+this video. First, an AI agent
+needs more than just a brain.
+
+00:21:12.987 --> 00:21:16.882
+Stocky has a chat trigger to receive
+questions, Claude as its brain,
+
+00:21:17.061 --> 00:21:20.801
+simple memory to follow the conversation,
+and three Odoo tools to read
+
+00:21:20.841 --> 00:21:25.200
+the data. Each tool needs a clear
+name, a clear description, and only
+
+00:21:25.240 --> 00:21:26.910
+the fields it actually needs.
+
+00:21:27.100 --> 00:21:30.410
+Second, the system prompt is
+the agent's job description.
+
+00:21:30.580 --> 00:21:35.591
+Remember those five parts, role,
+goal, tools, rules and output format.
+
+00:21:35.631 --> 00:21:39.431
+The rules are especially important
+because that's where you define how
+
+00:21:39.471 --> 00:21:40.509
+your business works.
+
+00:21:40.549 --> 00:21:44.639
+For example, what does running
+low actually mean in your company?
+
+00:21:44.754 --> 00:21:49.446
+And third, always trust but verify,
+check the execution log, compare
+
+00:21:49.486 --> 00:21:52.580
+important numbers with Odoo, and test
+the agent with questions it should
+
+00:21:52.620 --> 00:21:53.831
+not be able to answer.
+
+00:21:53.871 --> 00:21:57.788
+If the information is not available,
+Stocky should say so rather than
+
+00:21:57.828 --> 00:22:01.338
+guess. Now let's put what we
+have learned into practice.
+
+00:22:01.533 --> 00:22:05.889
+First, open the V06 Activity:
+Stocky Prompt Builder document.
+
+00:22:05.966 --> 00:22:10.006
+It includes Stocky's prompt as an
+example along with the space for you
+
+00:22:10.046 --> 00:22:11.987
+to create the one for your own company.
+
+00:22:12.027 --> 00:22:15.037
+Make sure you define what "running
+low" means in your business.
+
+00:22:15.300 --> 00:22:20.606
+Next, open the V06 Activity: test
+question bank spreadsheet, ask Stocky
+
+00:22:20.646 --> 00:22:25.578
+all 20 questions, mark each answer
+as a pass or fail and let the sheet
+
+00:22:25.728 --> 00:22:27.098
+calculate its pass rate.
+
+00:22:27.330 --> 00:22:32.153
+Aim for at least 18 correct answer
+out of 20, then take the Video 6
+
+00:22:32.193 --> 00:22:34.924
+quiz. And here's where
+things get interesting.
+
+00:22:35.016 --> 00:22:39.530
+Right now, Stocky can read information
+from your ERP, but it can't take
+
+00:22:39.570 --> 00:22:42.752
+action. Sarah still has to create
+the purchase order herself.
+
+00:22:43.142 --> 00:22:46.762
+In the next video, we will give
+Stocky the ability to prepare the
+
+00:22:46.802 --> 00:22:50.447
+purchase order in Odoo, but it
+won't simply send it on its own.
+
+00:22:50.525 --> 00:22:53.995
+It will stop and ask for human
+approval before anything happens.
+
+00:22:54.233 --> 00:22:58.313
+That's the next step, moving from
+an agent that can read to an agent
+
+00:22:58.353 --> 00:22:59.943
+that can act responsibly.
+
+00:23:00.411 --> 00:23:04.868
+Video 7, Agents That Take action,
+draft purchase orders with human
+
+00:23:04.908 --> 00:23:06.411
+approval. I'll see you there.

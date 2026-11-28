@@ -1,0 +1,1 @@
+Back in n8n, click the plus under "Tool". Search "Odoo" and choose "Odoo Tool". This is the same Odoo waiter we met in Video 3, but now it works for the agent. Stocky can call it whenever it decides it needs data.

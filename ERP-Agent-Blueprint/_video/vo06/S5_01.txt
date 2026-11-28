@@ -1,0 +1,1 @@
+So far we've seen what Stocky said. Now let's see how it thought. Open the "Logs" panel at the bottom of the canvas. This is the step-by-step story of the last question. Read it from top to bottom like a diary.
